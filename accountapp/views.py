@@ -17,18 +17,18 @@ from accountapp.models import HelloWorld
 has_ownership = [account_ownership_required, login_required]
 
 @login_required
-def hello_world(request):
+def donut(request):
     if request.user.is_authenticated:
         if request.method == "POST":
-            temp = request.POST.get('hello_world_input')
+            temp = request.POST.get('donut_input')
 
-            new_hello_world = HelloWorld()
-            new_hello_world.text = temp
-            new_hello_world.save()
+            new_donut = HelloWorld()
+            new_donut.text = temp
+            new_donut.save()
 
             return HttpResponseRedirect(reverse('accountapp:hello_world'))
         else:
-            hello_world_list = HelloWorld.objects.all()
+            donut_list = HelloWorld.objects.all()
             return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list})
 
 class AccountCreateView(CreateView):
@@ -39,7 +39,7 @@ class AccountCreateView(CreateView):
 
 class AccountDetailView(DetailView, MultipleObjectMixin):
     model = User
-    context_object_name = 'target_user' # 내 계정 말고 해당 계정 정보를 보기 위한
+    context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
 
 @method_decorator(has_ownership, 'get')
