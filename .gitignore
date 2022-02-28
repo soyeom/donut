@@ -78,6 +78,10 @@ fabric.properties
 
 venv/
 
+<<<<<<< HEAD
 .env
+=======
+db.sqlite3
+>>>>>>> ff4e2cdd5a204b3ca1b8cb88752cb90e9142463f
 
 .idea/
