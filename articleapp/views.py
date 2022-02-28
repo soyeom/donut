@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import CreateView, DetailView
 
@@ -16,3 +16,20 @@ def detail(request):
 def listing(request, pk):
     article = Article.objects.get(pk=pk)
     return render(request, 'articleapp/list.html', {'article': article})
+
+def update(request):
+    if request.method == 'POST':
+        if request.POST['mainphoto']:
+            new_article = Article.objects.create(
+                title=request.POST['title'],
+                content=request.POST['content'],
+                mainphoto=request.POST['mainphoto'],
+            )
+        else:
+            new_article = Article.objects.create(
+                title=request.POST['title'],
+                content=request.POST['content'],
+                mainphoto=request.POST['mainphoto'],
+            )
+        return redirect('/articles/create')
+    return render(request, 'articleapp/update.html')
