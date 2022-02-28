@@ -7,7 +7,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, DetailView, DeleteView
+from django.views.generic import CreateView, DetailView, DeleteView, UpdateView
 from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_ownership_required
@@ -44,7 +44,7 @@ class AccountDetailView(DetailView):
 
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
-class AccountUpdateView(CreateView):
+class AccountUpdateView(UpdateView):
     model = User
     context_object_name = 'target_user'
     form_class = AccountUpdateForm
