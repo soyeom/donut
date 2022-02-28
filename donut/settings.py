@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+<<<<<<< HEAD
 
 from pathlib import Path
 
@@ -22,18 +23,29 @@ env = environ.Env(
 
 # Set the project base directory
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+=======
+import os
+from pathlib import Path
+>>>>>>> 3f6b4eef7222eaefda8797167653996b549e664f
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+<<<<<<< HEAD
 # Take environment variables from .env file
 environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
+=======
+>>>>>>> 3f6b4eef7222eaefda8797167653996b549e664f
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD
 SECRET_KEY = env('SECRET_KEY')
+=======
+SECRET_KEY = 'django-insecure-lb6lvbfl=%%spgp4#+$%bntd%y-*t$&(z8-kci935pez1lu&y%'
+>>>>>>> 3f6b4eef7222eaefda8797167653996b549e664f
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -67,7 +79,11 @@ ROOT_URLCONF = 'donut.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
         'DIRS': [],
+=======
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+>>>>>>> 3f6b4eef7222eaefda8797167653996b549e664f
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
