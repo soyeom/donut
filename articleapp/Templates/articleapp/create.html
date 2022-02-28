@@ -12,8 +12,7 @@
         <table>
         {% for list in articlelist %}
             <ul>
-                <li>{{list.title}}</li>
-                <li>{{list.content}}</li>
+                <li><a href="{{list.pk}}/">{{list.title}}</a></li>
             </ul>
         {% endfor %}
         </table>
