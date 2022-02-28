@@ -8,10 +8,12 @@
    <div class="mb-4">
        <h4>Signup</h4>
    </div>
-
     <form action="{% url 'accountapp:create' %}" method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
             <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
     </form>
 </div>
+
+
+{% endblock %}
