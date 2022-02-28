@@ -80,12 +80,4 @@ venv/
 
 .env
 
-<<<<<<< HEAD
 .idea/
-=======
-db.sqlite3
-
-.idea/
-
-__pycache__/
->>>>>>> fa7fa8ba95711370d55de75bbf6242885e764031
