@@ -1,8 +1,8 @@
 from django.urls import path
-from django.views.generic import TemplateView
+from .views import IntroListView
 
 app_name = 'introapp'
 
 urlpatterns = [
-    path('list/', TemplateView.as_view(template_name='introapp/list.html'), name='list')
+    path('list/', IntroListView.as_view(), name='list'),
 ]

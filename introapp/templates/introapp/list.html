@@ -4,20 +4,18 @@
 {% block content %}
 
 <!-- HTML -->
-<div class="grid-image">
-  <img alt="" src="https://picsum.photos/id/237/200/300" />
-  <img alt="" src="https://picsum.photos/id/237/200/300" />
-  <img alt="" src="https://picsum.photos/id/237/200/300" />
-  <img alt="" src="https://picsum.photos/id/237/200/300" />
-</div>
+  <div class="grid-image">
+    <img alt="" src="https://picsum.photos/200">
+    <img alt="" src="https://picsum.photos/200">
+    <img alt="" src="https://picsum.photos/200">
+  </div>
 
 <style>
-/* CSS */
 .grid-image {
     display:flex;
     flex-wrap:wrap;
     align-items:flex-start;
-    margin:2rem;
+    margin:4rem;
 }
 .grid-image img {
     width:calc(33.333% - 10px);
@@ -44,7 +42,5 @@
 </style>
 
 {% include 'snippets/pagination.html' with page_obj=page_obj %}
-
-<!-- <script src="{% static 'js/magicgrid.js' %}"></script> -->
 
 {% endblock %}
