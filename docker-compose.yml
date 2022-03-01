@@ -13,7 +13,7 @@ services:
       - 80:80
 
   django_container_gunicorn:
-    image: donut_test_image:6
+    image: donut_test_image:7
     networks:
       - network
     volumes:
