@@ -2,7 +2,7 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
-RUN echo "stack배포 할때마다 바꾸기"
+RUN echo "secondg"
 
 RUN git clone https://github.com/soyeom/donut.git
 
