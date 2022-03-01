@@ -4,20 +4,21 @@
 
 <div>
     <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
-        <h1>{{ target_article.title }}</h1>
-        <h5>{{ target_article.writer.profile.nickname }}</h5>
+        <h1>{{ object.title }}</h1>
+        <h5>{{ object.writer }}</h5>
         <hr>
 
-        {% if target_article.image %}
+        {% if object.image %}
             <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
-             src="{{ target_article.image.url }}" alt="">
+             src="{{ object.image.url }}" alt="">
         {% else %}
 
         <p>
-            {{ target_article.content }}
+            {{ object.content }}
         </p>
 
         {% endif %}
+        <a href="{% url 'articleapp:list' %}">목록</a>
     </div>
 </div>
 

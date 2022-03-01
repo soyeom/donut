@@ -19,15 +19,14 @@ class ArticleCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('articleapp:detail', kwargs={'pk': self.object})
+        return reverse('articleapp:list', kwargs={'pk': self.object})
 
 class ArticleDetailView(DetailView):
     model = Article
-    context_object_name = 'target_article'
     template_name = 'articleapp/detail.html'
 
 class ArticleListView(ListView):
     model = Article
-    context_object_name = 'article_list'
     template_name = 'articleapp/list.html'
     paginate_by = 10
+    ordering = ['-id']
