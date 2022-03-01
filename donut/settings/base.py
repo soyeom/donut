@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'accountapp',
     'articleapp',
     'bootstrap4',
+    'introapp',
 ]
 
 MIDDLEWARE = [
@@ -112,5 +113,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_REDIRECT_URL = reverse_lazy('articleapp:list')
+LOGIN_REDIRECT_URL = reverse_lazy('introapp:list')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
+
