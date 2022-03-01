@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic.edit import FormMixin
 
 from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
@@ -14,10 +15,19 @@ class ArticleCreateView(CreateView):
     template_name = 'articleapp/create.html'
 
     def form_valid(self, form):
-        temp_article = form.save(commit=False)
-        temp_article.writer = self.request.user
-        temp_article.save()
+        form.instance.writer = self.request.user
         return super().form_valid(form)
 
-    # def get_success_url(self):
-    #     return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
+    def get_success_url(self):
+        return reverse('articleapp:detail', kwargs={'pk': self.object})
+
+class ArticleDetailView(DetailView):
+    model = Article
+    context_object_name = 'target_article'
+    template_name = 'articleapp/detail.html'
+
+class ArticleListView(ListView):
+    model = Article
+    context_object_name = 'article_list'
+    template_name = 'articleapp/list.html'
+    paginate_by = 10
