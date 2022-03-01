@@ -3,44 +3,48 @@
 
 {% block content %}
 
-<div class="container">
-  <div class="item1">
-    <img src="https://picsum.photos/id/237/200/300" alt="">
-  </div>
-  <div class="item2">
-    <img src="https://picsum.photos/id/237/200/300" alt="">
-  </div>
-  <div class="item3">
-    <img src="https://picsum.photos/id/237/200/300" alt="">
-  </div>
+<!-- HTML -->
+<div class="grid-image">
+  <img alt="" src="https://picsum.photos/id/237/200/300" />
+  <img alt="" src="https://picsum.photos/id/237/200/300" />
+  <img alt="" src="https://picsum.photos/id/237/200/300" />
+  <img alt="" src="https://picsum.photos/id/237/200/300" />
 </div>
 
 <style>
-    .container {
-        padding: 0;
-        margin: 0, auto;
-    }
-
-    .container a {
-       width: 45%;
-       max-width: 250px;
-    }
-
-    .container div {
-      width: 250px;
-      background-color: antiquewhite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 8px;
-    }
-
-    .container img {
-      width: 100%;
-      border-radius: 1rem;
-    }
+/* CSS */
+.grid-image {
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-start;
+    margin:2rem;
+}
+.grid-image img {
+    width:calc(33.333% - 10px);
+    margin:0 15px 15px 0;
+    border-radius:20px;
+}
+.grid-image img:nth-of-type(3n),
+.grid-image img:last-child {
+    margin-right:0;
+}
+@media screen and (max-width:640px){
+  .grid-image img {
+    width:calc(50% - 15px);
+  }
+}
+@media screen and (max-width:480px){
+  .grid-image img:nth-of-type(2n) {
+    margin-right:0;
+  }
+  .grid-image img:nth-of-type(3n) {
+    margin-right:15px;
+  }
+}
 </style>
 
-<script src="{% static 'js/magicgrid.js' %}"></script>
+{% include 'snippets/pagination.html' with page_obj=page_obj %}
+
+<!-- <script src="{% static 'js/magicgrid.js' %}"></script> -->
 
 {% endblock %}
