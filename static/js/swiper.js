@@ -21,17 +21,10 @@ const swiper = new Swiper('.swiper-container', {
     clickable: true,
   },
 
-  //방향표
-  navigation: {
-    //다음페이지 설정
-    nextEl: '.swiper-button-next',
-    //이전페이지 설정
-    prevEl: '.swiper-button-prev',
-  },
-
 });
 
 $('ul li').click(function(){
   var index = $(this).index();
   swiper.slideTo(index + 1);
 })
+

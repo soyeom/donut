@@ -3,35 +3,8 @@
 
 {% block content %}
 
-<!-- swiper슬라이더 메인컨테이너 -->
-<div class="swiper-container">
-  <!-- 보여지는 영역 -->
-  <div class="swiper-wrapper">
-    <!-- div class="swiper-slide" 를 추가하면된다 -->
-    <div class="swiper-slide">
-      <img alt="" src="https://picsum.photos/200"/>
-      <img alt="" src="https://picsum.photos/200"/>
-      <img alt="" src="https://picsum.photos/200"/>
-    </div>
-    <div class="swiper-slide">
-      <img alt="" src="https://picsum.photos/200"/>
-      <img alt="" src="https://picsum.photos/200"/>
-      <img alt="" src="https://picsum.photos/200"/>
-    </div>
-    <div class="swiper-slide">
-      <img alt="" src="https://picsum.photos/200"/>
-      <img alt="" src="https://picsum.photos/200"/>
-      <img alt="" src="https://picsum.photos/200"/>
-    </div>
-  </div>
-  <!-- 페이징 버튼 처리 -->
-  <div class="swiper-pagination"></div>
-
-</div>
-
-
 <style>
-  html, body {
+html, body {
       position: relative;
       height: 85vh;
     }
@@ -88,8 +61,50 @@
 .swiper-pagination-bullet {
     background: #ffb6c1;
 }
-
 </style>
+
+<!-- swiper슬라이더 메인컨테이너 -->
+<div class="swiper-container">
+  <!-- 보여지는 영역 -->
+  <div class="swiper-wrapper">
+    <!-- div class="swiper-slide" 를 추가하면된다 -->
+    <div class="swiper-slide">
+      <a href="https://chest.or.kr/base.do">
+        <img alt="" src="https://mblogthumb-phinf.pstatic.net/20131010_127/grubiz_1381403777559zBzRE_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2013-10-10_%BF%C0%C8%C4_8.14.05.png?type=w2">
+      </a>
+      <a href="https://www.redcross.or.kr/main/main.do">
+          <img alt="" src="https://www.redcross.or.kr/design/images/thumbnail/basic_system/2.0/2.05.jpg"/>
+      </a>
+      <a href="https://www.kidsfuture.or.kr/">
+        <img alt="" src="https://pbs.twimg.com/profile_images/466771830460518401/rR2KKNk__400x400.png"/>
+     </a>
+    </div>
+    <div class="swiper-slide">
+      <a href="https://www.sgwon.or.kr/main/main.php">
+        <img alt="" src="https://www.sgwon.or.kr/webedit_naver/upload/211124/20211124102100_89c022e2387960e78798.jpg">
+      </a>
+      <a href="https://www.miral.org/main/main.asp">
+          <img alt="" src="https://image.cherry.charity/prd/QmdEWuiZGEKfJp4jtBkMLnKvJmQxDhfUGmzot4uhGXdpJ6"/>
+      </a>
+      <a href="https://beautifulfund.org/">
+        <img alt="" src="https://beautifulfund.org/wp-content/uploads/2017/01/sns_mainimg.png"/>
+     </a>
+    </div>
+    <div class="swiper-slide">
+      <a href="https://www.childfund.or.kr/main.do">
+        <img alt="" src="https://image.cherry.charity/prd/QmYbsw6wSW6kwHct7r6BKX5e1uZgnBo14Z7vxhehBMjmu8">
+      </a>
+      <a href="https://www.worldvision.or.kr/">
+          <img alt="" src="	https://images.christiantoday.co.kr/data/images/full/325651/image.jpg?w=654"/>
+      </a>
+      <a href="https://www.beautifulstore.org/">
+        <img alt="" src="https://www.beautifulstore.org/wp-content/themes/bs/images/bs-image.png"/>
+     </a>
+    </div>
+  </div>
+  <!-- 페이징 버튼 처리 -->
+  <div class="swiper-pagination"></div>
+</div>
 
 <script src="{% static 'js/swiper.js' %}"></script>
 
