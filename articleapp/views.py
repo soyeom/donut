@@ -1,13 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, ListView
 from django.views.generic.edit import FormMixin
 
 from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
 
-
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
 class ArticleCreateView(CreateView):
     model = Article
     form_class = ArticleCreationForm
@@ -24,3 +25,9 @@ class ArticleDetailView(DetailView):
     model = Article
     context_object_name = 'target_article'
     template_name = 'articleapp/detail.html'
+
+class ArticleListView(ListView):
+    model = Article
+    context_object_name = 'article_list'
+    template_name = 'articleapp/list.html'
+    paginate_by = 10
