@@ -6,7 +6,7 @@ class Article(models.Model):
     #지우면 게시글이 사라지지 않고 주인없는 게시글이 됨
 
     title = models.CharField(max_length=200, null=True)
-    image = models.ImageField(upload_to='article/', null=False)
+    image = models.ImageField(upload_to='article/', null=True, blank=True)
     content = models.TextField(null=True)
 
     created_at = models.DateTimeField(auto_now_add=True, null=True)
