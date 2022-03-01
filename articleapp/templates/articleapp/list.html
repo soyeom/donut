@@ -2,8 +2,6 @@
 
 {% block content %}
 
-{% if article_list %}
-
 <style>
     .container {
       padding: 0;
@@ -28,21 +26,53 @@
     }
 </style>
 
-<div class="container">
-  {% for article in article_list %}
-  <a href="{% url 'articleapp:detail' pk=article.pk %}"></a>
-  {% endfor %}
-</div>
-{% else %}
-<div class="text-center">
-  <h1>No Articles YET!</h1>
-</div>
-{% endif %}
 
-<div style="text-align:center">
-  <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
-    Create Article
-  </a>
-</div>
+<body>
+    {% if object_list %}
+    <ul>
+      {% for each in object_list %}
+      <li>
+        {{each.id}} [{{each.writer}}]
+        <a href="{% url 'articleapp:detail' each.id %}">{{each.title}}</a>
+        [{{each.created_at}}]
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <div class="text-center">
+      <h1>No Articles YET!</h1>
+    </div>
+    {% endif %}
+
+    {% if is_paginated %}
+    <ul>
+      {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+      <li><span>&laquo;</span></li>
+      {% endif %}
+
+      {% for i in paginator.page_range %}
+        {% if page_obj.number == i %}
+      <li>
+        <span>{{ i }} <span>(current)</span></span>
+      </li>
+        {% else %}
+      <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+      {% else %}
+      <li><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+    {% endif %}
+    <div style="text-align:center">
+      <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
+        Create Article
+      </a>
+    </div>
+</body>
 
 {% endblock %}
