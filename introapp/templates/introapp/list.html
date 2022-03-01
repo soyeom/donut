@@ -3,44 +3,94 @@
 
 {% block content %}
 
-<!-- HTML -->
-  <div class="grid-image">
-    <img alt="" src="https://picsum.photos/200">
-    <img alt="" src="https://picsum.photos/200">
-    <img alt="" src="https://picsum.photos/200">
+<!-- swiper슬라이더 메인컨테이너 -->
+<div class="swiper-container">
+  <!-- 보여지는 영역 -->
+  <div class="swiper-wrapper">
+    <!-- div class="swiper-slide" 를 추가하면된다 -->
+    <div class="swiper-slide">
+      <img alt="" src="https://picsum.photos/200"/>
+      <img alt="" src="https://picsum.photos/200"/>
+      <img alt="" src="https://picsum.photos/200"/>
+    </div>
+    <div class="swiper-slide">
+      <img alt="" src="https://picsum.photos/200"/>
+      <img alt="" src="https://picsum.photos/200"/>
+      <img alt="" src="https://picsum.photos/200"/>
+    </div>
+    <div class="swiper-slide">
+      <img alt="" src="https://picsum.photos/200"/>
+      <img alt="" src="https://picsum.photos/200"/>
+      <img alt="" src="https://picsum.photos/200"/>
+    </div>
   </div>
+  <!-- 페이징 버튼 처리 -->
+  <div class="swiper-pagination"></div>
+
+</div>
+
 
 <style>
-.grid-image {
-    display:flex;
-    flex-wrap:wrap;
-    align-items:flex-start;
-    margin:4rem;
+  html, body {
+      position: relative;
+      height: 85vh;
+    }
+    body {
+      background: #fff;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+    }
+    .swiper-container {
+      width: 100%;
+      height: 65vh;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      width:400px;
+      margin:0 25px 25px 0;
+      border-radius:20px;
+    }
+
+.swiper-container-vertical>.swiper-pagination-bullets{
+    top: unset !important;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
 }
-.grid-image img {
-    width:calc(33.333% - 10px);
-    margin:0 15px 15px 0;
-    border-radius:20px;
+
+.swiper-container-vertical>.swiper-pagination-bullets .swiper-pagination-bullet{
+  display : inline-block !important;
+  margin: 6px 2px !important;
 }
-.grid-image img:nth-of-type(3n),
-.grid-image img:last-child {
-    margin-right:0;
+
+.swiper-pagination-bullet {
+    background: #ffb6c1;
 }
-@media screen and (max-width:640px){
-  .grid-image img {
-    width:calc(50% - 15px);
-  }
-}
-@media screen and (max-width:480px){
-  .grid-image img:nth-of-type(2n) {
-    margin-right:0;
-  }
-  .grid-image img:nth-of-type(3n) {
-    margin-right:15px;
-  }
-}
+
 </style>
 
-{% include 'snippets/pagination.html' with page_obj=page_obj %}
+<script src="{% static 'js/swiper.js' %}"></script>
 
 {% endblock %}

@@ -29,11 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accountapp',
     'articleapp',
-<<<<<<< HEAD:donut/settings.py
     'bootstrap4',
     'introapp',
-=======
->>>>>>> fde783641b297789c2abb22ee782cedac70815f8:donut/settings/base.py
 ]
 
 MIDDLEWARE = [
