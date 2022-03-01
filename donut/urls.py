@@ -18,10 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 
-
-
+from introapp.views import IntroListView
 
 urlpatterns = [
+    path('', IntroListView.as_view(), name='home'),
+
     path('admin/', admin.site.urls),
     path('accounts/', include('accountapp.urls')),
     path('intro/', include('introapp.urls')),
