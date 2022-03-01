@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
 <style>
     .container {
       padding: 0;
-      margin: 0, auto;
+      text-align: center;
     }
 
     .container a {
@@ -24,14 +25,98 @@
       width: 100%;
       border-radius: 1rem;
     }
+
+    ul {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+html, body {
+      position: relative;
+      height: 85vh;
+    }
+    body {
+      background: #fff;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+    }
+    .swiper-container {
+      width: 100%;
+      height: 65vh;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      width:400px;
+      margin:0 25px 25px 0;
+      border-radius:20px;
+    }
+
+.swiper-container-vertical>.swiper-pagination-bullets{
+    top: unset !important;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+}
+
+.swiper-container-vertical>.swiper-pagination-bullets .swiper-pagination-bullet{
+  display : inline-block !important;
+  margin: 6px 2px !important;
+}
+
+.swiper-pagination-bullet {
+    background: #ffb6c1;
+}
 </style>
 
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <a href="https://www.sgwon.or.kr/main/main.php">
+        <img alt="" src="https://www.sgwon.or.kr/webedit_naver/upload/211124/20211124102100_89c022e2387960e78798.jpg">
+      </a>
+      <a href="https://www.miral.org/main/main.asp">
+          <img alt="" src="https://image.cherry.charity/prd/QmdEWuiZGEKfJp4jtBkMLnKvJmQxDhfUGmzot4uhGXdpJ6"/>
+      </a>
+      <a href="https://beautifulfund.org/">
+        <img alt="" src="https://beautifulfund.org/wp-content/uploads/2017/01/sns_mainimg.png"/>
+     </a>
+    </div>
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+<script src="{% static 'js/swiper.js' %}"></script>
+
+<hr>
 
 <body>
     {% if object_list %}
-    <ul>
+    <ul style="text-align: center;">
       {% for each in object_list %}
-      <li>
+      <li style="text-align: center;">
         {{each.id}} [{{each.writer}}]
         <a href="{% url 'articleapp:detail' each.id %}">{{each.title}}</a>
         [{{each.created_at}}]
