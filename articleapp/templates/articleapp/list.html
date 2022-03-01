@@ -2,8 +2,6 @@
 
 {% block content %}
 
-{% if article_list %}
-
 <style>
     .container {
       padding: 0;
@@ -28,6 +26,7 @@
     }
 </style>
 
+{% if article_list %}
 <div class="container">
   {% for article in article_list %}
   <a href="{% url 'articleapp:detail' pk=article.pk %}"></a>
