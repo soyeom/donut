@@ -16,25 +16,11 @@ from accountapp.models import HelloWorld
 
 has_ownership = [account_ownership_required, login_required]
 
-@login_required
-def donut(request):
-    if request.user.is_authenticated:
-        if request.method == "POST":
-            temp = request.POST.get('donut_input')
-
-            new_donut = HelloWorld()
-            new_donut.text = temp
-            new_donut.save()
-
-            return HttpResponseRedirect(reverse('accountapp:hello_world'))
-        else:
-            donut_list = HelloWorld.objects.all()
-            return render(request, 'accountapp/donut.html', context={'donut_list': donut_list})
 
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = reverse_lazy('accountapp:donut')
+    success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/create.html'
 
 class AccountDetailView(DetailView):
@@ -48,7 +34,7 @@ class AccountUpdateView(UpdateView):
     model = User
     context_object_name = 'target_user'
     form_class = AccountUpdateForm
-    success_url = reverse_lazy('accountapp:donut')
+    success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/update.html'
 
 @method_decorator(has_ownership, 'get')
