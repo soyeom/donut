@@ -1,30 +1,23 @@
-from django.shortcuts import render, redirect
-from .models import Article
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.views.generic import CreateView, DetailView
 
-def article(request):
-    articlelist = Article.objects.all()
-    return render(request, 'articleapp/create.html', {'articlelist': articlelist})
+from articleapp.forms import ArticleCreationForm
+from articleapp.models import Article
 
-def detail(request):
-    return render(request, 'articleapp/detail.html')
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
+class ArticleCreateView(CreateView):
+    model = Article
+    form_class = ArticleCreationForm
+    template_name = 'articleapp/create.html'
 
-def listing(request, pk):
-    article = Article.objects.get(pk=pk)
-    return render(request, 'articleapp/list.html', {'article': article})
+    def form_valid(self, form):
+        temp_article = form.save(commit=False)
+        temp_article.writer = self.request.user
+        temp_article.save()
+        return super().form_valid(form)
 
-def update(request):
-    if request.method == 'POST':
-        if request.POST['mainphoto']:
-            new_article = Article.objects.create(
-                title=request.POST['title'],
-                content=request.POST['content'],
-                mainphoto=request.POST['mainphoto'],
-            )
-        else:
-            new_article = Article.objects.create(
-                title=request.POST['title'],
-                content=request.POST['content'],
-                mainphoto=request.POST['mainphoto'],
-            )
-        return redirect('/articles/create')
-    return render(request, 'articleapp/update.html')
+    # def get_success_url(self):
+    #     return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
