@@ -1,56 +1,43 @@
-<head>
-    <style>
-        .Donut {
-            margin : 2rem 0.5rem 5rem;
-            display : inline;
-            text-align: center;
-            line-height : 100px;
-            float: start;
-            color: lightpink;
-            font-family: 'Balsamiq Sans', cursive;
-        }
-        .img {
-            height:55px;
-            width:55px;
-            margin-left:30px;
-            margin-bottom:25px
-        }
-        .단체소개, .모집, .회원가입, .로그인, .로그아웃 {
-            display : inline;
-            width : 120px;
-            text-align: center;
-            line-height : 100px;
-            float: right;
-            font-family: 'Jua', sans-serif;
-        }
-    </style>
-</head>
+ <style>
+    .navbar {
+        text-align: center;
+        float: right;
+        font-family: 'Jua', sans-serif;
+        font-size: 1.5rem;
+    }
+    span {
+        margin : 0.8rem;
+    }
+ </style>
 
+ <div style="margin:1.5rem 1rem;">
     <a href="{% url 'introapp:list' %}" style="color: inherit; text-decoration: none;">
-        <img class="img" alt=""
-             src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f369.svg"/>
-        <h1 class="Donut">Donut</h1>
+        <img style="float:left; height:55px; width:55px;" alt="" src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f369.svg"/>
+        <span style="color: lightpink; font-family: 'Balsamiq Sans', cursive; font-size:2.6rem;">Donut</span>
     </a>
 
-    {% if not user.is_authenticated %}
-    <a href="{% url 'accountapp:login' %}?next={{ request.path }}" style="color: inherit;">
-        <h3 class="로그인">로그인</h3>
-    </a>
-    {% else %}
-    <a href="{% url 'accountapp:logout' %}?next={{ request.path }}" style="color: inherit;">
-        <h3 class="로그아웃">로그아웃</h3>
-    </a>
-    {% endif %}
-    <a href="{% url 'accountapp:create' %}" style="color: inherit;">
-        <h3 class="회원가입">회원가입</h3>
-    </a>
+    <div class="navbar">
+        {% if not user.is_authenticated %}
+        <a href="{% url 'accountapp:login' %}?next={{ request.path }}" style="color: inherit;">
+            <span>로그인</span>
+        </a>
 
-    <a href="{% url 'articleapp:list' %}" style="color: inherit;">
-        <h3 class="모집">공구모집</h3>
-    </a>
+        {% else %}
+        <a href="{% url 'accountapp:logout' %}?next={{ request.path }}" style="color: inherit;">
+            <span>로그아웃</span>
+        </a>
+        {% endif %}
 
-    <a href="{% url 'introapp:list' %}" style="color: inherit;">
-        <h3 class="단체소개">단체소개</h3>
-    </a>
+        <a href="{% url 'accountapp:create' %}" style="color: inherit;">
+            <span>회원가입</span>
+        </a>
 
+        <a href="{% url 'articleapp:list' %}" style="color: inherit;">
+            <span>공구모집</span>
+        </a>
 
+        <a href="{% url 'introapp:list' %}" style="color: inherit;">
+            <span>단체소개</span>
+        </a>
+    </div>
+</div>

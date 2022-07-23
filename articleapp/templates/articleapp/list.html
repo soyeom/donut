@@ -3,6 +3,9 @@
 
 {% block content %}
 
+<link rel="stylesheet" href="{% static 'css/button.css' %}">
+<link rel="stylesheet" href="{% static 'css/board.css' %">
+
 <style>
     .container {
       padding: 0;
@@ -28,8 +31,7 @@
 
     ul {
         text-align: center;
-        margin: 0;
-        padding: 0;
+        padding: 1rem;
     }
 
 html, body {
@@ -69,7 +71,7 @@ html, body {
     }
 
     .swiper-slide img {
-      width:400px;
+      width:100%;
       margin:0 25px 25px 0;
       border-radius:20px;
     }
@@ -114,50 +116,69 @@ html, body {
 
 <body>
     {% if object_list %}
-    <ul style="text-align: center;">
-      {% for each in object_list %}
-      <li style="text-align: center;">
-        {{each.id}} [{{each.writer}}]
-        <a href="{% url 'articleapp:detail' each.id %}">{{each.title}}</a>
-        [{{each.created_at}}]
-      </li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <div class="text-center">
-      <h1>No Articles YET!</h1>
-    </div>
-    {% endif %}
+    <table>
+        <thead style="text-align:center;">
+            <th style="width:10%;">번호</th>
+            <th style="width:20%;">작성자</th>
+            <th style="width:50%;">제목</th>
+            <th style="width:20%;">작성일시</th>
+        </thead>
 
-    {% if is_paginated %}
-    <ul>
-      {% if page_obj.has_previous %}
-      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-      {% else %}
-      <li><span>&laquo;</span></li>
-      {% endif %}
+        <tbody>
+            <div style="margin:1rem;">
+              {% for each in object_list %}
+              <tr style="text-align:center;">
+                  <td>{{each.id}}</td>
+                  <td>[{{each.writer}}]</td>
+                  <td>
+                    <a href="{% url 'articleapp:detail' each.id %}">{{each.title}}</a>
+                  </td>
+                  <td>
+                      {{each.created_at}}
+                  </td>
+              </tr>
+              {% endfor %}
+            </div>
 
-      {% for i in paginator.page_range %}
-        {% if page_obj.number == i %}
-      <li>
-        <span>{{ i }} <span>(current)</span></span>
-      </li>
-        {% else %}
-      <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% else %}
+            <div class="text-center">
+              <h1>No Articles YET!</h1>
+            </div>
+            {% endif %}
+        </tbody>
+
+        {% if is_paginated %}
+        <ul>
+          {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+          {% else %}
+          <span>&laquo;</span>
+          {% endif %}
+
+          {% for i in paginator.page_range %}
+
+            {% if page_obj.number == i %}
+            <span>{{ i }} (current)</span>
+            {% else %}
+            <a href="?page={{ i }}">{{ i }}</a>
+            {% endif %}
+
+          {% endfor %}
+
+          {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+          {% else %}
+          <span>&raquo;</span>
+          {% endif %}
+        </ul>
         {% endif %}
-      {% endfor %}
-      {% if page_obj.has_next %}
-      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
-      {% else %}
-      <li><span>&raquo;</span></li>
-      {% endif %}
-    </ul>
-    {% endif %}
-    <div style="text-align:center">
-      <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
-        Create Article
-      </a>
-    </div>
+
+        <div style="text-align:center">
+          <a href="{% url 'articleapp:create' %}" class="button">
+            Create Article
+          </a>
+        </div>
+    </table>
 </body>
 
 {% endblock %}
