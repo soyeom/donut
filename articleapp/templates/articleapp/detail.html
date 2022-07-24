@@ -3,21 +3,21 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/button.css' %}">
-<link rel="stylesheet" href="{% static 'css/board.css' %}">
+<link rel="stylesheet" href="../../../static/css/button.css">
+<link rel="stylesheet" href="../../../static/css/board.css">
+<link rel="stylesheet" href="../../../static/css/detail.css">
 
 <div>
-    <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
+    <div class="detail">
         <h1>{{ object.title }}</h1>
         <h6>작성자: {{ object.writer }}</h6>
         <hr>
 
         {% if object.image %}
-            <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
-             src="{{ object.image.url }}" alt="">
+            <img src="{{ object.image.url }}" alt="">
         {% else %}
 
-        <p style="padding: 1rem;">
+        <p>
             {{ object.content }}
         </p>
 

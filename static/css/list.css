@@ -1,0 +1,130 @@
+.container {
+    padding: 0;
+    text-align: center;
+}
+
+.container a {
+    width: 45%;
+    max-width: 250px;
+}
+
+.container div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.container img{
+    width: 100%;
+    border-radius: 1rem;
+}
+
+ul {
+    text-align: center;
+    padding: 1rem;
+}
+
+html, body {
+    position: relative;
+    height: 85vh;
+}
+body {
+    background: #fff;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color:#000;
+    margin: 0;
+    padding: 0;
+}
+.swiper-container {
+    width: 100%;
+    height: 65vh;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    width:100%;
+    margin:0 25px 25px 0;
+    border-radius:20px;
+}
+
+.swiper-container-vertical>.swiper-pagination-bullets{
+    top: unset !important;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+}
+
+.swiper-container-vertical>.swiper-pagination-bullets .swiper-pagination-bullet{
+    display : inline-block !important;
+    margin: 6px 2px !important;
+}
+
+.swiper-pagination-bullet {
+    background: #ffb6c1;
+}
+
+.table>thead {
+    text-align: center;
+    background-color: pink;
+    color: white;
+    padding: 1rem;
+}
+
+.table>thead>tr>th1 {
+    width: 10%;
+    padding: 0.8rem;
+}
+
+.table>thead>tr>th2 {
+    width: 20%;
+}
+
+.table>thead>tr>th3 {
+    width: 50%;
+}
+
+.table>thead>tr>th4 {
+    width: 20%;
+}
+
+.tbody_div {
+    margin: 1rem;
+}
+
+.tbody_div>tr {
+    text-align: center;
+    border: 1px solid;
+    color: pink;
+}
+
+.tbody_div>tr>.td1{
+    color: black;
+}
+
+.ul1 {
+    margin: 2rem;
+}
+
+.end {
+    text-align:center;
+}

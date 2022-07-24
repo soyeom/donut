@@ -3,9 +3,10 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/button.css' %}">
+<link rel="stylesheet" href="../../../static/css/button.css">
+<link rel="stylesheet" href="../../../static/css/delete.css">
 
-    <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+    <div class="delete">
         <div class="mb-4">
             <h4>Delete Article: {{ object.title }}</h4>
         </div>
