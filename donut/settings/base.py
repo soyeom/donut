@@ -31,7 +31,11 @@ INSTALLED_APPS = [
     'articleapp',
     'bootstrap4',
     'introapp',
+    'sass_processor',
 ]
+SASS_PROCESSOR_ENABLED = True
+SASS_OUTPUT_STYLE = 'compact'
+SASS_PRECISION = 8
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
