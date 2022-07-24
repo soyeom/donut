@@ -27,11 +27,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sass_processor',
     'accountapp',
     'articleapp',
     'bootstrap4',
     'introapp',
 ]
+
+SASS_PROCESSOR_ENABLED =True
+SASS_PROCESSOR_ROOT =os.path.join(BASE_DIR,'static')
+SASS_OUTPUT_STYLE = 'compact'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

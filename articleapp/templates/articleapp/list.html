@@ -7,28 +7,28 @@
 <link rel="stylesheet" href="{% static 'css/board.css' %">
 
 <style>
-    .container {
+
+.container {
       padding: 0;
       text-align: center;
     }
 
-    .container a {
-      width: 45%;
-      max-width: 250px;
-    }
+.container a {
+  width: 45%;
+  max-width: 250px;
+}
 
-    .container div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 1rem;
-    }
+.container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+}
 
-    .container img{
-      width: 100%;
-      border-radius: 1rem;
-    }
-
+.container img{
+  width: 100%;
+  border-radius: 1rem;
+}
     ul {
         text-align: center;
         padding: 1rem;
@@ -72,8 +72,8 @@ html, body {
 
     .swiper-slide img {
       width:100%;
-      margin:0 25px 25px 0;
-      border-radius:20px;
+      margin:0 1rem 1rem 0;
+      border-radius:1rem;
     }
 
 .swiper-container-vertical>.swiper-pagination-bullets{
@@ -130,7 +130,7 @@ html, body {
           {% for each in object_list %}
           <tr style="text-align:center; border:1px solid; color:pink;">
               <td>{{each.id}}</td>
-              <td style="color:black;">[{{each.writer}}]</td>
+              <td style="color:black; padding:0.8rem;">[{{each.writer}}]</td>
               <td>
                 <a href="{% url 'articleapp:detail' each.id %}">{{each.title}}</a>
               </td>
