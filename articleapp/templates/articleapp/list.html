@@ -3,95 +3,9 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/button.css' %}">
-<link rel="stylesheet" href="{% static 'css/board.css' %">
-
-<style>
-
-.container {
-      padding: 0;
-      text-align: center;
-    }
-
-.container a {
-  width: 45%;
-  max-width: 250px;
-}
-
-.container div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 1rem;
-}
-
-.container img{
-  width: 100%;
-  border-radius: 1rem;
-}
-    ul {
-        text-align: center;
-        padding: 1rem;
-    }
-
-html, body {
-      position: relative;
-      height: 85vh;
-    }
-    body {
-      background: #fff;
-      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-      font-size: 14px;
-      color:#000;
-      margin: 0;
-      padding: 0;
-    }
-    .swiper-container {
-      width: 100%;
-      height: 65vh;
-    }
-    .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-
-      /* Center slide text vertically */
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }
-
-    .swiper-slide img {
-      width:100%;
-      margin:0 1rem 1rem 0;
-      border-radius:1rem;
-    }
-
-.swiper-container-vertical>.swiper-pagination-bullets{
-    top: unset !important;
-    bottom: 10px;
-    left: 0;
-    width: 100%;
-}
-
-.swiper-container-vertical>.swiper-pagination-bullets .swiper-pagination-bullet{
-  display : inline-block !important;
-  margin: 6px 2px !important;
-}
-
-.swiper-pagination-bullet {
-    background: #ffb6c1;
-}
-</style>
+<link rel="stylesheet" href="../../../static/css/button.css">
+<link rel="stylesheet" href="../../../static/css/board.css">
+<link rel="stylesheet" href="../../../static/css/list.css">
 
 <div class="swiper-container">
   <div class="swiper-wrapper">
@@ -110,27 +24,26 @@ html, body {
   <div class="swiper-pagination"></div>
 </div>
 
-<script src="{% static 'js/swiper.js' %}"></script>
-
+<script src="../../../static/js/swiper.js"></script>
 <hr>
 
 {% if object_list %}
 <table>
-    <thead style="text-align:center; background-color: pink; color:white; padding:1rem;">
+    <thead>
         <tr>
-            <th style="width:10%; padding:0.8rem;">번호</th>
-            <th style="width:20%;">작성자</th>
-            <th style="width:50%;">제목</th>
-            <th style="width:20%;">작성일시</th>
+            <th class="th1">번호</th>
+            <th class="th2">작성자</th>
+            <th class="th3">제목</th>
+            <th class="th4">작성일시</th>
         </tr>
     </thead>
 
     <tbody>
-        <div style="margin:1rem;">
+        <div class="tbody_div">
           {% for each in object_list %}
-          <tr style="text-align:center; border:1px solid; color:pink;">
+          <tr>
               <td>{{each.id}}</td>
-              <td style="color:black; padding:0.8rem;">[{{each.writer}}]</td>
+              <td class="td1">[{{each.writer}}]</td>
               <td>
                 <a href="{% url 'articleapp:detail' each.id %}">{{each.title}}</a>
               </td>
@@ -150,7 +63,7 @@ html, body {
 </table>
 
 {% if is_paginated %}
-<ul style="margin:2rem;">
+<ul class="ul1">
   {% if page_obj.has_previous %}
   <a href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
   {% else %}
@@ -175,7 +88,7 @@ html, body {
 </ul>
 {% endif %}
 
-<div style="text-align:center">
+<div class="end">
   <a href="{% url 'articleapp:create' %}" class="button">
     Create Article
   </a>
