@@ -1,13 +1,11 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DeleteView
-
+from django.utils.decorators import method_decorator
 from articleapp.models import Article
-from commentapp.decorators import comment_ownership_required
 from commentapp.forms import CommentCreationForm
 from commentapp.models import Comment
-
+from commentapp.decorators import comment_ownership_required
 
 class CommentCreateView(CreateView):
     model = Comment
@@ -23,6 +21,7 @@ class CommentCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk': self.object.article.pk })
+
 
 @method_decorator(comment_ownership_required, 'get')
 @method_decorator(comment_ownership_required, 'post')
