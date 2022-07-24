@@ -3,6 +3,8 @@ from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView
 from django.views.generic.edit import FormMixin, UpdateView, DeleteView
+from commentapp.forms import CommentCreationForm
+from commentapp.models import Comment
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
@@ -22,9 +24,14 @@ class ArticleCreateView(CreateView):
     def get_success_url(self):
         return reverse('articleapp:list')
 
-class ArticleDetailView(DetailView):
+class ArticleDetailView(DetailView, FormMixin):
     model = Article
+    form_class = CommentCreationForm
+    context_object_name = 'target_article'
     template_name = 'articleapp/detail.html'
+
+
+
 
 class ArticleListView(ListView):
     model = Article
