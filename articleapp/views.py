@@ -3,6 +3,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView
 from django.views.generic.edit import FormMixin, UpdateView, DeleteView
+from django.contrib import messages
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
@@ -31,6 +32,18 @@ class ArticleListView(ListView):
     template_name = 'articleapp/list.html'
     paginate_by = 10
     ordering = ['-id']
+
+    def get_queryset(self):
+        search_keyword = self.request.GET.get('q','')
+        article_list = Article.objects.order_by('-id')
+
+        if search_keyword:
+            search_article_list = article_list.filter(title__icontains=search_keyword)
+
+            return search_article_list
+        else:
+            messages.error(self.request, '2글자 이상 입력해주세요')
+        return article_list
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
