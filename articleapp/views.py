@@ -3,12 +3,9 @@ from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView
 from django.views.generic.edit import FormMixin, UpdateView, DeleteView
-<<<<<<< HEAD
 from django.contrib import messages
-=======
 from commentapp.forms import CommentCreationForm
 from commentapp.models import Comment
->>>>>>> 82780b8d0c878ee9f1ffa9bb22fd8258ebe81635
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
@@ -35,11 +32,6 @@ class ArticleDetailView(DetailView, FormMixin):
     template_name = 'articleapp/detail.html'
 
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 82780b8d0c878ee9f1ffa9bb22fd8258ebe81635
 class ArticleListView(ListView):
     model = Article
     template_name = 'articleapp/list.html'
