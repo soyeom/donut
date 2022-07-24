@@ -35,6 +35,10 @@
         <a href="{% url 'articleapp:list' %}" class="button">
             목록
         </a>
+
+        {% include 'commentapp/create.html' with article=target_article %}
+
+
     </div>
 </div>
 
