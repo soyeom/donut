@@ -4,5 +4,5 @@ from .views import IntroListView
 app_name = 'introapp'
 
 urlpatterns = [
-    path('list/', IntroListView.as_view(), name='list'),
+    path('home/', IntroListView.as_view(), name='home'),
 ]

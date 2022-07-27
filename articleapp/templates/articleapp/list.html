@@ -5,67 +5,58 @@
 
 <link rel="stylesheet" href="../../../static/css/button.css">
 <link rel="stylesheet" href="../../../static/css/board.css">
-<link rel="stylesheet" href="../../../static/css/list.css">
-
-<div class="swiper-container">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">
-      <a href="https://www.sgwon.or.kr/main/main.php">
-        <img alt="" src="https://www.sgwon.or.kr/webedit_naver/upload/211124/20211124102100_89c022e2387960e78798.jpg">
-      </a>
-      <a href="https://www.miral.org/main/main.asp">
-          <img alt="" src="https://image.cherry.charity/prd/QmdEWuiZGEKfJp4jtBkMLnKvJmQxDhfUGmzot4uhGXdpJ6"/>
-      </a>
-      <a href="https://beautifulfund.org/">
-        <img alt="" src="https://beautifulfund.org/wp-content/uploads/2017/01/sns_mainimg.png"/>
-     </a>
-    </div>
-  </div>
-  <div class="swiper-pagination"></div>
-</div>
-
-<script src="../../../static/js/swiper.js"></script>
-<hr>
 
 {% if object_list %}
 
-{% if q %}
-<h5>'{{ q }}' 검색 결과입니다.</h5>
-{% endif %}
+<div>
+    {% if q %}
+    <h5 style="font-weight: 550;">'{{ q }}' 검색 결과입니다.</h5>
+    {% endif %}
+</div>
 
-<table>
-    <thead>
-        <tr>
-            <th class="th1">번호</th>
-            <th class="th2">작성자</th>
-            <th class="th3">제목</th>
-            <th class="th4">작성일시</th>
-        </tr>
-    </thead>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th class="th1">번호</th>
+                <th class="th2">작성자</th>
+                <th class="th3">제목</th>
+                <th class="th4">작성일시</th>
+            </tr>
+        </thead>
 
-    <tbody>
-        <div class="tbody_div">
-          {% for each in object_list %}
-          <tr>
-              <td>{{each.id}}</td>
-              <td class="td1">[{{each.writer}}]</td>
-              <td>
-                <a href="{% url 'articleapp:detail' each.id %}">{{each.title}}</a>
-              </td>
-              <td>
-                  {{each.created_at}}
-              </td>
-          </tr>
-          {% endfor %}
+        <tbody>
+            <div class="tbody_div">
+              {% for each in object_list %}
+              <tr>
+                  <td>{{each.id}}</td>
+                  <td class="td1">[{{each.writer}}]</td>
+                  <td>
+                    <a href="{% url 'articleapp:detail' each.id %}">{{each.title}}</a>
+                  </td>
+                  <td>
+                      {{each.created_at}}
+                  </td>
+              </tr>
+              {% endfor %}
+            </div>
+
+            {% else %}
+            <div class="text-center">
+              <h1>No Articles YET!</h1>
+            </div>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <form action="" method="GET">
+        <div style="margin-top:1rem;">
+            <input type="text" name="q" value="{{ q }}" style="width:14em;" placeholder="검색어를 입력해주세요.">
         </div>
-
-        {% else %}
-        <div class="text-center">
-          <h1>No Articles YET!</h1>
-        </div>
-        {% endif %}
-    </tbody>
-</table>
+    </form>
+</div>
 
 {% if is_paginated %}
 <ul class="ul1">
@@ -75,12 +66,12 @@
   <span>&laquo;</span>
   {% endif %}
 
-  {% for i in paginator.page_range %}
+  {% for page in paginator.page_range %}
 
-    {% if page_obj.number == i %}
-    <span>{{ i }} (current)</span>
+    {% if page_obj.number == page %}
+    <span>{{ page }}</span>
     {% else %}
-    <a href="?page={{ i }}">{{ i }}</a>
+    <a href="?page={{ page }}">{{ page }}</a>
     {% endif %}
 
   {% endfor %}
