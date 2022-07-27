@@ -4,6 +4,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView
 from django.views.generic.edit import FormMixin, UpdateView, DeleteView
 from django.contrib import messages
+from django.db.models import Q
 from commentapp.forms import CommentCreationForm
 from commentapp.models import Comment
 
@@ -16,7 +17,7 @@ from articleapp.models import Article
 class ArticleCreateView(CreateView):
     model = Article
     form_class = ArticleCreationForm
-    template_name = 'articleapp/create.html'
+    template_name = 'articleapp/joinform2.html'
 
     def form_valid(self, form):
         form.instance.writer = self.request.user
@@ -36,19 +37,29 @@ class ArticleListView(ListView):
     model = Article
     template_name = 'articleapp/list.html'
     paginate_by = 10
-    ordering = ['-id']
+    context_object_name = 'article_list'
 
     def get_queryset(self):
-        search_keyword = self.request.GET.get('q','')
+        search_keyword = self.request.GET.get('q', '')
         article_list = Article.objects.order_by('-id')
 
         if search_keyword:
-            search_article_list = article_list.filter(title__icontains=search_keyword)
+            if len(search_keyword) > 1:
+                search_article_list = article_list.filter(title__icontains=search_keyword)
 
-            return search_article_list
-        else:
-            messages.error(self.request, '2글자 이상 입력해주세요')
+                return search_article_list
+            else:
+                messages.error(self.request, '2글자 이상 입력해주세요')
         return article_list
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        search_keyword = self.request.GET.get('q', '')
+
+        if len(search_keyword) > 1:
+            context['q'] = search_keyword
+
+        return context
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')

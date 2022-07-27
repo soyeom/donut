@@ -4,5 +4,5 @@ from .models import Image
 class IntroListView(ListView):
     model = Image
     context_object_name = 'intro_list'
-    template_name = 'introapp/list.html'
+    template_name = 'introapp/home.html'
     paginate_by = 3
