@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'introapp',
     'commentapp',
+    'profileapp',
 ]
 
 SASS_PROCESSOR_ENABLED =True
