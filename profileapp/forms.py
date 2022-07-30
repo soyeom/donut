@@ -1,10 +1,11 @@
 from django.forms import ModelForm
 
+import profileapp
 from profileapp.models import Profile
 
 
 class ProfileCreationForm(ModelForm):
-    class MeTa:
+    class Meta:
         model = Profile
         fields = ['image', 'nickname', 'message']
 
