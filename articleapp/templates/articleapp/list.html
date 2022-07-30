@@ -120,7 +120,7 @@
                                     <h2>{{each.title}}</h2>
                                     <p>{{each.writer}}</p>
                                     <button>
-                                        <a href="">참여하기</a>
+                                        <a href="{% url 'articleapp:detail' each.id %}">참여하기</a>
                                     </button>
                                 </div>
                             </div>
@@ -146,6 +146,20 @@
         <a href="../../../introapp/templates/introapp/home.html" class="u_cra">Donut</a>
     </address>
 </div>
+</div>
+
+<div>
+    {% if q %}
+    <h5 style="font-weight: 550;">'{{ q }}' 검색 결과입니다.</h5>
+    {% endif %}
+</div>
+<br>
+<div>
+    <form action="" method="GET">
+        <div style="margin-top:1rem;">
+            <input type="text" name="q" value="{{ q }}" style="width:14em;" placeholder="검색어를 입력해주세요.">
+        </div>
+    </form>
 </div>
 
 </body>
