@@ -6,6 +6,8 @@
         <p>
             {{ target_user.date_joined }}
         </p>
+
+        {% target_user.profile %}
         <h2>
             {{ target_user.username }}
         </h2>
@@ -14,6 +16,11 @@
         <a href="{% url 'accountapp:update' pk=user.pk %}">
             <p>
                 Change Info
+            </p>
+        </a>
+        <a href="{% url 'accountapp:delete' pk=user.pk %}">
+            <p>
+                Quit
             </p>
         </a>
         {% endif %}
