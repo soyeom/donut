@@ -230,7 +230,7 @@ body {
   background: #f8bbd0;
 }
 
-.topmenu_wrapper > #top_nav > .list1 {
+.topmenu_wrapper > #top_nav > .list4 {
   background: #fbc02d;
 }
 
@@ -275,12 +275,16 @@ ul li {
   color: #333333;
 }
 
-.topmenu_wrapper > ul > .list2 > ul > li:hover {
+.wrapper>.topmenu_wrapper>#top_nav>.list2>ul>a>li, .wrapper>.topmenu_wrapper>#top_nav>.list3>ul>a>li {
+  background: #f5f6f7;
+  color: #333333;
+}
+
+.wrapper>.topmenu_wrapper>#top_nav>.list2>ul>a>li:hover {
   background-color: #29b6f6;
   color: #ffffff;
 }
-
-.topmenu_wrapper > ul > .list3 > ul > li:hover {
+.wrapper>.topmenu_wrapper>#top_nav>.list3>ul>a>li:hover {
   background-color: #f8bbd0;
   color: #ffffff;
 }
