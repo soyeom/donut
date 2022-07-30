@@ -1,153 +1,93 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../../../static/css/recruitment.css">
+{% extends 'base.html' %}
+{% load static %}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% block content %}
 
-    <script language="JavaScript">
-        $(document).ready(function() {
-            var $banner = $(".banner").find("ul");
+<link rel="stylesheet" href="../../../static/css/button.css">
+<link rel="stylesheet" href="../../../static/css/board.css">
 
-            var $bannerWidth = $banner.children().outerWidth();
-            var $bannerHeight = $banner.children().outerHeight();
-            var $bannerLength = $banner.children().length;
-            var rollingId;
+{% if object_list %}
 
-            rollingId = setInterval(function() { rollingStart(); });
-
-            function rollingStart() {
-                $banner.css("width", $bannerWidth * $bannerLength + "px");
-                $banner.css("height", $bannerHeight + "px");
-                $banner.animate({left: - $bannerWidth + "px"}, 1500, function() {
-                    $(this).append("<li>" + $(this).find("li:first").html() + "</li>");
-                    $(this).find("li:first").remove();
-                    $(this).css("left", 1);
-                });
-            }
-        });
-    </script>
-
-</head>
-<body>
-<div id="wrap">
-    <div id="contents" class="customer">
-        <h1 id="top_logo">
-            <img src="../../../static/img/donut.png" alt="">
-            <a href="{% url 'introapp:home' %}">Donut</a>
-        </h1>
-        <div class="banner_top white">
-            <div class="banner">
-                <ul>
-                    <li>
-                        <img src="https://www.unicef.or.kr/static/logo_active@2x-8a9e02df64d664f02ffc1ceaaa5ad4fd.png">
-                    </li>
-                    <li>
-                        <img src="https://chest.or.kr/common/img/common/logo.png">
-                    </li>
-                    <li>
-                        <img src="https://www.redcross.or.kr/images/main_v14/dh-logo.gif">
-                    </li>
-                    <li>
-                        <img src="https://www.kidsfuture.or.kr/data/file/202107031920_2cc731ced8d1b0000.png">
-                    </li>
-                    <li>
-                        <img src="https://www.sc.or.kr/webPub/sc_2018/images/main/logo_on.png">
-                    </li>
-                    <li>
-                        <img src="https://www.worldvision.or.kr/main2017/images/wv_logo_02.png?crc=3773745825">
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div id="nav">
-            <div class="nav_area">
-                <ul class="nav_ul text1">
-                    <li>
-                        <dl class="nav_dl dl1">
-                            <a href="" class="info" data-idx="0">
-                                모집 안내
-                            </a>
-                        </dl>
-                    </li>
-                    <li>
-                        <dl class="nav_dl">
-                            <a href="" class="notice" data-idx="1">
-                                공지사항
-                            </a>
-                        </dl>
-                    </li>
-                    <li>
-                        <dl class="nav_dl">
-                            <a href="" class="notice" data-idx="3">
-                                게시판
-                            </a>
-                        </dl>
-                    </li>
-                    <li>
-                        <dl class="nav_dl">
-                            <a href="" class="QnA" data-idx="4">
-                                문의하기
-                            </a>
-                        </dl>
-                    </li>
-                </ul>
-            </div>
-            <div class="inner_cont customer_cont">
-                <div class="section section-top">
-                    <div class="inner">
-                        <h3>모집 안내</h3>
-                        <div class="line pink"></div>
-                        <h4>공구 모집 살펴보기</h4>
-                        <div class="blank_line"></div>
-                        <p>
-                            Donut에 방문해 주셔서 감사합니다.
-                            <br>
-                            질의사항은
-                            <span class="pink">문의하기</span>
-                            를 이용해 주세요.
-                        </p>
-                        {% if object_list %}
-                        <div class="content">
-                            {% for each in object_list %}
-                            <ul class="cont_list">
-                                <li>
-                                    <a href="{% url 'articleapp:detail' each.id %}" class="content1">
-                                        <div class="donate img1"></div>
-                                        <span class="label">
-                                            {{each.title}}
-
-                                            <!--제목 밑에 작성자 조그맣게 나오게 만들어주세요-->
-                                            {{each.writer}}
-                                        </span>
-                                        <small class="imgtext">참여하기</small>
-                                    </a>
-                                </li>
-                            </ul>
-                            {% endfor %}
-
-                            <!--글이 없는 경우도 추가했어요-->
-                        {% else %}
-                        <div class="text-center">
-                          <h1>No Articles YET!</h1>
-                        </div>
-                        {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="footer">
-        <address>
-            <em><a href="../../../introapp/templates/introapp/home.html" class="logo"><span class="blind"></span></a></em>
-            <em class="copy">고려대학교 세종캠퍼스</em>
-            <em class="u_cri">©</em>
-            <a href="../../../introapp/templates/introapp/home.html" class="u_cra">Donut</a>
-        </address>
-    </div>
+<div>
+    {% if q %}
+    <h5 style="font-weight: 550;">'{{ q }}' 검색 결과입니다.</h5>
+    {% endif %}
 </div>
-</body>
-</html>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th class="th1">번호</th>
+                <th class="th2">작성자</th>
+                <th class="th3">제목</th>
+                <th class="th4">작성일시</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <div class="tbody_div">
+              {% for each in object_list %}
+              <tr>
+                  <td>{{each.id}}</td>
+                  <td class="td1">[{{each.writer}}]</td>
+                  <td>
+                    <a href="{% url 'articleapp:detail' each.id %}">{{each.title}}</a>
+                  </td>
+                  <td>
+                      {{each.created_at}}
+                  </td>
+              </tr>
+              {% endfor %}
+            </div>
+
+            {% else %}
+            <div class="text-center">
+              <h1>No Articles YET!</h1>
+            </div>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <form action="" method="GET">
+        <div style="margin-top:1rem;">
+            <input type="text" name="q" value="{{ q }}" style="width:14em;" placeholder="검색어를 입력해주세요.">
+        </div>
+    </form>
+</div>
+
+{% if is_paginated %}
+<ul class="ul1">
+  {% if page_obj.has_previous %}
+  <a href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+  {% else %}
+  <span>&laquo;</span>
+  {% endif %}
+
+  {% for page in paginator.page_range %}
+
+    {% if page_obj.number == page %}
+    <span>{{ page }}</span>
+    {% else %}
+    <a href="?page={{ page }}">{{ page }}</a>
+    {% endif %}
+
+  {% endfor %}
+
+  {% if page_obj.has_next %}
+  <a href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+  {% else %}
+  <span>&raquo;</span>
+  {% endif %}
+</ul>
+{% endif %}
+
+<div class="end">
+  <a href="{% url 'articleapp:create' %}" class="button">
+    Create Article
+  </a>
+</div>
+
+{% endblock %}
