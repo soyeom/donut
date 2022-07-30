@@ -4,30 +4,50 @@
 <div>
     <div style="text-align: center; max-width: 500px; margin: 4rem auto">
         <p>
-            {{ target_user.date_joined }}
+            접속시간 : {{ target_user.date_joined }}
         </p>
 
+
         {% if target_user.profile %}
+        <img src="{{ target_user.profile.image.url }}" alt=""
+             style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem;">
+
         <h2>
-            {{ target_user.profile.nickname }}
+            닉네임 : {{ target_user.profile.nickname }}
+            {% if target_user == user %}
+            <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                닉네임 수정
+            </a>
+            {% endif %}
         </h2>
+        <h5 style="margin-bottom: 3rem;">
+            {{ target_user.profile.message }}
+        </h5>
         {% else %}
-        <a href="{% url 'profileapp:create' %}">
+            {% if target_user == user %}
+            <a href="{% url 'profileapp:create' %}">
+                <h2>
+                프로필 만들기
+                </h2>
+            </a>
+            {% else %}
             <h2>
-            Create Profile
+                닉네임 미설정
             </h2>
-        </a>
+            {% endif %}
         {% endif %}
+
+
 
         {% if target_user == user %}
         <a href="{% url 'accountapp:update' pk=user.pk %}">
             <p>
-                Change Info
+                계정 정보 변경
             </p>
         </a>
         <a href="{% url 'accountapp:delete' pk=user.pk %}">
             <p>
-                Quit
+                계정 탈퇴
             </p>
         </a>
         {% endif %}
