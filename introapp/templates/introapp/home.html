@@ -14,6 +14,7 @@
             <a href="{% url 'introapp:home' %}">Donut</a>
         </h1>
         <ul id="top_nav">
+            {% if not user.is_authenticated %}
             <li class="list1">
                 <a href="{% url 'accountapp:login' %}">로그인</a>
             </li>
@@ -23,7 +24,7 @@
             <li class="list3">
                 <a href="{% url 'articleapp:list' %}">공구모집</a>
                 <ul>
-                    <a href="recruitment.html">
+                    <a href="{% url 'articleapp:list' %}">
                         <li class="li3_li">모집 안내</li>
                     </a>
                     <a href="">
@@ -51,6 +52,46 @@
                     </a>
                 </ul>
             </li>
+
+            {% else %}
+            <li class="list1">
+                <a href="">마이페이지</a>
+            </li>
+            <li class="list4">
+                <a href="">로그아웃</a>
+            </li>
+            <li class="list2">
+                <a href="{% url 'articleapp:list' %}">공구모집</a>
+                <ul>
+                    <a href="{% url 'articleapp:list' %}">
+                        <li class="li3_li">모집 안내</li>
+                    </a>
+                    <a href="">
+                        <li class="li3_li">공지사항</li>
+                    </a>
+                    <a href="">
+                        <li class="li3_li">게시판</li>
+                    </a>
+                    <a href="">
+                        <li class="li3_li">문의하기</li>
+                    </a>
+                </ul>
+            </li>
+            <li class="list3">
+                <a href="">단체소개</a>
+                <ul>
+                    <a href="">
+                        <li class="li3_li">소개1</li>
+                    </a>
+                    <a href="">
+                        <li class="li3_li">소개2</li>
+                    </a>
+                    <a href="">
+                        <li class="li3_li">소개3</li>
+                    </a>
+                </ul>
+            </li>
+            {% endif %}
         </ul>
     </div>
 
