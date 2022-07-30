@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
+{% if user.is_authenticated %}
+안녕하세요 . {{ user.username }}님!
+{% else %}
+아직 로그인 안됨
+{% endif %}
+<br/><br/><br/><br/>
 <head>
     <meta charset="UTF-8">
     <title>Donut Login</title>
@@ -13,10 +20,11 @@
         <div class="box1_text">
             <a href="{% url 'introapp:home' %}">Donut</a>
         </div>
-        <form id="login_form" method="post">
-            <input type="hidden">
-            <input type="hidden">
 
+        <form action="{% url 'accountapp:loging' %}" id="login_form" method="post">
+            <input type="hidden">
+            <input type="hidden">
+            {% csrf_token %}
             <div id="container">
                 <div id="content">
                     <div class="login_content">
@@ -26,7 +34,7 @@
                                     <label for="login_id">아이디</label>
                                 </h2>
                                 <span class="ps_box int_id">
-                                    <input type="text" id="login_id" class="int" maxlength="20">
+                                    <input type="text" id="login_id" class="int" maxlength="20" name="username">
                                 </span>
                             </div>
 
@@ -35,7 +43,7 @@
                                     <label for="login_pw">비밀번호</label>
                                 </h2>
                                 <span class="ps_box int_pw">
-                                    <input type="password" id="login_pw" class="int" maxlength="20">
+                                    <input type="password" id="login_pw" class="int" maxlength="20" name="password">
                                     <span class="lbl">
                                         <span id="pswdSpan" class="step_txt"></span>
                                     </span>
@@ -45,16 +53,19 @@
                     </div>
                 </div>
                 <div class="loginbtn">
-                    <a href="{% url 'introapp:home' %}">
+                    <a>
                         <div class="btn_area">
                             <button type="button" id="btnlogin" class="btn_type btn_primary">
                                 <span>로그인</span>
+                                <input type="submit" value="로그인">
                             </button>
                         </div>
                     </a>
                 </div>
+
             </div>
         </form>
+
     </div>
     <div class="box2">
         <h2>
