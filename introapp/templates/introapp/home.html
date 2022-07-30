@@ -55,10 +55,10 @@
 
             {% else %}
             <li class="list1">
-                <a href="">마이페이지</a>
+                <a href="{% url 'accountapp:detail' pk=user.pk %}">마이페이지</a>
             </li>
             <li class="list4">
-                <a href="">로그아웃</a>
+                <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">로그아웃</a>
             </li>
             <li class="list2">
                 <a href="{% url 'articleapp:list' %}">공구모집</a>
