@@ -18,7 +18,8 @@
         </h1>
     </div>
 
-    <form id="join_form" method="post">
+    <form action="" id="join_form" method="POST">
+        {% csrf_token %}
         <input type="hidden">
         <input type="hidden">
         <input type="hidden">
@@ -37,7 +38,7 @@
                                 <label for="id">아이디</label>
                             </h3>
                             <span class="id_box id">
-							    <input type="text" id="id" class="int" maxlength="20">
+							    <input type="text" name="id" id="id" class="int" maxlength="20">
                             </span>
                             <span class="error_box" id="idMsg" style="display:none" aria-live="assertive"></span>
                         </div>
@@ -47,7 +48,7 @@
                                 <label for="pswd1">비밀번호</label>
                             </h3>
                             <span class="id_box int_pass">
-							    <input type="password" id="pswd1" class="int" maxlength="20">
+							    <input type="password" name="pswd1" id="pswd1" class="int" maxlength="20">
                                 <span class="lbl">
                                     <span id="pswd1Span" class="step_txt"></span>
                                 </span>
@@ -58,184 +59,15 @@
                                 <label for="pswd2">비밀번호 재확인</label>
                             </h3>
                             <span class="id_box int_pass_check" id="pswd2Img">
-							    <input type="password" id="pswd2" name="pswd2" class="int" title="비밀번호 재확인 입력" aria-describedby="pswd2Blind" maxlength="20">
+							    <input type="password" name="pwconf" id="pswd2" name="pswd2" class="int" title="비밀번호 재확인 입력" aria-describedby="pswd2Blind" maxlength="20">
 							    <span id="pswd2Blind" class="wa_blind">설정하려는 비밀번호가 맞는지 확인하기 위해 다시 입력 해주세요.</span>
 						    </span>
                             <span class="error_box" id="pswd2Msg" style="display:none" aria-live="assertive"></span>
                         </div>
                     </div>
 
-                    <div class="row_group">
-                        <div class="join_row">
-                            <h3 class="join_title">
-                                <label for="name">이름</label>
-                            </h3>
-                            <span class="id_box box_right_space">
-							    <input type="text" id="name" class="int" maxlength="40">
-						    </span>
-                            <span class="error_box" style="display:none" aria-live="assertive"></span>
-                        </div>
-
-                        <div class="join_row join_birthday">
-                            <h3 class="join_title">
-                                <label for="yy">생년월일</label>
-                            </h3>
-                            <div class="birth_wrap">
-                                <div class="birth_yy">
-								    <span class="id_box">
-									    <input type="text" id="yy" placeholder="년(4자)" aria-label="년(4자)" class="int" maxlength="4">
-								    </span>
-                                </div>
-
-                                <div class="birth_mm">
-								    <span class="id_box">
-									    <select id="mm" class="sel" aria-label="월">
-										    <option value="">월</option>
-                                            <option value="01">1</option>
-                                            <option value="02">2</option>
-                                            <option value="03">3</option>
-                                            <option value="04">4</option>
-                                            <option value="05">5</option>
-                                            <option value="06">6</option>
-                                            <option value="07">7</option>
-                                            <option value="08">8</option>
-                                            <option value="09">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-									    </select>
-								    </span>
-                                </div>
-
-                                <div class=" birth_dd">
-								    <span class="id_box">
-									    <input type="text" id="dd" placeholder="일" aria-label="일" class="int" maxlength="2">
-									    <label for="dd" class="lbl"></label>
-							    	</span>
-                                </div>
-                            </div>
-
-                            <span class="error_box"  style="display:none" aria-live="assertive"></span>
-                        </div>
-
-                        <div class="join_row join_sex">
-                            <h3 class="join_title">
-                                <label for="gender">성별</label>
-                            </h3>
-                            <div class="id_box gender_code">
-                                <select id="gender" name="gender" class="sel" aria-label="성별">
-                                    <option value="" selected="">성별</option>
-                                    <option value="M">남자</option>
-                                    <option value="F">여자</option>
-                                    <option value="U">선택 안함</option>
-                                </select>
-                            </div>
-                        </div>
-                        <span class="error_box" id="genderMsg" style="display:none" aria-live="assertive"></span>
-
-                        <div class="join_row join_email">
-                            <h3 class="join_title">
-                                <label for="email">
-                                    본인 확인 이메일
-                                    <span class="terms_choice">(선택)</span>
-                                </label>
-                            </h3>
-                            <span class="id_box int_email box_right_space">
-							    <input type="text" id="email" name="email" placeholder="선택입력" aria-label="선택입력" class="int" maxlength="100">
-						    </span>
-                        </div>
-
-                        <span class="error_box" id="emailMsg" style="display:none" aria-live="assertive"></span>
-                    </div>
-
-                    <div class="join_row join_mobile" id="mobDiv">
-                        <h3 class="join_title">
-                            <label for="phoneNo">휴대전화</label>
-                        </h3>
-                        <div class="id_box country_code">
-                            <select id="nationNo" name="nationNo" class="sel" aria-label="전화번호 입력">
-                                <option value="233">가나 +233</option>
-                                <option value="241">가봉 +241</option>
-                                <option value="592">가이아나 +592</option>
-                                <option value="220">감비아 +220</option>
-                                <option value="502">과테말라 +502</option>
-                                <option value="1671">괌 +1 671</option>
-                                <option value="1473">그레나다 +1 473</option>
-                                <option value="30">그리스 +30</option>
-                                <option value="224">기니 +224</option>
-                                <option value="245">기니비사우 +245</option>
-                                <option value="264">나미비아 +264</option>
-                                <option value="674">나우루 +674</option>
-                                <option value="234">나이지리아 +234</option>
-                                <option value="672">남극,오스트레일리아의외 +672</option>
-                                <option value="27">남아프리카공화국 +27</option>
-                                <option value="31">네덜란드 +31</option>
-                                <option value="599">네덜란드령보네르 +599</option>
-                                <option value="297">네덜란드령아루바 +297</option>
-                                <option value="977">네팔 +977</option>
-                                <option value="47">노르웨이 +47</option>
-                                <option value="64">뉴질랜드 +64</option>
-                                <option value="683">뉴질랜드령니우에 +683</option>
-                                <option value="690">뉴질랜드령토켈라우제도 +690</option>
-                                <option value="227">니제르 +227</option>
-                                <option value="505">니카라과 +505</option>
-                                <option value="82" selected="">대한민국 +82</option>
-                                <option value="45">덴마크 +45</option>
-                                <option value="299">덴마크령그린란드 +299</option>
-                                <option value="298">덴마크령페로제도 +298</option>
-                                <option value="1809">도미니카공화국 +1 809</option>
-                                <option value="1829">도미니카공화국 2 +1 829</option>
-                                <option value="1849">도미니카공화국 3 +1 849</option>
-                                <option value="49">독일 +49</option>
-                                <option value="670">동티모르 +670</option>
-                                <option value="856">라오스 +856</option>
-                                <option value="231">라이베리아 +231</option>
-                                <option value="371">라트비아 +371</option>
-                                <option value="7">러시아/카자흐스탄 +7</option>
-                                <option value="961">레바논 +961</option>
-                                <option value="266">레소토 +266</option>
-                                <option value="40">루마니아 +40</option>
-                                <option value="352">룩셈부르크 +352</option>
-                                <option value="250">르완다 +250</option>
-                                <option value="218">리비아 +218</option>
-                                <option value="370">리투아니아 +370</option>
-                                <option value="423">리히텐슈타인 +423</option>
-                                <option value="261">마다가스카르 +261</option>
-                                <option value="692">마셜제도공화국 +692</option>
-                                <option value="691">마이크로네시아연방 +691</option>
-                                <option value="853">마카오 +853</option>
-                                <option value="389">마케도니아공화국 +389</option>
-                                <option value="265">말라위 +265</option>
-                                <option value="60">말레이시아 +60</option>
-                            </select>
-                        </div>
-
-                        <div class="int_mobile_area">
-					    	<span class="id_box int_mobile">
-						    	<input type="tel" id="phoneNo" name="phoneNo" placeholder="전화번호 입력" aria-label="전화번호 입력" class="int" maxlength="16">
-						    	<label for="phoneNo" class="lbl"></label>
-						    </span>
-                            <a href="#" class="btn_verify btn_primary" id="btnSend" role="button">
-                                <span class="">인증번호 받기</span>
-                            </a>
-                        </div>
-
-                        <div class="id_box_disable box_right_space" id="authNoBox">
-                            <input type="tel" id="authNo" name="authNo" placeholder="인증번호 입력하세요" aria-label="인증번호 입력하세요" aria-describedby="wa_verify" class="int" disabled="" maxlength="4">
-                            <label id="wa_verify" for="authNo" class="lbl">
-                                <span class="wa_blind">인증받은 후 인증번호를 입력해야 합니다.</span>
-                                <span class="input_code" id="authNoCode" style="display:none;"></span>
-                            </label>
-                        </div>
-
-                        <span class="error_box" id="phoneNoMsg" style="display:none" aria-live="assertive"></span>
-                        <span class="error_box" id="authNoMsg" style="display:none" aria-live="assertive"></span>
-                        <span class="error_box" id="joinMsg" style="display:none" aria-live="assertive"></span>
-                    </div>
-                </div>
-            </div>
             <div class="btn_area">
-                <a href="../../../introapp/templates/introapp/home2.html">
+                <a href="{% url 'accountapp:login' %}">
                     <button type="button" id="btnJoin" class="btn_type btn_primary">
                         <span>
                             가입하기

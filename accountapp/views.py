@@ -13,7 +13,6 @@ from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm
-from accountapp.models import HelloWorld
 
 has_ownership = [account_ownership_required, login_required]
 
@@ -24,6 +23,14 @@ class AccountCreateView(CreateView):
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/create.html'
 
+    def signup(request):
+        if request.method == 'POST':
+            id = request.POST['id']
+            pswd1 = request.POST['pswd1']
+            pswd2 = request.POST['pswd2']
+            user = User.objects.create_user(user_id=id, user_pwsd1=pswd1, user_pswd2=pswd2)
+            auth.login(request, user)
+        return render(request, 'accountapp:login.html')
 
 class AccountDetailView(DetailView):
     model = User
@@ -52,9 +59,9 @@ class AccountDeleteView(DeleteView):
 
 def loging(request):
     if request.method == 'POST':
-        userid = request.POST['username']
-        pwd = request.POST['password']
-        user = auth.authenticate(request, username=userid, password=pwd)
+        id = request.POST['id']
+        pswd1 = request.POST['pswd1']
+        user = auth.authenticate(request, id=id, pswd1=pswd1)
         if user is not None:
             auth.login(request, user)
             return redirect('introapp:home')
