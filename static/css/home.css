@@ -216,7 +216,7 @@ body {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   height: 40px;
-  margin-top: 30px;
+  margin-top: 35px;
   margin-left: 10px;
   box-shadow: 0 0.1px 30px rgba(0, 0, 0, 0.2);
 }
@@ -275,18 +275,57 @@ ul li {
   color: #333333;
 }
 
-.wrapper>.topmenu_wrapper>#top_nav>.list3>ul>a>li, .wrapper>.topmenu_wrapper>#top_nav>.list4>ul>a>li {
-  background: #f5f6f7;
+#footer {
+  text-align: center;
+  color: #333333;
+  z-index: 3;
+  position: absolute;
+  bottom: 10px;
+}
+
+#footer * {
+  font-size: 12px;
+  font-style: normal;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
   color: #333333;
 }
 
-.wrapper>.topmenu_wrapper>#top_nav>.list3>ul>a>li:hover {
-  background-color: #29b6f6;
-  color: #ffffff;
+#footer address {
+  font: 9px/14px Verdana;
 }
-.wrapper>.topmenu_wrapper>#top_nav>.list4>ul>a>li:hover {
-  background-color: #f8bbd0;
-  color: #ffffff;
+
+#footer address em {
+  font: 9px Verdana;
+  padding-left: 4px;
+}
+
+:root #footer address .logo {
+  top: 2px;
+  margin-left: 1px;
+}
+
+#footer address .logo {
+  position: relative;
+  width: 63px;
+  height: 12px;
+}
+
+#footer address span {
+    font: 9px/14px Verdana;
+    padding-left: 2px;
+}
+
+#footer address .u_cri {
+    margin: 0;
+    padding-left: 1px;
+}
+
+#footer address a {
+    font: bold 9px Verdana;
+  text-decoration: none;
+  color: #333333;
 }
 
 /*# sourceMappingURL=home.css.map */

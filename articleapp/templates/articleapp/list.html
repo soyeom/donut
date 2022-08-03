@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../../../static/css/practice.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <!-- 롤링 배너 JavaScript -->
     <script language="JavaScript">
         $(document).ready(function() {
             var $banner = $(".banner").find("ul");
@@ -34,10 +34,13 @@
 <body>
 <div id="wrap">
     <div id="contents" class="customer">
+        <!-- Donut 로고 -->
         <h1 id="top_logo">
             <img src="../../../static/img/donut.png" alt="">
             <a href="{% url 'introapp:home' %}">Donut</a>
         </h1>
+
+        <!-- 후원 단체 이미지 -->
         <div class="banner_top white">
             <div class="banner">
                 <ul>
@@ -62,57 +65,35 @@
                 </ul>
             </div>
         </div>
-        <div id="nav">
-            <div class="nav_area">
-                <ul class="nav_ul text1">
-                    <li>
-                        <dl class="nav_dl dl1">
-                            <a href="" class="info" data-idx="0">
-                                모집 안내
-                            </a>
-                        </dl>
-                    </li>
-                    <li>
-                        <dl class="nav_dl">
-                            <a href="" class="notice" data-idx="1">
-                                공지사항
-                            </a>
-                        </dl>
-                    </li>
-                    <li>
-                        <dl class="nav_dl">
-                            <a href="" class="notice" data-idx="3">
-                                게시판
-                            </a>
-                        </dl>
-                    </li>
-                    <li>
-                        <dl class="nav_dl">
-                            <a href="" class="QnA" data-idx="4">
-                                문의하기
-                            </a>
-                        </dl>
-                    </li>
-                </ul>
-            </div>
-            <div class="inner_cont customer_cont">
-                <div class="section section-top">
-                    <div class="inner">
-                        <h3>모집 안내</h3>
-                        <div class="line pink"></div>
-                        <h4>공구 모집 살펴보기</h4>
-                        <div class="blank_line"></div>
-                        <p>
-                            Donut에 방문해 주셔서 감사합니다.
-                            <br>
-                            질의사항은
-                            <span class="pink">문의하기</span>
-                            를 이용해 주세요.
-                        </p>
-                        {% if object_list %}
-                        <div class="content">
-                            {% for each in object_list %}
-                            <div class="card">
+
+        <div class="inner_cont customer_cont">
+            <div class="section section-top">
+                <div class="inner">
+                    <h3>모집 안내</h3>
+                    <div class="line pink"></div>
+                    <h4>공구 모집 살펴보기</h4>
+                    <div class="blank_line"></div>
+                    <p>
+                        Donut에 방문해 주셔서 감사합니다.
+                    </p>
+                    <br>
+
+                    <div id="search">
+                        <div id="searchimg">
+                            <img src="../../../static/img/search.png">
+                        </div>
+                        <form action="" method="GET">
+                            <div id="searchtxt">
+                                <input type="text" name="q" value="{{ q }}" placeholder="검색어를 입력해주세요.">
+                            </div>
+                        </form>
+                    </div>
+
+                    {% if object_list %}
+                    <div class="content">
+                        {% for each in object_list %}
+                        <ul class="card">
+                            <li>
                                 <div class="img">
                                     <img src="https://i.pinimg.com/236x/1b/d6/ab/1bd6ab1856d5a899d5c65900b51cf73f.jpg" alt="">
                                 </div>
@@ -120,34 +101,29 @@
                                     <h2>{{each.title}}</h2>
                                     <p>{{each.writer}}</p>
                                     <button>
-                                        <a href="">참여하기</a>
+                                        <a href="{% url 'articleapp:detail' each.id %}">참여하기</a>
                                     </button>
                                 </div>
-                            </div>
-                            {% endfor %}
+                            </li>
+                        </ul>
+                        {% endfor %}
 
-                            <!--글이 없는 경우도 추가했어요-->
-                            {% else %}
-                            <div class="text-center">
-                                <h1>No Articles YET!</h1>
-                            </div>
-                            {% endif %}
+                        <!--글이 없는 경우도 추가했어요-->
+                        {% else %}
+                        <div class="text-center">
+                            <h1>No Articles YET!</h1>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div id="footer">
-    <address>
-        <em><a href="../../../introapp/templates/introapp/home.html" class="logo"><span class="blind"></span></a></em>
-        <em class="copy">고려대학교 세종캠퍼스</em>
-        <em class="u_cri">©</em>
-        <a href="../../../introapp/templates/introapp/home.html" class="u_cra">Donut</a>
-    </address>
-    </div>
 </div>
-
+<div>
+    {% if q %}
+    <h5 style="font-weight: 550;">'{{ q }}' 검색 결과입니다.</h5>
+    {% endif %}
+</div>
 </body>
 </html>
