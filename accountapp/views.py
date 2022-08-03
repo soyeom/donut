@@ -23,14 +23,14 @@ class AccountCreateView(CreateView):
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/create.html'
 
-def post(request):
-    if request.method == 'POST':
-        id = request.POST['id']
-        pswd1 = request.POST['pswd1']
-        pswd2 = request.POST['pswd2']
-        new_user = User(user_id=id, user_pwsd1=pswd1, user_pswd2=pswd2)
-        new_user.save()
-    return render(request, 'accountapp:login.html')
+    def signup(request):
+        if request.method == 'POST':
+            id = request.POST['id']
+            pswd1 = request.POST['pswd1']
+            pswd2 = request.POST['pswd2']
+            user = User.objects.create_user(user_id=id, user_pwsd1=pswd1, user_pswd2=pswd2)
+            auth.login(request, user)
+        return render(request, 'accountapp:login.html')
 
 class AccountDetailView(DetailView):
     model = User
@@ -59,9 +59,9 @@ class AccountDeleteView(DeleteView):
 
 def loging(request):
     if request.method == 'POST':
-        userid = request.POST['username']
-        pwd = request.POST['password']
-        user = auth.authenticate(request, username=userid, password=pwd)
+        id = request.POST['id']
+        pswd1 = request.POST['pswd1']
+        user = auth.authenticate(request, id=id, pswd1=pswd1)
         if user is not None:
             auth.login(request, user)
             return redirect('introapp:home')
