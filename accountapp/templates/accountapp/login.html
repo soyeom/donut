@@ -21,7 +21,7 @@
             <a href="{% url 'introapp:home' %}">Donut</a>
         </div>
 
-        <form action="{% url 'accountapp:loging' %}" id="login_form" method="post">
+        <form action="{% url 'accountapp:login' %}" id="login_form" method="post">
             <input type="hidden">
             <input type="hidden">
             {% csrf_token %}

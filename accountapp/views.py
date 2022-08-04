@@ -17,20 +17,15 @@ from accountapp.forms import AccountUpdateForm
 has_ownership = [account_ownership_required, login_required]
 
 
-class AccountCreateView(CreateView):
-    model = User
-    form_class = UserCreationForm
-    success_url = reverse_lazy('accountapp:login')
-    template_name = 'accountapp/create.html'
 
-    def signup(request):
-        if request.method == 'POST':
-            id = request.POST['id']
-            pswd1 = request.POST['pswd1']
-            pswd2 = request.POST['pswd2']
-            user = User.objects.create_user(user_id=id, user_pwsd1=pswd1, user_pswd2=pswd2)
-            auth.login(request, user)
-        return render(request, 'accountapp:login.html')
+def signup(request):
+    if request.method == 'POST':
+        if request.POST['password1'] == request.POST['password2']:
+            user = User.objects.create_user(
+                username=request.POST['username'], password=request.POST['password1'])
+            user.save()
+            return redirect('/')
+    return render(request, 'accountapp/create.html')
 
 class AccountDetailView(DetailView):
     model = User
@@ -59,9 +54,9 @@ class AccountDeleteView(DeleteView):
 
 def loging(request):
     if request.method == 'POST':
-        id = request.POST['id']
-        pswd1 = request.POST['pswd1']
-        user = auth.authenticate(request, id=id, pswd1=pswd1)
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(request, username=username, password=password)
         if user is not None:
             auth.login(request, user)
             return redirect('introapp:home')

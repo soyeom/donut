@@ -12,7 +12,7 @@
         <!-- Donut 상단 로고 -->
         <h1 id="top_logo">
             <img src="../../../static/img/donut.png" alt="">
-            <a href="../../../introapp/templates/introapp/home.html">Donut</a>
+            <a href="{% url 'introapp:home' %}">Donut</a>
         </h1>
 
         <!-- 페이지 소개 -->
@@ -108,10 +108,10 @@
     </div>
     <div id="footer">
         <address>
-            <em><a href="../../../introapp/templates/introapp/home.html" class="logo"><span class="blind"></span></a></em>
+            <em><a href="{% url 'introapp:home' %}" class="logo"><span class="blind"></span></a></em>
             <em class="copy">고려대학교 세종캠퍼스</em>
             <em class="u_cri">©</em>
-            <a href="../../../introapp/templates/introapp/home.html" class="u_cra">Donut</a>
+            <a href="{% url 'introapp:home' %}" class="u_cra">Donut</a>
         </address>
     </div>
 </div>

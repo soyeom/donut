@@ -101,7 +101,7 @@
                                     <h2>{{each.title}}</h2>
                                     <p>{{each.writer}}</p>
                                     <button>
-                                        <a href="{% url 'articleapp:detail' each.id %}">참여하기</a>
+                                        <a href="{% url 'articleapp:detail' each.id %}">자세히보기</a>
                                     </button>
                                 </div>
                             </li>
@@ -119,6 +119,11 @@
             </div>
         </div>
     </div>
+</div>
+<div class="end">
+  <a href="{% url 'articleapp:create' %}" class="button">
+    새로운 캠페인
+  </a>
 </div>
 <div>
     {% if q %}
