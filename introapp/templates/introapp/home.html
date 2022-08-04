@@ -23,73 +23,23 @@
             </li>
             <li class="list3">
                 <a href="{% url 'articleapp:list' %}">공구모집</a>
-                <ul>
-                    <a href="{% url 'articleapp:list' %}">
-                        <li class="li3_li">모집 안내</li>
-                    </a>
-                    <a href="">
-                        <li class="li3_li">공지사항</li>
-                    </a>
-                    <a href="">
-                        <li class="li3_li">게시판</li>
-                    </a>
-                    <a href="">
-                        <li class="li3_li">문의하기</li>
-                    </a>
-                </ul>
             </li>
             <li class="list4">
-                <a href="">단체소개</a>
-                <ul>
-                    <a href="">
-                        <li class="li3_li">소개1</li>
-                    </a>
-                    <a href="">
-                        <li class="li3_li">소개2</li>
-                    </a>
-                    <a href="">
-                        <li class="li3_li">소개3</li>
-                    </a>
-                </ul>
+                <a href="../../../articleapp/templates/articleapp/societyinfo.html">단체소개</a>
             </li>
 
             {% else %}
             <li class="list1">
                 <a href="{% url 'accountapp:detail' pk=user.pk %}">마이페이지</a>
             </li>
-            <li class="list4">
+            <li class="list2">
                 <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">로그아웃</a>
             </li>
-            <li class="list2">
-                <a href="{% url 'articleapp:list' %}">공구모집</a>
-                <ul>
-                    <a href="{% url 'articleapp:list' %}">
-                        <li class="li3_li">모집 안내</li>
-                    </a>
-                    <a href="">
-                        <li class="li3_li">공지사항</li>
-                    </a>
-                    <a href="">
-                        <li class="li3_li">게시판</li>
-                    </a>
-                    <a href="">
-                        <li class="li3_li">문의하기</li>
-                    </a>
-                </ul>
-            </li>
             <li class="list3">
-                <a href="">단체소개</a>
-                <ul>
-                    <a href="">
-                        <li class="li3_li">소개1</li>
-                    </a>
-                    <a href="">
-                        <li class="li3_li">소개2</li>
-                    </a>
-                    <a href="">
-                        <li class="li3_li">소개3</li>
-                    </a>
-                </ul>
+                <a href="{% url 'articleapp:list' %}">공구모집</a>
+            </li>
+            <li class="list4">
+                <a href="../../../articleapp/templates/articleapp/societyinfo.html">단체소개</a>
             </li>
             {% endif %}
         </ul>
@@ -104,4 +54,11 @@
     </div>
 </div>
 </body>
+<div id="footer">
+    <address>
+        <em class="copy">고려대학교 세종캠퍼스</em>
+        <em class="u_cri">©</em>
+        <a href="{% url 'introapp:home' %}" class="u_cra">Donut</a>
+    </address>
+</div>
 </html>
