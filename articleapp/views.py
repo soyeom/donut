@@ -17,7 +17,7 @@ from articleapp.models import Article
 class ArticleCreateView(CreateView):
     model = Article
     form_class = ArticleCreationForm
-    template_name = 'articleapp/joinform2.html'
+    template_name = 'articleapp/create.html'
 
     def form_valid(self, form):
         form.instance.writer = self.request.user
