@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+{% load bootstrap4 %}
+
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -130,5 +133,18 @@
     <h5 style="font-weight: 550;">'{{ q }}' 검색 결과입니다.</h5>
     {% endif %}
 </div>
+<ul class="pagination justify-content mb-4">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{page_obj.previous_page_number}}">Prev</a>
+    </li>
+    {% endif %}
+        Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+    {% if page_obj.has_next %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+    </li>
+    {% endif %}
+</ul>
 </body>
 </html>

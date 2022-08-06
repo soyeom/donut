@@ -45,7 +45,7 @@ class ArticleDetailView(DetailView, FormMixin):
 class ArticleListView(ListView):
     model = Article
     template_name = 'articleapp/list.html'
-    paginate_by = 10
+    paginate_by = 12
     context_object_name = 'article_list'
 
     def get_queryset(self):
