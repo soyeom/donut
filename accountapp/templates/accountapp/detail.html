@@ -13,6 +13,16 @@
             접속시간 : {{ target_user.date_joined }}
         </p>
 
+                    <a href="{% url 'accountapp:mypost' pk=user.pk %}">
+                    내가 쓴 글
+                    </a>
+                    </br>
+                    <a href="{% url 'accountapp:mycampaign' pk=user.pk %}">
+                    내가 참여한 캠페인
+                    </a>
+
+
+
 
         {% if target_user.profile %}
         <img src="{{ target_user.profile.image.url }}" alt=""
@@ -24,6 +34,8 @@
             <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
                 닉네임 수정
             </a>
+
+
             {% endif %}
         </h2>
         <h5 style="margin-bottom: 3rem;">
@@ -36,6 +48,7 @@
                 프로필 만들기
                 </h2>
             </a>
+
             {% else %}
             <h2>
                 닉네임 미설정

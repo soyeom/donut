@@ -5,6 +5,8 @@ from django.views.generic import CreateView, DetailView, ListView
 from django.views.generic.edit import FormMixin, UpdateView, DeleteView
 from django.contrib import messages
 from django.db.models import Q
+
+import articleapp
 from commentapp.forms import CommentCreationForm
 from commentapp.models import Comment
 
@@ -31,6 +33,13 @@ class ArticleDetailView(DetailView, FormMixin):
     form_class = CommentCreationForm
     context_object_name = 'target_article'
     template_name = 'articleapp/detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        context['A'] = articleapp.models.Campaign.objects.filter(Participants__exact=self.request.user.id, title_id=self.object.id)
+        context['B'] = 0
+        return context
+
 
 
 class ArticleListView(ListView):

@@ -10,3 +10,12 @@ class Article(models.Model):
 
     #def __str__(self):
         #return f'{self.id}/{self.title}/{self.writer}'
+
+
+
+
+class Campaign(models.Model):
+    Participants = models.IntegerField()
+    title_id = models.IntegerField()
+    amount = models.IntegerField(default=0)
+    state = models.CharField(max_length=1, default='a')
