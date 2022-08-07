@@ -8,11 +8,6 @@ class Article(models.Model):
     content = models.TextField(null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
-    #def __str__(self):
-        #return f'{self.id}/{self.title}/{self.writer}'
-
-
-
 
 class Campaign(models.Model):
     Participants = models.IntegerField()
