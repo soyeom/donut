@@ -1,12 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-{% if user.is_authenticated %}
-안녕하세요 . {{ user.username }}님!
-{% else %}
-아직 로그인 안됨
-{% endif %}
-<br/><br/><br/><br/>
 <head>
     <meta charset="UTF-8">
     <title>Donut Login</title>
@@ -55,9 +48,8 @@
                 <div class="loginbtn">
                     <a>
                         <div class="btn_area">
-                            <button type="button" id="btnlogin" class="btn_type btn_primary">
+                            <button type="submit" id="btnlogin" class="btn_type btn_primary">
                                 <span>로그인</span>
-                                <input type="submit" value="로그인">
                             </button>
                         </div>
                     </a>
