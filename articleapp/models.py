@@ -6,11 +6,13 @@ class Article(models.Model):
     title = models.CharField(max_length=200, null=True)
     image = models.ImageField(upload_to='article/', null=True, blank=True)
     content = models.TextField(null=True)
+    price = models.IntegerField(default=0, null=False)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
 
 class Campaign(models.Model):
     Participants = models.IntegerField()
     title_id = models.IntegerField()
-    amount = models.IntegerField(default=0)
+    amount = models.IntegerField(default=0, null=False)
+    price = models.IntegerField(default=0, null=False)
     state = models.CharField(max_length=1, default='a')

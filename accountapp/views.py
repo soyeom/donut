@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 
 # Create your views here.
@@ -29,7 +29,7 @@ def Camp(request):
         post.amount = request.POST['amount']
         post.state = request.POST['state']
         post.save()
-        return redirect('/intro/societyinfo')
+        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
     else:
         return render(request, '/')
 
@@ -38,7 +38,7 @@ def deleteCamp(request):
     if request.method == 'POST':
         board = Campaign.objects.filter(Participants__exact=request.user.id, title_id__exact=request.POST['text'])
         board.delete()
-        return redirect('/intro/societyinfo')
+        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
     else:
         return render(request, '/')
 

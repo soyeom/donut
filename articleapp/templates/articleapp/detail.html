@@ -10,6 +10,8 @@
 <div>
     <div class="detail">
         <h1>{{ object.title }}</h1>
+        <h5>희망 모금액: {{ object.price }}</h5>
+         <h5>누적액:</h5>
         <h6>작성자: {{ object.writer }}</h6>
 
         {% if user.is_authenticated %}
@@ -20,11 +22,11 @@
                 <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">참여취소</button>
             </form>
             {% else %}
-            <form action="{% url 'accountapp:campaign'%}" method="post">
+            <form action="{% url 'accountapp:campaign' %}" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="text" value={{object.pk}} >
                 <input type="hidden" name="state" value="a" >
-                금액 : <input type="text" name="amount" value=10000 >
+                금액 : <input type="number" name="amount" min="1">
                 <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">참여하기</button>
             </form>
             {% endif %}

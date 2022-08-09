@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView
@@ -12,7 +13,8 @@ from commentapp.models import Comment
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
-from articleapp.models import Article
+from articleapp.models import Article, Campaign
+
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
@@ -39,7 +41,6 @@ class ArticleDetailView(DetailView, FormMixin):
         context['A'] = articleapp.models.Campaign.objects.filter(Participants__exact=self.request.user.id, title_id=self.object.id)
         context['B'] = 0
         return context
-
 
 
 class ArticleListView(ListView):
