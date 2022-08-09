@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+{% if user.is_superuser == 1 %}
 {% load bootstrap4 %}
 
 <html lang="ko">
@@ -80,6 +80,7 @@
                         관리자 페이지입니다.
                     </p>
                     <br>
+
                     {% if camp_list %}
                 <table
             border="1"
@@ -115,7 +116,6 @@
 
 
 
-
                                                                     <td><input type="text" name="state" value={{each.state}} ></td>
                                                                         <input type="hidden" name="id" value={{each.id}}>
                                                                     <td><button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">기부상태변경</button>
@@ -138,6 +138,8 @@
                             <h1>No Articles YET!</h1>
                         </div>
                         {% endif %}
+
+
                     </div>
                 </div>
             </div>
@@ -146,3 +148,9 @@
 </div>
 </body>
 </html>
+{% else %}
+            <a href="{% url 'introapp:home'%}">
+                잘못된접근
+            </a>
+            <meta http-equiv="refresh" content="0.00001;url='/intro/home'">
+{% endif %}
