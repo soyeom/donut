@@ -1,0 +1,274 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap");
+html {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+html::before {
+  content: "";
+  background: linear-gradient(45deg, pink, violet, skyblue);
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+body {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  display: block;
+}
+
+#wrapper > .box1 form > #container > #content {
+  background: #f5f6f7;
+  z-index: 1;
+  width: 70%;
+  height: 600px;
+  margin-top: 60px;
+  margin-left: 250px;
+  border-radius: 20px;
+  box-shadow: 0 2px 20px rgba(51, 51, 51, 0.5);
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+#top_logo {
+  position: absolute;
+  z-index: 3;
+  cursor: pointer;
+  font-family: "Ubuntu", sans-serif;
+  color: #ffffff;
+  font-size: 35px;
+  font-weight: bold;
+  -webkit-text-stroke: 1px #f48fb1;
+  margin-left: 450px;
+}
+
+#top_logo > img {
+  width: 8%;
+  float: left;
+  padding-right: 10px;
+}
+
+#top_logo > a {
+  color: #ffffff;
+  -webkit-text-stroke: 1px #f48fb1;
+  text-decoration: none;
+}
+
+#content > .inner1 {
+  float: right;
+}
+
+#content > .inner2 {
+  float: left;
+  margin-left: 30px;
+  text-align: center;
+  height: 600px;
+}
+
+#profile_img img {
+  width: 20%;
+  height: 20%;
+}
+
+#progress > ul > li {
+  float: left;
+}
+
+#progress > ul {
+  width: 450px;
+  height: 60px;
+  padding: 0;
+  border-style: inset;
+}
+
+#progress > ul > li {
+  line-height: 30px;
+  text-align: center;
+  width: 25%;
+  height: 61px;
+}
+
+#progress .li3 {
+  background: #00aaff;
+  border-style: outset;
+  width: 23.5%;
+  height: 55.5px;
+}
+
+#progress .li1, .li2 {
+  background: #00aaff;
+  opacity: 0.5;
+}
+
+#progress .li4 {
+  background: #ffffff;
+}
+
+.inner1 {
+  margin-top: 150px;
+  width: 500px;
+}
+
+#wrote {
+  margin-top: 100px;
+  display: none;
+}
+
+#wrote:checked ~ .sub {
+  display: block;
+}
+
+.section1 {
+  margin-top: 30px;
+}
+
+.section1 > label > img {
+  width: 2%;
+  height: 2%;
+}
+
+.section2 > label > img {
+  width: 2%;
+  height: 2%;
+}
+
+.sub {
+  display: none;
+}
+
+#donation {
+  margin-top: 120px;
+  display: none;
+}
+
+#donation:checked ~ .sub2 {
+  display: block;
+}
+
+.sub2 {
+  display: none;
+}
+
+#set {
+  display: none;
+}
+
+#set:checked ~ .set_sub {
+  display: block;
+  position: absolute;
+  margin-left: 150px;
+}
+
+.set_sub {
+  display: none;
+}
+
+.set_sub > li > a {
+  text-decoration: none;
+  color: #333333;
+  line-height: 30px;
+}
+
+.set_sub > li {
+  border: 1px solid #333333;
+  width: 100px;
+  height: 110px;
+  margin-top: -60px;
+}
+
+.section3 > label > img {
+  width: 4%;
+  height: 4%;
+  margin-left: -230px;
+  margin-bottom: 0;
+}
+
+#content > .inner2 > .section3 {
+  margin-top: 50px;
+  margin-left: -200px;
+}
+
+.section4 {
+  height: 100px;
+  margin-top: 150px;
+  position: relative;
+}
+
+#footer {
+  max-width: 768px;
+  margin: 0 auto;
+  min-width: 460px;
+}
+
+#footer {
+  clear: both;
+  margin: 0 auto;
+  padding: 30px 0 15px 0;
+  text-align: center;
+}
+
+#footer * {
+  font-size: 12px;
+  font-style: normal;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  color: #333333;
+}
+
+#footer address {
+  font: 9px/14px Verdana;
+}
+
+#footer address em {
+  font: 9px Verdana;
+  padding-left: 4px;
+}
+
+:root #footer address .logo {
+  top: 2px;
+  margin-left: 1px;
+}
+
+#footer address .logo {
+  position: relative;
+  width: 63px;
+  height: 12px;
+}
+
+#footer address span {
+  font: 9px/14px Verdana;
+  padding-left: 2px;
+}
+
+#footer address .u_cri {
+  margin: 0;
+  padding-left: 1px;
+}
+
+#footer address a {
+  font: bold 9px Verdana;
+}
+
+#footer a {
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=making.css.map */
