@@ -21,26 +21,7 @@ from django.core.paginator import Paginator
 has_ownership = [account_ownership_required, login_required]
 
 
-def Camp(request):
-    if request.method == 'POST':
-        post = Campaign()
-        post.Participants = request.user.id
-        post.title_id = request.POST['text']
-        post.amount = request.POST['amount']
-        post.state = request.POST['state']
-        post.save()
-        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
-    else:
-        return render(request, '/')
 
-
-def deleteCamp(request):
-    if request.method == 'POST':
-        board = Campaign.objects.filter(Participants__exact=request.user.id, title_id__exact=request.POST['text'])
-        board.delete()
-        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
-    else:
-        return render(request, '/')
 
 
 class ArticleListView(ListView):

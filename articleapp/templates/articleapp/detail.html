@@ -16,15 +16,16 @@
 
         {% if user.is_authenticated %}
             {% if A %}
-            <form action="{% url 'accountapp:deletecamp' %}" method="post">
+            <form action="{% url 'articleapp:deletecamp' %}" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="text" value={{object.pk}} >
                 <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">참여취소</button>
             </form>
             {% else %}
-            <form action="{% url 'accountapp:campaign' %}" method="post">
+            <form action="{% url 'articleapp:campaign' %}" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="text" value={{object.pk}} >
+                <input type="hidden" name="price" value={{object.price}} >
                 <input type="hidden" name="state" value="a" >
                 금액 : <input type="number" name="amount" min="1">
                 <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">참여하기</button>
