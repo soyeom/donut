@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView
@@ -30,6 +30,30 @@ class ArticleCreateView(CreateView):
     def get_success_url(self):
         return reverse('articleapp:list')
 
+
+def Camp(request):
+    if request.method == 'POST':
+        post = Campaign()
+        post.Participants = request.user.id
+        post.title_id = request.POST['text']
+        post.amount = request.POST['amount']
+        post.state = request.POST['state']
+        post.price = request.POST['price']
+        post.save()
+        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
+    else:
+        return render(request, '/')
+
+
+def deleteCamp(request):
+    if request.method == 'POST':
+        board = Campaign.objects.filter(Participants__exact=request.user.id, title_id__exact=request.POST['text'])
+        board.delete()
+        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
+    else:
+        return render(request, '/')
+
+
 class ArticleDetailView(DetailView, FormMixin):
     model = Article
     form_class = CommentCreationForm
@@ -38,7 +62,8 @@ class ArticleDetailView(DetailView, FormMixin):
 
     def get_context_data(self, **kwargs):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
-        context['A'] = articleapp.models.Campaign.objects.filter(Participants__exact=self.request.user.id, title_id=self.object.id)
+        context['A'] = articleapp.models.Campaign.objects.filter(Participants__exact=self.request.user.id,
+                                                                 title_id=self.object.id)
         context['B'] = 0
         return context
 
@@ -71,6 +96,7 @@ class ArticleListView(ListView):
 
         return context
 
+
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
 class ArticleUpdateView(UpdateView):
@@ -79,7 +105,8 @@ class ArticleUpdateView(UpdateView):
     template_name = 'articleapp/update.html'
 
     def get_success_url(self):
-        return reverse('articleapp:detail',kwargs={'pk': self.object.pk})
+        return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
+
 
 @method_decorator(article_ownership_required, 'get')
 @method_decorator(article_ownership_required, 'post')
