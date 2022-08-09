@@ -92,6 +92,14 @@
                         </form>
                     </div>
 
+                    <div class="end">
+                        <button>
+                            <a href="{% url 'articleapp:create' %}">
+                            새로운 캠페인
+                            </a>
+                        </button>
+                    </div>
+
                     {% if object_list %}
                     <div class="content">
                         {% for each in object_list %}
@@ -122,11 +130,6 @@
             </div>
         </div>
     </div>
-</div>
-<div class="end">
-  <a href="{% url 'articleapp:create' %}" class="button">
-    새로운 캠페인
-  </a>
 </div>
 <div>
     {% if q %}
