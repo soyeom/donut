@@ -64,8 +64,12 @@ class ArticleDetailView(DetailView, FormMixin):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
         context['A'] = articleapp.models.Campaign.objects.filter(Participants__exact=self.request.user.id,
                                                                  title_id=self.object.id)
-        context['B'] = 0
         return context
+
+def limit_money(request):
+    price = request.GET['price']
+    title = request.GET['title_id']
+    amount = Campaign.objects.filter()
 
 
 class ArticleListView(ListView):
