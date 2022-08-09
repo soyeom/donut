@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+                    <a href="{% url 'accountapp:detail' pk=user.pk %}">
+                    마이페이지
+                    </a>
+                    제목
+
+
+                    {% if A %}
+                    <div class="content">
+                        {% for each in A %}
+                            {% for art in B %}
+                                {% if each.title_id == art.id %}
+                                    <li>
+                                        <div class="text">
+                                            <a href="{% url 'articleapp:detail' pk=art.id %}">{{ art.title }}</a>
+                                        </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                        <!--글이 없는 경우도 추가했어요-->
+                    {% else %}
+                        <div class="text-center">
+                            <h1>참여안함</h1>
+                        </div>
+                    {% endif %}
+
+
+
+{% endblock %}
+
+

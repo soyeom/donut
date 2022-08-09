@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'commentapp',
     'profileapp',
 ]
+
 SASS_PROCESSOR_ENABLED = True
 SASS_OUTPUT_STYLE = 'compact'
 SASS_PRECISION = 8

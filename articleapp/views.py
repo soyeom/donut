@@ -1,16 +1,20 @@
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView
 from django.views.generic.edit import FormMixin, UpdateView, DeleteView
 from django.contrib import messages
 from django.db.models import Q
+
+import articleapp
 from commentapp.forms import CommentCreationForm
 from commentapp.models import Comment
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
-from articleapp.models import Article
+from articleapp.models import Article, Campaign
+
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
@@ -32,11 +36,17 @@ class ArticleDetailView(DetailView, FormMixin):
     context_object_name = 'target_article'
     template_name = 'articleapp/detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        context['A'] = articleapp.models.Campaign.objects.filter(Participants__exact=self.request.user.id, title_id=self.object.id)
+        context['B'] = 0
+        return context
+
 
 class ArticleListView(ListView):
     model = Article
     template_name = 'articleapp/list.html'
-    paginate_by = 10
+    paginate_by = 12
     context_object_name = 'article_list'
 
     def get_queryset(self):
