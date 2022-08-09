@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 
 # Create your views here.
@@ -21,26 +21,7 @@ from django.core.paginator import Paginator
 has_ownership = [account_ownership_required, login_required]
 
 
-def Camp(request):
-    if request.method == 'POST':
-        post = Campaign()
-        post.Participants = request.user.id
-        post.title_id = request.POST['text']
-        post.amount = request.POST['amount']
-        post.state = request.POST['state']
-        post.save()
-        return redirect('/intro/societyinfo')
-    else:
-        return render(request, '/')
 
-
-def deleteCamp(request):
-    if request.method == 'POST':
-        board = Campaign.objects.filter(Participants__exact=request.user.id, title_id__exact=request.POST['text'])
-        board.delete()
-        return redirect('/intro/societyinfo')
-    else:
-        return render(request, '/')
 
 
 class ArticleListView(ListView):
