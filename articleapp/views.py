@@ -64,9 +64,14 @@ class ArticleDetailView(DetailView, FormMixin):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
         context['A'] = articleapp.models.Campaign.objects.filter(Participants__exact=self.request.user.id,
                                                                  title_id=self.object.id)
+<<<<<<< HEAD
         context['B'] = articleapp.models.Campaign.objects.filter(Participants__exact=self.request.user.id,
                                                                  state__in='abc')
+=======
+>>>>>>> d110e2316d9272144626cc4730138c28fc122aa9
         return context
+
+
 
 
 class ArticleListView(ListView):

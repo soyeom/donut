@@ -1,77 +1,116 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../../static/css/profile.css">
+</head>
+<body>
+<div id="wrapper">
+    <div class="box1">
+        <form id="my_page" method="post">
+            <div id="container">
+                <div id="content">
+                    <div id="header">
+                        <h1 id="top_logo">
+                            <img src="../../../static/img/donut.png" alt="">
+                            <a href="{% url 'introapp:home' %}">Donut</a>
+                        </h1>
+                    </div>
+                    <div class="inner1">
+                        {% if target_user == user %}
+                        <div id="progress">
+                            진행중인 기부
+                            <ul>
+                                <li class="li1"><span>&#x1F48C;<br>기부 접수</span></li>
+                                <li class="li2"><span>&#x2705;<br>입금 확인</span></li>
+                                <li class="li3"><span>&#x1F680; <br>배송 시작</span></li>
+                                <li class="li4"><span>&#x1F496; <br>배송 완료</span></li>
+                            </ul>
+                        </div>
+                        {% endif %}
+                        <div class="section1">
+                            <a href="{% url 'accountapp:mypost' pk=user.pk %}">
+                                내가 쓴 글
+                            </a>
+                        </div>
+                        <br>
+                        <div class="section2">
+                            <a href="{% url 'accountapp:mycampaign' pk=user.pk %}">
+                                내가 참여한 캠페인
+                            </a>
+                        </div>
 
-{% block content %}
-<div id="wrap">
-    <div id="content">
-        <h1 id="top_logo">
-            <img src="../../../static/img/donut.png" alt="">
-            <a href="../../../introapp/templates/introapp/home.html">Donut</a>
-        </h1>
+                    </div>
+                    <div class="inner2">
+                        {% if target_user == user %}
+                        <div class="section3">
+                            <input id="set" type="checkbox">
+                            <label for="set"><img src="../../../static/img/setting.png" alt=""></label>
+                            <ul class="set_sub">
+                                <li>
+                                    <br>
+                                    <br>
+                                    {% if target_user.profile %}
+                                    <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                                        프로필 변경
+                                    </a>
+                                    {% endif %}
+                                    <br>
+                                    <a href="{% url 'accountapp:update' pk=user.pk %}">
+                                        <p>
+                                            계정 정보 변경
+                                        </p>
+                                    </a>
+                                    <a href="{% url 'accountapp:delete' pk=user.pk %}">
+                                        <p>
+                                            계정 탈퇴
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        {% endif %}
+                        <div class="section4">
+                            {% if target_user.profile %}
+                            <div id="profile_img">
+                                <img src="{{ target_user.profile.image.url }}" alt=""
+                                     style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem;">
+                            </div>
+                            <br>
+                            <div id="name">
+                                닉네임: {{ target_user.profile.nickname }}
+                            </div>
+                            <br>
+                            <div id="introduce">
+                                <h6 style="margin-bottom: 3rem;">
+                                    {{ target_user.profile.message }}
+                                </h6>
+                            </div>
+                            {% else %}
+                            <br>
+                            <a href="{% url 'profileapp:create' %}">
+                                <h4>
+                                    프로필 만들기
+                                </h4>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div id="footer">
+                        <address>
+                            <em><a href="../../../introapp/templates/introapp/home.html" class="logo"><span
+                                    class="blind"></span></a></em>
+                            <em class="copy">고려대학교 세종캠퍼스</em>
+                            <em class="u_cri">©</em>
+                            <a href="#" class="u_cra">Donut</a>
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-    <div style="text-align: center; max-width: 500px; margin: 4rem auto">
-        <p>
-            접속시간 : {{ target_user.date_joined }}
-        </p>
-
-                    <a href="{% url 'accountapp:mypost' pk=user.pk %}">
-                    내가 쓴 글
-                    </a>
-                    </br>
-                    <a href="{% url 'accountapp:mycampaign' pk=user.pk %}">
-                    내가 참여한 캠페인
-                    </a>
-
-
-
-
-        {% if target_user.profile %}
-        <img src="{{ target_user.profile.image.url }}" alt=""
-             style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem;">
-
-        <h2>
-            닉네임 : {{ target_user.profile.nickname }}
-            {% if target_user == user %}
-            <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-                닉네임 수정
-            </a>
-
-
-            {% endif %}
-        </h2>
-        <h5 style="margin-bottom: 3rem;">
-            {{ target_user.profile.message }}
-        </h5>
-        {% else %}
-            {% if target_user == user %}
-            <a href="{% url 'profileapp:create' %}">
-                <h2>
-                프로필 만들기
-                </h2>
-            </a>
-
-            {% else %}
-            <h2>
-                닉네임 미설정
-            </h2>
-            {% endif %}
-        {% endif %}
-
-
-
-        {% if target_user == user %}
-        <a href="{% url 'accountapp:update' pk=user.pk %}">
-            <p>
-                계정 정보 변경
-            </p>
-        </a>
-        <a href="{% url 'accountapp:delete' pk=user.pk %}">
-            <p>
-                계정 탈퇴
-            </p>
-        </a>
-        {% endif %}
-
-   </div>
 </div>
+</body>
+</html>
 
-{% endblock %}
