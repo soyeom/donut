@@ -23,6 +23,7 @@
                 <div id="row">
                     <div class="title">
                         새로운 글쓰기
+                        <div class="line pink"></div>
                         <div class="sub_title">
                             시작하려는 캠페인을 소개해주세요 !
                         </div>
@@ -30,20 +31,20 @@
                     <form action="{% url 'articleapp:create' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {% bootstrap_form form %}
-
-                        <main>
-                            <div class="button">
-                            <div class="text">Submit</div>
-                            </div>
-                            <div class="progress-bar"></div>
-                            <svg x="0px" y="0px" viewBox="0 0 25 30" style="enable-background:new 0 0 25 30">
-                                <path class="check" class="st0" d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2"></path>
-                            </svg>
-                        </main>
+                        <div id="btn">
+                            <button class="custom btn-1">제출하기</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
+    </div>
+    <div id="footer">
+        <address>
+            <em class="copy">고려대학교 세종캠퍼스 </em>
+            <em class="u_cri">©</em>
+            <a href="{% url 'introapp:home' %}" class="u_cra">Donut</a>
+        </address>
     </div>
 </div>
 </body>
