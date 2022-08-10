@@ -116,6 +116,12 @@ class ArticleListView(ListView):
 
         return context
 
+class PriceDetailView(DetailView, FormMixin):
+    model = Article
+    form_class = CommentCreationForm
+    context_object_name = 'target_article'
+    template_name = 'articleapp/detail.html'
+
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')

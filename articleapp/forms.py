@@ -7,3 +7,8 @@ class ArticleCreationForm(ModelForm):
     class Meta:
         model = Article
         fields = ['title', 'price', 'image', 'content']
+
+class PriceCreationForm(ModelForm):
+    class Meta:
+        model = Price
+        fields = ['title', 'price', 'image', 'content']
