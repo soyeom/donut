@@ -16,9 +16,6 @@
 
         {% if user.is_authenticated %}
             {% if A %}
-                {% if d %}
-                회원님이 참여하신 기부가 종료되었습니다.
-                {% else %}
                 {% for each in A %}
                     <form action="{% url 'articleapp:deletecamp' %}" method="post">
                         {% csrf_token %}
@@ -28,7 +25,6 @@
                         <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">참여취소</button>
                     </form>
                 {% endfor %}
-                {% endif %}
             {% else %}
                 {% if abc %}
 
