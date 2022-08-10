@@ -11,10 +11,9 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     state = models.CharField(max_length=1, default='a')
 
-
 class Campaign(models.Model):
     Participants = models.CharField(max_length=30, default='')
-    Participants_id = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='campaign', null=True)
+    Participants_id = models.OneToOneField(User, on_delete=models.SET_NULL, related_name='campaign', null=True)
     title = models.CharField(max_length=200,  default='')
     title_id = models.ForeignKey(Article, on_delete=models.SET_NULL, related_name='campaign', null=True)
     amount = models.IntegerField(default=0, null=False)
