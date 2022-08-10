@@ -2,63 +2,274 @@
 
 {% block content %}
 <div id="wrap">
-    <div id="content">
-        <h1 id="top_logo">
-            <img src="../../../static/img/donut.png" alt="">
-            <a href="../../../introapp/templates/introapp/home.html">Donut</a>
-        </h1>
+
+    <style>
+    div {
+    display: block;
+    }
+
+    #wrapper > .box1 form > #container > #content {
+      background: #f5f6f7;
+      z-index: 1;
+      width: 70%;
+      height: 600px;
+      margin-top: 60px;
+      margin-left: 250px;
+      border-radius: 20px;
+      box-shadow: 0 2px 20px rgba(51, 51, 51, 0.5);
+    }
+
+    ul, li {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    #content > .inner1 {
+      float: right;
+    }
+
+    #content > .inner2 {
+      float: left;
+      margin-left: 30px;
+      text-align: center;
+      height: 600px;
+    }
+
+    #profile_img img {
+      width: 20%;
+      height: 20%;
+    }
+
+    #progress > ul > li {
+      float: left;
+    }
+
+    #progress > ul {
+      width: 450px;
+      height: 60px;
+      padding: 0;
+      border-style: inset;
+    }
+
+    #progress > ul > li {
+      line-height: 30px;
+      text-align: center;
+      width: 25%;
+      height: 61px;
+    }
+
+    #progress .li3 {
+      background: #00aaff;
+      border-style: outset;
+      width: 23.5%;
+      height: 55.5px;
+    }
+
+    #progress .li1, .li2 {
+      background: #00aaff;
+      opacity: 0.5;
+    }
+
+    #progress .li4 {
+      background: #ffffff;
+    }
+
+    .inner1 {
+      margin-top: 150px;
+      width: 500px;
+    }
+
+    #wrote {
+      margin-top: 100px;
+      display: none;
+    }
+
+    #wrote:checked ~ .sub {
+      display: block;
+    }
+
+    .section1 {
+      margin-top: 30px;
+    }
+
+    .section1 > label > img {
+      width: 2%;
+      height: 2%;
+    }
+
+    .section2 > label > img {
+      width: 2%;
+      height: 2%;
+    }
+
+    .sub {
+      display: none;
+    }
+
+    #donation {
+      margin-top: 120px;
+      display: none;
+    }
+
+    #donation:checked ~ .sub2 {
+      display: block;
+    }
+
+    .sub2 {
+      display: none;
+    }
+
+    #set {
+      display: none;
+    }
+
+    #set:checked ~ .set_sub {
+      display: block;
+      position: absolute;
+      margin-left: 150px;
+    }
+
+    .set_sub {
+      display: none;
+    }
+
+    .set_sub > li > a {
+      text-decoration: none;
+      color: #333333;
+      line-height: 30px;
+    }
+
+    .set_sub > li {
+      border: 1px solid #333333;
+      width: 100px;
+      height: 110px;
+      margin-top: -60px;
+    }
+
+    .section3 > label > img {
+      width: 4%;
+      height: 4%;
+      margin-left: -30px;
+      margin-bottom: 0;
+    }
+
+    #content > .inner2 > .section3 {
+      margin-top: 50px;
+      margin-left: -200px;
+    }
+
+    .section4 {
+      height: 100px;
+      margin-top: 150px;
+      position: relative;
+    }
+    </style>
+
+
+    <div id="wrapper">
+        <div class="box1">
+            <form id="my_page" method="post">
+                <div id="container">
+                    <div id="content">
+                        <div class="inner1">
+                            {% if target_user.profile %}
+                            <div id="progress">
+                                진행중인 기부
+                                <ul>
+                                    <li class="li1"><span>&#x1F48C;<br>기부 접수</span></li>
+                                    <li class="li2"><span>&#x2705;<br>입금 확인</span></li>
+                                    <li class="li3"><span>&#x1F680; <br>배송 시작</span></li>
+                                    <li class="li4"><span>&#x1F496; <br>배송 완료</span></li>
+                                </ul>
+                            </div>
+                            <br>
+                            {% else %}
+                            <br><br>
+                            <a href="{% url 'profileapp:create' %}">
+                                <h4>
+                                    프로필 만들기
+                                </h4>
+                            </a>
+                            {% endif %}
+                            <br>
+                            <div class="section1">
+                                <a href="{% url 'accountapp:mypost' pk=user.pk %}">
+                                    내가 쓴 글
+                                </a>
+                            </div>
+                            <br>
+                            <div class="section2">
+                                <a href="{% url 'accountapp:mycampaign' pk=user.pk %}">
+                                    내가 참여한 캠페인
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="inner2">
+                            <div class="section3">
+                                <input id="set" type="checkbox">
+                                <label for="set"><img src="../../../static/img/setting.png" alt=""></label>
+                                <ul class="set_sub">
+                                    <li>
+                                        <br>
+                                        <br>
+                                        {% if target_user.profile %}
+                                        {% if target_user == user %}
+                                        <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                                            프로필 변경
+                                        </a>
+                                        {% endif %}
+                                        {% endif %}
+                                        <br>
+                                        <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">로그아웃</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="section4">
+                                <div id="profile_img">
+                                    {% if target_user.profile %}
+                                    <img src="{{ target_user.profile.image.url }}" alt=""
+                                         style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem;">
+                                    <div/>
+                                    {% else %}
+                                    <div>
+                                        <img src="../../../static/img/profile.png" alt="">
+                                    </div>
+                                    {% endif %}
+
+                                    <div id="name">
+                                        {% if target_user.profile %}
+                                        닉네임: {{ target_user.profile.nickname }}
+                                        <br>
+                                        {% else %}
+                                        닉네임 미설정
+                                        {% endif %}
+                                    </div>
+                                    <br>
+                                    <div id="introduce">
+                                        {% if target_user.profile %}
+                                        <h6 style="margin-bottom: 3rem;">
+                                            {{ target_user.profile.message }}
+                                        </h6>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+
     <div style="text-align: center; max-width: 500px; margin: 4rem auto">
         <p>
             접속시간 : {{ target_user.date_joined }}
         </p>
 
-                    <a href="{% url 'accountapp:mypost' pk=user.pk %}">
-                    내가 쓴 글
-                    </a>
-                    </br>
-                    <a href="{% url 'accountapp:mycampaign' pk=user.pk %}">
-                    내가 참여한 캠페인
-                    </a>
-
-
-
-
-        {% if target_user.profile %}
-        <img src="{{ target_user.profile.image.url }}" alt=""
-             style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem;">
-
-        <h2>
-            닉네임 : {{ target_user.profile.nickname }}
-            {% if target_user == user %}
-            <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-                닉네임 수정
-            </a>
-
-
-            {% endif %}
-        </h2>
-        <h5 style="margin-bottom: 3rem;">
-            {{ target_user.profile.message }}
-        </h5>
-        {% else %}
-            {% if target_user == user %}
-            <a href="{% url 'profileapp:create' %}">
-                <h2>
-                프로필 만들기
-                </h2>
-            </a>
-
-            {% else %}
-            <h2>
-                닉네임 미설정
-            </h2>
-            {% endif %}
-        {% endif %}
-
-
-
-        {% if target_user == user %}
         <a href="{% url 'accountapp:update' pk=user.pk %}">
             <p>
                 계정 정보 변경
@@ -69,9 +280,7 @@
                 계정 탈퇴
             </p>
         </a>
-        {% endif %}
-
-   </div>
+    </div>
 </div>
 
 {% endblock %}
