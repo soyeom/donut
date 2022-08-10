@@ -305,7 +305,7 @@ a {
   font-size: 14px;
   opacity: 0.8;
 }
-
+/*
 #wrap> #contents > .inner_cont > .section > .inner > .content > ul >li > .text button {
   background-color: #f8bbd0;
   border: none;
@@ -323,6 +323,51 @@ a {
 #wrap> #contents > .inner_cont > .section > .inner > .content > ul > li > .text button a {
   color: #ffffff;
   font-weight: bold;
+}
+*/
+
+#btn {
+  border: none;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+  background-color: #222;
+  padding: 5px 30px;
+  margin: 0 auto;
+  margin-top: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+}
+
+#btn a {
+  position: relative;
+  z-index: 1;
+  color: #ffffff;
+}
+
+#btn:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 450%;
+  width: 140%;
+  background: #78c7d2;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+#btn:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
 }
 
 #wrap>#contents>.inner_cont>.section>.inner>.content {
@@ -385,4 +430,78 @@ a {
 
 .content {
   margin-top: 55px;
+}
+
+#page_nav {
+  margin-left: 47%;
+  line-height: 50px;
+  font-size: 15px;
+}
+
+#page_nav > ul >li {
+  list-style: none;
+}
+
+.page-item {
+  margin-left: 20px;
+}
+
+#footer {
+  max-width: 768px;
+  margin: 0 auto;
+  min-width: 460px;
+}
+
+#footer {
+  clear: both;
+  margin: 0 auto;
+  padding: 30px 0 15px 0;
+  text-align: center;
+}
+
+#footer * {
+  font-size: 12px;
+  font-style: normal;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  color: #333333;
+}
+
+#footer address {
+  font: 9px/14px Verdana;
+}
+
+#footer address em {
+  font: 9px Verdana;
+  padding-left: 4px;
+}
+
+:root #footer address .logo {
+  top: 2px;
+  margin-left: 1px;
+}
+
+#footer address .logo {
+  position: relative;
+  width: 63px;
+  height: 12px;
+}
+
+#footer address span {
+  font: 9px/14px Verdana;
+  padding-left: 2px;
+}
+
+#footer address .u_cri {
+  margin: 0;
+  padding-left: 1px;
+}
+
+#footer address a {
+  font: bold 9px Verdana;
+}
+
+#footer a {
+  text-decoration: none;
 }
