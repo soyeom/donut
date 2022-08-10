@@ -67,6 +67,8 @@ class ArticleDetailView(DetailView, FormMixin):
         return context
 
 
+
+
 class ArticleListView(ListView):
     model = Article
     template_name = 'articleapp/list.html'
