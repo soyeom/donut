@@ -1,20 +1,49 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../static/css/article_update.css">
+</head>
+<body>
 {% load bootstrap4 %}
 {% load static %}
-
-{% block content %}
-
-<link rel="stylesheet" href="../../../static/css/button.css">
-
-  <div  class="update">
-    <div class="mb-4">
-      <h4>Article Update</h4>
+<div id="wrapper">
+    <div id="header">
+        <h1 id="top_logo">
+            <img src="../../../static/img/donut.png" alt="">
+            <a href="../../../introapp/templates/introapp/home.html">Donut</a>
+        </h1>
     </div>
-    <form action="{% url 'articleapp:update' pk=object.pk %}" method="post">
-      {% csrf_token %}
-      {% bootstrap_form form %}
-        <input type="submit" class="button">
-    </form>
-  </div>
 
-{% endblock %}
+    <div id="container">
+        <div id="content">
+            <div id="create_content">
+                <div id="row">
+                    <div  class="update">
+                        <div class="mb-4 title">
+                            <h4>게시글 수정</h4>
+                            <div class="line pink"></div>
+                        </div>
+                        <form action="{% url 'articleapp:update' pk=object.pk %}" method="post">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            <div id="btn">
+                                <button class="custom btn-1">수정하기</button>
+                            </div>
+                        </form>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+      <address>
+        <em class="copy">고려대학교 세종캠퍼스 </em>
+        <em class="u_cri">©</em>
+        <a href="{% url 'introapp:home' %}" class="u_cra">Donut</a>
+      </address>
+    </div>
+</div>
+</body>
+</html>
