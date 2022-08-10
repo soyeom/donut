@@ -32,23 +32,27 @@ class ArticleCreateView(CreateView):
 
 
 def Camp(request):
-    if request.method == 'POST':
-        post = Campaign()
-        post.Participants = request.user.username
-        post.title_id_id = request.POST['text']
-        post.amount = request.POST['amount']
-        post.state = request.POST['state']
-        post.price = request.POST['price']
-        post.title = request.POST['title']
-        post.Participants_id_id = request.user.id
-        post.save()
+    sum = int(request.POST['sum']) + int(request.POST['amount'])
 
-        board = Article.objects.filter(id__exact=request.POST['text'])
-        sum = int(request.POST['sum']) + int(request.POST['amount'])
-        board.update(amount=sum)
-        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
-    else:
-        return render(request, '/')
+    if (int(request.POST['amount']) <= int(request.POST['price'])) and (sum <= int(request.POST['price'])):
+        if request.method == 'POST':
+            post = Campaign()
+            post.Participants = request.user.username
+            post.title_id_id = request.POST['text']
+            post.amount = request.POST['amount']
+            post.state = request.POST['state']
+            post.price = request.POST['price']
+            post.title = request.POST['title']
+            post.Participants_id_id = request.user.id
+            post.save()
+
+            board = Article.objects.filter(id__exact=request.POST['text'])
+            board.update(amount=sum)
+
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
+        else:
+            return render(request, '/')
+    return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
 
 
 def deleteCamp(request):
@@ -58,18 +62,13 @@ def deleteCamp(request):
         board1.delete()
 
         board2 = Article.objects.filter(id__exact=request.POST['text'])
+
         sum = int(request.POST['sum']) - int(request.POST['amount'])
         board2.update(amount=sum)
 
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
     else:
         return render(request, '/')
-
-
-def campPrograss(request):
-    if request.method == 'GET':
-        board = Campaign.objects.filter(Participants_exact=request.user.id,
-                                        state_exact=request.GET[''])
 
 
 class ArticleDetailView(DetailView, FormMixin):

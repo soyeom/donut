@@ -87,6 +87,10 @@ a {
   height: 20%;
 }
 
+#progress {
+  margin-top: 50px;
+}
+
 #progress > ul > li {
   float: left;
 }
@@ -105,19 +109,19 @@ a {
   height: 61px;
 }
 
-#progress .li3 {
+#progress .prog2 {
   background: #00aaff;
   border-style: outset;
   width: 23.5%;
   height: 55.5px;
 }
 
-#progress .li1, .li2 {
+#progress .prog1 {
   background: #00aaff;
   opacity: 0.5;
 }
 
-#progress .li4 {
+#progress .prog3 {
   background: #ffffff;
 }
 
@@ -126,17 +130,8 @@ a {
   width: 500px;
 }
 
-#wrote {
-  margin-top: 100px;
-  display: none;
-}
-
-#wrote:checked ~ .sub {
-  display: block;
-}
-
 .section1 {
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
 .section1 > label > img {
@@ -158,14 +153,6 @@ a {
   display: none;
 }
 
-#donation:checked ~ .sub2 {
-  display: block;
-}
-
-.sub2 {
-  display: none;
-}
-
 #set {
   display: none;
 }
@@ -183,20 +170,20 @@ a {
 .set_sub > li > a {
   text-decoration: none;
   color: #333333;
-  line-height: 30px;
+  line-height: 20px;
+  font-size: 15px;
 }
 
 .set_sub > li {
-  border: 1px solid #333333;
-  width: 100px;
-  height: 110px;
-  margin-top: -60px;
+  width: 110px;
+  height: 300px;
+  margin-top: -20px;
 }
 
 .section3 > label > img {
   width: 4%;
   height: 4%;
-  margin-left: -230px;
+  margin-left: -50px;
   margin-bottom: 0;
 }
 
@@ -271,4 +258,34 @@ a {
   text-decoration: none;
 }
 
-/*# sourceMappingURL=making.css.map */
+#make_profile {
+  width: 12rem;
+  height: 12rem;
+  border: 1px solid #333333;
+  border-radius: 100px;
+  margin-left: 150px;
+  margin-top: -70px;
+}
+
+#make_profile > img {
+  width: 40%;
+  height: 40%;
+  display: inline-block;
+  margin-top: 60px;
+}
+
+a {
+  text-decoration: none;
+  color: #333333;
+}
+
+h4 {
+  text-decoration: none;
+  color: #333333;
+  margin-left: 150px;
+}
+
+#introduce {
+  margin-bottom: 200px;
+  font-size: 22px;
+}

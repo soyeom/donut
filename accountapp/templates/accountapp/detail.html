@@ -21,23 +21,49 @@
                         {% if target_user == user %}
                         <div id="progress">
                             진행중인 기부
+                            {% if a %}
                             <ul>
-                                <li class="li1"><span>&#x1F48C;<br>기부 접수</span></li>
-                                <li class="li2"><span>&#x2705;<br>입금 확인</span></li>
-                                <li class="li3"><span>&#x1F680; <br>배송 시작</span></li>
-                                <li class="li4"><span>&#x1F496; <br>배송 완료</span></li>
+                                <li class="prog2"><span>&#x1F48C;<br>기부 접수</span></li>
+                                <li class="prog3"><span>&#x2705;<br>입금 확인</span></li>
+                                <li class="prog3"><span>&#x1F680; <br>배송 시작</span></li>
+                                <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
                             </ul>
+                            {% endif %}
+                            {% if b %}
+                            <ul>
+                                <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
+                                <li class="prog2"><span>&#x2705;<br>입금 확인</span></li>
+                                <li class="prog3"><span>&#x1F680; <br>배송 시작</span></li>
+                                <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
+                            </ul>
+                            {% endif %}
+                            {% if c %}
+                            <ul>
+                                <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
+                                <li class="prog1"><span>&#x2705;<br>입금 확인</span></li>
+                                <li class="prog2"><span>&#x1F680; <br>배송 시작</span></li>
+                                <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
+                            </ul>
+                            {% endif %}
+                            {% if d %}
+                            <ul>
+                                <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
+                                <li class="prog1"><span>&#x2705;<br>입금 확인</span></li>
+                                <li class="prog1"><span>&#x1F680; <br>배송 시작</span></li>
+                                <li class="prog2"><span>&#x1F496; <br>배송 완료</span></li>
+                            </ul>
+                            {% endif %}
                         </div>
                         {% endif %}
                         <div class="section1">
                             <a href="{% url 'accountapp:mypost' pk=user.pk %}">
-                                내가 쓴 글
+                                내가 쓴 글 &nbsp;↗
                             </a>
                         </div>
                         <br>
                         <div class="section2">
                             <a href="{% url 'accountapp:mycampaign' pk=user.pk %}">
-                                내가 참여한 캠페인
+                                내가 참여한 캠페인 ↗
                             </a>
                         </div>
 
@@ -49,14 +75,13 @@
                             <label for="set"><img src="../../../static/img/setting.png" alt=""></label>
                             <ul class="set_sub">
                                 <li>
-                                    <br>
-                                    <br>
                                     {% if target_user.profile %}
                                     <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-                                        프로필 변경
+                                        <p>
+                                            프로필 변경
+                                        </p>
                                     </a>
                                     {% endif %}
-                                    <br>
                                     <a href="{% url 'accountapp:update' pk=user.pk %}">
                                         <p>
                                             계정 정보 변경
@@ -75,20 +100,23 @@
                             {% if target_user.profile %}
                             <div id="profile_img">
                                 <img src="{{ target_user.profile.image.url }}" alt=""
-                                     style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem;">
+                                     style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem; margin-left: 150px; margin-top: -70px;">
                             </div>
                             <br>
-                            <div id="name">
+                            <div id="name" style="margin-left: 150px; margin-top: -1rem;">
                                 닉네임: {{ target_user.profile.nickname }}
                             </div>
                             <br>
                             <div id="introduce">
-                                <h6 style="margin-bottom: 3rem;">
+                                <h6 style="margin-left: 150px; margin-top: -1rem;">
                                     {{ target_user.profile.message }}
                                 </h6>
                             </div>
                             {% else %}
                             <br>
+                            <div id="make_profile">
+                                <img src="../../../static/img/profile.png">
+                            </div>
                             <a href="{% url 'profileapp:create' %}">
                                 <h4>
                                     프로필 만들기
