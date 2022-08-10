@@ -7,12 +7,15 @@ class Article(models.Model):
     image = models.ImageField(upload_to='article/', null=True, blank=True)
     content = models.TextField(null=True)
     price = models.IntegerField(default=0, null=False)
+    amount = models.IntegerField(default=0, null=False)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
 
 class Campaign(models.Model):
-    Participants = models.IntegerField()
-    title_id = models.IntegerField()
+    Participants = models.CharField(max_length=30, default='')
+    Participants_id = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='campaign', null=True)
+    title = models.CharField(max_length=200,  default='')
+    title_id = models.ForeignKey(Article, on_delete=models.SET_NULL, related_name='campaign', null=True)
     amount = models.IntegerField(default=0, null=False)
     price = models.IntegerField(default=0, null=False)
     state = models.CharField(max_length=1, default='a')
