@@ -57,7 +57,7 @@ def Camp(request):
 
 def deleteCamp(request):
     if request.method == 'POST':
-        campaign = Campaign.objects.filter(Participants_id_id__exact=request.user.id,
+        campaign = Campaign.objects.filter(user__exact=request.user.id,
                                          title_id_id__exact=request.POST['text'])
         campaign.delete()
 
@@ -79,9 +79,9 @@ class ArticleDetailView(DetailView, FormMixin):
 
     def get_context_data(self, **kwargs):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
-        context['A'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
+        context['A'] = articleapp.models.Campaign.objects.filter(user__exact=self.request.user.id,
                                                                  title_id_id=self.object.id)
-        context['abc'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
+        context['abc'] = articleapp.models.Campaign.objects.filter(user__exact=self.request.user.id,
                                                                  state__in='abc')
         context['d']='d'
 

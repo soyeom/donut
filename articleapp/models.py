@@ -13,7 +13,7 @@ class Article(models.Model):
 
 class Campaign(models.Model):
     Participants = models.CharField(max_length=30, default='')
-    Participants_id = models.OneToOneField(User, on_delete=models.SET_NULL, related_name='campaign', null=True)
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, related_name='campaign', null=True)
     title = models.CharField(max_length=200,  default='')
     title_id = models.ForeignKey(Article, on_delete=models.SET_NULL, related_name='campaign', null=True)
     amount = models.IntegerField(default=0, null=False)

@@ -37,15 +37,14 @@ class AccountDetailView(DetailView):
         context = super(AccountDetailView, self).get_context_data(**kwargs)
         context['A'] = articleapp.models.Article.objects.filter(writer__exact=self.request.user.id)
 
-        context['a'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
+        context['a'] = articleapp.models.Campaign.objects.filter(user__exact=self.request.user.id,
                                                                  state__exact='a')
-        context['b'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
+        context['b'] = articleapp.models.Campaign.objects.filter(user__exact=self.request.user.id,
                                                                  state__exact='b')
-        context['c'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
+        context['c'] = articleapp.models.Campaign.objects.filter(user__exact=self.request.user.id,
                                                                  state__exact='c')
-        context['d'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
+        context['d'] = articleapp.models.Campaign.objects.filter(user__exact=self.request.user.id,
                                                                  state__exact='d')
-
         return context
 
 
