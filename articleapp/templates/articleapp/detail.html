@@ -30,9 +30,10 @@
                 {% endfor %}
             {% else %}
                 {% if abc %}
-
+                {% if object.writer == user %}
+                {% else %}
                 <p>회원님은 다른 기부에 참여중입니다.</p>
-
+                {% endif %}
                 {% else %}
                     <form action="{% url 'articleapp:campaign' %}" method="post">
                         {% csrf_token %}
@@ -69,11 +70,36 @@
             <a href="{% url 'articleapp:delete' pk=object.pk %}" class="button">
                 삭제
             </a>
-            {% endif %}
 
+            {% endif %}
+         {% if all_C %}
+        배송중입니다.
+        </br>
+        </br>
+        {% endif %}
         <a href="{% url 'articleapp:list' %}" class="button">
             목록
         </a>
+
+
+                    {% if object.writer == user %}
+                    {% if object.amount == object.price %}
+                        {% if all %}
+                            {% if all_A %}
+
+                            {% else %}
+                                {% if all_C %}
+                                {% else %}
+                                    <form action="{% url 'articleapp:deliverystart' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="text" value={{object.pk}} >
+                                        <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">배송시작</button>
+                                    </form>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                    {% endif %}
 
 
         {% include 'commentapp/create.html' with article=target_article %}

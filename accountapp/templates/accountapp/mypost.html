@@ -5,18 +5,38 @@
                     <a href="{% url 'accountapp:detail' pk=user.pk %}">
                     마이페이지
                     </a>
-                    제목
                     {% if A %}
-                    <div class="content">
-                        {% for each in A %}
 
-                                <li>
-                                        <div class="text">
-                                            <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
-                                        </div>
-                                </li>
 
-                        {% endfor %}
+{% for each in A %}
+    {% if each.state == 'a' %}
+    <div>
+        시작
+        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
+    </div>
+    {% elif each.state == 'b' %}
+    <div>
+        진행중
+        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
+    </div>
+    {% elif each.state == 'c' %}
+    <div>
+        진행중
+        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
+    </div>
+    {% else %}
+    <div>
+        지난캠페인
+        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
+    </div>
+    {% endif %}
+{% endfor %}
+
+
+
+
+
+
 
 
 

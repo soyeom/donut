@@ -1,6 +1,6 @@
 from django.urls import path
 from articleapp.views import ArticleCreateView, ArticleDetailView, ArticleListView, ArticleUpdateView, \
-    ArticleDeleteView, Camp, deleteCamp
+    ArticleDeleteView, Camp, deleteCamp, deliverystart
 
 app_name = "articleapp"
 
@@ -12,4 +12,5 @@ urlpatterns = [
     path('delete/<int:pk>', ArticleDeleteView.as_view(), name='delete'),
     path('campaign/', Camp, name='campaign'),
     path('deletecamp/', deleteCamp, name='deletecamp'),
+    path('deliverystart/', deliverystart, name='deliverystart'),
 ]
