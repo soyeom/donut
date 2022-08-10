@@ -1,12 +1,114 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../static/css/article_detail.css">
+</head>
+<body>
 {% load static %}
+<div id="wrap">
+    <div id="header">
+        <h1 id="top_logo">
+            <img src="../../../static/img/donut.png" alt="">
+            <a href="{% url 'introapp:home' %}">Donut</a>
+        </h1>
+    </div>
+    <div id="container">
+        <div id="content">
+            <div class="detail">
+                <h1>{{ object.title }}</h1>
+                <h5>희망 모금액: {{ object.price }}원</h5>
+                <h6>작성자: {{ object.writer }}</h6>
+                <h6>누적액: {{ object.amount }}원</h6>
 
-{% block content %}
+                {% if user.is_authenticated %}
+                    {% if A %}
+                        {% if d %}
+                        회원님이 참여하신 기부가 종료되었습니다.
+                        {% else %}
+                        {% for each in A %}
+                            <form action="{% url 'articleapp:deletecamp' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="text" value={{object.pk}} >
+                                <input type="hidden" name="sum" value={{object.amount}} >
+                                <input type="hidden" name="amount" value={{each.amount}} >
+                                <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">참여취소</button>
+                            </form>
+                        {% endfor %}
+                        {% endif %}
+                    {% else %}
+                        {% if abc %}
 
-<link rel="stylesheet" href="../../../static/css/button.css">
-<link rel="stylesheet" href="../../../static/css/board.css">
-<link rel="stylesheet" href="../../../static/css/detail.css">
+                        <p>회원님은 다른 기부에 참여중입니다.</p>
 
+<<<<<<< HEAD
+                        {% else %}
+                            <form id="form2" action="{% url 'articleapp:campaign' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="text" value={{object.pk}} >
+                                <input type="hidden" name="price" value={{object.price}} >
+                                <input type="hidden" name="sum" value={{object.amount}} >
+                                <input type="hidden" name="title" value={{object.title}} >
+                                <input type="hidden" name="username" value={{user.username}} >
+                                <input type="hidden" name="state" value="a" >
+                                금액 : <input type="number" name="amount" min="1">
+                                <button id="btn1">
+                                    <span class="wave"></span>
+                                    참여하기
+                                </button>
+                            </form>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+
+                <hr>
+
+                {% if object.image %}
+                    <img src="{{ object.image.url }}" alt="">
+                    <p> {{ object.content }} </p>
+                {% else %}
+                <p>
+                    {{ object.content }}
+                </p>
+                {% endif %}
+
+                <hr>
+
+                {% if user.is_authenticated %}
+                    {% if object.writer == user %}
+
+                    <a class="a_tag" href="{% url 'articleapp:delete' pk=object.pk %}" class="button">
+                        삭제
+                    </a>
+
+                    <a class="a_tag" href="{% url 'articleapp:update' pk=object.pk %}" class="button">
+                        수정
+                    </a>
+                    {% endif %}
+
+                <a class="a_tag" href="{% url 'articleapp:list' %}" class="button">
+                    목록
+                </a>
+
+                {% include 'commentapp/create.html' with article=target_article %}
+                {% for comment in target_article.comment.all %}
+                    {% include 'commentapp/detail.html' with comment=comment%}
+                {% endfor %}
+
+                {% endif %}
+            </div>
+            <div id="footer">
+                <address>
+                    <em><a href="../../../introapp/templates/introapp/home.html" class="logo"><span
+                            class="blind"></span></a></em>
+                    <em class="copy">고려대학교 세종캠퍼스</em>
+                    <em class="u_cri">©</em>
+                    <a href="#" class="u_cra">Donut</a>
+                </address>
+            </div>
+        </div>
+=======
 <div>
     <div class="detail">
         <h1>{{ object.title }}</h1>
@@ -83,7 +185,8 @@
 
         {% endif %}
 
+>>>>>>> efbfa8d8f7938ac2f33cb6585e5854d00917c7ad
     </div>
 </div>
-
-{% endblock %}
+</body>
+</html>
