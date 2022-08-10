@@ -14,14 +14,17 @@
         <h6>작성자: {{ object.writer }}</h6>
         <h6>누적액:{{ object.amount }}</h6>
 
+    {% if object.state == d %}
+        해당 기부는 종료되었습니다.
+    {% else %}
         {% if user.is_authenticated %}
             {% if A %}
                 {% for each in A %}
                     <form action="{% url 'articleapp:deletecamp' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="text" value={{object.pk}} >
-                        <input type="hidden" name="sum" value={{object.amount}} >
-                        <input type="hidden" name="amount" value={{each.amount}} >
+                        <input type="hidden" name="amount" value={{object.amount}} >
+                        <input type="hidden" name="each_amount" value={{each.amount}} >
                         <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">참여취소</button>
                     </form>
                 {% endfor %}
@@ -35,17 +38,17 @@
                         {% csrf_token %}
                         <input type="hidden" name="text" value={{object.pk}} >
                         <input type="hidden" name="price" value={{object.price}} >
-                        <input type="hidden" name="sum" value={{object.amount}} >
+                        <input type="hidden" name="amount" value={{object.amount}} >
                         <input type="hidden" name="title" value={{object.title}} >
                         <input type="hidden" name="username" value={{user.username}} >
                         <input type="hidden" name="state" value="a" >
-                        금액 : <input type="number" name="amount" min="1">
+                        금액 : <input type="number" name="each_amount" min="1">
                         <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">참여하기</button>
                     </form>
                 {% endif %}
             {% endif %}
         {% endif %}
-
+    {% endif %}
         <hr>
 
         {% if object.image %}
