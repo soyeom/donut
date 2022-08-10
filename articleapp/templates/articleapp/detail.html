@@ -9,10 +9,10 @@
 
 <div>
     <div class="detail">
-        <h1>{{ object.title }}</h1>
+        <h1>{{ Article.title }}</h1>
         <h5>희망 모금액: {{ object.price }}</h5>
-         <h5>누적액:</h5>
         <h6>작성자: {{ object.writer }}</h6>
+        <h6>누적액:</h6>
 
         {% if user.is_authenticated %}
             {% if A %}
@@ -43,21 +43,20 @@
             {{ object.content }}
         </p>
 
-        {% if object.writer == user %}
-        <a href="{% url 'articleapp:update' pk=object.pk %}" class="button">
-            수정
-        </a>
+            {% if object.writer == user %}
+            <a href="{% url 'articleapp:update' pk=object.pk %}" class="button">
+                수정
+            </a>
 
-        <a href="{% url 'articleapp:delete' pk=object.pk %}" class="button">
-            삭제
-        </a>
-        {% endif %}
+            <a href="{% url 'articleapp:delete' pk=object.pk %}" class="button">
+                삭제
+            </a>
+            {% endif %}
 
         {% endif %}
         <a href="{% url 'articleapp:list' %}" class="button">
             목록
         </a>
-
 
 
         {% include 'commentapp/create.html' with article=target_article %}
