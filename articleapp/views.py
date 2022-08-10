@@ -34,12 +34,18 @@ class ArticleCreateView(CreateView):
 def Camp(request):
     if request.method == 'POST':
         post = Campaign()
-        post.Participants = request.user.id
-        post.title_id = request.POST['text']
+        post.Participants = request.user.username
+        post.title_id_id = request.POST['text']
         post.amount = request.POST['amount']
         post.state = request.POST['state']
         post.price = request.POST['price']
+        post.title = request.POST['title']
+        post.Participants_id_id = request.user.id
         post.save()
+
+        board = Article.objects.filter(id__exact=request.POST['text'])
+        sum = int(request.POST['sum']) + int(request.POST['amount'])
+        board.update(amount=sum)
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
     else:
         return render(request, '/')
@@ -47,8 +53,14 @@ def Camp(request):
 
 def deleteCamp(request):
     if request.method == 'POST':
-        board = Campaign.objects.filter(Participants__exact=request.user.id, title_id__exact=request.POST['text'])
-        board.delete()
+        board1 = Campaign.objects.filter(Participants_id_id__exact=request.user.id,
+                                         title_id_id__exact=request.POST['text'])
+        board1.delete()
+
+        board2 = Article.objects.filter(id__exact=request.POST['text'])
+        sum = int(request.POST['sum']) - int(request.POST['amount'])
+        board2.update(amount=sum)
+
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
     else:
         return render(request, '/')
@@ -62,16 +74,14 @@ class ArticleDetailView(DetailView, FormMixin):
 
     def get_context_data(self, **kwargs):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
-        context['A'] = articleapp.models.Campaign.objects.filter(Participants__exact=self.request.user.id,
-                                                                 title_id=self.object.id)
-<<<<<<< HEAD
-        context['B'] = articleapp.models.Campaign.objects.filter(Participants__exact=self.request.user.id,
+        context['A'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
+                                                                 title_id_id=self.object.id)
+        context['abc'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
                                                                  state__in='abc')
-=======
->>>>>>> d110e2316d9272144626cc4730138c28fc122aa9
+        context['d'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
+                                                                 state='d')
+
         return context
-
-
 
 
 class ArticleListView(ListView):

@@ -72,7 +72,7 @@
         <div class="inner_cont customer_cont">
             <div class="section section-top">
                 <div class="inner">
-                    <h3>창여한 기부</h3>
+                    <h3>참여한 기부</h3>
                     <div class="line pink"></div>
                     <h4>기부 살펴보기</h4>
                     <div class="blank_line"></div>
@@ -102,13 +102,10 @@
             <tbody>
 
                         {% for each in camp_list %}
-                            {% for a in A %}
-                                {% if each.Participants == a.id %}
-                                    {% for b in B %}
-                                        {% if each.title_id == b.id %}
+
                                             <tr align="center" bgcolor="white">
-                                                        <td>{{a.username}}</td>
-                                                        <td>{{b.title}}</td>
+                                                        <td>{{each.Participants}}</td>
+                                                        <td>{{each.title}}</td>
                                                         <td>{{each.amount}}원</td>
                                                         <td>{{each.price}}원</td>
                                                         <form action="{% url 'adminapp:update'%}" method="post">
@@ -123,10 +120,7 @@
                                                                     </td>
                                                             </form>
                                             </tr>
-                                        {% endif %}
-                                    {% endfor %}
-                                {% endif %}
-                            {% endfor %}
+
                         {% endfor %}
 
 
