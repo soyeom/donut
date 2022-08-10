@@ -1,6 +1,6 @@
 from django.urls import path
 
-from adminapp.views import CampListView, Campupdate
+from adminapp.views import CampListView, Campupdate, CampListView2
 
 app_name = "adminapp"
 

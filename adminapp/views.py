@@ -24,6 +24,7 @@ class CampListView(ListView):
 
 
 
+
 def Campupdate(request):
     if request.method == 'POST':
         board = Campaign.objects.filter(id__exact=request.POST['id'])
