@@ -21,12 +21,38 @@
                         {% if target_user == user %}
                         <div id="progress">
                             진행중인 기부
+                            {% if a %}
                             <ul>
-                                <li class="li1"><span>&#x1F48C;<br>기부 접수</span></li>
-                                <li class="li2"><span>&#x2705;<br>입금 확인</span></li>
-                                <li class="li3"><span>&#x1F680; <br>배송 시작</span></li>
-                                <li class="li4"><span>&#x1F496; <br>배송 완료</span></li>
+                                <li class="prog2"><span>&#x1F48C;<br>기부 접수</span></li>
+                                <li class="prog3"><span>&#x2705;<br>입금 확인</span></li>
+                                <li class="prog3"><span>&#x1F680; <br>배송 시작</span></li>
+                                <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
                             </ul>
+                            {% endif %}
+                            {% if b %}
+                            <ul>
+                                <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
+                                <li class="prog2"><span>&#x2705;<br>입금 확인</span></li>
+                                <li class="prog3"><span>&#x1F680; <br>배송 시작</span></li>
+                                <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
+                            </ul>
+                            {% endif %}
+                            {% if c %}
+                            <ul>
+                                <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
+                                <li class="prog1"><span>&#x2705;<br>입금 확인</span></li>
+                                <li class="prog2"><span>&#x1F680; <br>배송 시작</span></li>
+                                <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
+                            </ul>
+                            {% endif %}
+                            {% if d %}
+                            <ul>
+                                <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
+                                <li class="prog1"><span>&#x2705;<br>입금 확인</span></li>
+                                <li class="prog1"><span>&#x1F680; <br>배송 시작</span></li>
+                                <li class="prog2"><span>&#x1F496; <br>배송 완료</span></li>
+                            </ul>
+                            {% endif %}
                         </div>
                         {% endif %}
                         <div class="section1">
@@ -37,7 +63,7 @@
                         <br>
                         <div class="section2">
                             <a href="{% url 'accountapp:mycampaign' pk=user.pk %}">
-                                내가 참여한 캠페인  ↗
+                                내가 참여한 캠페인 ↗
                             </a>
                         </div>
                     </div>

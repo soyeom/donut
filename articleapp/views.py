@@ -32,34 +32,39 @@ class ArticleCreateView(CreateView):
 
 
 def Camp(request):
-    if request.method == 'POST':
-        post = Campaign()
-        post.Participants = request.user.username
-        post.title_id_id = request.POST['text']
-        post.amount = request.POST['amount']
-        post.state = request.POST['state']
-        post.price = request.POST['price']
-        post.title = request.POST['title']
-        post.Participants_id_id = request.user.id
-        post.save()
+    sum = int(request.POST['amount']) + int(request.POST['each_amount'])
 
-        board = Article.objects.filter(id__exact=request.POST['text'])
-        sum = int(request.POST['sum']) + int(request.POST['amount'])
-        board.update(amount=sum)
-        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
-    else:
-        return render(request, '/')
+    if (int(request.POST['each_amount']) <= int(request.POST['price'])) and (sum <= int(request.POST['price'])):
+        if request.method == 'POST':
+            campaign = Campaign()
+            campaign.Participants = request.user.username
+            campaign.title_id_id = request.POST['text']
+            campaign.amount = request.POST['each_amount']
+            campaign.state = request.POST['state']
+            campaign.price = request.POST['price']
+            campaign.title = request.POST['title']
+            campaign.Participants_id_id = request.user.id
+            campaign.save()
+
+            article = Article.objects.filter(id__exact=request.POST['text'])
+            article.update(amount=sum)
+
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
+        else:
+            return render(request, '/')
+    return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
 
 
 def deleteCamp(request):
     if request.method == 'POST':
-        board1 = Campaign.objects.filter(Participants_id_id__exact=request.user.id,
+        campaign = Campaign.objects.filter(Participants_id_id__exact=request.user.id,
                                          title_id_id__exact=request.POST['text'])
-        board1.delete()
+        campaign.delete()
 
-        board2 = Article.objects.filter(id__exact=request.POST['text'])
-        sum = int(request.POST['sum']) - int(request.POST['amount'])
-        board2.update(amount=sum)
+        article = Article.objects.filter(id__exact=request.POST['text'])
+
+        sum = int(request.POST['amount']) - int(request.POST['each_amount'])
+        article.update(amount=sum)
 
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
     else:
@@ -78,8 +83,7 @@ class ArticleDetailView(DetailView, FormMixin):
                                                                  title_id_id=self.object.id)
         context['abc'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
                                                                  state__in='abc')
-        context['d'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
-                                                                 state='d')
+        context['d']='d'
 
         return context
 
