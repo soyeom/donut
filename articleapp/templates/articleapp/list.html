@@ -111,9 +111,12 @@
                                 <div class="text">
                                     <h2>{{each.title}}</h2>
                                     <p>{{each.writer}}</p>
-                                    <button id="btn">
-                                        <a href="{% url 'articleapp:detail' each.id %}">자세히보기</a>
-                                    </button>
+                                    <div class="button">
+                                        <a class="btnText" href="{% url 'articleapp:detail' each.id %}">자세히보기</a>
+                                        <div class="btnTwo">
+                                            <p class="btnText2">GO!</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
                         </ul>
