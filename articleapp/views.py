@@ -66,11 +66,6 @@ class ArticleDetailView(DetailView, FormMixin):
                                                                  title_id=self.object.id)
         return context
 
-def limit_money(request):
-    price = request.GET['price']
-    title = request.GET['title_id']
-    amount = Campaign.objects.filter()
-
 
 class ArticleListView(ListView):
     model = Article
