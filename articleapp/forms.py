@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from articleapp.models import Article
+from articleapp.models import Article, Campaign
 
 
 class ArticleCreationForm(ModelForm):
@@ -10,5 +10,5 @@ class ArticleCreationForm(ModelForm):
 
 class PriceCreationForm(ModelForm):
     class Meta:
-        model = Price
-        fields = ['title', 'price', 'image', 'content']
+        model = Campaign
+        fields = ['food', 'clothing', 'shelter']
