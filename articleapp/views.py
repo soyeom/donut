@@ -71,6 +71,19 @@ def deleteCamp(request):
         return render(request, '/')
 
 
+def deliverystart(request):
+    if request.method == 'POST':
+        article = Article.objects.filter(id__exact=request.POST['text'])
+        article.update(state='c')
+        campaign = Campaign.objects.filter(title_id_id__exact=request.POST['text'])
+        campaign.update(state='c')
+        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
+    else:
+        return render(request, '/')
+
+
+
+
 class ArticleDetailView(DetailView, FormMixin):
     model = Article
     form_class = CommentCreationForm
@@ -84,7 +97,12 @@ class ArticleDetailView(DetailView, FormMixin):
         context['abc'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
                                                                  state__in='abc')
         context['d']='d'
+        context['all_A'] = articleapp.models.Campaign.objects.filter(title_id_id__exact=self.object.id,
+                                                                 state='a')
+        context['all'] = articleapp.models.Campaign.objects.filter(title_id_id__exact=self.object.id)
 
+        context['all_C'] = articleapp.models.Campaign.objects.filter(title_id_id__exact=self.object.id,
+                                                                 state='c')
         return context
 
 
