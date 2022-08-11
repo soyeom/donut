@@ -12,7 +12,7 @@
                     <div class="content">
                         {% for each in A %}
                             {% for art in B %}
-                                {% if each.title_id == art.id %}
+                                {% if each.title_id_id == art.id %}
                                     <li>
                                         <div class="text">
                                             <a href="{% url 'articleapp:detail' pk=art.id %}">{{ art.title }}</a>
