@@ -1,19 +1,46 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../static/css/article_delete.css">
+</head>
+<body>
 {% load static %}
-
-{% block content %}
-
-<link rel="stylesheet" href="../../../static/css/button.css">
-<link rel="stylesheet" href="../../../static/css/delete.css">
-
-    <div class="delete">
-        <div class="mb-4">
-            <h4>Delete Article: {{ object.title }}</h4>
-        </div>
-        <form action="{% url 'articleapp:delete' pk=object.pk %}" method="post">
-            {% csrf_token %}
-            <input type="submit" class="button">
-        </form>
+<div id="wrapper">
+    <div id="header">
+        <h1 id="top_logo">
+            <img src="../../../static/img/donut.png" alt="">
+            <a href="../../../introapp/templates/introapp/home.html">Donut</a>
+        </h1>
     </div>
 
-{% endblock %}
+    <div id="container">
+        <div id="content">
+            <div id="create_content">
+                <div id="row">
+                    <div class="delete">
+                        <h3>게시글을 삭제하시겠습니까?</h3>
+                        <div class="line pink"></div>
+                        <div class="mb-4">
+                            <h4>Delete Article: {{ object.title }}</h4>
+                        </div>
+                        <form action="{% url 'articleapp:delete' pk=object.pk %}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" class="button">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <address>
+                <em class="copy">고려대학교 세종캠퍼스 </em>
+                <em class="u_cri">©</em>
+                <a href="{% url 'introapp:home' %}" class="u_cra">Donut</a>
+                </address>
+        </div>
+    </div>
+</div>
+</body>
+</html>

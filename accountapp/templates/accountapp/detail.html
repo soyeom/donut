@@ -36,6 +36,10 @@
                                 <li class="prog3"><span>&#x1F680; <br>배송 시작</span></li>
                                 <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
                             </ul>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a34b4a2ed96209d88f9f70af35834c253232803
                             {% endif %}
                             {% if c %}
                             <ul>
@@ -55,6 +59,13 @@
                             {% endif %}
                         </div>
                         {% endif %}
+
+                        {% if target_user.campaign %}
+                        <div>
+                            누적 모금액: {{ target_user.campaign.amount }}
+                        </div>
+                        {% endif %}
+
                         <div class="section1">
                             <a href="{% url 'accountapp:mypost' pk=user.pk %}">
                                 내가 쓴 글 &nbsp;↗
@@ -66,7 +77,6 @@
                                 내가 참여한 캠페인 ↗
                             </a>
                         </div>
-
                     </div>
                     <div class="inner2">
                         {% if target_user == user %}

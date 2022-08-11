@@ -38,6 +38,7 @@ class AccountDetailView(DetailView):
         context['A'] = articleapp.models.Article.objects.filter(writer__exact=self.request.user.id)
 
         context['a'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
+<<<<<<< HEAD
                                                                  state='a')
         context['b'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
                                                                    state='b')
@@ -45,6 +46,15 @@ class AccountDetailView(DetailView):
                                                                  state='c')
         context['d'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
                                                                  state='d')
+=======
+                                                                 state__exact='a')
+        context['b'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
+                                                                 state__exact='b')
+        context['c'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
+                                                                 state__exact='c')
+        context['d'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
+                                                                 state__exact='d')
+>>>>>>> 8a34b4a2ed96209d88f9f70af35834c253232803
 
         return context
 
