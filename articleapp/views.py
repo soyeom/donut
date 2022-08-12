@@ -1,5 +1,3 @@
-import json
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
@@ -7,15 +5,12 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView
 from django.views.generic.edit import FormMixin, UpdateView, DeleteView
 from django.contrib import messages
-from django.db.models import Q
 
-import articleapp
 from commentapp.forms import CommentCreationForm
-from commentapp.models import Comment
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm, PriceCreationForm
-from articleapp.models import Article, Campaign
+from articleapp.models import Article, Campaign, PriceCategory
 
 
 @method_decorator(login_required, 'get')
@@ -120,7 +115,7 @@ class ArticleListView(ListView):
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
 class PriceCreateView(CreateView):
-    model = Article
+    model = PriceCategory
     form_class = PriceCreationForm
     context_object_name = 'target_campaign'
     template_name = 'articleapp/price.html'
