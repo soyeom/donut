@@ -8,11 +8,11 @@ from articleapp.models import Campaign, Article
 
 @admin.register(Campaign)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['Participants', 'title', 'amount', 'price', 'state']
-    list_display_links = ['state']
+    list_display = ['amount']
+    list_display_links = ['amount']
 
 
 @admin.register(Article)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'created_at', 'amount', 'price', 'state']
+    list_display = ['title', 'created_at', 'price', 'state']
     list_display_links = ['state']

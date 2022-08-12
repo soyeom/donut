@@ -87,6 +87,23 @@
                     목록
                 </a>
 
+                {% if object.writer == user %}
+                    {% if object.amount == object.price %}
+                        {% if all %}
+                            {% if all_A %}
+
+                            {% else %}
+                                {% if all_C %}
+                                {% else %}
+                                    <a href="{% url 'articleapp:price' %}">
+                                        <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">배송시작</button>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+
                 {% include 'commentapp/create.html' with article=target_article %}
                 {% for comment in target_article.comment.all %}
                     {% include 'commentapp/detail.html' with comment=comment%}

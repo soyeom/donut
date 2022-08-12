@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
@@ -71,19 +73,6 @@ def deleteCamp(request):
         return render(request, '/')
 
 
-def deliverystart(request):
-    if request.method == 'POST':
-        article = Article.objects.filter(id__exact=request.POST['text'])
-        article.update(state='c')
-        campaign = Campaign.objects.filter(title_id_id__exact=request.POST['text'])
-        campaign.update(state='c')
-        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
-    else:
-        return render(request, '/')
-
-
-
-
 class ArticleDetailView(DetailView, FormMixin):
     model = Article
     form_class = CommentCreationForm
@@ -109,7 +98,7 @@ class ArticleDetailView(DetailView, FormMixin):
 class ArticleListView(ListView):
     model = Article
     template_name = 'articleapp/list.html'
-    paginate_by = 12
+    paginate_by = 9
     context_object_name = 'article_list'
 
     def get_queryset(self):
@@ -134,12 +123,22 @@ class ArticleListView(ListView):
 
         return context
 
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
 class PriceCreateView(CreateView):
-    model = Campaign
+    model = Article
     form_class = PriceCreationForm
     context_object_name = 'target_campaign'
     template_name = 'articleapp/price.html'
     success_url = reverse_lazy('articleapp:list')
+
+    def post(self, request, *args, **kwargs):
+        article = Article.objects.filter(id__exact=self.request.POST.get('text'))
+        article.update(state='c')
+        campaign = Campaign.objects.filter(title_id_id__exact=self.request.POST.get('text'))
+        campaign.update(state='c')
+        return redirect('articleapp:list')
+
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
