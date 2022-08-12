@@ -32,7 +32,6 @@
                                     {% csrf_token %}
                                     <input type="hidden" name="article_id" value={{object.pk}} >
                                     <input type="hidden" name="amount" value={{object.amount}} >
-                                    <input type="hidden" name="each_amount" value={{each.amount}} >
                                     <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">참여취소</button>
                                 </form>
                             {% endfor %}
@@ -50,7 +49,7 @@
                                 <input type="hidden" name="title" value={{object.title}} >
                                 <input type="hidden" name="username" value={{user.username}} >
                                 <input type="hidden" name="state" value="a" >
-                                금액 : <input type="number" name="each_amount" min="1">
+                                금액 : <input type="number" name="amount" min="1">
                                 <button id="btn1">
                                     <span class="wave"></span>
                                     참여하기
@@ -88,7 +87,7 @@
                 </a>
 
                 {% if object.writer == user %}
-                    {% if object.amount == object.price %}
+                    {% if object.total_amount >= object.price %}
                         {% if all %}
                             {% if all_A %}
 

@@ -29,34 +29,30 @@ class ArticleCreateView(CreateView):
 
 
 def Camp(request):
-
-    amount_sum = sum(Campaign.objects.filter(participants_id__exact=request.POST['text']))
-
-    if (int(request.POST['each_amount']) <= int(request.POST['price'])) and (amount_sum <= int(request.POST['price'])):
-        if request.method == 'POST':
-            campaign = Campaign()
-            campaign.amount = request.POST['each_amount']
-            campaign.state = request.POST['state']
-            campaign.participants_id = request.user.id
-            campaign.article_id = request.POST['article_id']
-            campaign.save()
-
-            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
-        else:
-            return render(request, '/')
+    if request.method == 'POST':
+        campaign = Campaign()
+        campaign.amount = request.POST['amount']
+        campaign.state = request.POST['state']
+        campaign.participants_id = request.user.id
+        campaign.article_id = request.POST['article_id']
+        campaign.save()
+        article = Article.objects.get(id=campaign.article_id)
+        article.total_amount = article.total_amount + int(campaign.amount)
+        article.save()
+        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
+    else:
+        return render(request, '/')
     return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
 
 
 def deleteCamp(request):
     if request.method == 'POST':
-        campaign = Campaign.objects.filter(participants_id_id__exact=request.user.id,
+        campaign = Campaign.objects.get(participants_id__exact=request.user.id,
                                          article_id__exact=request.POST['article_id'])
+        article = Article.objects.get(id=campaign.article_id)
+        article.total_amount = article.total_amount - int(campaign.amount)
+        article.save()
         campaign.delete()
-
-        article = Article.objects.filter(id__exact=request.POST['article_id'])
-
-        sum = int(request.POST['amount']) - int(request.POST['each_amount'])
-        article.update(amount=sum)
 
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
     else:
@@ -74,7 +70,7 @@ class ArticleDetailView(DetailView, FormMixin):
                                                                  article_id=self.object.id)
         context['abc'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
                                                                  article__state__in='abc')
-        context['d']='d'
+        context['d'] = 'd'
         context['all_A'] = Campaign.objects.filter(article_id__exact=self.object.id,
                                                                  article__state='a')
         context['all'] = Campaign.objects.filter(article_id__exact=self.object.id)
@@ -122,10 +118,8 @@ class PriceCreateView(CreateView):
     success_url = reverse_lazy('articleapp:list')
 
     def post(self, request, *args, **kwargs):
-        article = Article.objects.filter(id__exact=self.request.POST.get('text'))
+        article = Article.objects.filter(id__exact=self.request.POST('article_id'))
         article.update(state='c')
-        campaign = Campaign.objects.filter(title_id_id__exact=self.request.POST.get('text'))
-        campaign.update(state='c')
         return redirect('articleapp:list')
 
 

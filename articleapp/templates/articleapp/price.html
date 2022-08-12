@@ -31,7 +31,7 @@
                     <form action="{% url 'articleapp:price' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {% bootstrap_form form %}
-                        <input type="hidden" name="text" value={{object.pk}} >
+                        <input type="hidden" name="article_id" value={{object.pk}} >
                         <div id="btn">
                             <button class="custom btn-1">제출하기</button>
                         </div>

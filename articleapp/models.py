@@ -7,6 +7,7 @@ class Article(models.Model):
     image = models.ImageField(upload_to='article/', null=True, blank=True)
     content = models.TextField(null=True)
     price = models.IntegerField(default=0, null=False)
+    total_amount = models.IntegerField(default=0, null=False)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     state = models.CharField(max_length=1, default='a')
 
