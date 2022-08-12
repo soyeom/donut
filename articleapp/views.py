@@ -113,15 +113,19 @@ class ArticleListView(ListView):
 class PriceCreateView(CreateView):
     model = PriceCategory
     form_class = PriceCreationForm
-    context_object_name = 'target_campaign'
+    context_object_name = 'price_category'
     template_name = 'articleapp/price.html'
     success_url = reverse_lazy('articleapp:list')
 
     def post(self, request, *args, **kwargs):
-        article = Article.objects.filter(id__exact=self.request.POST('article_id'))
+        article = Article.objects.filter(writer_id__exact=self.request.user.id)
+        print(article)
         article.update(state='c')
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        if form.is_valid():
+            return self.form_valid(form, **kwargs)
         return redirect('articleapp:list')
-
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
