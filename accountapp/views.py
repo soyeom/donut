@@ -35,16 +35,16 @@ class AccountDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(AccountDetailView, self).get_context_data(**kwargs)
-        context['A'] = articleapp.models.Article.objects.filter(writer__exact=self.request.user.id)
+        context['A'] = Article.objects.filter(writer__exact=self.request.user.id)
 
-        context['a'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
-                                                                 state__exact='a')
-        context['b'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
-                                                                 state__exact='b')
-        context['c'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
-                                                                 state__exact='c')
-        context['d'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
-                                                                 state__exact='d')
+        context['a'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                                                 article__state__exact='a')
+        context['b'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                                                 article__state__exact='b')
+        context['c'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                                                 article__state__exact='c')
+        context['d'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                                                 article__state__exact='d')
         return context
 
 
@@ -66,7 +66,7 @@ class AccountDetailView3(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(AccountDetailView3, self).get_context_data(**kwargs)
-        context['A'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id)
+        context['A'] = articleapp.models.Campaign.objects.filter(participants_id__exact=self.request.user.id)
         context['B'] = articleapp.models.Article.objects.all()
         return context
 

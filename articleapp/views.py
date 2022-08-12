@@ -34,22 +34,17 @@ class ArticleCreateView(CreateView):
 
 
 def Camp(request):
-    sum = int(request.POST['amount']) + int(request.POST['each_amount'])
 
-    if (int(request.POST['each_amount']) <= int(request.POST['price'])) and (sum <= int(request.POST['price'])):
+    amount_sum = sum(Campaign.objects.filter(participants_id__exact=request.POST['text']))
+
+    if (int(request.POST['each_amount']) <= int(request.POST['price'])) and (amount_sum <= int(request.POST['price'])):
         if request.method == 'POST':
             campaign = Campaign()
-            campaign.Participants = request.user.username
-            campaign.title_id_id = request.POST['text']
             campaign.amount = request.POST['each_amount']
             campaign.state = request.POST['state']
-            campaign.price = request.POST['price']
-            campaign.title = request.POST['title']
-            campaign.Participants_id_id = request.user.id
+            campaign.participants_id = request.user.id
+            campaign.article_id = request.POST['article_id']
             campaign.save()
-
-            article = Article.objects.filter(id__exact=request.POST['text'])
-            article.update(amount=sum)
 
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
         else:
@@ -59,11 +54,11 @@ def Camp(request):
 
 def deleteCamp(request):
     if request.method == 'POST':
-        campaign = Campaign.objects.filter(Participants_id_id__exact=request.user.id,
-                                         title_id_id__exact=request.POST['text'])
+        campaign = Campaign.objects.filter(participants_id_id__exact=request.user.id,
+                                         article_id__exact=request.POST['article_id'])
         campaign.delete()
 
-        article = Article.objects.filter(id__exact=request.POST['text'])
+        article = Article.objects.filter(id__exact=request.POST['article_id'])
 
         sum = int(request.POST['amount']) - int(request.POST['each_amount'])
         article.update(amount=sum)
@@ -71,20 +66,6 @@ def deleteCamp(request):
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
     else:
         return render(request, '/')
-
-
-def deliverystart(request):
-    if request.method == 'POST':
-        article = Article.objects.filter(id__exact=request.POST['text'])
-        article.update(state='c')
-        campaign = Campaign.objects.filter(title_id_id__exact=request.POST['text'])
-        campaign.update(state='c')
-        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
-    else:
-        return render(request, '/')
-
-
-
 
 class ArticleDetailView(DetailView, FormMixin):
     model = Article
@@ -94,17 +75,17 @@ class ArticleDetailView(DetailView, FormMixin):
 
     def get_context_data(self, **kwargs):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
-        context['A'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
-                                                                 title_id_id=self.object.id)
-        context['abc'] = articleapp.models.Campaign.objects.filter(Participants_id_id__exact=self.request.user.id,
-                                                                 state__in='abc')
+        context['A'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                                                 article_id=self.object.id)
+        context['abc'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                                                 article__state__in='abc')
         context['d']='d'
-        context['all_A'] = articleapp.models.Campaign.objects.filter(title_id_id__exact=self.object.id,
-                                                                 state='a')
-        context['all'] = articleapp.models.Campaign.objects.filter(title_id_id__exact=self.object.id)
+        context['all_A'] = Campaign.objects.filter(article_id__exact=self.object.id,
+                                                                 article__state='a')
+        context['all'] = Campaign.objects.filter(article_id__exact=self.object.id)
 
-        context['all_C'] = articleapp.models.Campaign.objects.filter(title_id_id__exact=self.object.id,
-                                                                 state='c')
+        context['all_C'] = Campaign.objects.filter(article_id__exact=self.object.id,
+                                                                 article__state='c')
         return context
 
 

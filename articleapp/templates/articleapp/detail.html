@@ -30,7 +30,7 @@
                             {% for each in A %}
                                 <form action="{% url 'articleapp:deletecamp' %}" method="post">
                                     {% csrf_token %}
-                                    <input type="hidden" name="text" value={{object.pk}} >
+                                    <input type="hidden" name="article_id" value={{object.pk}} >
                                     <input type="hidden" name="amount" value={{object.amount}} >
                                     <input type="hidden" name="each_amount" value={{each.amount}} >
                                     <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">참여취소</button>
@@ -44,7 +44,7 @@
                         {% else %}
                             <form id="form2" action="{% url 'articleapp:campaign' %}" method="post">
                                 {% csrf_token %}
-                                <input type="hidden" name="text" value={{object.pk}} >
+                                <input type="hidden" name="article_id" value={{object.pk}} >
                                 <input type="hidden" name="price" value={{object.price}} >
                                 <input type="hidden" name="amount" value={{object.amount}} >
                                 <input type="hidden" name="title" value={{object.title}} >
