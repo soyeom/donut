@@ -9,12 +9,12 @@ class Article(models.Model):
     price = models.IntegerField(default=0, null=False)
     total_amount = models.IntegerField(default=0, null=False)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
-    state = models.CharField(max_length=1, default='a')
 
 class Campaign(models.Model):
     participants = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='campaign', null=True)
-    article = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='campaign', null=True)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='campaign', null=True)
     amount = models.IntegerField(default=0, null=False)
+    state = models.CharField(max_length=1, default='a')
 
 class PriceCategory(models.Model):
     article = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='pricecategory', null=True)

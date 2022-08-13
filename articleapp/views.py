@@ -68,15 +68,16 @@ class ArticleDetailView(DetailView, FormMixin):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
         context['A'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
                                                                  article_id=self.object.id)
-        context['abc'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
-                                                                 article__state__in='abc')
-        context['d'] = 'd'
+        context['ab'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                                                 state__in='ab')
+        context['d'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                                                 state__in='d')
         context['all_A'] = Campaign.objects.filter(article_id__exact=self.object.id,
-                                                                 article__state='a')
+                                                                 state='a')
         context['all'] = Campaign.objects.filter(article_id__exact=self.object.id)
 
         context['all_C'] = Campaign.objects.filter(article_id__exact=self.object.id,
-                                                                 article__state='c')
+                                                                 state='c')
         return context
 
 
