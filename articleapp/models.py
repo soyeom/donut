@@ -19,3 +19,6 @@ class Campaign(models.Model):
     amount = models.IntegerField(default=0, null=False)
     price = models.IntegerField(default=0, null=False)
     state = models.CharField(max_length=1, default='a')
+    food = models.IntegerField(default=0, null=True)
+    clothing = models.IntegerField(default=0, null=True)
+    shelter = models.IntegerField(default=0, null=True)

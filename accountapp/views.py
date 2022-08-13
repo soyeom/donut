@@ -47,6 +47,12 @@ class AccountDetailView(DetailView):
                                                                  state__exact='d')
         return context
 
+    def calculatePercent(self):
+        context = articleapp.models.Campaign.objects.filter(user__exact=self.request.user.id)
+        foodPercent = context.food / context.price * 100
+
+        return foodPercent
+
 
 class AccountDetailView2(DetailView):
     model = User

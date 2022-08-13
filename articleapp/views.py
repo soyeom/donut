@@ -12,7 +12,7 @@ from commentapp.forms import CommentCreationForm
 from commentapp.models import Comment
 
 from articleapp.decorators import article_ownership_required
-from articleapp.forms import ArticleCreationForm
+from articleapp.forms import ArticleCreationForm, PriceCreationForm
 from articleapp.models import Article, Campaign
 
 
@@ -83,7 +83,7 @@ class ArticleDetailView(DetailView, FormMixin):
                                                                  title_id_id=self.object.id)
         context['abc'] = articleapp.models.Campaign.objects.filter(user__exact=self.request.user.id,
                                                                  state__in='abc')
-        context['d']='d'
+        context['d'] = 'd'
 
         return context
 
@@ -116,6 +116,12 @@ class ArticleListView(ListView):
 
         return context
 
+class PriceCreateView(CreateView):
+    model = Campaign
+    form_class = PriceCreationForm
+    context_object_name = 'target_campaign'
+    template_name = 'articleapp/price.html'
+    success_url = reverse_lazy('articleapp:list')
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
