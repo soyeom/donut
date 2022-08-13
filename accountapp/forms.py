@@ -9,8 +9,7 @@ class AccountUpdateForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         self.fields['username'].disabled = True
 
-
 class CampCreationForm(ModelForm):
     class Meta:
         model = Campaign
-        fields = ['Participants', 'title_id', 'amount', 'state']
+        fields = ['amount']

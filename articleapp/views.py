@@ -5,15 +5,12 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView
 from django.views.generic.edit import FormMixin, UpdateView, DeleteView
 from django.contrib import messages
-from django.db.models import Q
 
-import articleapp
 from commentapp.forms import CommentCreationForm
-from commentapp.models import Comment
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm, PriceCreationForm
-from articleapp.models import Article, Campaign
+from articleapp.models import Article, Campaign, PriceCategory
 
 
 @method_decorator(login_required, 'get')
@@ -32,44 +29,34 @@ class ArticleCreateView(CreateView):
 
 
 def Camp(request):
-    sum = int(request.POST['amount']) + int(request.POST['each_amount'])
-
-    if (int(request.POST['each_amount']) <= int(request.POST['price'])) and (sum <= int(request.POST['price'])):
-        if request.method == 'POST':
-            campaign = Campaign()
-            campaign.Participants = request.user.username
-            campaign.title_id_id = request.POST['text']
-            campaign.amount = request.POST['each_amount']
-            campaign.state = request.POST['state']
-            campaign.price = request.POST['price']
-            campaign.title = request.POST['title']
-            campaign.Participants_id_id = request.user.id
-            campaign.save()
-
-            article = Article.objects.filter(id__exact=request.POST['text'])
-            article.update(amount=sum)
-
-            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
-        else:
-            return render(request, '/')
+    if request.method == 'POST':
+        campaign = Campaign()
+        campaign.amount = request.POST['amount']
+        campaign.state = request.POST['state']
+        campaign.participants_id = request.user.id
+        campaign.article_id = request.POST['article_id']
+        campaign.save()
+        article = Article.objects.get(id=campaign.article_id)
+        article.total_amount = article.total_amount + int(campaign.amount)
+        article.save()
+        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
+    else:
+        return render(request, '/')
     return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
 
 
 def deleteCamp(request):
     if request.method == 'POST':
-        campaign = Campaign.objects.filter(user__exact=request.user.id,
-                                         title_id_id__exact=request.POST['text'])
+        campaign = Campaign.objects.get(participants_id__exact=request.user.id,
+                                         article_id__exact=request.POST['article_id'])
+        article = Article.objects.get(id=campaign.article_id)
+        article.total_amount = article.total_amount - int(campaign.amount)
+        article.save()
         campaign.delete()
-
-        article = Article.objects.filter(id__exact=request.POST['text'])
-
-        sum = int(request.POST['amount']) - int(request.POST['each_amount'])
-        article.update(amount=sum)
 
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
     else:
         return render(request, '/')
-
 
 class ArticleDetailView(DetailView, FormMixin):
     model = Article
@@ -79,19 +66,24 @@ class ArticleDetailView(DetailView, FormMixin):
 
     def get_context_data(self, **kwargs):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
-        context['A'] = articleapp.models.Campaign.objects.filter(user__exact=self.request.user.id,
-                                                                 title_id_id=self.object.id)
-        context['abc'] = articleapp.models.Campaign.objects.filter(user__exact=self.request.user.id,
-                                                                 state__in='abc')
+        context['A'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                                                 article_id=self.object.id)
+        context['abc'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                                                 article__state__in='abc')
         context['d'] = 'd'
+        context['all_A'] = Campaign.objects.filter(article_id__exact=self.object.id,
+                                                                 article__state='a')
+        context['all'] = Campaign.objects.filter(article_id__exact=self.object.id)
 
+        context['all_C'] = Campaign.objects.filter(article_id__exact=self.object.id,
+                                                                 article__state='c')
         return context
 
 
 class ArticleListView(ListView):
     model = Article
     template_name = 'articleapp/list.html'
-    paginate_by = 12
+    paginate_by = 9
     context_object_name = 'article_list'
 
     def get_queryset(self):
@@ -116,12 +108,24 @@ class ArticleListView(ListView):
 
         return context
 
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
 class PriceCreateView(CreateView):
-    model = Campaign
+    model = PriceCategory
     form_class = PriceCreationForm
-    context_object_name = 'target_campaign'
+    context_object_name = 'price_category'
     template_name = 'articleapp/price.html'
     success_url = reverse_lazy('articleapp:list')
+
+    def post(self, request, *args, **kwargs):
+        article = Article.objects.filter(writer_id__exact=self.request.user.id)
+        print(article)
+        article.update(state='c')
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        if form.is_valid():
+            return self.form_valid(form, **kwargs)
+        return redirect('articleapp:list')
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')

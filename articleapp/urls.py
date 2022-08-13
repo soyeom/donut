@@ -1,6 +1,7 @@
 from django.urls import path
 from articleapp.views import ArticleCreateView, ArticleDetailView, ArticleListView, ArticleUpdateView, \
-    ArticleDeleteView, Camp, deleteCamp, PriceCreateView
+ArticleDeleteView, Camp, deleteCamp, PriceCreateView
+
 
 app_name = "articleapp"
 
@@ -13,4 +14,4 @@ urlpatterns = [
     path('campaign/', Camp, name='campaign'),
     path('deletecamp/', deleteCamp, name='deletecamp'),
     path('price/', PriceCreateView.as_view(), name='price'),
-]
+    ]
