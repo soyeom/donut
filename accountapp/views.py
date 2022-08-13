@@ -15,7 +15,7 @@ import articleapp
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm, CampCreationForm
 
-from articleapp.models import Article, Campaign
+from articleapp.models import Article, Campaign, PriceCategory
 from django.core.paginator import Paginator
 
 has_ownership = [account_ownership_required, login_required]
@@ -35,7 +35,6 @@ class AccountDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(AccountDetailView, self).get_context_data(**kwargs)
-
         context['A'] = Article.objects.filter(writer__exact=self.request.user.id)
 
         context['a'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
@@ -46,8 +45,11 @@ class AccountDetailView(DetailView):
                                                                  article__state__exact='c')
         context['d'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
                                                                  article__state__exact='d')
-
         return context
+
+    def calcuatePercent(request):
+        percent = PriceCategory.objects.filter()
+        return render(request, 'detail.html', {'percent': percent})
 
 
 class AccountDetailView2(DetailView):
@@ -71,7 +73,6 @@ class AccountDetailView3(DetailView):
         context['A'] = articleapp.models.Campaign.objects.filter(participants_id__exact=self.request.user.id)
         context['B'] = articleapp.models.Article.objects.all()
         return context
-
 
 def signup(request):
     if request.method == 'POST':

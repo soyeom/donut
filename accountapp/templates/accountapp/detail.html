@@ -57,14 +57,17 @@
                         </div>
                         {% endif %}
 
-                        {% if target_user.campaign %}
+
                         <div>
-                            누적 모금액: {{ target_user.campaign.amount }}
-                            food:
-                            clothing:
-                            shelter:
+                            {% if target_user.article %}
+                            <p>누적 모금액: {{ target_user.article }}</p>
+                            {% endif %}
+
+                            <p>food: {{ percent.foodPercent }} </p>
+                            <p>clothing: {{ percent.clothingPercent }} </p>
+                            <p>shelter: {{ percent.shelterPercent }} </p>
                         </div>
-                        {% endif %}
+
 
                         <div class="section1">
                             <a href="{% url 'accountapp:mypost' pk=user.pk %}">

@@ -21,3 +21,18 @@ class PriceCategory(models.Model):
     food = models.IntegerField(default=0, null=True, blank=True)
     clothing = models.IntegerField(default=0, null=True, blank=True)
     shelter = models.IntegerField(default=0, null=True, blank=True)
+    foodPercent = models.IntegerField(default=0, null=True, blank=True)
+    clothingPercent = models.IntegerField(default=0, null=True, blank=True)
+    shelterPercent = models.IntegerField(default=0, null=True, blank=True)
+
+    def foodPercent(self):
+        foodPercent = self.food / self.acticle.price * 100
+        return foodPercent
+
+    def clothingPercent(self):
+        clothingPercent = self.clothing / self.acticle.price * 100
+        return clothingPercent
+
+    def sheltherPercent(self):
+        shelterPercent = self.shelter / self.acticle.price * 100
+        return shelterPercent
