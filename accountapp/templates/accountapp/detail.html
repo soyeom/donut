@@ -37,6 +37,10 @@
                                 <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
                             </ul>
 
+                             {% for campaign in target_user.campaign.all %}
+                            <p>입금액: {{ campaign.amount }}</p>
+                            {% endfor %}
+
                             {% endif %}
                             {% if c %}
                             <ul>
@@ -59,10 +63,6 @@
 
 
                         <div>
-                            {% if target_user.article %}
-                            <p>누적 모금액: {{ target_user.article }}</p>
-                            {% endif %}
-
                             <p>food: {{ percent.foodPercent }} </p>
                             <p>clothing: {{ percent.clothingPercent }} </p>
                             <p>shelter: {{ percent.shelterPercent }} </p>

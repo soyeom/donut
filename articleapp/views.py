@@ -68,15 +68,16 @@ class ArticleDetailView(DetailView, FormMixin):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
         context['A'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
                                                                  article_id=self.object.id)
-        context['abc'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
-                                                                 article__state__in='abc')
-        context['d'] = 'd'
+        context['ab'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                                                 state__in='ab')
+        context['d'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                                                 state__in='d')
         context['all_A'] = Campaign.objects.filter(article_id__exact=self.object.id,
-                                                                 article__state='a')
+                                                                 state='a')
         context['all'] = Campaign.objects.filter(article_id__exact=self.object.id)
 
         context['all_C'] = Campaign.objects.filter(article_id__exact=self.object.id,
-                                                                 article__state='c')
+                                                                 state='c')
         return context
 
 
@@ -118,9 +119,9 @@ class PriceCreateView(CreateView):
     success_url = reverse_lazy('articleapp:list')
 
     def post(self, request, *args, **kwargs):
-        article = Article.objects.filter(writer_id__exact=self.request.user.id)
-        print(article)
-        article.update(state='c')
+        campaign = Campaign.objects.filter(participants_id__exact=self.request.user.id)
+        print(campaign)
+        campaign.update(state='c')
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         if form.is_valid():

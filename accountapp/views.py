@@ -38,18 +38,16 @@ class AccountDetailView(DetailView):
         context['A'] = Article.objects.filter(writer__exact=self.request.user.id)
 
         context['a'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
-                                                                 article__state__exact='a')
+                                                                 state__exact='a')
         context['b'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
-                                                                 article__state__exact='b')
+                                                                 state__exact='b')
         context['c'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
-                                                                 article__state__exact='c')
+                                                                 state__exact='c')
         context['d'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
-                                                                 article__state__exact='d')
+                                                                 state__exact='d')
         return context
 
-    def calcuatePercent(request):
-        percent = PriceCategory.objects.filter()
-        return render(request, 'detail.html', {'percent': percent})
+
 
 
 class AccountDetailView2(DetailView):

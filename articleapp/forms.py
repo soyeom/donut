@@ -2,7 +2,6 @@ from django.forms import ModelForm
 
 from articleapp.models import Article, PriceCategory
 
-
 class ArticleCreationForm(ModelForm):
     class Meta:
         model = Article
