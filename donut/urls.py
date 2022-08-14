@@ -22,12 +22,10 @@ from introapp.views import IntroListView
 
 urlpatterns = [
     path('', IntroListView.as_view(), name='home'),
-
-    path('admin2/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('accounts/', include('accountapp.urls')),
     path('intro/', include('introapp.urls')),
     path('articles/', include('articleapp.urls')),
     path('comments/', include('commentapp.urls')),
     path('profiles/', include('profileapp.urls')),
-    path('admin/', include('adminapp.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
