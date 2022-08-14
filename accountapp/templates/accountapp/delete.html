@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="../../../static/css/account_delete.css">
 </head>
 <body>
+<script>
+    function newPage() {
+        setTimeout("window.location.href = '{% url 'introapp:home' %}'",1000);
+    }
+</script>
+
 <div id="wrapper">
     <div class="box1">
         <form id="my_page" method="post">
@@ -21,12 +27,19 @@
                     <div class="inner">
                         <div id="inner_cont">
                             <div class="mb-4">
-                                <h4>회원탈퇴 하시겠습니까?</h4>
+                                <h4>회원 탈퇴를 진행하시겠습니까?</h4>
                                 <div class="line pink"></div>
                             </div>
                             <form action="{% url 'accountapp:delete' pk=target_user.pk %}" method="post">
                                 {% csrf_token %}
-                                <button class="btn">탈퇴</button>
+                                <div class="centered">
+                                    <input type="checkbox" id="chck" onclick="newPage()">
+                                    <label for="chck">
+                                        <span class="qmark">&nbsp;&nbsp;&nbsp; 탈퇴하기 &nbsp;&nbsp;&nbsp;</span>
+                                        <span class="fstop">이용해주셔서 감사합니다</span>
+                                    </label>
+                                    <div class="bg"></div>
+                                </div>
                             </form>
                         </div>
                      </div>

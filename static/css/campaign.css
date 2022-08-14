@@ -46,6 +46,7 @@ div {
 
 a {
   text-decoration: none;
+  color: #333333;
 }
 
 #top_logo {
@@ -72,81 +73,52 @@ a {
 }
 
 #inner_cont {
-  text-align: center;
+  text-align: left;
   max-width: 500px;
   margin: 3rem auto;
   margin-top: 3%;
-}
-
-.mb-4 {
   font-family: "Gowun Dodum", sans-serif;
 }
 
-#id_password1, #id_password2 {
-  border-color: rgba(118, 118, 118, 0.3);
-  outline: rgba(118, 118, 118, 0.3);
+#campaign {
+  margin: auto;
+  box-shadow: 1px 1px 3px 1px #dadce0 inset;
+  height: 300px;
+  overflow-x: scroll;
+}
+
+#campaign::-webkit-scrollbar {
+  width: 8px;
+  height: 100%;
+}
+
+#campaign::-webkit-scrollbar-thumb {
+  height: 30%;
+  background: #cdcccc;
+  border-radius: 10px;
+}
+
+#campaign::-webkit-scrollbar-track {
   background: #f5f6f7;
 }
 
-.helptext >ul >li {
-  text-align: left;
-  width: 120%;
-  font-family: "Ubuntu", sans-serif;
-  line-height: 40px;
+#campaign > div {
+  margin: 3% 3%;
 }
 
-.helptext {
-  font-family: "Ubuntu", sans-serif;
-  line-height: 50px;
+.back > a {
+  margin-left: 5%;
 }
 
-.w-btn-neon > input {
-  display: none;
+.back > a > img {
+  width: 2%;
+  height: 2%;
 }
 
-@keyframes ring {
-  0% {
-    width: 30px;
-    height: 30px;
-    opacity: 1;
-  }
-  100% {
-    width: 130px;
-    height: 130px;
-    opacity: 0;
-  }
-}
-
-.w-btn-neon {
-  position: relative;
-  border: none;
-  min-width: 70%;
-  min-height: 40px;
-  background: #000000;
-  border-radius: 1000px;
-  color: #ffffff;
-  cursor: pointer;
-  font-weight: 700;
+h1 {
+  font-size: 20px;
+  color: #333333;
   font-family: "Gowun Dodum", sans-serif;
-  transition: 0.3s;
-}
-
-.w-btn-neon:hover {
-  transform: scale(1.2);
-}
-
-.w-btn-neon:hover::after {
-  content: "";
-  width: 30px;
-  height: 30px;
-  border-radius: 100%;
-  border: 6px solid #ffffff;
-  position: absolute;
-  z-index: -1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: ring 1.5s infinite;
 }
 
 #footer {

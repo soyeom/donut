@@ -78,26 +78,36 @@ a {
   margin-top: 3%;
 }
 
-.mb-4 {
-  font-family: "Gowun Dodum", sans-serif;
+.form_wrap {
+  text-align: left;
+  max-width: 500px;
+  margin: 4rem auto;
+  line-height: 60px;
+  margin-left: 6rem;
+  font-family: "Ubuntu", sans-serif;
 }
 
-#id_password1, #id_password2 {
+.mb-4 {
+  text-align: center;
+  margin-right: 15%;
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 22px;
+  margin-bottom: -20px;
+  margin-top: -3%;
+}
+
+#id_image {
+  margin-right: 21%;
+}
+
+#id_nickname {
+  margin-right: 25%;
+}
+
+#id_nickname, #id_message {
   border-color: rgba(118, 118, 118, 0.3);
   outline: rgba(118, 118, 118, 0.3);
   background: #f5f6f7;
-}
-
-.helptext >ul >li {
-  text-align: left;
-  width: 120%;
-  font-family: "Ubuntu", sans-serif;
-  line-height: 40px;
-}
-
-.helptext {
-  font-family: "Ubuntu", sans-serif;
-  line-height: 50px;
 }
 
 .w-btn-neon > input {
@@ -111,8 +121,8 @@ a {
     opacity: 1;
   }
   100% {
-    width: 130px;
-    height: 130px;
+    width: 180px;
+    height: 180px;
     opacity: 0;
   }
 }
@@ -129,6 +139,8 @@ a {
   font-weight: 700;
   font-family: "Gowun Dodum", sans-serif;
   transition: 0.3s;
+  margin-top: 13%;
+  margin-left: 5%;
 }
 
 .w-btn-neon:hover {
