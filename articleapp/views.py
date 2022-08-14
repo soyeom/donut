@@ -42,7 +42,6 @@ def Camp(request):
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
     else:
         return render(request, '/')
-    return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
 
 
 def deleteCamp(request):
@@ -119,14 +118,18 @@ class PriceCreateView(CreateView):
     success_url = reverse_lazy('articleapp:list')
 
     def post(self, request, *args, **kwargs):
-        article = Article.objects.filter(writer_id__exact=self.request.user.id)
-        print(article)
-        article.update(state='c')
+        article = Article.objects.get(writer_id__exact=self.request.user.id)
+        campaign = Campaign.objects.get(article_id__exact=article.id)
+        campaign.update(state='c')
+        PriceCategory.update(article_id=article.id)
+
         form_class = self.get_form_class()
         form = self.get_form(form_class)
+
         if form.is_valid():
             return self.form_valid(form, **kwargs)
         return redirect('articleapp:list')
+
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
@@ -144,5 +147,4 @@ class ArticleUpdateView(UpdateView):
 class ArticleDeleteView(DeleteView):
     model = Article
     success_url = reverse_lazy('articleapp:list')
-
     template_name = 'articleapp/delete.html'
