@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="../../../static/css/campaign.css">
 </head>
 <body>
-{% load bootstrap4 %}
 <div id="wrapper">
     <div class="box1">
         <form id="my_page" method="post">
@@ -27,16 +26,15 @@
                         </div>
                         <div id="inner_cont">
                             <div id="campaign">
-                                {% if A %}
+                                {% if Campaign %}
                                 <div class="content">
-                                    {% for each in A %}
-                                        {% for art in B %}
-                                            {% if each.title_id_id == art.id %}
-                                                <li>
+                                    {% for camp in Campaign %}
+                                        {% for art in Article %}
+
+                                            {% if camp.article_id == art.id %}
                                                     <div class="text">
                                                         <a href="{% url 'articleapp:detail' pk=art.id %}">{{ art.title }}</a>
                                                     </div>
-                                                </li>
                                             {% endif %}
                                         {% endfor %}
                                     {% endfor %}

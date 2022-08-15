@@ -37,6 +37,7 @@
                                 <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
                             </ul>
                             {% endif %}
+
                             {% if c %}
                             <ul>
                                 <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
@@ -45,6 +46,9 @@
                                 <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
                             </ul>
                             {% if Campaign %}
+                            <div class="show">
+                                자세히 보기
+                            </div>
                             <div>
                             <p>food: {% widthratio category.food amount.price 100 %}%</p>
                             <p>clothing: {% widthratio category.clothing amount.price 100 %}%</p>
@@ -56,6 +60,7 @@
                             {% endif %}
 
                             {% endif %}
+
                             {% if d %}
                             <ul>
                                 <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
