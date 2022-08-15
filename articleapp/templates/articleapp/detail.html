@@ -88,7 +88,6 @@
                 </a>
 
 
-
                 {% if object.writer == user %}
                     {% if all_C %}
                     <a class="a_tag" href="{% url 'articleapp:receipt' pk=object.pk %}" class="button">
@@ -98,11 +97,16 @@
 
                     {% if not all_A and not all_C %}
                         {% if object.total_amount >= object.price %}
-                                <form method="POST" action="{% url 'articleapp:price' %}">
+                                <form method="POST" action="{% url 'articleapp:price' pk=object.pk %}">
                                     {%csrf_token%}
                                     <input type="hidden" name="article_id" value="{{ object.pk }}">
                                     <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">배송시작</button>
                                 </form>
+
+                                <a href="{% url 'articleapp:price' pk=object.pk %}" class="button">
+                                프라이스 이동
+                                </a>
+
                         {% endif %}
                     {% endif %}
                 {% endif %}
