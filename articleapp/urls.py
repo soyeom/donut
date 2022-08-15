@@ -14,5 +14,6 @@ urlpatterns = [
     path('deletecamp/', deleteCamp, name='deletecamp'),
     path('receipt/<int:pk>', ArticlereceiptView.as_view(), name='receipt'),
 
-    path('price/', PriceCreateView.as_view(), name='price'),
+    path('price/<int:pk>', PriceCreateView.as_view(), name='price'),
+
     ]
