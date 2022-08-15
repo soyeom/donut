@@ -141,7 +141,7 @@ class PriceCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(PriceCreateView, self).get_context_data(**kwargs)
-        context['A'] = self.kwargs.get('pk')
+        context['pk'] = self.kwargs.get('pk')
         return context
 
     def post(self, request, pk,  *args, **kwargs):
