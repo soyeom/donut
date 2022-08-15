@@ -22,14 +22,14 @@
                 <div id="row">
                     <div  class="update">
                         <div class="mb-4 title">
-                            <h4>게시글 수정</h4>
+                            <h4>영수증제출</h4>
                             <div class="line pink"></div>
                         </div>
-                        <form action="{% url 'articleapp:update' pk=target_article.pk %}" method="post" enctype="multipart/form-data">
+                        <form action="{% url 'articleapp:receipt' pk=target_article.pk %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                            {% bootstrap_form form %}
+                            {{ form }}
                             <div id="btn">
-                                <button class="custom btn-1">수정하기</button>
+                                <button class="custom btn-1">제출하기</button>
                             </div>
                         </form>
                   </div>
