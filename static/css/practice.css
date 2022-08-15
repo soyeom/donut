@@ -417,50 +417,16 @@ button {
 }
 
 .btn-1 {
-  background: #000000;
+  background: #00aaff;
   color: #ffffff;
-  line-height: 42px;
+  line-height: 40px;
   padding: 0;
   border: none;
+  border-radius: 50px;
 }
 
-.btn-1>a:hover {
-  color: #000000;
-}
 .btn-1:hover {
-  background: transparent;
-  box-shadow:
-   -7px -7px 20px 0px #fff9,
-   -4px -4px 5px 0px #fff9,
-   7px 7px 20px 0px #0002,
-   4px 4px 5px 0px #0001;
-}
-
-.btn-1:hover>a {
-  color: #000000;
-}
-
-.btn-1:before,
-.btn-1:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background: #000000;
-  transition:400ms ease all;
-}
-.btn-1:after{
-  right:inherit;
-  top:inherit;
-  left: 0;
-  bottom:0;
-}
-.btn-1:hover:before,
-.btn-1:hover:after{
-  width:100%;
-  transition:800ms ease all;
+  background: #039be5;
 }
 
 .content {
