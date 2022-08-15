@@ -88,7 +88,6 @@
                 </a>
 
 
-
                 {% if object.writer == user %}
                     {% if all_C %}
                     <a class="a_tag" href="{% url 'articleapp:receipt' pk=object.pk %}" class="button">
@@ -98,9 +97,9 @@
 
                     {% if not all_A and not all_C %}
                         {% if object.total_amount >= object.price %}
-                            <a href="{% url 'articleapp:price' %}">
-                                <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">배송시작</button>
-                            </a>
+                        <a href="{% url 'articleapp:price' pk=object.pk %}" class="button">
+                            <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">배송시작</button>
+                        </a>
                         {% endif %}
                     {% endif %}
                 {% endif %}

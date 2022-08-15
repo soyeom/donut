@@ -138,18 +138,24 @@ class PriceCreateView(CreateView):
     context_object_name = 'price_category'
     template_name = 'articleapp/price.html'
 
-    def post(self, request, *args, **kwargs):
+    def get_context_data(self, **kwargs):
+        context = super(PriceCreateView, self).get_context_data(**kwargs)
+        context['pk'] = self.kwargs.get('pk')
+        return context
+
+    def post(self, request, pk,  *args, **kwargs):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
 
         if form.is_valid():
             pricecategory = form.save(commit=False)
-            pricecategory.article_id = request.POST.get('article_pk')
+            pricecategory.article_id = pk
             pricecategory.save()
-            return self.form_valid(form, **kwargs)
+            return redirect('articleapp:list')
 
     def get_success_url(self):
-        return reverse('articleapp:list')
+        return reverse('articleapp:price')
+
 
 
 @method_decorator(login_required, 'get')
@@ -183,4 +189,6 @@ class ArticleDeleteView(DeleteView):
     model = Article
     success_url = reverse_lazy('articleapp:list')
     template_name = 'articleapp/delete.html'
+
+
 
