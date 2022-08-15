@@ -21,11 +21,13 @@ class ArticleCreateView(CreateView):
     template_name = 'articleapp/create.html'
 
     def form_valid(self, form):
-        form.instance.writer = self.request.user
+        article = form.save(commit=False)
+        article.writer = self.request.user
+        article.save()
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('articleapp:list')
+        return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
 
 def Camp(request):
@@ -115,20 +117,19 @@ class PriceCreateView(CreateView):
     form_class = PriceCreationForm
     context_object_name = 'price_category'
     template_name = 'articleapp/price.html'
-    success_url = reverse_lazy('articleapp:list')
 
     def post(self, request, *args, **kwargs):
-        article = Article.objects.get(writer_id__exact=self.request.user.id)
-        campaign = Campaign.objects.get(article_id__exact=article.id)
-        campaign.update(state='c')
-        PriceCategory.update(article_id=article.id)
-
         form_class = self.get_form_class()
         form = self.get_form(form_class)
 
         if form.is_valid():
+            pricecategory = form.save(commit=False)
+            pricecategory.article = request.POST.get('article_id')
+            pricecategory.save()
             return self.form_valid(form, **kwargs)
-        return redirect('articleapp:list')
+
+    def get_success_url(self):
+        return reverse('articleapp:detail', kwargs={'pk': self.object.id})
 
 
 @method_decorator(login_required, 'get')
