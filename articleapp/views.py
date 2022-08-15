@@ -71,6 +71,7 @@ class ArticleDetailView(DetailView, FormMixin):
 
     def get_context_data(self, **kwargs):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
+
         if Campaign.objects.filter(participants_id__exact=self.request.user.id, article_id=self.object.id):
             context['A'] = Campaign.objects.get(participants_id__exact=self.request.user.id,
                                                article_id=self.object.id)
@@ -98,7 +99,6 @@ class ArticleDetailView(DetailView, FormMixin):
         if form.is_valid():
             return self.form_valid(form, **kwargs)
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
-
 
 
 class ArticleListView(ListView):
@@ -144,12 +144,12 @@ class PriceCreateView(CreateView):
 
         if form.is_valid():
             pricecategory = form.save(commit=False)
-            pricecategory.article = request.POST.get('article_pk')
+            pricecategory.article_id = request.POST.get('article_pk')
             pricecategory.save()
             return self.form_valid(form, **kwargs)
 
     def get_success_url(self):
-        return reverse('articleapp:detail', kwargs={'pk': self.object.id})
+        return reverse('articleapp:list')
 
 
 @method_decorator(login_required, 'get')

@@ -66,7 +66,6 @@ class AccountDetailView2(DetailView):
         context['Campaign'] = articleapp.models.Campaign.objects.all()
 
 
-
         return context
 
 
