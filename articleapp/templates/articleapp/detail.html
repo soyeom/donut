@@ -98,11 +98,13 @@
 
                     {% if not all_A and not all_C %}
                         {% if object.total_amount >= object.price %}
-                                <form method="POST" action="{% url 'articleapp:price' %}">
+                            <a href="{% url 'articleapp:price' %}">
+                                <form method="GET" action="{% url 'articleapp:price' %}">
                                     {%csrf_token%}
                                     <input type="hidden" name="article_id" value="{{ object.pk }}">
                                     <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">배송시작</button>
                                 </form>
+                            </a>
                         {% endif %}
                     {% endif %}
                 {% endif %}
