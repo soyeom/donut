@@ -15,7 +15,7 @@ import articleapp
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm, CampCreationForm
 
-from articleapp.models import Article, Campaign
+from articleapp.models import Article, Campaign, PriceCategory
 from django.core.paginator import Paginator
 
 has_ownership = [account_ownership_required, login_required]
@@ -45,6 +45,13 @@ class AccountDetailView(DetailView):
                                                                  state__exact='c')
         context['d'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
                                                                  state__exact='d')
+        if context['c']:
+            context['Campaign'] = Campaign.objects.get(participants_id__exact=self.request.user.id,
+                                                                 state__exact='c')
+            if context['Campaign']:
+                context['amount'] = Article.objects.get(id__exact=context['Campaign'].article_id)
+                context['category'] = PriceCategory.objects.get(article_id__exact=context['Campaign'].article_id)
+
         return context
 
 
@@ -69,7 +76,6 @@ class AccountDetailView3(DetailView):
         context['A'] = articleapp.models.Campaign.objects.filter(participants_id__exact=self.request.user.id)
         context['B'] = articleapp.models.Article.objects.all()
         return context
-
 
 def signup(request):
     if request.method == 'POST':

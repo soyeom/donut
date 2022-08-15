@@ -36,7 +36,6 @@
                                 <li class="prog3"><span>&#x1F680; <br>배송 시작</span></li>
                                 <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
                             </ul>
-
                             {% endif %}
                             {% if c %}
                             <ul>
@@ -45,6 +44,17 @@
                                 <li class="prog2"><span>&#x1F680; <br>배송 시작</span></li>
                                 <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
                             </ul>
+                            {% if Campaign %}
+                            <div>
+                            <p>food: {% widthratio category.food amount.price 100 %}%</p>
+                            <p>clothing: {% widthratio category.clothing amount.price 100 %}%</p>
+                            <p>shelter: {% widthratio category.shelter amount.price 100 %}%</p>
+                            </div>
+                            {% for campaign in target_user.campaign.all %}
+                            <p>입금액: {{ campaign.amount }}</p>
+                            {% endfor %}
+                            {% endif %}
+
                             {% endif %}
                             {% if d %}
                             <ul>
@@ -57,11 +67,7 @@
                         </div>
                         {% endif %}
 
-                        {% if target_user.campaign %}
-                        <div>
-                            누적 모금액: {{ target_user.campaign.amount }}
-                        </div>
-                        {% endif %}
+
 
                         <div class="section1">
                             <a href="{% url 'accountapp:mypost' pk=user.pk %}">
