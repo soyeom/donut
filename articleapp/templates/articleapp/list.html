@@ -92,13 +92,7 @@
                         </form>
                     </div>
 
-                    <div class="end">
-                        <button>
-                            <a href="{% url 'articleapp:create' %}">
-                            새로운 캠페인
-                            </a>
-                        </button>
-                    </div>
+
 
                     {% if object_list %}
                     <div class="content">
@@ -133,33 +127,48 @@
                         </div>
                         {% endif %}
                     </div>
+
+                    <div id="btn">
+                        <button class="custom btn-1">
+                            <a href="{% url 'articleapp:create' %}">
+                            새로운 캠페인
+                            </a>
+                        </button>
+                    </div>
+
+                    <div id="page_nav">
+                        <ul class="pagination justify-content mb-4">
+                            {% if page_obj.has_previous %}
+                            <li class="page-item prev">
+                                <a class="page-link" href="?page={{page_obj.previous_page_number}}">< Prev</a>
+                            </li>
+                            {% endif %}
+
+                            {% for p in page_obj.paginator.page_range %}
+                            <li class="page-num">
+                                <a href="?page={{p}}" class="mx-1">{{p}}</a>
+                            </li>
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                            <li class="page-item next">
+                                <a class="page-link" href="?page={{page_obj.next_page_number}}">Next ></a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>
-        </div>
-        <div id="page_nav">
-            <ul class="pagination justify-content mb-4">
-                {% if page_obj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{page_obj.previous_page_number}}">< Prev</a>
-                </li>
-                {% endif %}
-                Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
-                {% if page_obj.has_next %}
-                <li class="page-item" id="next">
-                    <a class="page-link" href="?page={{page_obj.next_page_number}}">Next > &nbsp</a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
-        <div id="footer">
-            <address>
-                <em><a href="../../../introapp/templates/introapp/home.html" class="logo"><span class="blind"></span></a></em>
-                <em class="copy">고려대학교 세종캠퍼스</em>
-                <em class="u_cri">©</em>
-                <a href="#" class="u_cra">Donut</a>
-            </address>
-        </div>
+    </div>
+    <div id="footer">
+        <address>
+            <em><a href="../../../introapp/templates/introapp/home.html" class="logo"><span class="blind"></span></a></em>
+            <em class="copy">고려대학교 세종캠퍼스</em>
+            <em class="u_cri">©</em>
+            <a href="#" class="u_cra">Donut</a>
+        </address>
     </div>
 </div>
 <div>

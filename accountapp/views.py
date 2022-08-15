@@ -55,7 +55,6 @@ class AccountDetailView(DetailView):
         return context
 
 
-
 class AccountDetailView2(DetailView):
     model = User
     context_object_name = 'target_user'

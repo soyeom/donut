@@ -1,35 +1,72 @@
-{% extends 'base.html' %}
-
-{% block content %}
-
-                    <a href="{% url 'accountapp:detail' pk=user.pk %}">
-                    마이페이지
-                    </a>
-                    제목
-
-
-                    {% if A %}
-                    <div class="content">
-                        {% for each in A %}
-                            {% for art in B %}
-                                {% if each.title_id_id == art.id %}
-                                    <li>
-                                        <div class="text">
-                                            <a href="{% url 'articleapp:detail' pk=art.id %}">{{ art.title }}</a>
-                                        </div>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
-                        {% endfor %}
-                        <!--글이 없는 경우도 추가했어요-->
-                    {% else %}
-                        <div class="text-center">
-                            <h1>참여안함</h1>
-                        </div>
-                    {% endif %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../../static/css/campaign.css">
+</head>
+<body>
+{% load bootstrap4 %}
+<div id="wrapper">
+    <div class="box1">
+        <form id="my_page" method="post">
+            <div id="container">
+                <div id="content">
+                    <div id="header">
+                        <h1 id="top_logo">
+                            <br>
+                            <img src="../../../static/img/donut.png" alt="">
+                            <a href="{% url 'introapp:home' %}">Donut</a>
+                        </h1>
                     </div>
-
-
-{% endblock %}
-
-
+                    <div class="inner">
+                        <div class="back">
+                            <a href="{% url 'accountapp:detail' pk=user.pk %}">
+                                <img src="../../../static/img/back.png" alt="마이페이지로 돌아가기">
+                            </a>
+                        </div>
+                        <div id="inner_cont">
+                            <div id="campaign">
+                                {% if A %}
+                                <div class="content">
+                                    {% for each in A %}
+                                        {% for art in B %}
+                                            {% if each.title_id_id == art.id %}
+                                                <li>
+                                                    <div class="text">
+                                                        <a href="{% url 'articleapp:detail' pk=art.id %}">{{ art.title }}</a>
+                                                    </div>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                    <!--글이 없는 경우도 추가했어요-->
+                                {% else %}
+                                    <div class="text-center">
+                                        <h1>참여한 캠페인이 없습니다.</h1>
+                                        투명한 기부에 참여하세요 !
+                                    </div>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="footer">
+    <address>
+        <em>
+            <a href="../../../introapp/templates/introapp/home.html" class="logo">
+                <span class="blind"></span>
+            </a>
+        </em>
+        <em class="copy">고려대학교 세종캠퍼스</em>
+        <em class="u_cri">©</em>
+        <a href="#" class="u_cra">Donut</a>
+    </address>
+</div>
+</body>
+</html>
