@@ -18,7 +18,7 @@ class Campaign(models.Model):
     state = models.CharField(max_length=1, default='a')
 
 class PriceCategory(models.Model):
-    article = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='pricecategory', null=True)
+    article = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='pricecategory', primary_key=True)
     food = models.IntegerField(default=0, null=True, blank=True)
     clothing = models.IntegerField(default=0, null=True, blank=True)
     shelter = models.IntegerField(default=0, null=True, blank=True)
