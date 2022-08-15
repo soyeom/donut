@@ -40,16 +40,20 @@
                                 현재 기부가 배송중입니다.
                             {% endif %}
                         {% else %}
-                            <form id="form2" action="{% url 'articleapp:campaign' %}" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="article_id" value={{object.pk}} >
-                                <input type="hidden" name="state" value="a" >
-                                금액 : <input type="number" name="amount" min="1">
-                                <button id="btn1">
-                                    <span class="wave"></span>
-                                    참여하기
-                                </button>
-                            </form>
+                            {% if abc %}
+                                회원님은 다른기부에 참여중입니다.
+                            {% else %}
+                                <form id="form2" action="{% url 'articleapp:campaign' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="article_id" value={{object.pk}} >
+                                    <input type="hidden" name="state" value="a" >
+                                    금액 : <input type="number" name="amount" min="1">
+                                    <button id="btn1">
+                                        <span class="wave"></span>
+                                        참여하기
+                                    </button>
+                                </form>
+                            {% endif %}
                         {% endif %}
                     {% endif %}
                 {% endif %}
@@ -94,13 +98,11 @@
 
                     {% if not all_A and not all_C %}
                         {% if object.total_amount >= object.price %}
-                            <a href="{% url 'articleapp:price' %}">
-                                <form method="POST" action="{'articleapp:price'}">
+                                <form method="POST" action="{% url 'articleapp:price' %}">
                                     {%csrf_token%}
-                                    <input type="hidden" name="article_id" value="{{object.pk}}">
+                                    <input type="hidden" name="article_id" value="{{ object.pk }}">
                                     <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">배송시작</button>
                                 </form>
-                            </a>
                         {% endif %}
                     {% endif %}
                 {% endif %}
