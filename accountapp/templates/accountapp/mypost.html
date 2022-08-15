@@ -28,16 +28,30 @@
                         <div id="inner_cont">
                             <div id="Wrote">
                                 {% if Article %}
-                                    {% for art in Article %}
-                                        {% for camp in Campaign %}
-                                            {% if art.id == camp.article_id %}
-                                                    <div>
-                                                        내가 시작한 캠페인 :
-                                                        <a href="{% url 'articleapp:detail' pk=art.id %}">{{ art.title }}</a>
-                                                    </div>
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endfor %}
+
+                                {% for each in Article %}
+                                    {% if each.state == 'a' %}
+                                    <div>
+                                        내가 시작한 캠페인 :
+                                        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
+                                    </div>
+                                    {% elif each.state == 'b' %}
+                                    <div>
+                                        진행 중인 캠페인 :
+                                        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
+                                    </div>
+                                    {% elif each.state == 'c' %}
+                                    <div>
+                                        진행 중인 캠페인 :
+                                        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
+                                    </div>
+                                    {% else %}
+                                    <div>
+                                        지난 캠페인 :
+                                        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
 
                                 <!--글이 없는 경우도 추가했어요-->
                                 {% else %}
