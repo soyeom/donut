@@ -6,6 +6,20 @@
     <link rel="stylesheet" href="../../../static/css/profile.css">
 </head>
 <body>
+<script>
+    window.onload = function () {
+        function onClick() {
+            document.querySelector('.modal_wrap').style.display = 'block';
+            document.querySelector('.black_bg').style.display = 'block';
+        }
+        function offClick() {
+            document.querySelector('.modal_wrap').style.display = 'none';
+            document.querySelector('.black_bg').style.display = 'none';
+        }
+        document.getElementById('modal_btn').addEventListener('click', onClick);
+        document.querySelector('.modal_close').addEventListener('click', offClick);
+    };
+</script>
 <div id="wrapper">
     <div class="box1">
         <form id="my_page" method="post">
@@ -46,18 +60,32 @@
                                 <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
                             </ul>
                             {% if Campaign %}
-                            <div class="show">
-                                자세히 보기
+
+                            <button type="button" id="modal_btn">자세히 보기 + </button>
+                            <div class="black_bg"></div>
+                            <div class="modal_wrap">
+                                <div class="modal_close"><a href="#">close</a></div>
+                                <div>
+                                    <div class="popup-cont01 top">
+                                        <img src="../../../static/img/donut.png" alt="">
+                                        {% for campaign in target_user.campaign.all %}
+                                        <p>
+                                            총 입금액:
+                                            <br>
+                                            <span>{{ campaign.amount }} 원</span>
+                                        </p>
+                                        {% endfor %}
+                                        <hr>
+                                        <div id="popup-cont02">
+                                            <p> <span class="in_p">food: </span> {% widthratio category.food amount.price 100 %}%</p>
+                                            <p> <span class="in_p">clothing: </span>{% widthratio category.clothing amount.price 100 %}%</p>
+                                            <p> <span class="in_p">shelter: </span>{% widthratio category.shelter amount.price 100 %}%</p>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                </div>
                             </div>
-                            <div>
-                            <p>food: {% widthratio category.food amount.price 100 %}%</p>
-                            <p>clothing: {% widthratio category.clothing amount.price 100 %}%</p>
-                            <p>shelter: {% widthratio category.shelter amount.price 100 %}%</p>
-                            </div>
-                            {% for campaign in target_user.campaign.all %}
-                            <p>입금액: {{ campaign.amount }}</p>
-                            {% endfor %}
-                            {% endif %}
 
                             {% endif %}
 
@@ -73,7 +101,8 @@
                         {% endif %}
 
 
-
+                        <br>
+                        <br>
                         <div class="section1">
                             <a href="{% url 'accountapp:mypost' pk=user.pk %}">
                                 내가 쓴 글 &nbsp;↗
