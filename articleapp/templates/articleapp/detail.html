@@ -23,34 +23,38 @@
                 <h6>누적액: {{ object.total_amount }}원</h6>
 
                 {% if user.is_authenticated %}
-                    {% if d %}
+                    {% if all_D %}
                         해당 기부는 종료되었습니다.
-                    {% endif %}
-                    {% if A %}
-                        <form action="{% url 'articleapp:deletecamp' %}" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="article_id" value={{object.pk}} >
-                            <input type="hidden" name="amount" value={{object.amount}} >
-                            <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">참여취소</button>
-                        </form>
                     {% else %}
-                        <form id="form2" action="{% url 'articleapp:campaign' %}" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="article_id" value={{object.pk}} >
-                            <input type="hidden" name="price" value={{object.price}} >
-                            <input type="hidden" name="amount" value={{object.amount}} >
-                            <input type="hidden" name="title" value={{object.title}} >
-                            <input type="hidden" name="username" value={{user.username}} >
-                            <input type="hidden" name="state" value="a" >
-                            금액 : <input type="number" name="amount" min="1">
-                            <button id="btn1">
-                                <span class="wave"></span>
-                                참여하기
-                            </button>
-                        </form>
+                        {% if A %}
+                            {% if A.state == 'a' %}
+                            <form action="{% url 'articleapp:deletecamp' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="article_id" value={{object.pk}} >
+                                <input type="hidden" name="amount" value={{object.amount}} >
+                                <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">참여취소</button>
+                            </form>
+                            {% elif A.state == 'b' %}
+                                회원님의 입금이 확인 되어 배송을 기다리고 있습니다.
+                            {% elif A.state == 'c' %}
+                                현재 기부가 배송중입니다.
+                            {% endif %}
+                        {% else %}
+                            <form id="form2" action="{% url 'articleapp:campaign' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="article_id" value={{object.pk}} >
+                                <input type="hidden" name="state" value="a" >
+                                금액 : <input type="number" name="amount" min="1">
+                                <button id="btn1">
+                                    <span class="wave"></span>
+                                    참여하기
+                                </button>
+                            </form>
+                        {% endif %}
                     {% endif %}
                 {% endif %}
                 <hr>
+
                 {% if object.image %}
                     <img src="{{ object.image.url }}" alt="">
                     <p> {{ object.content }} </p>
@@ -71,19 +75,47 @@
                         수정
                     </a>
 
+
+
                 {% endif %}
 
                 <a class="a_tag" href="{% url 'articleapp:list' %}" class="button">
                     목록
                 </a>
 
+
+
                 {% if object.writer == user %}
-                    {% if object.total_amount >= object.price %}
-                        <a href="{% url 'articleapp:price' %}">
-                            <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">배송시작</button>
-                        </a>
+                    {% if all_C %}
+                    <a class="a_tag" href="{% url 'articleapp:receipt' pk=object.pk %}" class="button">
+                        영수증 제출
+                    </a>
+                    {% endif %}
+
+                    {% if not all_A and not all_C %}
+                        {% if object.total_amount >= object.price %}
+                            <a href="{% url 'articleapp:price' %}">
+                                <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">배송시작</button>
+                            </a>
+                        {% endif %}
                     {% endif %}
                 {% endif %}
+
+                <div>
+                    {% if object.receipt %}
+                        {% if object.writer == user or user.is_superuser %}
+                            <strong>영수증</strong> </br>
+                            <img src="{{ object.receipt.url }}" alt=""> </br></br></br>
+                            {% if user.is_superuser %}
+                                <form action="{% url 'articleapp:detail' pk=object.pk %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="article_id" value={{object.pk}} >
+                                    <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">영수증확인</button>
+                                </form>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                </div>
 
                 {% include 'commentapp/create.html' with article=target_article %}
                 {% for comment in target_article.comment.all %}
