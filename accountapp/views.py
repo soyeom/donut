@@ -62,7 +62,11 @@ class AccountDetailView2(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(AccountDetailView2, self).get_context_data(**kwargs)
-        context['A'] = articleapp.models.Article.objects.filter(writer__exact=self.request.user.id)
+        context['Article'] = articleapp.models.Article.objects.filter(writer__exact=self.request.user.id)
+        context['Campaign'] = articleapp.models.Campaign.objects.all()
+
+
+
         return context
 
 
@@ -73,8 +77,8 @@ class AccountDetailView3(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(AccountDetailView3, self).get_context_data(**kwargs)
-        context['A'] = articleapp.models.Campaign.objects.filter(participants_id__exact=self.request.user.id)
-        context['B'] = articleapp.models.Article.objects.all()
+        context['Campaign'] = articleapp.models.Campaign.objects.filter(participants_id__exact=self.request.user.id)
+        context['Article'] = articleapp.models.Article.objects.all()
         return context
 
 def signup(request):
