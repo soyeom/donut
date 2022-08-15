@@ -295,3 +295,88 @@ h4 {
   margin-bottom: 200px;
   font-size: 22px;
 }
+
+.modal_wrap {
+  display: none;
+  width: 300px;
+  height: 500px;
+  position: absolute;
+  top: 50%;
+  left: 56%;
+  margin: -250px 0 0-250px;
+  z-index: 4;
+  background: #ffffff;
+}
+
+.black_bg {
+  display: none;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 120%;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: -20%;
+  left: 0;
+  z-index: 3;
+}
+
+.modal_close {
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  top: -30px;
+  right: 0;
+}
+
+.modal_close > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url("https://img.icons8.com/metro/26/000000/close-window.png");
+  text-indent: -9999px;
+}
+
+#modal_btn {
+  border: #f5f6f7;
+  background: #f5f6f7;
+  cursor: pointer;
+  font-family: "Gowun Dodum", sans-serif;
+}
+
+.popup-cont01 {
+  width: 50%;
+  text-align: center;
+  margin-left: 25%;
+  margin-top: 30%;
+}
+
+.popup-cont01 > img {
+  width: 30%;
+  height: 30%;
+}
+
+#popup-cont02 {
+  text-align: left;
+  font-size: 15px;
+  overflow-y: scroll;
+}
+
+#popup-cont02::-webkit-scrollbar {
+  display: none;
+}
+
+.top {
+  font-size: 17px;
+}
+
+.top > p > span {
+  font-size: 25px;
+}
+
+#popup-cont02 > p > .in_p {
+  color: #8e8e8e;
+}
+
+#popup-cont02 > p {
+  color: #000000;
+}
