@@ -10,7 +10,6 @@ class Article(models.Model):
     total_amount = models.IntegerField(default=0, null=False)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
-
 class Campaign(models.Model):
     participants = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='campaign', null=True)
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='campaign', null=True)

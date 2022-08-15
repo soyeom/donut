@@ -45,8 +45,14 @@ class AccountDetailView(DetailView):
                                                                  state__exact='c')
         context['d'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
                                                                  state__exact='d')
-        return context
+        if context['c']:
+            context['Campaign'] = Campaign.objects.get(participants_id__exact=self.request.user.id,
+                                                                 state__exact='c')
+            if context['Campaign']:
+                context['amount'] = Article.objects.get(id__exact=context['Campaign'].article_id)
+                context['category'] = PriceCategory.objects.get(article_id__exact=context['Campaign'].article_id)
 
+        return context
 
 
 

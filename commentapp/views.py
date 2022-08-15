@@ -20,7 +20,7 @@ class CommentCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('articleapp:detail', kwargs={'pk': self.object.article.pk })
+        return reverse('articleapp:detail', kwargs={'pk': self.object.article.pk})
 
 
 @method_decorator(comment_ownership_required, 'get')
