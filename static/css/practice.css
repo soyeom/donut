@@ -86,7 +86,7 @@ body {
   margin: 0 auto;
   min-width: 1024px;
   max-width: 2000px;
-  min-height: 2300px;
+  min-height: fit-content;
   position: relative;
   padding-top: 130px;
   z-index: 1;
@@ -370,7 +370,7 @@ a {
 }
 
 #wrap> #contents > .inner_cont > .section > .inner > #search {
-  margin-top: 40px;
+  margin-top: 60px;
 }
 
 #wrap> #contents > .inner_cont > .section > .inner > #search input {
@@ -391,44 +391,101 @@ a {
   margin-left: 760px;
 }
 
-.end > button {
-  border: 1px solid #4ac1f7;
-  background-color: #00aaff;
-  color: #00aaff;
-  float: right;
-  border-radius: 50px;
-  width: 12%;
-  margin-top: 20px;
-  vertical-align: middle;
+button {
+  outline: none;
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 17px;
+  margin-left: 30px;
 }
 
-.end > button a {
-  font-size: 14px;
-  font-weight: bold;
+.custom {
+  width: 200px;
+  height: 40px;
+  padding: 10px 25px;
+  border: 2px solid #000000;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  margin-top: 15%;
+}
+
+.btn-1 > a {
   color: #ffffff;
-  line-height: 27px;
 }
 
-.end > button:hover {
-  background-color: #039be5;
+.btn-1 {
+  background: #000000;
+  color: #ffffff;
+  line-height: 42px;
+  padding: 0;
+  border: none;
+}
+
+.btn-1>a:hover {
+  color: #000000;
+}
+.btn-1:hover {
+  background: transparent;
+  box-shadow:
+   -7px -7px 20px 0px #fff9,
+   -4px -4px 5px 0px #fff9,
+   7px 7px 20px 0px #0002,
+   4px 4px 5px 0px #0001;
+}
+
+.btn-1:hover>a {
+  color: #000000;
+}
+
+.btn-1:before,
+.btn-1:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #000000;
+  transition:400ms ease all;
+}
+.btn-1:after{
+  right:inherit;
+  top:inherit;
+  left: 0;
+  bottom:0;
+}
+.btn-1:hover:before,
+.btn-1:hover:after{
+  width:100%;
+  transition:800ms ease all;
 }
 
 .content {
-  margin-top: 55px;
+  margin-top: 15px;
 }
 
 #page_nav {
-  margin-left: 47%;
-  line-height: 50px;
-  font-size: 15px;
+  clear: both;
+  margin-left: 45%;
+  margin-top: 5%;
 }
 
-#page_nav > ul >li {
+.prev {
+  margin-left: -9%;
+}
+
+.next {
+  margin-right: -10%;
+}
+
+#page_nav > ul > li {
+  float: left;
   list-style: none;
-}
-
-.page-item {
-  margin-left: 20px;
+  margin-right: 30px;
+  font-size: 15px;
 }
 
 #footer {

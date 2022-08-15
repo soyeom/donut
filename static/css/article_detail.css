@@ -224,4 +224,25 @@ div {
   font-size: 15px;
   font-family: "Gowun Dodum", sans-serif;
   margin-top: 50px;
+  cursor: pointer;
+}
+
+a.btn {
+  background: #5b80b2;
+  color: #ffffff;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 18px;
+  margin-top: 20%;
+  cursor: pointer;
+  padding: 3% 10%;
+  text-decoration: none;
+}
+
+a.btn:hover {
+  background: #6f94c6;
+  color: #ffffff;
+}
+
+#id_content {
+  margin-bottom: 20%;
 }

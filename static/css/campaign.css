@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap");
 .inner1, .inner2 {
   font-family: "Gowun Dodum", sans-serif;
@@ -43,24 +44,20 @@ div {
   box-shadow: 0 2px 20px rgba(51, 51, 51, 0.5);
 }
 
-ul, li {
-  list-style: none;
-}
-
 a {
   text-decoration: none;
+  color: #333333;
 }
 
 #top_logo {
-  position: absolute;
-  z-index: 3;
   cursor: pointer;
   font-family: "Ubuntu", sans-serif !important;
   color: #ffffff;
   font-size: 35px;
   font-weight: bold;
   -webkit-text-stroke: 1px #f48fb1;
-  margin-left: 30%;
+  margin-left: 42%;
+  position: relative;
 }
 
 #top_logo > img {
@@ -75,138 +72,57 @@ a {
   text-decoration: none;
 }
 
-#content > .inner1 {
-  float: right;
+#inner_cont {
+  text-align: left;
+  max-width: 500px;
+  margin: 3rem auto;
+  margin-top: 3%;
+  font-family: "Gowun Dodum", sans-serif;
 }
 
-#content > .inner2 {
-  float: left;
-  margin-left: 4%;
-  text-align: center;
-  height: 600px;
+#campaign {
+  margin: auto;
+  box-shadow: 1px 1px 3px 1px #dadce0 inset;
+  height: 300px;
+  overflow-x: scroll;
 }
 
-#profile_img img {
-  width: 20%;
-  height: 20%;
+#campaign::-webkit-scrollbar {
+  width: 8px;
+  height: 100%;
 }
 
-#progress {
-  margin-top: 5%;
+#campaign::-webkit-scrollbar-thumb {
+  height: 30%;
+  background: #cdcccc;
+  border-radius: 10px;
 }
 
-#progress > ul > li {
-  float: left;
+#campaign::-webkit-scrollbar-track {
+  background: #f5f6f7;
 }
 
-#progress > ul {
-  width: 90% !important;
-  min-width: 90%;
-  height: 60px;
-  padding: 0;
-  border-style: inset;
-  overflow: hidden;
+#campaign > div {
+  margin: 3% 3%;
 }
 
-#progress > ul > li {
-  line-height: 30px;
-  text-align: center;
-  width: 25%;
-  height: 61px;
+.back > a {
+  margin-left: 5%;
 }
 
-#progress .prog2 {
-  background: #00aaff;
-  border-style: outset;
-  width: 23.5% !important;
-  height: 55.5px;
-}
-
-#progress .prog1 {
-  background: #00aaff;
-  opacity: 0.5;
-}
-
-#progress .prog3 {
-  background: #ffffff;
-}
-
-.inner1 {
-  margin-top: 13%;
-  width: 45%;
-}
-
-.section1 {
-  margin-top: 5%;
-}
-
-.section1 > label > img {
+.back > a > img {
   width: 2%;
   height: 2%;
 }
 
-.section2 > label > img {
-  width: 2%;
-  height: 2%;
-}
-
-.sub {
-  display: none;
-}
-
-#donation {
-  margin-top: 10%;
-  display: none;
-}
-
-#set {
-  display: none;
-}
-
-#set:checked ~ .set_sub {
-  display: block;
-  position: absolute;
-  margin-left: 150px;
-}
-
-.set_sub {
-  display: none;
-}
-
-.set_sub > li > a {
-  text-decoration: none;
+h1 {
+  font-size: 20px;
   color: #333333;
-  line-height: 20px;
-  font-size: 15px;
-}
-
-.set_sub > li {
-  width: 110%;
-  height: 300%;
-  margin-top: -20%;
-}
-
-.section3 > label > img {
-  width: 4%;
-  height: 4%;
-  margin-left: -10%;
-  margin-bottom: 0;
-}
-
-#content > .inner2 > .section3 {
-  margin-top: 20%;
-  margin-left: -200px;
-}
-
-.section4 {
-  height: 100px;
-  margin-top: 40%;
-  position: relative;
+  font-family: "Gowun Dodum", sans-serif;
 }
 
 #footer {
   max-width: 768px;
-  margin: 0 auto;
   min-width: 460px;
 }
 
@@ -262,36 +178,4 @@ a {
 
 #footer a {
   text-decoration: none;
-}
-
-#make_profile {
-  width: 12rem;
-  height: 12rem;
-  border: 1px solid #333333;
-  border-radius: 100px;
-  margin-left: 150px;
-  margin-top: -70px;
-}
-
-#make_profile > img {
-  width: 40%;
-  height: 40%;
-  display: inline-block;
-  margin-top: 60px;
-}
-
-a {
-  text-decoration: none;
-  color: #333333;
-}
-
-h4 {
-  text-decoration: none;
-  color: #333333;
-  margin-left: 150px;
-}
-
-#introduce {
-  margin-bottom: 200px;
-  font-size: 22px;
 }
