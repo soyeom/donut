@@ -63,12 +63,6 @@ def deleteCamp(request):
         return render(request, '/')
 
 
-
-
-
-
-
-
 class ArticleDetailView(DetailView, FormMixin):
     model = Article
     form_class = CommentCreationForm
