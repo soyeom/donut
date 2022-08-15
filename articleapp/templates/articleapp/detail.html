@@ -80,6 +80,10 @@
                 {% if object.writer == user %}
                     {% if object.total_amount >= object.price %}
                         <a href="{% url 'articleapp:price' %}">
+                            <form method="POST" action="{'articleapp:price'}">
+                            {%csrf_token%}
+                            <input type="hidden" name="article_id" value="{{object.pk}}">
+                            </form>
                             <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">배송시작</button>
                         </a>
                     {% endif %}
