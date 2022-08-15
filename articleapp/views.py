@@ -63,12 +63,6 @@ def deleteCamp(request):
         return render(request, '/')
 
 
-
-
-
-
-
-
 class ArticleDetailView(DetailView, FormMixin):
     model = Article
     form_class = CommentCreationForm
@@ -148,7 +142,7 @@ class PriceCreateView(CreateView):
 
         if form.is_valid():
             pricecategory = form.save(commit=False)
-            pricecategory.article = request.POST.get('article_id')
+            pricecategory.article = request.POST.get('article_pk')
             pricecategory.save()
             return self.form_valid(form, **kwargs)
 
