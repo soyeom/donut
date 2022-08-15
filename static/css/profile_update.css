@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap");
 .inner1, .inner2 {
   font-family: "Gowun Dodum", sans-serif;
@@ -43,24 +44,19 @@ div {
   box-shadow: 0 2px 20px rgba(51, 51, 51, 0.5);
 }
 
-ul, li {
-  list-style: none;
-}
-
 a {
   text-decoration: none;
 }
 
 #top_logo {
-  position: absolute;
-  z-index: 3;
   cursor: pointer;
   font-family: "Ubuntu", sans-serif !important;
   color: #ffffff;
   font-size: 35px;
   font-weight: bold;
   -webkit-text-stroke: 1px #f48fb1;
-  margin-left: 30%;
+  margin-left: 42%;
+  position: relative;
 }
 
 #top_logo > img {
@@ -75,138 +71,98 @@ a {
   text-decoration: none;
 }
 
-#content > .inner1 {
-  float: right;
-}
-
-#content > .inner2 {
-  float: left;
-  margin-left: 4%;
+#inner_cont {
   text-align: center;
-  height: 600px;
+  max-width: 500px;
+  margin: 3rem auto;
+  margin-top: 3%;
 }
 
-#profile_img img {
-  width: 20%;
-  height: 20%;
+.form_wrap {
+  text-align: left;
+  max-width: 500px;
+  margin: 4rem auto;
+  line-height: 60px;
+  margin-left: 6rem;
+  font-family: "Ubuntu", sans-serif;
 }
 
-#progress {
-  margin-top: 5%;
-}
-
-#progress > ul > li {
-  float: left;
-}
-
-#progress > ul {
-  width: 90% !important;
-  min-width: 90%;
-  height: 60px;
-  padding: 0;
-  border-style: inset;
-  overflow: hidden;
-}
-
-#progress > ul > li {
-  line-height: 30px;
+.mb-4 {
   text-align: center;
-  width: 25%;
-  height: 61px;
+  margin-right: 15%;
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 22px;
+  margin-bottom: -20px;
+  margin-top: -3%;
 }
 
-#progress .prog2 {
-  background: #00aaff;
-  border-style: outset;
-  width: 23.5% !important;
-  height: 55.5px;
+#id_image {
+  margin-right: 21%;
 }
 
-#progress .prog1 {
-  background: #00aaff;
-  opacity: 0.5;
+#id_nickname {
+  margin-right: 25%;
 }
 
-#progress .prog3 {
-  background: #ffffff;
+#id_nickname, #id_message {
+  border-color: rgba(118, 118, 118, 0.3);
+  outline: rgba(118, 118, 118, 0.3);
+  background: #f5f6f7;
 }
 
-.inner1 {
-  margin-top: 13%;
-  width: 45%;
-}
-
-.section1 {
-  margin-top: 5%;
-}
-
-.section1 > label > img {
-  width: 2%;
-  height: 2%;
-}
-
-.section2 > label > img {
-  width: 2%;
-  height: 2%;
-}
-
-.sub {
+.w-btn-neon > input {
   display: none;
 }
 
-#donation {
-  margin-top: 10%;
-  display: none;
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 180px;
+    height: 180px;
+    opacity: 0;
+  }
 }
 
-#set {
-  display: none;
-}
-
-#set:checked ~ .set_sub {
-  display: block;
-  position: absolute;
-  margin-left: 150px;
-}
-
-.set_sub {
-  display: none;
-}
-
-.set_sub > li > a {
-  text-decoration: none;
-  color: #333333;
-  line-height: 20px;
-  font-size: 15px;
-}
-
-.set_sub > li {
-  width: 110%;
-  height: 300%;
-  margin-top: -20%;
-}
-
-.section3 > label > img {
-  width: 4%;
-  height: 4%;
-  margin-left: -10%;
-  margin-bottom: 0;
-}
-
-#content > .inner2 > .section3 {
-  margin-top: 20%;
-  margin-left: -200px;
-}
-
-.section4 {
-  height: 100px;
-  margin-top: 40%;
+.w-btn-neon {
   position: relative;
+  border: none;
+  min-width: 70%;
+  min-height: 40px;
+  background: #000000;
+  border-radius: 1000px;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: "Gowun Dodum", sans-serif;
+  transition: 0.3s;
+  margin-top: 13%;
+  margin-left: 5%;
+}
+
+.w-btn-neon:hover {
+  transform: scale(1.2);
+}
+
+.w-btn-neon:hover::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 6px solid #ffffff;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
 }
 
 #footer {
   max-width: 768px;
-  margin: 0 auto;
   min-width: 460px;
 }
 
@@ -262,36 +218,4 @@ a {
 
 #footer a {
   text-decoration: none;
-}
-
-#make_profile {
-  width: 12rem;
-  height: 12rem;
-  border: 1px solid #333333;
-  border-radius: 100px;
-  margin-left: 150px;
-  margin-top: -70px;
-}
-
-#make_profile > img {
-  width: 40%;
-  height: 40%;
-  display: inline-block;
-  margin-top: 60px;
-}
-
-a {
-  text-decoration: none;
-  color: #333333;
-}
-
-h4 {
-  text-decoration: none;
-  color: #333333;
-  margin-left: 150px;
-}
-
-#introduce {
-  margin-bottom: 200px;
-  font-size: 22px;
 }
