@@ -1,54 +1,84 @@
-{% extends 'base.html' %}
-
-{% block content %}
-
-                    <a href="{% url 'accountapp:detail' pk=user.pk %}">
-                    마이페이지
-                    </a>
-                    {% if A %}
-
-
-{% for each in A %}
-    {% if each.state == 'a' %}
-    <div>
-        시작
-        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
-    </div>
-    {% elif each.state == 'b' %}
-    <div>
-        진행중
-        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
-    </div>
-    {% elif each.state == 'c' %}
-    <div>
-        진행중
-        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
-    </div>
-    {% else %}
-    <div>
-        지난캠페인
-        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
-    </div>
-    {% endif %}
-{% endfor %}
-
-
-
-
-
-
-
-
-
-                        <!--글이 없는 경우도 추가했어요-->
-                        {% else %}
-                        <div class="text-center">
-                            <h1>No Articles YET!</h1>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../../static/css/mypost.css">
+</head>
+<body>
+{% load bootstrap4 %}
+<div id="wrapper">
+    <div class="box1">
+        <form id="my_page" method="post">
+            <div id="container">
+                <div id="content">
+                    <div id="header">
+                        <h1 id="top_logo">
+                            <br>
+                            <img src="../../../static/img/donut.png" alt="">
+                            <a href="{% url 'introapp:home' %}">Donut</a>
+                        </h1>
+                    </div>
+                    <div class="inner">
+                        <div class="back">
+                            <a href="{% url 'accountapp:detail' pk=user.pk %}">
+                                <img src="../../../static/img/back.png" alt="마이페이지로 돌아가기">
+                            </a>
                         </div>
-                        {% endif %}
+                        <div id="inner_cont">
+                            <div id="Wrote">
+                                {% if A %}
 
+                                {% for each in A %}
+                                    {% if each.state == 'a' %}
+                                    <div>
+                                        내가 시작한 캠페인 :
+                                        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
+                                    </div>
+                                    {% elif each.state == 'b' %}
+                                    <div>
+                                        진행 중인 캠페인 :
+                                        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
+                                    </div>
+                                    {% elif each.state == 'c' %}
+                                    <div>
+                                        진행 중인 캠페인 :
+                                        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
+                                    </div>
+                                    {% else %}
+                                    <div>
+                                        지난 캠페인 :
+                                        <a href="{% url 'articleapp:detail' pk=each.id %}">{{ each.title }}</a>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
 
-
-{% endblock %}
-
-
+                                <!--글이 없는 경우도 추가했어요-->
+                                {% else %}
+                                <div class="text-center">
+                                    <h1>No Articles YET!</h1>
+                                    글을 작성하여 캠페인을 시작해보세요 !
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="footer">
+    <address>
+        <em>
+            <a href="../../../introapp/templates/introapp/home.html" class="logo">
+                <span class="blind"></span>
+            </a>
+        </em>
+        <em class="copy">고려대학교 세종캠퍼스</em>
+        <em class="u_cri">©</em>
+        <a href="#" class="u_cra">Donut</a>
+    </address>
+</div>
+</body>
+</html>

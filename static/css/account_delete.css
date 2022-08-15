@@ -43,24 +43,19 @@ div {
   box-shadow: 0 2px 20px rgba(51, 51, 51, 0.5);
 }
 
-ul, li {
-  list-style: none;
-}
-
 a {
   text-decoration: none;
 }
 
 #top_logo {
-  position: absolute;
-  z-index: 3;
   cursor: pointer;
   font-family: "Ubuntu", sans-serif !important;
   color: #ffffff;
   font-size: 35px;
   font-weight: bold;
   -webkit-text-stroke: 1px #f48fb1;
-  margin-left: 30%;
+  margin-left: 42%;
+  position: relative;
 }
 
 #top_logo > img {
@@ -75,138 +70,114 @@ a {
   text-decoration: none;
 }
 
-#content > .inner1 {
-  float: right;
-}
-
-#content > .inner2 {
-  float: left;
-  margin-left: 4%;
+#inner_cont {
   text-align: center;
-  height: 600px;
+  max-width: 500px;
+  margin: 4rem auto;
+  margin-top: 15%;
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 25px;
 }
 
-#profile_img img {
-  width: 20%;
-  height: 20%;
-}
-
-#progress {
-  margin-top: 5%;
-}
-
-#progress > ul > li {
-  float: left;
-}
-
-#progress > ul {
-  width: 90% !important;
-  min-width: 90%;
-  height: 60px;
-  padding: 0;
-  border-style: inset;
-  overflow: hidden;
-}
-
-#progress > ul > li {
-  line-height: 30px;
-  text-align: center;
-  width: 25%;
-  height: 61px;
-}
-
-#progress .prog2 {
-  background: #00aaff;
-  border-style: outset;
-  width: 23.5% !important;
-  height: 55.5px;
-}
-
-#progress .prog1 {
-  background: #00aaff;
-  opacity: 0.5;
-}
-
-#progress .prog3 {
-  background: #ffffff;
-}
-
-.inner1 {
-  margin-top: 13%;
-  width: 45%;
-}
-
-.section1 {
-  margin-top: 5%;
-}
-
-.section1 > label > img {
-  width: 2%;
-  height: 2%;
-}
-
-.section2 > label > img {
-  width: 2%;
-  height: 2%;
-}
-
-.sub {
-  display: none;
-}
-
-#donation {
-  margin-top: 10%;
-  display: none;
-}
-
-#set {
-  display: none;
-}
-
-#set:checked ~ .set_sub {
+.line {
   display: block;
+  margin-bottom: 30px;
+  margin: 15px auto 17px;
+  width: 15px;
+  border-top: 1px solid #f48fb1;
+}
+
+.pink {
+  color: #f48fb1 !important;
+}
+
+.centered {
   position: absolute;
-  margin-left: 150px;
+  left: 58%;
+  top: 60%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
 
-.set_sub {
-  display: none;
+.qmark {
+  background: #e06969;
+  color: #ffffff;
+  font-size: 20px;
 }
 
-.set_sub > li > a {
-  text-decoration: none;
-  color: #333333;
-  line-height: 20px;
-  font-size: 15px;
+.centered > label {
+  cursor: pointer;
 }
 
-.set_sub > li {
-  width: 110%;
-  height: 300%;
-  margin-top: -20%;
+.bg {
+  position: absolute;
+  top: 0;
+  width: 0;
+  z-index: -1;
+  height: 100%;
+  background: #ffffff;
+  padding-bottom: 5px;
+  box-shadow: 10px 10px 0 0 #e06969;
+  transition: width 0.3s ease;
 }
 
-.section3 > label > img {
-  width: 4%;
-  height: 4%;
-  margin-left: -10%;
-  margin-bottom: 0;
+input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1;
 }
 
-#content > .inner2 > .section3 {
-  margin-top: 20%;
-  margin-left: -200px;
+input[type="checkbox"] + label {
+  padding-left: 30px;
+  text-shadow: 1px 1px 0 #e06969;
+  transition: color 0.3s ease;
 }
 
-.section4 {
-  height: 100px;
-  margin-top: 40%;
+input[type="checkbox"]:checked + label {
+  color: #E06969;
+}
+
+input[type="checkbox"]:checked ~ .bg {
+  width: 80%;
+  left: -20%;
+}
+
+input[type="checkbox"] + label .qmark {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+input[type="checkbox"]:checked + label .qmark {
+  opacity: 0;
+}
+
+input[type="checkbox"] + label .fstop {
+  opacity: 0;
   position: relative;
+  left: -100px;
+  transition: opacity 0.2s ease;
+}
+
+input[type="checkbox"]:checked + label .fstop {
+  opacity: 1;
+  color: #E06969;
+  left: -50%;
+}
+
+#sub_btn {
+  z-index: -1;
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 #footer {
   max-width: 768px;
-  margin: 0 auto;
   min-width: 460px;
 }
 
@@ -262,36 +233,4 @@ a {
 
 #footer a {
   text-decoration: none;
-}
-
-#make_profile {
-  width: 12rem;
-  height: 12rem;
-  border: 1px solid #333333;
-  border-radius: 100px;
-  margin-left: 150px;
-  margin-top: -70px;
-}
-
-#make_profile > img {
-  width: 40%;
-  height: 40%;
-  display: inline-block;
-  margin-top: 60px;
-}
-
-a {
-  text-decoration: none;
-  color: #333333;
-}
-
-h4 {
-  text-decoration: none;
-  color: #333333;
-  margin-left: 150px;
-}
-
-#introduce {
-  margin-bottom: 200px;
-  font-size: 22px;
 }
