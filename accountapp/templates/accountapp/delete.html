@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="../../../static/css/account_delete.css">
 </head>
 <body>
-
 <div id="wrapper">
     <div class="box1">
         <form id="my_page" method="post">
@@ -28,12 +27,7 @@
                             <form action="{% url 'accountapp:delete' pk=target_user.pk %}" method="post" id="myform">
                                 {% csrf_token %}
                                 <div class="centered">
-                                    <input type="checkbox" id="chck" onchange="this.form.submit()">
-                                    <label for="chck">
-                                        <span class="qmark">&nbsp;&nbsp;&nbsp; 탈퇴하기 &nbsp;&nbsp;&nbsp;</span>
-                                        <span class="fstop">이용해주셔서 감사합니다</span>
-                                    </label>
-                                    <div class="bg"></div>
+                                    <input type="submit" value="탈퇴하기">
                                 </div>
                             </form>
                         </div>

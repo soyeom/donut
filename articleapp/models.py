@@ -9,6 +9,7 @@ class Article(models.Model):
     price = models.IntegerField(default=0, null=False)
     total_amount = models.IntegerField(default=0, null=False)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
+    receipt = models.ImageField(upload_to='articlereceipt/', null=True, blank=True)
 
 class Campaign(models.Model):
     participants = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='campaign', null=True)
