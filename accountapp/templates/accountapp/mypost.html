@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="../../../static/css/mypost.css">
 </head>
 <body>
-{% load bootstrap4 %}
 <div id="wrapper">
     <div class="box1">
         <form id="my_page" method="post">
@@ -27,6 +26,7 @@
                         </div>
                         <div id="inner_cont">
                             <div id="Wrote">
+
                                 {% if Article %}
 
                                 {% for each in Article %}
@@ -52,6 +52,7 @@
                                     </div>
                                     {% endif %}
                                 {% endfor %}
+
 
                                 <!--글이 없는 경우도 추가했어요-->
                                 {% else %}

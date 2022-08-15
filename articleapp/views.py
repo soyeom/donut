@@ -63,12 +63,6 @@ def deleteCamp(request):
         return render(request, '/')
 
 
-
-
-
-
-
-
 class ArticleDetailView(DetailView, FormMixin):
     model = Article
     form_class = CommentCreationForm
@@ -77,6 +71,7 @@ class ArticleDetailView(DetailView, FormMixin):
 
     def get_context_data(self, **kwargs):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
+
         if Campaign.objects.filter(participants_id__exact=self.request.user.id, article_id=self.object.id):
             context['A'] = Campaign.objects.get(participants_id__exact=self.request.user.id,
                                                article_id=self.object.id)
@@ -144,18 +139,23 @@ class PriceCreateView(CreateView):
     context_object_name = 'price_category'
     template_name = 'articleapp/price.html'
 
-    def post(self, request, *args, **kwargs):
+    def get_context_data(self, **kwargs):
+        context = super(PriceCreateView, self).get_context_data(**kwargs)
+        context['A'] = self.kwargs.get('pk')
+        return context
+
+    def post(self, request, pk,  *args, **kwargs):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
 
         if form.is_valid():
             pricecategory = form.save(commit=False)
-            pricecategory.article = request.POST.get('article_id')
+            pricecategory.article_id = pk
             pricecategory.save()
-            return self.form_valid(form, **kwargs)
+            return redirect('articleapp:list')
 
     def get_success_url(self):
-        return reverse('articleapp:detail', kwargs={'pk': self.object.id})
+        return reverse('articleapp:price')
 
 
 @method_decorator(login_required, 'get')
@@ -189,4 +189,6 @@ class ArticleDeleteView(DeleteView):
     model = Article
     success_url = reverse_lazy('articleapp:list')
     template_name = 'articleapp/delete.html'
+
+
 
