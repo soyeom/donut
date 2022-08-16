@@ -101,7 +101,6 @@ class ArticleDetailView(DetailView, FormMixin):
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
 
 
-
 class ArticleListView(ListView):
     model = Article
     template_name = 'articleapp/list.html'
@@ -156,6 +155,7 @@ class PriceCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('articleapp:price')
+
 
 
 @method_decorator(login_required, 'get')
