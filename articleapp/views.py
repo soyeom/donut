@@ -102,7 +102,6 @@ class ArticleDetailView(DetailView, FormMixin):
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
 
 
-
 class ArticleListView(ListView):
     model = Article
     template_name = 'articleapp/list.html'
@@ -151,24 +150,12 @@ class PriceCreateView(CreateView):
 
         if form.is_valid():
             pricecategory = form.save(commit=False)
-<<<<<<< HEAD
-            pricecategory.article_id = int(request.GET.get('article_id'))
-            pricecategory.food = form.cleaned_data['food']
-            pricecategory.shelter = form.cleaned_data['shelter']
-            pricecategory.clothing = form.cleaned_data['clothing']
-            pricecategory.save()
-            return redirect('articleapp:price')
-
-    def get_success_url(self):
-        return reverse('articleapp:list')
-=======
             pricecategory.article_id = pk
             pricecategory.save()
             return redirect('articleapp:list')
 
     def get_success_url(self):
         return reverse('articleapp:price')
->>>>>>> 9e36d1b3facf0b202ccad27b1fecaff311fc75b6
 
 
 @method_decorator(login_required, 'get')

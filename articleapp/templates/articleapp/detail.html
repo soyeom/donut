@@ -97,25 +97,9 @@
 
                     {% if not all_A and not all_C %}
                         {% if object.total_amount >= object.price %}
-<<<<<<< HEAD
-                            <a href="{% url 'articleapp:price' %}">
-                                <form method="GET" action="{% url 'articleapp:price' %}">
-=======
-                                <form method="POST" action="{% url 'articleapp:price' pk=object.pk %}">
->>>>>>> 9e36d1b3facf0b202ccad27b1fecaff311fc75b6
-                                    {%csrf_token%}
-                                    <input type="hidden" name="article_id" value="{{ object.pk }}">
-                                    <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">배송시작</button>
-                                </form>
-<<<<<<< HEAD
-                            </a>
-=======
-
-                                <a href="{% url 'articleapp:price' pk=object.pk %}" class="button">
-                                프라이스 이동
-                                </a>
-
->>>>>>> 9e36d1b3facf0b202ccad27b1fecaff311fc75b6
+                        <a href="{% url 'articleapp:price' pk=object.pk %}" class="button">
+                            <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">배송시작</button>
+                        </a>
                         {% endif %}
                     {% endif %}
                 {% endif %}
@@ -126,7 +110,7 @@
                             <strong>영수증</strong> </br>
                             <img src="{{ object.receipt.url }}" alt=""> </br></br></br>
                             {% if user.is_superuser %}
-                                <form action="{% url 'articleapp:detail' pk=object.pk %}" method="post">
+                                <form action="{% url 'articleapp:detail' pk=object.pk %}" method="get">
                                     {% csrf_token %}
                                     <input type="hidden" name="article_id" value={{object.pk}} >
                                     <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">영수증확인</button>
