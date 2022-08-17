@@ -83,12 +83,7 @@ a {
   float: left;
   margin-left: 4%;
   text-align: center;
-  height: 600px;
-}
-
-#profile_img img {
-  width: 20%;
-  height: 20%;
+  height: 50%;
 }
 
 #progress {
@@ -105,7 +100,6 @@ a {
   height: 60px;
   padding: 0;
   border-style: inset;
-  overflow: hidden;
 }
 
 #progress > ul > li {
@@ -129,6 +123,7 @@ a {
 
 #progress .prog3 {
   background: #ffffff;
+  width: 24.8%;
 }
 
 .inner1 {
@@ -189,7 +184,7 @@ a {
 .section3 > label > img {
   width: 4%;
   height: 4%;
-  margin-left: -10%;
+  margin-left: -15%;
   margin-bottom: 0;
 }
 
@@ -199,9 +194,9 @@ a {
 }
 
 .section4 {
-  height: 100px;
-  margin-top: 40%;
-  position: relative;
+  margin-top: 35%;
+  margin-left: -10%;
+  width: 100%;
 }
 
 #footer {
@@ -379,4 +374,18 @@ h4 {
 
 #popup-cont02 > p {
   color: #000000;
+}
+
+#profile_img {
+  width: 100%;
+  margin-left: 20%;
+  margin-top: -25%;
+}
+
+#profile_img > img {
+  padding: 0;
+  width: 60%;
+  height: 60%;
+  border-radius: 20rem;
+  margin-bottom: 10%;
 }
