@@ -5,6 +5,7 @@
     <title>Donut</title>
     <link rel="stylesheet" href="../../../static/css/home.css">
     <link rel="stylesheet" href="../../../static/SASS/home.scss">
+
 </head>
 <body>
 <div class="wrapper">
@@ -51,6 +52,19 @@
         <div class="wave -three"></div>
         <div class="title1">가장 투명한 기부</div>
         <div class="title2">Donut</div>
+    </div>
+    <div>
+        {% if popular_article %}
+            {% for each in popular_article %}
+                <h2>{{each.title}}</h2>
+                <p>{{each.writer}}</p>
+                <div class="button">
+                    <a href="{% url 'articleapp:detail' each.id %}">
+                            자세히보기
+                    </a>
+                </div>
+            {% endfor %}
+         {% endif %}
     </div>
 </div>
 </body>

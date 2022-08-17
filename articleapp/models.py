@@ -10,6 +10,12 @@ class Article(models.Model):
     total_amount = models.IntegerField(default=0, null=False)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     receipt = models.ImageField(upload_to='articlereceipt/', null=True, blank=True)
+    hit = models.IntegerField(default=0, null=False)
+
+    def update_hit(self):
+        self.hit += 1
+        self.save()
+
 
 class Campaign(models.Model):
     participants = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='campaign', null=True)
@@ -22,3 +28,4 @@ class PriceCategory(models.Model):
     food = models.IntegerField(default=0, null=True, blank=True)
     clothing = models.IntegerField(default=0, null=True, blank=True)
     shelter = models.IntegerField(default=0, null=True, blank=True)
+

@@ -1,7 +1,9 @@
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
+from django.views import View
 from django.views.generic import CreateView, DetailView, ListView
 from django.views.generic.edit import FormMixin, UpdateView, DeleteView
 from django.contrib import messages
@@ -88,7 +90,7 @@ class ArticleDetailView(DetailView, FormMixin):
                                                    state='d')
         return context
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, pk, *args, **kwargs):
         article = Article.objects.get(id__exact=request.POST['article_id'])
         campaign = Campaign.objects.filter(article_id__exact=article.id)
         campaign.update(state='d')
@@ -189,6 +191,8 @@ class ArticleDeleteView(DeleteView):
     model = Article
     success_url = reverse_lazy('articleapp:list')
     template_name = 'articleapp/delete.html'
+
+
 
 
 
