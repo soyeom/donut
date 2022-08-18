@@ -5,7 +5,30 @@
     <title>Donut</title>
     <link rel="stylesheet" href="../../../static/css/home.css">
     <link rel="stylesheet" href="../../../static/SASS/home.scss">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <script language="JavaScript">
+        $(document).ready(function() {
+            var $banner = $(".banner").find("ul");
+
+            var $bannerWidth = $banner.children().outerWidth();
+            var $bannerHeight = $banner.children().outerHeight();
+            var $bannerLength = $banner.children().length;
+            var rollingId;
+
+            rollingId = setInterval(function() { rollingStart(); });
+
+            function rollingStart() {
+                $banner.css("width", $bannerWidth * $bannerLength + "px");
+                $banner.css("height", $bannerHeight + "px");
+                $banner.animate({left: - $bannerWidth + "px"}, 2000, function() {
+                    $(this).append("<li>" + $(this).find("li:first").html() + "</li>");
+                    $(this).find("li:first").remove();
+                    $(this).css("left", 1);
+                });
+            }
+        });
+    </script>
 </head>
 <body>
 <div class="wrapper">
@@ -14,6 +37,7 @@
             <img src="../../../static/img/donut.png" alt="">
             <a href="{% url 'introapp:home' %}">Donut</a>
         </h1>
+
         <ul id="top_nav">
             {% if not user.is_authenticated %}
             <li class="list1">
@@ -28,7 +52,6 @@
             <li class="list4">
                 <a href="{% url 'introapp:societyinfo' %}">단체소개</a>
             </li>
-
             {% else %}
             <li class="list1">
                 <a href="{% url 'accountapp:detail' pk=user.pk %}">마이페이지</a>
@@ -65,6 +88,7 @@
     </div>
 </div>
 </body>
+<!--
 <div id="footer">
     <address>
         <em class="copy">고려대학교 세종캠퍼스 </em>
@@ -72,4 +96,6 @@
         <a href="{% url 'introapp:home' %}" class="u_cra">Donut</a>
     </address>
 </div>
+-->
+
 </html>

@@ -241,4 +241,10 @@ button {
   color: #f48fb1 !important;
 }
 
+input,textarea {
+  border-color: rgba(118, 118, 118, 0.3);
+  outline: rgba(118, 118, 118, 0.3);
+  background: #f5f6f7;
+}
+
 /*# sourceMappingURL=writing.css.map */
