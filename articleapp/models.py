@@ -16,6 +16,8 @@ class Article(models.Model):
         self.hit += 1
         self.save()
 
+        return " "
+
 
 class Campaign(models.Model):
     participants = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='campaign', null=True)

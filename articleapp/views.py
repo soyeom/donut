@@ -91,6 +91,7 @@ class ArticleDetailView(DetailView, FormMixin):
                                                    state='d')
         return context
 
+
     def post(self, request, pk, *args, **kwargs):
         article = Article.objects.get(id__exact=request.POST['article_id'])
         campaign = Campaign.objects.filter(article_id__exact=article.id)
