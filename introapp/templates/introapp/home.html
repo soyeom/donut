@@ -24,9 +24,18 @@
                 $banner.animate({left: - $bannerWidth + "px"}, 2000, function() {
                     $(this).append("<li>" + $(this).find("li:first").html() + "</li>");
                     $(this).find("li:first").remove();
-                    $(this).css("left", 1);
+                    $(this).css("left", 0);
                 });
             }
+        });
+    </script>
+
+    <script>
+        $(".animated-progress span").each(function () {
+            $(this).animate({
+                width: $(this).attr("data-progress") + "%",
+            }, 1000);
+            $(this).text($(this).attr("data-progress")+"%");
         });
     </script>
 </head>
@@ -75,22 +84,44 @@
         <div class="wave -three"></div>
         <div class="title1">가장 투명한 기부</div>
         <div class="title2">Donut</div>
+
+        <div class="pro_container">
+            진행 중인 캠페인
+            <div class="pro_title">
+                {{ campaign_title }}
+            </div>
+            <div class="progress2 progress-moved">
+                <div class="progress-bar2">
+                    <!-- 진행 정도는 home.css 386, 393번째 줄 width를 통해 조절할 수 있습니다 -->
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
+
+    <div class="banner_top">
         {% if popular_article %}
-            {% for each in popular_article %}
+        <div class="banner">
+            <div class="banner_title">
+                인기 게시글
+            </div>
+            <ul>
+                {% for each in popular_article %}
+                <li>
+                    <hr>
                     <a href="{% url 'articleapp:detail' each.id %}">
+                        <img src="../../../static/img/fire.png">
                         <h2>{{each.title}}</h2>
                     </a>
-            {% endfor %}
-        {% endif %}
-        {% if campaign_title %}
-            {{ campaign_title }}
+                    <hr>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
         {% endif %}
     </div>
 </div>
 </body>
-<!--
+
 <div id="footer">
     <address>
         <em class="copy">고려대학교 세종캠퍼스 </em>
@@ -98,6 +129,4 @@
         <a href="{% url 'introapp:home' %}" class="u_cra">Donut</a>
     </address>
 </div>
--->
-
 </html>
