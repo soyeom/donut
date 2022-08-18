@@ -93,7 +93,7 @@ a {
 }
 
 body {
-  background: #f5f6f7;
+  background: #ffffff;
 }
 
 #top_logo {
@@ -124,9 +124,10 @@ body {
   height: 480px;
   border-radius: 5px;
   box-shadow: 0 2px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
-  margin-top: 23%;
+  margin-top: 1%;
 }
 
 .wave {
@@ -221,7 +222,7 @@ body {
   border-top-right-radius: 10px;
   height: 37px;
   line-height: 10%;
-  margin-top: 8%;
+  margin-top: 7.5%;
   margin-left: 10px;
   box-shadow: 0 0.1px 30px rgba(0, 0, 0, 0.2);
 }
@@ -246,6 +247,7 @@ body {
 ul li {
   list-style: none;
 }
+
 /*
 
 #footer {
@@ -300,40 +302,6 @@ ul li {
   text-decoration: none;
   color: #333333;
 }
-
  */
 
-.banner_top.white {
-  background-color: #f5f6f7;
-}
-
-.banner_top {
-  text-align: center;
-  z-index: 2;
-  width: 100%;
-  display: block;
-}
-
-.banner_title {
-  font-family: "Gowun Dodum", sans-serif;
-  font-size: 20px;
-  text-align: left;
-  margin-left: 20%;
-  margin-bottom: -3%;
-  margin-top: 10%;
-}
-
-.banner_top > .banner > ul {
-  margin-left: 17%;
-}
-
-.banner_top > .banner > ul > li {
-  float: left;
-  padding: 50px;
-}
-
-.banner_top > .banner > ul > li > .button > a {
-  text-decoration: none;
-  color: #333333;
-}
 /*# sourceMappingURL=home.css.map */

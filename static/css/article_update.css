@@ -226,3 +226,9 @@ button {
   width: 100%;
   transition: 800ms ease all;
 }
+
+input,textarea {
+  border-color: rgba(118, 118, 118, 0.3);
+  outline: rgba(118, 118, 118, 0.3);
+  background: #f5f6f7;
+}

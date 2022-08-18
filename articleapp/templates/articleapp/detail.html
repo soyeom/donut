@@ -91,7 +91,7 @@
 
                 {% if object.writer == user %}
                     {% if all_C %}
-                    <a class="a_tag" href="{% url 'articleapp:receipt' pk=object.pk %}" class="button">
+                    <a class="a_tag" href="{% url 'articleapp:receipt' pk=object.pk %}" class="button" style="width: 80px;">
                         영수증 제출
                     </a>
                     {% endif %}
