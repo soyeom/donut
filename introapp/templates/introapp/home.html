@@ -84,7 +84,9 @@
                     </a>
             {% endfor %}
         {% endif %}
-        {{ campaign_title }}
+        {% if campaign_title %}
+            {{ campaign_title }}
+        {% endif %}
     </div>
 </div>
 </body>
