@@ -6,4 +6,5 @@ app_name = "payapp"
 
 urlpatterns = [
     path('', views.index, name="index"),
+    path('approval/', views.approval, name="approval")
 ]
