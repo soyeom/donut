@@ -34,7 +34,11 @@
                     <div class="inner1">
                         {% if target_user == user %}
                         <div id="progress">
-                            진행중인 기부
+                            진행중인 기부:
+                            {% for campaign in target_user.campaign.all %}
+                            {{ campaign.article.title }}
+                            {% endfor %}
+
                             {% if a %}
                             <ul>
                                 <li class="prog2"><span>&#x1F48C;<br>기부 접수</span></li>
