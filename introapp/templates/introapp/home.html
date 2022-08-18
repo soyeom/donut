@@ -24,7 +24,7 @@
                 $banner.animate({left: - $bannerWidth + "px"}, 2000, function() {
                     $(this).append("<li>" + $(this).find("li:first").html() + "</li>");
                     $(this).find("li:first").remove();
-                    $(this).css("left", 1);
+                    $(this).css("left", 0);
                 });
             }
         });
@@ -76,20 +76,32 @@
         <div class="title1">가장 투명한 기부</div>
         <div class="title2">Donut</div>
     </div>
-    <div>
+
+    <div class="banner_top">
         {% if popular_article %}
-            {% for each in popular_article %}
+        <div class="banner">
+            <div class="banner_title">
+                인기 게시글
+            </div>
+            <ul>
+                {% for each in popular_article %}
+                <li>
+                    <hr>
                     <a href="{% url 'articleapp:detail' each.id %}">
+                        <img src="../../../static/img/fire.png">
                         <h2>{{each.title}}</h2>
                     </a>
-            {% endfor %}
+                    <hr>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
         {% endif %}
         {{ campaign }}
     </div>
-    {% endif %}
 </div>
 </body>
-<!--
+
 <div id="footer">
     <address>
         <em class="copy">고려대학교 세종캠퍼스 </em>
@@ -97,6 +109,4 @@
         <a href="{% url 'introapp:home' %}" class="u_cra">Donut</a>
     </address>
 </div>
--->
-
 </html>
