@@ -5,7 +5,30 @@
     <title>Donut</title>
     <link rel="stylesheet" href="../../../static/css/home.css">
     <link rel="stylesheet" href="../../../static/SASS/home.scss">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <script language="JavaScript">
+        $(document).ready(function() {
+            var $banner = $(".banner").find("ul");
+
+            var $bannerWidth = $banner.children().outerWidth();
+            var $bannerHeight = $banner.children().outerHeight();
+            var $bannerLength = $banner.children().length;
+            var rollingId;
+
+            rollingId = setInterval(function() { rollingStart(); });
+
+            function rollingStart() {
+                $banner.css("width", $bannerWidth * $bannerLength + "px");
+                $banner.css("height", $bannerHeight + "px");
+                $banner.animate({left: - $bannerWidth + "px"}, 2000, function() {
+                    $(this).append("<li>" + $(this).find("li:first").html() + "</li>");
+                    $(this).find("li:first").remove();
+                    $(this).css("left", 1);
+                });
+            }
+        });
+    </script>
 </head>
 <body>
 <div class="wrapper">
@@ -53,21 +76,33 @@
         <div class="title1">가장 투명한 기부</div>
         <div class="title2">Donut</div>
     </div>
-    <div>
-        {% if popular_article %}
-            {% for each in popular_article %}
-                <h2>{{each.title}}</h2>
-                <p>{{each.writer}}</p>
-                <div class="button">
-                    <a href="{% url 'articleapp:detail' each.id %}">
-                            자세히보기
-                    </a>
-                </div>
-            {% endfor %}
-         {% endif %}
+
+    {% if popular_article %}
+    <div class="banner_top white">
+        <div class="banner">
+            <div class="banner_title">
+                인기 게시글
+            </div>
+            <ul>
+                {% for each in popular_article %}
+                <li>
+                    <hr>
+                    <h2>{{each.title}}</h2>
+                    <div class="button">
+                        <a href="{% url 'articleapp:detail' each.id %}">
+                            GO!
+                        </a>
+                    </div>
+                    <hr>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
+    {% endif %}
 </div>
 </body>
+<!--
 <div id="footer">
     <address>
         <em class="copy">고려대학교 세종캠퍼스 </em>
@@ -75,4 +110,6 @@
         <a href="{% url 'introapp:home' %}" class="u_cra">Donut</a>
     </address>
 </div>
+-->
+
 </html>

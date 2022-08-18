@@ -248,6 +248,8 @@ ul li {
   list-style: none;
 }
 
+/*
+
 #footer {
   text-align: center;
   color: #333333;
@@ -286,19 +288,20 @@ ul li {
 }
 
 #footer address span {
-  font: 9px/14px Verdana;
-  padding-left: 2px;
+    font: 9px/14px Verdana;
+    padding-left: 2px;
 }
 
 #footer address .u_cri {
-  margin: 0;
-  padding-left: 1px;
+    margin: 0;
+    padding-left: 1px;
 }
 
 #footer address a {
-  font: bold 9px Verdana;
+    font: bold 9px Verdana;
   text-decoration: none;
   color: #333333;
 }
+ */
 
 /*# sourceMappingURL=home.css.map */
