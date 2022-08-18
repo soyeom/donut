@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
@@ -149,15 +150,21 @@ class PriceCreateView(CreateView):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
 
-        if form.is_valid():
+        article = Article.objects.get(id=pk)
+        price = article.price
+
+        if form.is_valid:
             pricecategory = form.save(commit=False)
             pricecategory.article_id = pk
-            pricecategory.save()
-            return redirect('articleapp:list')
+
+            if price == pricecategory.food + pricecategory.shelter + pricecategory.clothing:
+                pricecategory.save()
+                return redirect('articleapp:list')
+            else:
+                return redirect('articleapp:list')
 
     def get_success_url(self):
         return reverse('articleapp:price')
-
 
 
 @method_decorator(login_required, 'get')

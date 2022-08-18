@@ -76,6 +76,7 @@
         <div class="title1">가장 투명한 기부</div>
         <div class="title2">Donut</div>
     </div>
+<<<<<<< HEAD
 
     {% if popular_article %}
     <div class="banner_top white">
@@ -98,6 +99,17 @@
                 {% endfor %}
             </ul>
         </div>
+=======
+    <div>
+        {% if popular_article %}
+            {% for each in popular_article %}
+                    <a href="{% url 'articleapp:detail' each.id %}">
+                        <h2>{{each.title}}</h2>
+                    </a>
+            {% endfor %}
+        {% endif %}
+        {{ campaign }}
+>>>>>>> 24e1a4cc6f24da15323860974d83e60444a53e02
     </div>
     {% endif %}
 </div>
