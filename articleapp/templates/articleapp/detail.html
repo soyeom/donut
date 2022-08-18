@@ -16,10 +16,12 @@
     </div>
     <div id="container">
         <div id="content">
+            {{ object.update_hit }}
             <div class="detail">
                 <h1>{{ object.title }}</h1>
                 <h5>희망 모금액: {{ object.price }}원</h5>
                 <h6>작성자: {{ object.writer }}</h6>
+                <h6>조회수: {{ object.hit }}</h6>
                 <h6>누적액: {{ object.total_amount }}원</h6>
 
                 {% if user.is_authenticated %}
@@ -86,7 +88,6 @@
                 <a class="a_tag" href="{% url 'articleapp:list' %}" class="button">
                     목록
                 </a>
-
 
                 {% if object.writer == user %}
                     {% if all_C %}

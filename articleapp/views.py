@@ -1,8 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
+from django.views import View
 from django.views.generic import CreateView, DetailView, ListView
 from django.views.generic.edit import FormMixin, UpdateView, DeleteView
 from django.contrib import messages
@@ -89,7 +91,7 @@ class ArticleDetailView(DetailView, FormMixin):
                                                    state='d')
         return context
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, pk, *args, **kwargs):
         article = Article.objects.get(id__exact=request.POST['article_id'])
         campaign = Campaign.objects.filter(article_id__exact=article.id)
         campaign.update(state='d')
@@ -148,11 +150,18 @@ class PriceCreateView(CreateView):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
 
-        if form.is_valid():
+        article = Article.objects.get(id=pk)
+        price = article.price
+
+        if form.is_valid:
             pricecategory = form.save(commit=False)
             pricecategory.article_id = pk
-            pricecategory.save()
-            return redirect('articleapp:list')
+
+            if price == pricecategory.food + pricecategory.shelter + pricecategory.clothing:
+                pricecategory.save()
+                return redirect('articleapp:list')
+            else:
+                return redirect('articleapp:list')
 
     def get_success_url(self):
         return reverse('articleapp:price')
@@ -189,6 +198,8 @@ class ArticleDeleteView(DeleteView):
     model = Article
     success_url = reverse_lazy('articleapp:list')
     template_name = 'articleapp/delete.html'
+
+
 
 
 

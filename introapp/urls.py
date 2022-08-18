@@ -5,5 +5,5 @@ app_name = 'introapp'
 
 urlpatterns = [
     path('home/', IntroListView.as_view(), name='home'),
-    path('societyinfo/',societyinfo,name='societyinfo'),
+    path('societyinfo/', societyinfo, name='societyinfo'),
 ]
