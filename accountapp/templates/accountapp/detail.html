@@ -34,7 +34,11 @@
                     <div class="inner1">
                         {% if target_user == user %}
                         <div id="progress">
-                            진행중인 기부
+                            진행중인 기부:
+                            {% for campaign in target_user.campaign.all %}
+                            {{ campaign.article.title }}
+                            {% endfor %}
+
                             {% if a %}
                             <ul>
                                 <li class="prog2"><span>&#x1F48C;<br>기부 접수</span></li>
@@ -146,8 +150,7 @@
                         <div class="section4">
                             {% if target_user.profile %}
                             <div id="profile_img">
-                                <img src="{{ target_user.profile.image.url }}" alt=""
-                                     style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem; margin-left: 150px; margin-top: -70px;">
+                                <img src="{{ target_user.profile.image.url }}">
                             </div>
                             <br>
                             <div id="name" style="margin-left: 150px; margin-top: -1rem;">

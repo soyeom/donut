@@ -16,8 +16,8 @@
     </div>
     <div id="container">
         <div id="content">
-            {{ object.update_hit }}
             <div class="detail">
+                {{ object.update_hit }}
                 <h1>{{ object.title }}</h1>
                 <h5>희망 모금액: {{ object.price }}원</h5>
                 <h6>작성자: {{ object.writer }}</h6>
@@ -91,7 +91,7 @@
 
                 {% if object.writer == user %}
                     {% if all_C %}
-                    <a class="a_tag" href="{% url 'articleapp:receipt' pk=object.pk %}" class="button">
+                    <a class="a_tag" href="{% url 'articleapp:receipt' pk=object.pk %}" class="button" style="width: 80px;">
                         영수증 제출
                     </a>
                     {% endif %}
