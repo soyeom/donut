@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'introapp',
     'commentapp',
     'profileapp',
-    'bankapp',
+    'payapp',
 ]
 
 SASS_PROCESSOR_ENABLED = True
