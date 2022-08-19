@@ -132,7 +132,11 @@
                         <ul class="card">
                             <li>
                                 <div class="img">
-                                    <img src="https://i.pinimg.com/236x/1b/d6/ab/1bd6ab1856d5a899d5c65900b51cf73f.jpg" alt="">
+                                    {% if each.image %}
+                                        <img src="{{ each.image.url }}" alt="">
+                                    {% else %}
+                                        <img src="https://i.pinimg.com/236x/1b/d6/ab/1bd6ab1856d5a899d5c65900b51cf73f.jpg" alt="">
+                                    {% endif %}
                                 </div>
                                 <div class="text">
                                     <h2>{{each.title}}</h2>
