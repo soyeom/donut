@@ -15,8 +15,9 @@ class IntroListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['popular_article'] = Article.objects.order_by('-hit')[:5]
-        campaign = Campaign.objects.filter(participants_id=self.request.user.id, state__in='abc').values('article_id')
+        campaign = Campaign.objects.filter(participants_id=self.request.user.id, state__in='abc').values('article_id', 'state')
         if campaign:
+            context['state'] = campaign[0]['state']
             article = Article.objects.get(id=campaign[0]['article_id'])
             context['campaign_title'] = article.title
         return context

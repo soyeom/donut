@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="../../../static/SASS/home.scss">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script language="JavaScript">
+    <script>
+        /* 인기 게시글 롤링 */
         $(document).ready(function() {
             var $banner = $(".banner").find("ul");
 
@@ -28,18 +29,52 @@
                 });
             }
         });
-    </script>
 
-    <script>
-        $(".animated-progress span").each(function () {
-            $(this).animate({
-                width: $(this).attr("data-progress") + "%",
-            }, 1000);
-            $(this).text($(this).attr("data-progress")+"%");
-        });
-    </script>
+        let state = "{{ state }}";
 
-    <script>
+        /* 움직이는 진행바 js*/
+        if (state == "a")
+        {
+            $(function () {
+                     $(".progress-bar2").css({
+                        "width": "25%"    /* 80 -> 숫자 조절 */
+                     });
+                     let animation = document.styleSheets[0].cssRules[0];
+                     animation.appendRule('100% {width: 25%; background-color: #ef476f;}');
+            });
+        }
+        else if (state == "b")
+        {
+               $(function () {
+                     $(".progress-bar2").css({
+                        "width": "50%"    /* 80 -> 숫자 조절 */
+                     });
+                     let animation = document.styleSheets[0].cssRules[0];
+                     animation.appendRule('100% {width: 50%; background-color: #ef476f;}');
+            });
+        }
+        else if (state == "c")
+        {
+               $(function () {
+                     $(".progress-bar2").css({
+                        "width": "75%"    /* 80 -> 숫자 조절 */
+                     });
+                     let animation = document.styleSheets[0].cssRules[0];
+                     animation.appendRule('100% {width: 75%; background-color: #ef476f;}');
+            });
+        }
+        else
+        {
+               $(function () {
+                     $(".progress-bar2").css({
+                        "width": "0%"    /* 80 -> 숫자 조절 */
+                     });
+                     let animation = document.styleSheets[0].cssRules[0];
+                     animation.appendRule('100% {width: 0%; background-color: #ef476f;}');
+            });
+        }
+
+        /* 진행 상황 스크롤 따라 움직이기 */
         $(document).ready(function () {
             var currentPosition = parseInt($(".pro_container").css("top"));
             $(window).scroll(function () {
@@ -96,6 +131,7 @@
         <div class="title2">Donut</div>
     </div>
 
+    <!-- 안움직이는 진행바 -->
     <div class="pro_container">
         {% if campaign_title %}
         진행 중인 캠페인
@@ -108,9 +144,7 @@
             {% endif %}
         </div>
         <div class="progress2 progress-moved">
-            <div class="progress-bar2">
-                <!-- 진행 정도는 home.css 386, 393번째 줄 width를 통해 조절할 수 있습니다 -->
-            </div>
+            <div class="progress-bar2"></div>
         </div>
     </div>
 
