@@ -235,11 +235,6 @@ ul, li {
   clear: both;
 }
 
-#wrap > #contents > #nav > #logo > ul {
-  border-left: 4px solid #f48fb1;
-  height: 1300px;
-}
-
 #wrap > #contents > #nav > #logo > ul > li > .img_text {
   float: right;
   margin-right: 200px;
@@ -248,15 +243,11 @@ ul, li {
 }
 
 #wrap > #contents > #nav > #logo > ul > li > #text1 {
-  margin-top: 10px;
+  margin-top: 130px;
 }
 
 #wrap > #contents > #nav > #logo {
   margin-left: 20%;
-}
-
-#wrap > #contents > #nav > #logo > ul > li > .img1 {
-  margin-top: 20px;
 }
 
 /*# sourceMappingURL=societyinfo.css.map */
