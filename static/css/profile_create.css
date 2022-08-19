@@ -33,7 +33,7 @@ div {
   display: block;
 }
 
-#wrapper > .box1 form > #container > #content {
+#wrapper > .box1 > #my_page > #container > #content {
   background: #f5f6f7;
   z-index: 1;
   width: 70%;

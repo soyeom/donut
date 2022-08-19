@@ -26,9 +26,9 @@ def index(request):
             "quantity": "1",                # 구매 물품 수량
             "total_amount": str(campaign.amount),        # 구매 물품 가격
             "tax_free_amount": "0",         # 구매 물품 비과세
-            "approval_url": "http://127.0.0.1:8000/pay/approval/",
-            "cancel_url": "https://naver.com",
-            "fail_url": "https://naver.com",
+            "approval_url": "https://port-0-donut-web-13082024l70kjclh.gksl1.cloudtype.app/pay/approval/",
+            "cancel_url": "https://port-0-donut-web-13082024l70kjclh.gksl1.cloudtype.app/pay/",
+            "fail_url": "https://port-0-donut-web-13082024l70kjclh.gksl1.cloudtype.app/pay/",
         }
 
         res = requests.post(URL, headers=headers, params=params)
@@ -89,9 +89,9 @@ def chargeindex(request):
             "quantity": "1",                # 구매 물품 수량
             "total_amount": request.POST['price'],        # 구매 물품 가격
             "tax_free_amount": "0",         # 구매 물품 비과세
-            "approval_url": "http://127.0.0.1:8000/pay/chargeapproval/",
-            "cancel_url": "https://naver.com",
-            "fail_url": "https://naver.com",
+            "approval_url": "https://port-0-donut-web-13082024l70kjclh.gksl1.cloudtype.app/pay/chargeapproval/",
+            "cancel_url": "https://port-0-donut-web-13082024l70kjclh.gksl1.cloudtype.app/pay/",
+            "fail_url": "https://port-0-donut-web-13082024l70kjclh.gksl1.cloudtype.app/pay/",
         }
 
         res = requests.post(URL, headers=headers, params=params)

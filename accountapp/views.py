@@ -50,6 +50,12 @@ class AccountDetailView(DetailView):
                                                state__in='abc'),
         context['bcd'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
                                                  state__in='bcd')
+        context['sum']=0
+        if context['bcd']:
+            for amount in context['bcd']:
+                amount.amount
+                context['sum'] = context['sum'] + amount.amount
+            context['sum'] = int(context['sum']/100)
 
         if context['c']:
             context['Campaign'] = Campaign.objects.get(participants_id__exact=self.request.user.id,
