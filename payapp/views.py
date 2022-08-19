@@ -40,6 +40,7 @@ def index(request):
     return render(request, 'payapp/index.html')
 
 
+
 def approval(request):
     campaign = Campaign.objects.get(participants_id=request.user.id, state='a')
     campaign.state = 'b'
