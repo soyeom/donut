@@ -151,12 +151,14 @@ class PriceCreateView(CreateView):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
 
-        article = Article.objects.get(id=pk)
+        article = Article.objects.get(id__exact=pk)
+        campaign = Campaign.objects.filter(article_id__exact=article.id)
         price = article.price
 
         if form.is_valid:
             pricecategory = form.save(commit=False)
             pricecategory.article_id = pk
+            campaign.update(state='c')
 
             if price == pricecategory.food + pricecategory.shelter + pricecategory.clothing:
                 pricecategory.save()

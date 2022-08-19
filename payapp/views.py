@@ -5,13 +5,13 @@ from django.shortcuts import render, redirect
 import requests
 
 # Create your views here.
-from articleapp.models import Article, Campaign
+from articleapp.models import Campaign, Article
 
 
 def index(request):
-
     campaign = Campaign.objects.get(participants_id=request.user.id, state='a')
     article = Article.objects.get(id=campaign.article_id)
+
     if request.method == "POST":
         URL = 'https://kapi.kakao.com/v1/payment/ready'
         headers = {
