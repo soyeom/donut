@@ -1,0 +1,36 @@
+.row > form > button > img {
+    display: inline-block;
+    width: 20%;
+    height: 100%;
+    float: left;
+    margin-left: 7%;
+}
+
+#kakao_btn > .btn_text {
+    float: right;
+    line-height: 50px;
+    margin-right: 7%;
+    font-size: 15px;
+}
+
+#kakao_btn {
+    background: #fee500;
+    width: 250px;
+    height: 50px;
+    border: 1px solid #fee500;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+#kakao_btn:hover {
+    background: #ffea00;
+}
+
+.row {
+    margin-left: 40%;
+    margin-top: 20%;
+}
+
+.row > h1 {
+    margin-left: 4%;
+}

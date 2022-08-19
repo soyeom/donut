@@ -106,6 +106,10 @@ a {
   margin: 3% 3%;
 }
 
+#Wrote > p, #Wrote > a {
+  margin-left: 3%;
+}
+
 .back > a {
   margin-left: 5%;
 }
