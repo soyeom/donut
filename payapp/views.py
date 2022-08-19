@@ -5,13 +5,13 @@ from django.shortcuts import render, redirect
 import requests
 
 # Create your views here.
-from articleapp.models import Article, Campaign
+from articleapp.models import Campaign, Article
 
 
 def index(request):
-
     campaign = Campaign.objects.get(participants_id=request.user.id, state='a')
     article = Article.objects.get(id=campaign.article_id)
+
     if request.method == "POST":
         URL = 'https://kapi.kakao.com/v1/payment/ready'
         headers = {
@@ -24,8 +24,8 @@ def index(request):
             "partner_user_id": "german",    # 유저 아이디
             "item_name": article.title,        # 구매 물품 이름
             "quantity": "1",                # 구매 물품 수량
-            "total_amount": str(campaign.amount),        # 구매 물품 가격
-            "tax_free_amount": "0",         # 구매 물품 비과세
+            "total_amount": "100",        # 구매 물품 가격
+            "tax_free_amount": str(campaign.amount),         # 구매 물품 비과세
             "approval_url": "http://127.0.0.1:8000/pay/approval/",
             "cancel_url": "https://naver.com",
             "fail_url": "https://naver.com",
