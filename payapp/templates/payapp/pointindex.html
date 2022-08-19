@@ -1,0 +1,72 @@
+
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<script>
+function checkOnlyOne(element) {
+
+  const checkboxes
+      = document.getElementsByName("price");
+
+  checkboxes.forEach((cb) => {
+    cb.checked = false;
+  })
+
+  element.checked = true;
+}
+</script>
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../../static/css/profile.css">
+    <link rel="stylesheet" href="../../../static/css/pay_index.css">
+</head>
+<body>
+<div id="wrapper">
+    <div class="box1">
+        <form id="my_page" method="post">
+            <div id="container">
+                <div id="content">
+                    <div id="header">
+                        <h1 id="top_logo">
+                            <img src="../../../static/img/donut.png" alt="">
+                            <a href="{% url 'introapp:home' %}">Donut</a>
+                        </h1>
+                    </div>
+                    <div class="popup-cont01 top">
+                        <div id="popup-cont02">
+                                                                <div class="row mt-5">
+                                        <h1 class="col-12 text-center my-5">KAKAO PAY</h1>
+                                        <form method="post" class="col-12 text-center">
+                                            {% csrf_token %}
+                                            <div>
+                                                <label><input type="checkbox" name="price" value="5000" onclick='checkOnlyOne(this)'> 5000원</label></br>
+                                                <label><input type="checkbox" name="price" value="10000" onclick='checkOnlyOne(this)'> 10000원</label></br>
+                                                <label><input type="checkbox" name="price" value="50000" onclick='checkOnlyOne(this)'> 50000원</label></br>
+                                                <label><input type="checkbox" name="price" value="100000" onclick='checkOnlyOne(this)'> 100000원</label></br>
+                                            </div>
+                                            <button class="btn btn-warning" id="kakao_btn">
+                                                <img src="../../../static/img/kakao-logo.png" style="width: 2vw; min-width: 2px;">
+                                                <div class="btn_text">
+                                                    카카오페이로 결제하기
+                                                </div>
+                                            </button>
+                                        </form>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+</body>
+</html>

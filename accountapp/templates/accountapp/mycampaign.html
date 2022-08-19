@@ -29,14 +29,11 @@
                                 {% if Campaign %}
                                 <div class="content">
                                     {% for camp in Campaign %}
-                                        {% for art in Article %}
 
-                                            {% if camp.article_id == art.id %}
                                                     <div class="text">
-                                                        <a href="{% url 'articleapp:detail' pk=art.id %}">{{ art.title }}</a>
+                                                        <a href="{% url 'articleapp:detail' pk=camp.article.id %}">{{ camp.article.title }}</a>
                                                     </div>
-                                            {% endif %}
-                                        {% endfor %}
+
                                     {% endfor %}
                                     <!--글이 없는 경우도 추가했어요-->
                                 {% else %}

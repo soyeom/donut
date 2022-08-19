@@ -30,14 +30,49 @@
             }
         });
 
+        let state = "{{ state }}";
+
         /* 움직이는 진행바 js*/
-        $(function () {
-            $(".progress-bar2").css({
-                "width": "40%"
+        if (state == "a")
+        {
+            $(function () {
+                     $(".progress-bar2").css({
+                        "width": "25%"
+                     });
+                     let animation = document.styleSheets[0].cssRules[0];
+                     animation.appendRule('100% {width: 25%; background-color: #ef476f;}');
             });
-        });
-        let animation = document.styleSheets[0].cssRules[0];
-        animation.appendRule('100% {width: 40%; background-color: #ef476f;}');
+        }
+        else if (state == "b")
+        {
+               $(function () {
+                     $(".progress-bar2").css({
+                        "width": "50%"
+                     });
+                     let animation = document.styleSheets[0].cssRules[0];
+                     animation.appendRule('100% {width: 50%; background-color: #ef476f;}');
+            });
+        }
+        else if (state == "c")
+        {
+               $(function () {
+                     $(".progress-bar2").css({
+                        "width": "75%"
+                     });
+                     let animation = document.styleSheets[0].cssRules[0];
+                     animation.appendRule('100% {width: 75%; background-color: #ef476f;}');
+            });
+        }
+        else
+        {
+               $(function () {
+                     $(".progress-bar2").css({
+                        "width": "0%"
+                     });
+                     let animation = document.styleSheets[0].cssRules[0];
+                     animation.appendRule('100% {width: 0%; background-color: #ef476f;}');
+            });
+        }
 
         /* 진행 상황 스크롤 따라 움직이기 */
         $(document).ready(function () {
