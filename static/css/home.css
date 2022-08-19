@@ -5,7 +5,6 @@
 
 @keyframes progressAnimation {
   0% {width: 0%; background-color: #f9bcca;}
-  100% {width: 100%; background-color: #ef476f;}
 }
 
 #wrapper {
@@ -125,6 +124,7 @@ body {
 
 .box {
   width: 1500px;
+  margin-left: 0.5%;
   min-width: 50%;
   max-width: 120%;
   height: 480px;
@@ -132,7 +132,7 @@ body {
   box-shadow: 0 2px 30px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   transform: translate3d(0, 0, 0);
-  margin-top: 20.8%;
+  margin-top: 23.1%;
 }
 
 .wave {
@@ -319,27 +319,27 @@ ul li {
 .banner_top > .banner > ul > li > a > img {
   width: 15%;
   height: 15%;
+  margin-top: 15%;
 }
 
 .banner_title {
   font-family: "Gowun Dodum", sans-serif;
   font-size: 23px;
   text-align: left;
-  margin-top: 10%;
-  width: 130px;
+  margin-top: 5%;
+  margin-left: 2.5%;
 }
 
 .banner_top > .banner > ul {
-  width: 80%;
-  height: 80%;
-  overflow: hidden;
+  width: 105%;
+  text-align: center;
+  display: inline-block;
 }
 
 .banner_top > .banner > ul > li {
-  float: left;
-  padding: 10px;
-  width: 25%;
-  margin-left: 1%;
+  padding: 1%;
+  width: 17%;
+  display: inline-block;
 }
 
 .banner_top > .banner > ul > li > a {
@@ -347,10 +347,13 @@ ul li {
   color: #333333;
 }
 
-.banner {
-  margin-left: 20%;
+.banner_top > .banner > ul > li > a > h2 {
+  margin-bottom: 15%;
 }
 
+.banner {
+  text-align: center;
+}
 
 .pro_container {
   position: fixed;
@@ -398,7 +401,6 @@ ul li {
 
 .pro_title {
   margin-top: 10%;
-  margin-left: 10%;
   font-family: "Gowun Dodum", sans-serif;
   font-size: 15px;
   margin-bottom: 5%;

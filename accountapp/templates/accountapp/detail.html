@@ -163,15 +163,20 @@
                                 </h6>
                             </div>
                             {% else %}
-                            <br>
-                            <div id="make_profile">
-                                <img src="../../../static/img/profile.png">
+
+                            <div id="make_img">
+                                <img src="../../../static/img/profile2.png">
                             </div>
-                            <a href="{% url 'profileapp:create' %}">
-                                <h4>
-                                    프로필 만들기
-                                </h4>
-                            </a>
+                            <br>
+                            <div class="make_text">
+                                <a href="{% url 'profileapp:create' %}">
+                                    <h4>
+                                        프로필 만들기
+                                    </h4>
+                                </a>
+                            </div>
+
+
                             {% endif %}
                         </div>
                     </div>
