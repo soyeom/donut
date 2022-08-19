@@ -46,26 +46,38 @@
                                 <li class="prog3"><span>&#x1F680; <br>배송 시작</span></li>
                                 <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
                             </ul>
-                            {% endif %}
-                            {% if b %}
+                            {% elif b %}
                             <ul>
                                 <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
                                 <li class="prog2"><span>&#x2705;<br>입금 확인</span></li>
                                 <li class="prog3"><span>&#x1F680; <br>배송 시작</span></li>
                                 <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
                             </ul>
-                            {% endif %}
-
-                            {% if c %}
+                            {% elif c %}
                             <ul>
                                 <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
                                 <li class="prog1"><span>&#x2705;<br>입금 확인</span></li>
                                 <li class="prog2"><span>&#x1F680; <br>배송 시작</span></li>
                                 <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
                             </ul>
-                            {% if Campaign %}
+                            {% elif d %}
+                            <ul>
+                                <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
+                                <li class="prog1"><span>&#x2705;<br>입금 확인</span></li>
+                                <li class="prog1"><span>&#x1F680; <br>배송 시작</span></li>
+                                <li class="prog2"><span>&#x1F496; <br>배송 완료</span></li>
+                            </ul>
+                            {% else %}
+                            <ul>
+                                <li class="prog3"><span>&#x1F48C;<br>기부 접수</span></li>
+                                <li class="prog3"><span>&#x2705;<br>입금 확인</span></li>
+                                <li class="prog3"><span>&#x1F680; <br>배송 시작</span></li>
+                                <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
+                            </ul>
+                            {% endif %}
 
-                            <button type="button" id="modal_btn">자세히 보기 + </button>
+                            {% if Campaign %}
+                            <button type="button" id="modal_btn">배송 진행 내역 + </button>
                             <div class="black_bg"></div>
                             <div class="modal_wrap">
                                 <div class="modal_close"><a href="#">close</a></div>
@@ -86,20 +98,8 @@
                                             <p> <span class="in_p">shelter: </span>{% widthratio category.shelter amount.price 100 %}%</p>
                                         </div>
                                     </div>
-
-                                    {% endif %}
                                 </div>
                             </div>
-
-                            {% endif %}
-
-                            {% if d %}
-                            <ul>
-                                <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
-                                <li class="prog1"><span>&#x2705;<br>입금 확인</span></li>
-                                <li class="prog1"><span>&#x1F680; <br>배송 시작</span></li>
-                                <li class="prog2"><span>&#x1F496; <br>배송 완료</span></li>
-                            </ul>
                             {% endif %}
                         </div>
                         {% endif %}

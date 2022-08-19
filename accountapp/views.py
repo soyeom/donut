@@ -84,7 +84,7 @@ def signup(request):
     if request.method == 'POST':
         if request.POST['password1'] == request.POST['password2']:
             user = User.objects.create_user(
-                username=request.POST['username'], password=request.POST['password1'])
+                username=request.POST['username'], password=request.POST['password1'], email=request.POST['email'])
             user.save()
             return redirect('accountapp:login')
     return render(request, 'accountapp/create.html')
