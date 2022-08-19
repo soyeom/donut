@@ -1,8 +1,22 @@
-
-  <div class="row mt-5">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../../static/css/pay_index.css">
+</head>
+<body>
+<div class="row mt-5">
     <h1 class="col-12 text-center my-5">KAKAO PAY</h1>
     <form method="post" class="col-12 text-center">
-      {% csrf_token %}
-      <button class="btn btn-warning">카카오페이로 결제하기</button>
+        {% csrf_token %}
+        <button class="btn btn-warning" id="kakao_btn">
+            <img src="../../../static/img/kakao-logo.png">
+            <div class="btn_text">
+                카카오페이로 결제하기
+            </div>
+        </button>
     </form>
-  </div>
+</div>
+</body>
+</html>
