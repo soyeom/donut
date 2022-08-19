@@ -86,17 +86,21 @@
         <div class="title2">Donut</div>
 
         <div class="pro_container">
-            진행 중인 캠페인
-            <div class="pro_title">
-                {% if campaign_title %}
-                    {{ campaign_title }}
-                {% endif %}
-            </div>
-            <div class="progress2 progress-moved">
-                <div class="progress-bar2">
-                    <!-- 진행 정도는 home.css 386, 393번째 줄 width를 통해 조절할 수 있습니다 -->
+            {% if campaign_title %}
+                진행 중인 캠페인
+            {% else %}
+                진행 중인 캠페인이 없습니다
+            {% endif %}
+                <div class="pro_title">
+                    {% if campaign_title %}
+                        {{ campaign_title }}
+                    {% endif %}
                 </div>
-            </div>
+                <div class="progress2 progress-moved">
+                    <div class="progress-bar2">
+                        <!-- 진행 정도는 home.css 386, 393번째 줄 width를 통해 조절할 수 있습니다 -->
+                    </div>
+                </div>
         </div>
     </div>
 
