@@ -35,7 +35,7 @@
                         {% if target_user == user %}
                         <div id="progress">
                             진행중인 기부:
-                            {% for campaign in target_user.campaign.all %}
+                            {% for campaign in abc %}
                             {{ campaign.article.title }}
                             {% endfor %}
 
@@ -77,6 +77,7 @@
                             {% endif %}
 
                             {% if Campaign %}
+
                             <button type="button" id="modal_btn">배송 진행 내역 + </button>
                             <div class="black_bg"></div>
                             <div class="modal_wrap">
@@ -115,7 +116,7 @@
                         <br>
                         <div class="section2">
                             <a href="{% url 'accountapp:mycampaign' pk=user.pk %}">
-                                내가 참여한 캠페인 ↗
+                                지난 캠페인 ↗
                             </a>
                         </div>
                     </div>
@@ -143,6 +144,7 @@
                                             계정 탈퇴
                                         </p>
                                     </a>
+
                                 </li>
                             </ul>
                         </div>
@@ -162,20 +164,39 @@
                                     {{ target_user.profile.message }}
                                 </h6>
                             </div>
-                            {% else %}
-                            <br>
-                            <div id="make_profile">
-                                <img src="../../../static/img/profile.png">
-                            </div>
-                            <a href="{% url 'profileapp:create' %}">
-                                <h4>
-                                    프로필 만들기
-                                </h4>
+
+                              <div style="margin-left: 40%; margin-top: -7rem;">
+                                <h3>
+                                    포인트 :
+                                </h3>
+                                  </div>
+
+                            <div class="section1" style="margin-left: 50%; white-space:nowrap;">
+                            <a href="{% url 'payapp:charge' %}">
+                                포인트충전 &nbsp;↗
                             </a>
+                             </div>
+
+                            {% else %}
+
+                            <div id="make_img">
+                                <img src="../../../static/img/profile2.png">
+                            </div>
+                            <br>
+                            <div class="make_text">
+                                <a href="{% url 'profileapp:create' %}">
+                                    <h4>
+                                        프로필 만들기
+                                    </h4>
+                                </a>
+                            </div>
                             {% endif %}
                         </div>
                     </div>
                 </div>
+
+
+
                 <div id="footer">
                     <address>
                         <em><a href="../../../introapp/templates/introapp/home.html" class="logo"><span
