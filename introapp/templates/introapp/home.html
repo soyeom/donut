@@ -88,7 +88,9 @@
         <div class="pro_container">
             진행 중인 캠페인
             <div class="pro_title">
-                {{ campaign_title }}
+                {% if campaign_title %}
+                    {{ campaign_title }}
+                {% endif %}
             </div>
             <div class="progress2 progress-moved">
                 <div class="progress-bar2">

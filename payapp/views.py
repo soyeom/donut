@@ -34,6 +34,7 @@ def index(request):
     return render(request, 'payapp/index.html')
 
 
+
 def approval(request):
     URL = 'https://kapi.kakao.com/v1/payment/approve'
     headers = {
