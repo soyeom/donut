@@ -14,7 +14,7 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Article)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'writer', 'created_at', 'price', 'total_amount']
+    list_display = ['title', 'writer', 'created_at', 'price', 'total_amount','receipt','hit']
 
 
 @admin.register(PriceCategory)
