@@ -178,16 +178,29 @@
                              </div>
 
                             {% else %}
-                            <br>
-                            <div id="make_profile">
-                                <img src="../../../static/img/profile.png">
+
+                            <div id="make_img">
+                                <img src="../../../static/img/profile2.png">
                             </div>
+<<<<<<< HEAD
+                            <br>
+                            <div class="make_text">
+                                <a href="{% url 'profileapp:create' %}">
+                                    <h4>
+                                        프로필 만들기
+                                    </h4>
+                                </a>
+                            </div>
+
+
+=======
 
                             <a href="{% url 'profileapp:create' %}">
                                 <h4>
                                     프로필 만들기
                                 </h4>
                             </a>
+>>>>>>> 58cf4b2133c29ea40c829905dd27e1169419473a
                             {% endif %}
                         </div>
                     </div>

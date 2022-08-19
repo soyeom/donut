@@ -37,7 +37,7 @@
         {
             $(function () {
                      $(".progress-bar2").css({
-                        "width": "25%"    /* 80 -> 숫자 조절 */
+                        "width": "25%"
                      });
                      let animation = document.styleSheets[0].cssRules[0];
                      animation.appendRule('100% {width: 25%; background-color: #ef476f;}');
@@ -47,7 +47,7 @@
         {
                $(function () {
                      $(".progress-bar2").css({
-                        "width": "50%"    /* 80 -> 숫자 조절 */
+                        "width": "50%"
                      });
                      let animation = document.styleSheets[0].cssRules[0];
                      animation.appendRule('100% {width: 50%; background-color: #ef476f;}');
@@ -57,7 +57,7 @@
         {
                $(function () {
                      $(".progress-bar2").css({
-                        "width": "75%"    /* 80 -> 숫자 조절 */
+                        "width": "75%"
                      });
                      let animation = document.styleSheets[0].cssRules[0];
                      animation.appendRule('100% {width: 75%; background-color: #ef476f;}');
@@ -67,7 +67,7 @@
         {
                $(function () {
                      $(".progress-bar2").css({
-                        "width": "0%"    /* 80 -> 숫자 조절 */
+                        "width": "0%"
                      });
                      let animation = document.styleSheets[0].cssRules[0];
                      animation.appendRule('100% {width: 0%; background-color: #ef476f;}');
@@ -131,7 +131,6 @@
         <div class="title2">Donut</div>
     </div>
 
-    <!-- 안움직이는 진행바 -->
     <div class="pro_container">
         {% if campaign_title %}
         진행 중인 캠페인
@@ -150,10 +149,10 @@
 
     <div class="banner_top">
         {% if popular_article %}
+        <div class="banner_title">
+            인기 게시글
+        </div>
         <div class="banner">
-            <div class="banner_title">
-                인기 게시글
-            </div>
             <ul>
                 {% for each in popular_article %}
                 <li>
