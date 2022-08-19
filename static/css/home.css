@@ -5,7 +5,6 @@
 
 @keyframes progressAnimation {
   0% {width: 0%; background-color: #f9bcca;}
-  100% {width: 100%; background-color: #ef476f;}
 }
 
 #wrapper {
