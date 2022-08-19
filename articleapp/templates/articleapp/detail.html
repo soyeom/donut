@@ -104,7 +104,7 @@
                     </a>
                     {% endif %}
 
-                    {% if not all_A and not all_C %}
+                    {% if not all_A and not all_C and not all_D%}
                         {% if object.total_amount >= object.price %}
                         <a href="{% url 'articleapp:price' pk=object.pk %}" class="button">
                             <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">배송시작</button>
@@ -119,7 +119,7 @@
                             <strong>영수증</strong> </br>
                             <img src="{{ object.receipt.url }}" alt=""> </br></br></br>
                             {% if user.is_superuser %}
-                                <form action="{% url 'articleapp:detail' pk=object.pk %}" method="get">
+                                <form action="{% url 'articleapp:detail' pk=object.pk %}" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="article_id" value={{object.pk}} >
                                     <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">영수증확인</button>
