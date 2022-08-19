@@ -35,7 +35,7 @@
                         {% if target_user == user %}
                         <div id="progress">
                             진행중인 기부:
-                            {% for campaign in target_user.campaign.all %}
+                            {% for campaign in abc %}
                             {{ campaign.article.title }}
                             {% endfor %}
 
@@ -46,25 +46,37 @@
                                 <li class="prog3"><span>&#x1F680; <br>배송 시작</span></li>
                                 <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
                             </ul>
-                            {% endif %}
-                            {% if b %}
+                            {% elif b %}
                             <ul>
                                 <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
                                 <li class="prog2"><span>&#x2705;<br>입금 확인</span></li>
                                 <li class="prog3"><span>&#x1F680; <br>배송 시작</span></li>
                                 <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
                             </ul>
-                            {% endif %}
-
-                            {% if c %}
+                            {% elif c %}
                             <ul>
                                 <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
                                 <li class="prog1"><span>&#x2705;<br>입금 확인</span></li>
                                 <li class="prog2"><span>&#x1F680; <br>배송 시작</span></li>
                                 <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
                             </ul>
-                            {% if Campaign %}
+                            {% elif d %}
+                            <ul>
+                                <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
+                                <li class="prog1"><span>&#x2705;<br>입금 확인</span></li>
+                                <li class="prog1"><span>&#x1F680; <br>배송 시작</span></li>
+                                <li class="prog2"><span>&#x1F496; <br>배송 완료</span></li>
+                            </ul>
+                            {% else %}
+                            <ul>
+                                <li class="prog3"><span>&#x1F48C;<br>기부 접수</span></li>
+                                <li class="prog3"><span>&#x2705;<br>입금 확인</span></li>
+                                <li class="prog3"><span>&#x1F680; <br>배송 시작</span></li>
+                                <li class="prog3"><span>&#x1F496; <br>배송 완료</span></li>
+                            </ul>
+                            {% endif %}
 
+                            {% if Campaign %}
                             <button type="button" id="modal_btn">자세히 보기 + </button>
                             <div class="black_bg"></div>
                             <div class="modal_wrap">
@@ -86,20 +98,8 @@
                                             <p> <span class="in_p">shelter: </span>{% widthratio category.shelter amount.price 100 %}%</p>
                                         </div>
                                     </div>
-
-                                    {% endif %}
                                 </div>
                             </div>
-
-                            {% endif %}
-
-                            {% if d %}
-                            <ul>
-                                <li class="prog1"><span>&#x1F48C;<br>기부 접수</span></li>
-                                <li class="prog1"><span>&#x2705;<br>입금 확인</span></li>
-                                <li class="prog1"><span>&#x1F680; <br>배송 시작</span></li>
-                                <li class="prog2"><span>&#x1F496; <br>배송 완료</span></li>
-                            </ul>
                             {% endif %}
                         </div>
                         {% endif %}
@@ -115,7 +115,7 @@
                         <br>
                         <div class="section2">
                             <a href="{% url 'accountapp:mycampaign' pk=user.pk %}">
-                                내가 참여한 캠페인 ↗
+                                지난 캠페인 ↗
                             </a>
                         </div>
                     </div>
@@ -153,12 +153,12 @@
                                 <img src="{{ target_user.profile.image.url }}">
                             </div>
                             <br>
-                            <div id="name" style="margin-left: 150px; margin-top: -1rem;">
+                            <div id="name" style="margin-left: 90%; margin-top: -2rem;">
                                 닉네임: {{ target_user.profile.nickname }}
                             </div>
                             <br>
-                            <div id="introduce">
-                                <h6 style="margin-left: 150px; margin-top: -1rem;">
+                            <div id="introduce" style="margin-left: 90%; margin-top: -3rem;">
+                                <h6>
                                     {{ target_user.profile.message }}
                                 </h6>
                             </div>
