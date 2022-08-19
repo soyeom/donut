@@ -17,24 +17,19 @@
                             <a href="{% url 'introapp:home' %}">Donut</a>
                         </h1>
                     </div>
-                    <div class="modal_wrap">
-                        <div class="modal_close"><a href="#">close</a></div>
-                        <div>
-                            <div class="popup-cont01 top">
-                                <img src="../../../static/img/donut.png" alt="">
-                                <p>
-                                    결제가 완료되었습니다!
-                                    <br>
-                                    <span>주문자 정보</span>
-                                </p>
-                                <hr>
-                                <div id="popup-cont02">
-                                    <p> <span class="in_p">주문번호: </span> {{ res.partner_order_id }}</p>
-                                    <p> <span class="in_p">참여한 기부명: </span>{{ res.item_name }}</p>
-                                    <p> <span class="in_p">결제금액: </span>{{ amount }}원</p>
-                                    <p> <span class="in_p">결제승인시각: </span>{{ res.approved_at }}</p>
-                                </div>
-                            </div>
+                    <div class="popup-cont01 top">
+                        <img src="../../../static/img/donut.png" alt="">
+                        <p>
+                            결제가 완료되었습니다!
+                            <br>
+                            <span>주문자 정보</span>
+                        </p>
+                        <hr>
+                        <div id="popup-cont02">
+                            <p> <span class="in_p">주문번호: </span> {{ res.partner_order_id }}</p>
+                            <p> <span class="in_p">참여한 기부명: </span>{{ res.item_name }}</p>
+                            <p> <span class="in_p">결제금액: </span>{{ amount }}원</p>
+                            <p> <span class="in_p">결제승인시각: </span>{{ res.approved_at }}</p>
                         </div>
                     </div>
                 </div>
