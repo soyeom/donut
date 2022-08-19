@@ -110,6 +110,17 @@ a {
   margin-left: 3%;
 }
 
+#Wrote > p {
+  color: #8e8e8e;
+  margin-bottom: -0.4%;
+  font-size: 13px;
+}
+
+#Wrote > a {
+  font-size: 18px;
+  margin-bottom: 1%;
+}
+
 .back > a {
   margin-left: 5%;
 }
