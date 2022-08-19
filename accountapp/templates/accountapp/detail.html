@@ -77,11 +77,8 @@
                             {% endif %}
 
                             {% if Campaign %}
-<<<<<<< HEAD
-                            <button type="button" id="modal_btn">자세히 보기 + </button>
-=======
+
                             <button type="button" id="modal_btn">배송 진행 내역 + </button>
->>>>>>> 5fa10146c5654ca9bfd9ba812ff98b8e36619b60
                             <div class="black_bg"></div>
                             <div class="modal_wrap">
                                 <div class="modal_close"><a href="#">close</a></div>
@@ -147,6 +144,7 @@
                                             계정 탈퇴
                                         </p>
                                     </a>
+
                                 </li>
                             </ul>
                         </div>
@@ -166,11 +164,25 @@
                                     {{ target_user.profile.message }}
                                 </h6>
                             </div>
+
+                              <div style="margin-left: 40%; margin-top: -7rem;">
+                                <h3>
+                                    포인트 :
+                                </h3>
+                                  </div>
+
+                            <div class="section1" style="margin-left: 50%; white-space:nowrap;">
+                            <a href="{% url 'payapp:charge' %}">
+                                포인트충전 &nbsp;↗
+                            </a>
+                             </div>
+
                             {% else %}
                             <br>
                             <div id="make_profile">
                                 <img src="../../../static/img/profile.png">
                             </div>
+
                             <a href="{% url 'profileapp:create' %}">
                                 <h4>
                                     프로필 만들기
@@ -180,6 +192,9 @@
                         </div>
                     </div>
                 </div>
+
+
+
                 <div id="footer">
                     <address>
                         <em><a href="../../../introapp/templates/introapp/home.html" class="logo"><span

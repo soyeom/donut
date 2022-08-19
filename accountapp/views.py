@@ -46,7 +46,9 @@ class AccountDetailView(DetailView):
         context['d'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
                                                                  state__exact='d')
         context['abc'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
-                                               state__in='abc')
+                                               state__in='abc'),
+        context['bcd'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                                 state__in='bcd')
 
         if context['c']:
             context['Campaign'] = Campaign.objects.get(participants_id__exact=self.request.user.id,
