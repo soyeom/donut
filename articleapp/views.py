@@ -94,7 +94,7 @@ class ArticleDetailView(DetailView, FormMixin):
 
     def post(self, request, pk, *args, **kwargs):
         article = Article.objects.get(id__exact=request.POST['article_id'])
-        campaign = Campaign.objects.filter(article_id__exact=article.id)
+        campaign = Campaign.objects.filter(article_id=article.id)
         campaign.update(state='d')
 
         form_class = self.get_form_class()
@@ -162,9 +162,9 @@ class PriceCreateView(CreateView):
 
             if price == pricecategory.food + pricecategory.shelter + pricecategory.clothing:
                 pricecategory.save()
-                return redirect('articleapp:list')
+                return redirect('/articles/detail/'+str(pk))
             else:
-                return redirect('articleapp:list')
+                return redirect('/articles/detail/'+str(pk))
 
     def get_success_url(self):
         return reverse('articleapp:price')
