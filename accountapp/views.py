@@ -46,6 +46,11 @@ class AccountDetailView(DetailView):
                                                                  state__exact='c')
         context['d'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
                                                                  state__exact='d')
+        context['abc'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                               state__in='abc'),
+        context['bcd'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                                 state__in='bcd')
+
         if context['c']:
             context['Campaign'] = Campaign.objects.get(participants_id__exact=self.request.user.id,
                                                                  state__exact='c')
@@ -77,7 +82,7 @@ class AccountDetailView3(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(AccountDetailView3, self).get_context_data(**kwargs)
-        context['Campaign'] = articleapp.models.Campaign.objects.filter(participants_id__exact=self.request.user.id)
+        context['Campaign'] = articleapp.models.Campaign.objects.filter(participants_id__exact=self.request.user.id, state='d')
         context['Article'] = articleapp.models.Article.objects.all()
         return context
 
