@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -122,3 +123,6 @@ def loging(request):
 
     else:
         return render(request, 'accountapp/login.html')
+
+
+

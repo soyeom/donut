@@ -16,6 +16,7 @@ import os, environ
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Application definition
@@ -128,3 +129,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = reverse_lazy('introapp:list')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
+
