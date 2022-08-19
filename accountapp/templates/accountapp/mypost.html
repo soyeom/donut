@@ -58,9 +58,10 @@
                                 let title;
                                 let link;
                                 for (step1 = 0; step1 < article.length; step1++) {
-                                  if(article[step1].price != 0) {
-                                      for (step2 = 0; step2 < camp.length; step2++) {
 
+                                  if(article[step1].price != 0) {
+
+                                      for (step2 = 0; step2 < camp.length; step2++) {
 
                                           if (article[step1].id == camp[step2].id) {
                                               state = camp[step2].state;
