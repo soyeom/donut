@@ -5,7 +5,13 @@ from django.shortcuts import render, redirect
 import requests
 
 # Create your views here.
+from articleapp.models import Article, Campaign
+
+
 def index(request):
+
+    campaign = Campaign.objects.get(participants_id=request.user.id, state='a')
+    article = Article.objects.get(id=campaign.article_id)
     if request.method == "POST":
         URL = 'https://kapi.kakao.com/v1/payment/ready'
         headers = {
@@ -14,11 +20,11 @@ def index(request):
         }
         params = {
             "cid": "TC0ONETIME",    # 테스트용 코드
-            "partner_order_id": "1001",     # 주문번호
+            "partner_order_id": str(campaign.id),     # 주문번호
             "partner_user_id": "german",    # 유저 아이디
-            "item_name": "연어초밥",        # 구매 물품 이름
+            "item_name": article.title,        # 구매 물품 이름
             "quantity": "1",                # 구매 물품 수량
-            "total_amount": "100",        # 구매 물품 가격
+            "total_amount": str(campaign.amount),        # 구매 물품 가격
             "tax_free_amount": "0",         # 구매 물품 비과세
             "approval_url": "http://127.0.0.1:8000/pay/approval/",
             "cancel_url": "https://naver.com",
@@ -36,6 +42,10 @@ def index(request):
 
 
 def approval(request):
+    campaign = Campaign.objects.get(participants_id=request.user.id, state='a')
+    campaign.state = 'b'
+    campaign.save()
+
     URL = 'https://kapi.kakao.com/v1/payment/approve'
     headers = {
         "Authorization": "KakaoAK " + "57edd379bad5f3fa9facbef3c15d231e",
@@ -44,7 +54,7 @@ def approval(request):
     params = {
         "cid": "TC0ONETIME",    # 테스트용 코드
         "tid": request.session['tid'],  # 결제 요청시 세션에 저장한 tid
-        "partner_order_id": "1001",     # 주문번호
+        "partner_order_id": str(campaign.id),     # 주문번호
         "partner_user_id": "german",    # 유저 아이디
         "pg_token": request.GET.get("pg_token"),     # 쿼리 스트링으로 받은 pg토큰
     }

@@ -36,6 +36,9 @@
                                 <input type="hidden" name="amount" value={{object.amount}} >
                                 <button type="submit"  class="btn btn-danger rounded-pill col-6 mt-3">참여취소</button>
                             </form>
+                            <a href="{% url 'payapp:index' %}" class="button">
+                                         입금하러가기
+                            </a>
                             {% elif A.state == 'b' %}
                                 회원님의 입금이 확인 되어 배송을 기다리고 있습니다.
                             {% elif A.state == 'c' %}
@@ -50,11 +53,16 @@
                                     <input type="hidden" name="article_id" value={{object.pk}} >
                                     <input type="hidden" name="state" value="a" >
                                     금액 : <input type="number" name="amount" min="1">
+
                                     <button id="btn1">
                                         <span class="wave"></span>
                                         참여하기
                                     </button>
+
                                 </form>
+
+
+
                             {% endif %}
                         {% endif %}
                     {% endif %}
