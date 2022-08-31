@@ -6,6 +6,9 @@ from django.views.generic import ListView
 from articleapp.models import Article, Campaign
 
 
+
+
+
 class IntroListView(ListView):
     model = Article
     context_object_name = 'intro_list'
@@ -21,6 +24,9 @@ class IntroListView(ListView):
             article = Article.objects.get(id=campaign[0]['article_id'])
             context['campaign_title'] = article.title
         return context
+
+
+
 
 def societyinfo(request):
     return render(request, 'introapp/societyinfo.html')

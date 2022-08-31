@@ -5,6 +5,17 @@
     <title>Title</title>
     <link rel="stylesheet" href="../../../static/css/societyinfo.css">
     <link rel="stylesheet" href="../../../static/SASS/societyinfo.scss">
+    <script>
+        function checkOnlyOne(element) {
+            const checkboxes = document.getElementsByName("region");
+
+            checkboxes.forEach((cb) => {
+                cb.checked = false;
+            })
+
+            element.checked = true;
+        }
+    </script>
 </head>
 <body>
 <div id="wrap">
@@ -31,90 +42,77 @@
                 </div>
             </div>
 
-            <!-- 각 단체 로고 이미지 -->
-            <div id="logo">
-                <ul>
-                    <li>
-                        <a href="https://www.unicef.or.kr/">
-                            <img class="img1" src="https://www.unicef.or.kr/static/logo_active@2x-8a9e02df64d664f02ffc1ceaaa5ad4fd.png">
-                        </a>
-                        <div class="img_text" id="text1">
-                            유니세프한국위원회는 후원금 100원 중 85원을 유니세프 본부로 송금하며 <br>
-                            전 세계 33개 유니세프국가위원회 중 가장 높은 송금률을 자랑합니다. <br>
-                            국내 평가 전문 기관으로부터 높은 효율성과 투명성도 인정받고 있습니다. <br>
-                            한국은 유니세프 역사상 도움을 받다가 도움을 주는 나라로 전환된 유일한 국가이며, <br>
-                            2022년 5대 모금 국가로 성장했습니다.
-                        </div>
-                    </li>
-                    <li>
-                        <a href="https://chest.or.kr/base.do">
-                            <img class="img2" src="https://chest.or.kr/common/img/common/logo.png">
-                        </a>
-                        <div class="img_text">
-                            사랑의 열매는 국민의 소중한 성금을 조금이라도 더 어려운 이웃에게 지원하기 위해 <br>
-                            명확한 집행지침을 세워 예산을 절감하고 있습니다. <br>
-                            그 결과 최근 5년간(2012~2016) 모금회의 관리운영비 평균비율은 5.6%이며, <br>
-                            2016년의 경우 6.1%를 관리운영비로 사용했습니다. <br>
-                            관리운영비를 포함한 조직운영에 대해서는 시민감시위원회를 통해 <br>
-                            운영의 투명성을 점검받고 있으며, 정기적인 내부감사와 보건복지부 감사, <br>
-                            국회 국정감사를 받고 있습니다.
-                        </div>
-                    </li>
-                    <li>
-                        <a href="https://www.redcross.or.kr/main/main.do">
-                            <img class="img3" src="https://www.redcross.or.kr/images/main_v14/dh-logo.gif">
-                        </a>
-                        <div class="img_text">
-                            대한적십자사는 고통 받는 상병자를 구호하고 <br>
-                            대외적으로 대한제국이 독립된 주권 국가임을 알리기 위해 고종황제에 의해 설립 되었습니다. <br>
-                            을사조약 당시 일본에 의해 폐사 되었지만 1919년 상해 임시정부 하에 대한적십자회로 부활하였고 <br>
-                            꾸준히 수 많은 전쟁 속 피난민을 구호하였습니다. <br>
-                            이후 현재까지도 각종 재난에 대한 긴급구호활동을 펼치며 <br>
-                            국민의 생명과 안전에 최선을 다하고 있습니다.
-                        </div>
-                    </li>
-                    <li>
-                        <a href="https://www.kidsfuture.or.kr/index.php">
-                            <img class="img4" src="https://www.kidsfuture.or.kr/data/file/202107031920_2cc731ced8d1b0000.png">
-                        </a>
-                        <div class="img_text">
-                            아이들과 미래재단은 모든 아동과 청소년이 밝고 건강한 미래를 이뤄갈 수 있는 사회를 추구하며 <br>
-                            모두가 건강하게 놀고, 안정적으로 배우고, 다양하게 경험할 수 있는 기회를 갖게 하고자 합니다. <br>
-                            아이들과 미래재단은 내부성과관리 및 외부평가를 통해
-                            사업의 효율성과 재무의 투명성, 건전성을 측정하여 <br>
-                            재단의 성과를 있는 그대로 보고 합니다. <br>
-                            덕분에 위 재단은 다양한 잉해관계자로부터 가장 신뢰할 수 있는 재단으로 자리 잡았으며 <br>
-                            향후 현재의 공교육, 사교육을 혁신적으로 변화시킬 수 있는 기회를 발굴하고자 노력하고 있습니다.
-                        </div>
-                    </li>
-                    <li>
-                        <a href="https://www.sc.or.kr/">
-                            <img class="img5" src="https://www.sc.or.kr/webPub/sc_2018/images/main/logo_on.png">
-                        </a>
-                        <div class="img_text">
-                            Save the children 은 후원금의 투명성에 많은 노력을 하고 있습니다. <br>
-                            공익법인회계기준에 따라 재무제표를 작성하고, <br>
-                            후원자에게 각종 보고서와 회의록을 홈페이지에서 열람할 수 있도록 하였습니다. <br>
-                            또한 후원금전용계좌를 통해 후원금 사용을 보다 정확하고 투명하게 회계처리 하고 있으며 <br>
-                            연 1회 이상 사업운영 및 재무 회계처리의 정확성과 적정성을 점검하는 <br>
-                            내외부감사 체제를 갖추고 있습니다.
-                        </div>
-                    </li>
-                    <li>
-                        <a href="https://www.worldvision.or.kr/index.asp">
-                            <img src="https://www.worldvision.or.kr/main2017/images/wv_logo_02.png?crc=3773745825">
-                        </a>
-                        <div class="img_text">
-                            한국월드비전은 2006년 구호사업의 전문성을 인정받아 <br>
-                            유엔세계식량계획 공식 협력기관에 선정되었습니다. <br>
-                            세계최대의 민간국제기구인 국제 월드비전의 회원국이며 <br>
-                            BBB, ECFA 등 비영리기구의 투명성을 평가하는 단체로부터 가장 신뢰할 수 있는 기관으로 선정되었습니다. <br>
-                            위 재단은 기독교 정신 위에 설립된 글로벌 NGO로서 <br>
-                            전세계 가장 취약한 아동, 가정, 지역사회가 빈곤과 불평등에서 벗에나도록 노력합니다.
-                        </div>
-                    </li>
-                </ul>
+            <div class = "region_filter">
+                <div class="checkbox_filter">
+                    <div class = "region_eup">
+
+                        <h4>읍</h4>
+
+                        <label for="eup1" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="eup1" /> 조치원읍</label>
+
+                    </div>
+                    <div class = "region_myeon">
+                        <h4>면</h4>
+
+                        <label for="myeon1" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="myeon1" /> 연기면</label>
+
+                        <label for="myeon2" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="myeon2" /> 연동면</label>
+
+                        <label for="myeon3" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="myeon3" /> 부강면</label>
+
+                        <label for="myeon4" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="myeon4" /> 금남면</label>
+
+                        <label for="myeon5" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="myeon5" /> 장군면</label>
+
+                        <label for="myeon6" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="myeon6" /> 연서면</label>
+
+                        <label for="myeon7" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="myeon7" /> 전의면</label>
+
+                        <label for="myeon8" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="myeon8" /> 전동면</label>
+
+                        <label for="myeon9" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="myeon9" /> 소정면</label>
+                    </div>
+                    <div class = "region_dong">
+                        <h4>동</h4>
+
+                        <label for="dong1" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="dong1" /> 한솔동</label>
+
+                        <label for="dong2" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="dong2" /> 도담동</label>
+
+                        <label for="dong3" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="dong3" /> 아름동</label>
+
+                        <label for="dong4" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="dong4" /> 종촌동</label>
+
+                        <label for="dong5" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="dong5" /> 고운동</label>
+
+                        <label for="dong6" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="dong6" /> 보람동</label>
+
+                        <label for="dong7" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="dong7" /> 새롬동</label>
+
+                        <label for="dong8" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="dong8" /> 대평동</label>
+
+                        <label for="dong9" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="dong9" /> 소담동</label>
+
+                        <label for="dong10" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="dong10" /> 다정동</label>
+
+                        <label for="dong11" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="dong11" /> 해밀동</label>
+
+                        <label for="dong12" style="cursor:pointer" class = "on"><input type="checkbox" name="region" id="dong12" /> 반곡동</label>
+                    </div>
+                </div>
+                <input type="checkbox" id="female" name="gender" value="female">
+                <label for="female">female</label>
+                <div class="search_btn">
+                        <input type='submit' value="제출">
+                </div>
+
+                <div class="delete_btn">
+
+                </div>
             </div>
+
+
+
         </div>
     </div>
     <div id="footer">
