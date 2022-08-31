@@ -104,6 +104,7 @@
 	<script>
 		var container = document.getElementById('map');
 		var options = {
+		    center: new kakao.maps.LatLng(36.483322, 127.261818),
 			level: 3
 		};
 
@@ -111,10 +112,10 @@
 
 		var positions = new Array();
 
-		{% for society in SocietyList %}
-            latlng = new kakao.maps.LatLng({{society.latitude}}, {{society.longitude}});
-            positions.push({title: '{{society.instlNm}}', latlng: latlng})
-            console.log('{{society.instlNm}}')
+		{% for result in matchingresult %}
+            latlng = new kakao.maps.LatLng({{result.latitude}}, {{society.longitude}});
+            positions.push({title: '{{result.instlNm}}', latlng: latlng})
+            console.log('{{result.instlNm}}')
         {% endfor %}
 
 		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
