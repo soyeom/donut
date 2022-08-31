@@ -28,8 +28,8 @@ class SocietyInfoView(ListView):
     model = Society
     template_name = 'introapp/societyinfo.html'
 
-    def get(self, request):
-            query = request.GET.getlist('keyword')
-            matchingresult = Society.objects.filter(region__icontains=query)
+    def post(self, request):
+        query = request.GET.getlist('keyword')
+        matchingresult = Society.objects.filter(region__icontains=query)
 
         return render(request, 'introapp/societyinfo.html', {'matchingresult': matchingresult})
