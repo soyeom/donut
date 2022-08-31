@@ -25,18 +25,16 @@ class IntroListView(ListView):
         return context
 
 
-def region_search(request):
-    if request.method == "GET":
-        query = request.GET.getlist('keyword')
-        matchingresult = Society.objects.filter(region__icontains=query)
-
-    return render(request, 'introapp/societyinfo.html', {'matchingresult': matchingresult})
-
-
 def societyinfo(request):
     return render(request, 'introapp/societyinfo.html')
 
 
 class SocietyInfoView(ListView):
-    model = User
+    model = Society
     template_name = 'introapp/societyinfo.html'
+
+    def get(self, request):
+            query = request.GET.getlist('keyword')
+            matchingresult = Society.objects.filter(region__icontains=query)
+
+        return render(request, 'introapp/societyinfo.html', {'matchingresult': matchingresult})
