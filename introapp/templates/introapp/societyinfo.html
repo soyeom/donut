@@ -117,6 +117,19 @@
             </div>
         </div>
     </div>
+
+    <div id="map" style="width:500px;height:400px;"></div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3484f791cc128fd4a942d09c56cd52e5"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
+
+		var map = new kakao.maps.Map(container, options);
+	</script>
+
     <div id="footer">
         <address>
             <em><a href="{% url 'introapp:home' %}" class="logo"><span class="blind"></span></a></em>
