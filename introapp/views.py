@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
@@ -23,4 +24,5 @@ class IntroListView(ListView):
         return context
 
 class SocietyInfoView(ListView):
+    model = User
     template_name = 'introapp/societyinfo.html'
