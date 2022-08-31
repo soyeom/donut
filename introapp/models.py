@@ -1,6 +1,7 @@
 from django.db import models
 
 
+
 class Society(models.Model):
     society = models.TextField(max_length=50, null=True) # 기부단체 이름
     region = models.TextField(max_length=20, null=True) # 읍면동

@@ -24,11 +24,6 @@ class IntroListView(ListView):
             context['campaign_title'] = article.title
         return context
 
-
-def societyinfo(request):
-    return render(request, 'introapp/societyinfo.html')
-
-
 class SocietyInfoView(ListView):
     model = Society
     template_name = 'introapp/societyinfo.html'
