@@ -35,8 +35,8 @@
 
             <div class = "region_filter" style="text-align: center">
                 <div class="checkbox_filter">
-                    <form method="get" action="societyinfo.html">
-
+                    <form method="POST" action="{% url 'introapp:societyinfo' %}">
+                        {% csrf_token %}
 
                         <h4>읍</h4>
 
@@ -89,10 +89,15 @@
 
                         <label for="dong12" style="cursor:pointer"><input type="checkbox" name="region[]" id="dong12" value="반곡동"/> 반곡동</label>
 
-                        <a href="#" class="search_btn" style="margin-left: 5rem">검색</a>
+                        <input type="submit" class="btn btn-dark rounded-pill">
                     </form>
                 </div>
             </div>
+
+            {% for result in query %}
+
+            <h2> {{ result }}</h2>
+            {% endfor %}
 
 
         </div>
@@ -103,11 +108,34 @@
 	<script>
 		var container = document.getElementById('map');
 		var options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
 			level: 3
 		};
 
 		var map = new kakao.maps.Map(container, options);
+
+		var positions = new Array();
+
+		{% for society in SocietyList %}
+            latlng = new kakao.maps.LatLng({{society.latitude}}, {{society.longitude}});
+            positions.push({title: '{{society.instlNm}}', latlng: latlng})
+            console.log('{{society.instlNm}}')
+        {% endfor %}
+
+		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
+        for (var i = 0; i < positions.length; i ++) {
+
+            var imageSize = new kakao.maps.Size(24, 35);
+
+            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+            var marker = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: positions[i].latlng, // 마커를 표시할 위치
+                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀 표시
+                image : markerImage // 마커 이미지
+            });
+        }
 	</script>
 
     <div id="footer">

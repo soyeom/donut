@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView
 from articleapp.models import Article, Campaign
-from .models import donation_organization
+from .models import Society
 
 
 class IntroListView(ListView):
@@ -24,19 +24,12 @@ class IntroListView(ListView):
             context['campaign_title'] = article.title
         return context
 
-
-def region_search(request):
-    if request.method == "GET":
-        query = request.GET.getlist('keyword')
-        matchingresult = donation_organization.objects.filter(region__icontains=query)
-
-    return render(request, 'introapp/societyinfo.html', {'matchingresult': matchingresult})
-
-
-def societyinfo(request):
-    return render(request, 'introapp/societyinfo.html')
-
-
 class SocietyInfoView(ListView):
-    model = User
+    model = Society
     template_name = 'introapp/societyinfo.html'
+
+    def post(self, request):
+        query = request.POST.getlist('region[]')
+        matchingresult = Society.objects.filter(region__icontains=query)
+
+        return render(request, 'introapp/societyinfo.html', {'query': query})
