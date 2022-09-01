@@ -140,19 +140,19 @@
     <div class="pro_container">
         {% if campaign_title %}
             진행 중인 캠페인
+        <div class="pro_title">
+            {% if campaign_title %}
+                {{ campaign_title }}
+            {% endif %}
+        </div>
+        <div class="progress2 progress-moved">
+            <div class="progress-bar2"></div>
+        </div>
         {% else %}
         <div class="no_camp">
             진행 중인 캠페인이 없습니다
         </div>
         {% endif %}
-        <div class="pro_title">
-            {% if campaign_title %}
-                {{ campaign_title }}
-            {% end if %}
-        </div>
-            <div class="progress2 progress-moved">
-                <div class="progress-bar2"></div>
-            </div>
     </div>
 
     <div class="banner_top">
