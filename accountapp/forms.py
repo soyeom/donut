@@ -13,3 +13,6 @@ class CampCreationForm(ModelForm):
     class Meta:
         model = Campaign
         fields = ['amount']
+
+
+
