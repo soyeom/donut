@@ -127,10 +127,18 @@
                 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3484f791cc128fd4a942d09c56cd52e5"></script>
                 <script>
                     var container = document.getElementById('map');
-                    var options = {
-                        center: new kakao.maps.LatLng(36.483322, 127.261818),
-                        level: 3
-                    };
+
+                    {% if matchingresult.0 != None %}
+                        var options = {
+                            center: new kakao.maps.LatLng({{ matchingresult.0.latitude }},{{ matchingresult.0.longitude }}),
+                            level: 3
+                        };
+                    {% else %}
+                        var options = {
+                            center: new kakao.maps.LatLng(36.4833, 127.2618),
+                            level: 3
+                        };
+                    {% endif %}
 
                     var map = new kakao.maps.Map(container, options);
 

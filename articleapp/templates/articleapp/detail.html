@@ -110,7 +110,8 @@
                     {% if object.receipt %}
                         {% if object.writer == user or user.is_superuser %}
                             <strong>영수증</strong> </br>
-                            <img src="{{ object.receipt.url }}" alt=""> </br></br></br>
+                            <img src="{{ object.receipt.url }}" alt="영수증" style="width:40%; height:40%;">
+                            </br></br></br>
                             {% if user.is_superuser %}
                                 <form action="{% url 'articleapp:detail' pk=object.pk %}" method="post">
                                     {% csrf_token %}
