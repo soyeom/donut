@@ -15,7 +15,7 @@ from django.views.generic.list import MultipleObjectMixin
 
 import articleapp
 from accountapp.decorators import account_ownership_required
-from accountapp.forms import AccountUpdateForm, CampCreationForm, LoginForm
+from accountapp.forms import AccountUpdateForm, CampCreationForm
 
 from articleapp.models import Article, Campaign, PriceCategory
 from django.core.paginator import Paginator
@@ -123,30 +123,17 @@ class AccountDeleteView(DeleteView):
 
 
 def loging(request):
-    # if request.method == 'POST':
-    #     username = request.POST['username']
-    #     password = request.POST['password']
-    #     user = auth.authenticate(request, username=username, password=password)
-    #     if user is not None:
-    #         auth.login(request, user)
-    #         return redirect('introapp:home')
-    #     else:
-    #         return render(request, 'accountapp/login.html')
-    #
-    # else:
-    #     return render(request, 'accountapp/login.html')
-
     if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():  # form 검증
-            username = form.cleaned_data['username']  # form에서 data 가져오기
-            password = form.cleaned_data['password']
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('introapp:home')
-        return HttpResponse('Login failed. Try again.')  # 에러
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(request, username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('introapp:home')
+        else:
+            return render(request, 'accountapp/login.html')
+
     else:
-        form = LoginForm()
         return render(request, 'accountapp/login.html')
+
 

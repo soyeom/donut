@@ -23,6 +23,18 @@
 
         <input type="hidden" name="article_pk" value="{{ article.pk }}">
     </form>
+
+     <form  method="post" action="{% url 'commentapp:create' pk=article.pk %}">
+        {% csrf_token %}
+        {%for recom_form in recomment_form%}
+            {%if recom_form.label != 'Comment' %}
+                {{recom_form.label}} : {{recom_form}}
+            {%endif%}
+        {%endfor%}
+        <input type="hidden" name="comment" value={{pk}}>
+        <input type="submit">
+    </form>
+
 </div>
 
 
