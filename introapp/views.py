@@ -34,3 +34,4 @@ class SocietyInfoView(ListView):
         matchingresult = Society.objects.filter(region__icontains=query)
 
         return render(request, 'introapp/societyinfo.html', {'matchingresult': matchingresult})
+
