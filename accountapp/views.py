@@ -1,8 +1,9 @@
 from django import forms
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 
@@ -14,7 +15,7 @@ from django.views.generic.list import MultipleObjectMixin
 
 import articleapp
 from accountapp.decorators import account_ownership_required
-from accountapp.forms import AccountUpdateForm, CampCreationForm
+from accountapp.forms import AccountUpdateForm, CampCreationForm, LoginForm
 
 from articleapp.models import Article, Campaign, PriceCategory
 from django.core.paginator import Paginator
@@ -122,18 +123,30 @@ class AccountDeleteView(DeleteView):
 
 
 def loging(request):
+    # if request.method == 'POST':
+    #     username = request.POST['username']
+    #     password = request.POST['password']
+    #     user = auth.authenticate(request, username=username, password=password)
+    #     if user is not None:
+    #         auth.login(request, user)
+    #         return redirect('introapp:home')
+    #     else:
+    #         return render(request, 'accountapp/login.html')
+    #
+    # else:
+    #     return render(request, 'accountapp/login.html')
+
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = auth.authenticate(request, username=username, password=password)
-        if user is not None:
-            auth.login(request, user)
-            return redirect('introapp:home')
-        else:
-            return render(request, 'accountapp/login.html')
-
+        form = LoginForm(request.POST)
+        if form.is_valid():  # form 검증
+            username = form.cleaned_data['username']  # form에서 data 가져오기
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('introapp:home')
+        return HttpResponse('Login failed. Try again.')  # 에러
     else:
+        form = LoginForm()
         return render(request, 'accountapp/login.html')
-
-
 
