@@ -125,15 +125,19 @@ def loging(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        errors = {}
         user = auth.authenticate(request, username=username, password=password)
+
         if user is not None:
             auth.login(request, user)
             return redirect('introapp:home')
         else:
+            errors['error'] = "아이디를 바르게 입력하세요"
             return render(request, 'accountapp/login.html')
-
     else:
         return render(request, 'accountapp/login.html')
+
+
 
 
 
