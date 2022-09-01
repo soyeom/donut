@@ -13,7 +13,7 @@ html {
 
 html::before {
   content: "";
-  background: linear-gradient(45deg, pink, violet, skyblue);
+  background: linear-gradient(45deg, #ec407a, #9575cd, #42a5f5);
   opacity: 0.5;
   position: absolute;
   top: 0;
@@ -93,7 +93,7 @@ a {
   font-family: "Gowun Dodum", sans-serif;
   font-size: 22px;
   margin-bottom: -20px;
-  margin-top: -3%;
+  margin-top: -6%;
 }
 
 #id_image {
@@ -121,8 +121,8 @@ a {
     opacity: 1;
   }
   100% {
-    width: 180px;
-    height: 180px;
+    width: 120px;
+    height: 120px;
     opacity: 0;
   }
 }
@@ -139,7 +139,7 @@ a {
   font-weight: 700;
   font-family: "Gowun Dodum", sans-serif;
   transition: 0.3s;
-  margin-top: 13%;
+  margin-top: 8%;
   margin-left: 5%;
 }
 
