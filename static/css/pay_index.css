@@ -95,6 +95,7 @@ a {
     border: 1px solid #ffea00;
     border-radius: 50px;
     cursor: pointer;
+    margin-top: 15%;
 }
 
 #kakao_btn:hover {
@@ -119,6 +120,11 @@ a {
 }
 
 #check {
-    text-align: center;
-    line-height: 30px;
+    text-align: left;
+    margin-left: 35%;
+    line-height: 40px;
+}
+
+#check > label, #check > label > input {
+    cursor: pointer;
 }

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Donut</title>
     <link rel="stylesheet" href="../../../static/css/home.css">
-    <link rel="stylesheet" href="../../../static/SASS/home.scss">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script>
@@ -92,34 +91,39 @@
             <a href="{% url 'introapp:home' %}">Donut</a>
         </h1>
 
-        <ul id="top_nav">
-            {% if not user.is_authenticated %}
-            <li class="list1">
-                <a href="{% url 'accountapp:login' %}">로그인</a>
+        <ul id="menu">
+            <li>
+                <a href="#"><img src="../../../static/img/menubar.png" alt=""></a>
+                <ul id="top_nav" class="sub">
+                    {% if not user.is_authenticated %}
+                    <li class="list1 nav_li">
+                        <a href="{% url 'accountapp:login' %}">로그인</a>
+                    </li>
+                    <li class="list2 nav_li">
+                        <a href="{% url 'accountapp:create' %}">회원가입</a>
+                    </li>
+                    <li class="list3 nav_li">
+                        <a href="{% url 'articleapp:list' %}">공구모집</a>
+                    </li>
+                    <li class="list4 nav_li">
+                        <a href="{% url 'introapp:societyinfo' %}">단체소개</a>
+                    </li>
+                    {% else %}
+                    <li class="list1 nav_li">
+                        <a href="{% url 'accountapp:detail' pk=user.pk %}">마이페이지</a>
+                    </li>
+                    <li class="list2 nav_li">
+                        <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">로그아웃</a>
+                    </li>
+                    <li class="list3 nav_li">
+                        <a href="{% url 'articleapp:list' %}">공구모집</a>
+                    </li>
+                    <li class="list4 nav_li">
+                        <a href="{% url 'introapp:societyinfo' %}">단체소개</a>
+                    </li>
+                    {% endif %}
+                </ul>
             </li>
-            <li class="list2">
-                <a href="{% url 'accountapp:create' %}">회원가입</a>
-            </li>
-            <li class="list3">
-                <a href="{% url 'articleapp:list' %}">공구모집</a>
-            </li>
-            <li class="list4">
-                <a href="{% url 'introapp:societyinfo' %}">단체소개</a>
-            </li>
-            {% else %}
-            <li class="list1">
-                <a href="{% url 'accountapp:detail' pk=user.pk %}">마이페이지</a>
-            </li>
-            <li class="list2">
-                <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">로그아웃</a>
-            </li>
-            <li class="list3">
-                <a href="{% url 'articleapp:list' %}">공구모집</a>
-            </li>
-            <li class="list4">
-                <a href="{% url 'introapp:societyinfo' %}">단체소개</a>
-            </li>
-            {% endif %}
         </ul>
     </div>
 
@@ -129,21 +133,25 @@
         <div class="wave -three"></div>
         <div class="title1">가장 투명한 기부</div>
         <div class="title2">Donut</div>
+        <div class="title3">&</div>
+        <div class="title4"><img src="" alt=""></div>
     </div>
 
     <div class="pro_container">
         {% if campaign_title %}
         진행 중인 캠페인
         {% else %}
-        진행 중인 캠페인이 없습니다
+        <div class="no_camp">
+            진행 중인 캠페인이 없습니다
+        </div>
         {% endif %}
         <div class="pro_title">
             {% if campaign_title %}
             {{ campaign_title }}
+            <div class="progress2 progress-moved">
+                <div class="progress-bar2"></div>
+            </div>
             {% endif %}
-        </div>
-        <div class="progress2 progress-moved">
-            <div class="progress-bar2"></div>
         </div>
     </div>
 
