@@ -18,6 +18,7 @@ from accountapp.forms import AccountUpdateForm, CampCreationForm
 
 from articleapp.models import Article, Campaign, PriceCategory
 from django.core.paginator import Paginator
+from django.contrib.auth.hashers import check_password
 
 has_ownership = [account_ownership_required, login_required]
 
@@ -39,27 +40,27 @@ class AccountDetailView(DetailView):
         context['A'] = Article.objects.filter(writer__exact=self.request.user.id)
 
         context['a'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
-                                                                 state__exact='a')
+                                               state__exact='a')
         context['b'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
-                                                                 state__exact='b')
+                                               state__exact='b')
         context['c'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
-                                                                 state__exact='c')
+                                               state__exact='c')
         context['d'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
-                                                                 state__exact='d')
+                                               state__exact='d')
         context['abc'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
-                                               state__in='abc'),
+                                                 state__in='abc'),
         context['bcd'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
                                                  state__in='bcd')
-        context['sum']=0
+        context['sum'] = 0
         if context['bcd']:
             for amount in context['bcd']:
                 amount.amount
                 context['sum'] = context['sum'] + amount.amount
-            context['sum'] = int(context['sum']/100)
+            context['sum'] = int(context['sum'] / 100)
 
         if context['c']:
             context['Campaign'] = Campaign.objects.get(participants_id__exact=self.request.user.id,
-                                                                 state__exact='c')
+                                                       state__exact='c')
             if context['Campaign']:
                 context['amount'] = Article.objects.get(id__exact=context['Campaign'].article_id)
                 context['category'] = PriceCategory.objects.get(article_id__exact=context['Campaign'].article_id)
@@ -77,7 +78,6 @@ class AccountDetailView2(DetailView):
         context['Article'] = articleapp.models.Article.objects.filter(writer__exact=self.request.user.id)
         context['Campaign'] = articleapp.models.Campaign.objects.all()
 
-
         return context
 
 
@@ -88,9 +88,11 @@ class AccountDetailView3(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(AccountDetailView3, self).get_context_data(**kwargs)
-        context['Campaign'] = articleapp.models.Campaign.objects.filter(participants_id__exact=self.request.user.id, state='d')
+        context['Campaign'] = articleapp.models.Campaign.objects.filter(participants_id__exact=self.request.user.id,
+                                                                        state='d')
         context['Article'] = articleapp.models.Article.objects.all()
         return context
+
 
 def signup(request):
     if request.method == 'POST':
@@ -121,19 +123,21 @@ class AccountDeleteView(DeleteView):
     template_name = 'accountapp/delete.html'
 
 
-def loging(request):
+def loging(request, errMsg=None):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         user = auth.authenticate(request, username=username, password=password)
-        if user is not None:
-            auth.login(request, user)
-            return redirect('introapp:home')
+
+        if not (username and password):
+            errMsg = "아이디와 비번을 입력하세요"
+            return render(request, 'accountapp/login.html', errMsg)
         else:
-            return render(request, 'accountapp/login.html')
-
+            if user is not None:
+                auth.login(request, user)
+                return redirect('introapp:home')
+            else:
+                errMsg = "아이디 또는 비밀번호가 일치하지 않습니다"
+                return render(request, 'accountapp/login.html', errMsg)
     else:
-        return render(request, 'accountapp/login.html')
-
-
-
+        return render(request, 'accountapp/login.html', {'errMsg': errMsg})

@@ -1,4 +1,4 @@
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LogoutView
 from django.urls import path
 from accountapp.views import AccountDetailView, AccountUpdateView, AccountDeleteView, loging, signup, ArticleListView, AccountDetailView2, AccountDetailView3
 
