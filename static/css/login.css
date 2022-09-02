@@ -167,7 +167,9 @@ h3 {
 }
 
 #btnlogin:active {
-  background-color: hotpink;
+  border: 1px solid #f48fb1;
+  background-color: #f5f6f7;
+  color: #000000;
 }
 
 .box1 {
@@ -211,7 +213,9 @@ h3 {
 }
 
 #btnJoin:active {
-  background-color: #f06292;
+  border: 1px solid #ffffff;
+  background-color: #f48fb1;
+  color: #ffffff;
 }
 
 .box2 > a {
