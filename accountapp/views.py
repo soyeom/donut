@@ -140,13 +140,7 @@ def loging(request):
         else:
             if not (username and password):
                 errMsg = "* 아이디와 비밀번호를 입력하세요"
-
-            elif not (username):
-                errMsg = "* 아이디를 입력하세요"
-
-            elif not (password):
-                errMsg = "* 비밀번호를 입력하세요"
-            return render(request, 'accountapp/login.html', {'errMsg': errMsg})
+                return render(request, 'accountapp/login.html', {'errMsg': errMsg})
 
 
     else:
