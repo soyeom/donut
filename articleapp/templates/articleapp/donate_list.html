@@ -113,6 +113,11 @@
                         </div>
                     </div>
 
+                    <!-- 카테고리 -->
+                    <div id="category">
+
+                    </div>
+
                     <!-- 검색 구역 -->
                     <div id="search">
                         <div id="searchimg">
@@ -165,12 +170,14 @@
                     </div>
 
                     <!-- 글쓰기 버튼 -->
-                    <div id="btn">
-                        <button class="custom btn-1">
-                            <a href="{% url 'articleapp:create' %}">
-                            새로운 캠페인
-                            </a>
-                        </button>
+                    <div class="inner_bottom">
+                        <div id="btn">
+                            <button class="custom btn-1">
+                                <a href="{% url 'articleapp:create' %}">
+                                새로운 캠페인
+                                </a>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- 페이징 구역 -->

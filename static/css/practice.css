@@ -606,7 +606,7 @@ button {
 }
 
 #top a {
-  float: right;
+  right: 20px;
   position: fixed;
   bottom: 2%;
   z-index: 5;
@@ -621,9 +621,9 @@ button {
 
 #btn {
   display: inline-block;
-  padding: 0 43%;
 }
 
-#btn > button {
-  margin: 0;
+.inner_bottom {
+  width: fit-content;
+  margin: 0 auto;
 }
