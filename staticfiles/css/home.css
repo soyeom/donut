@@ -1,0 +1,598 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap");
+
+
+@keyframes progressAnimation {
+  0% {width: 0; background-color: #f9bcca;}
+}
+
+#wrapper {
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  zoom: 1;
+}
+
+* {
+  -webkit-text-size-adjust: none;
+}
+
+div {
+  display: block;
+}
+
+body {
+  font-size: 0.81em;
+}
+
+#wrapper:after {
+  display: block;
+  clear: both;
+}
+
+#topmenu_wrapper {
+  position: relative;
+  z-index: 99;
+  width: 1200px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+#top_logo {
+  position: absolute;
+  top: 6%;
+  left: 40px;
+  z-index: 3;
+  cursor: pointer;
+  font-family: "Ubuntu", sans-serif;
+  color: #ffffff;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+#menu > li > #top_nav {
+  position: absolute;
+  top: 8.5%;
+  right: 55px;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-weight: bold;
+  margin-right: -2vw;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#menu > li > #top_nav > li {
+  display: block;
+  float: left;
+  padding: 0 17px;
+  position: relative;
+  font-size: 15px;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  text-align: center;
+}
+/*
+#menu > li > #top_nav > li > a {
+  display: block;
+  padding: 17px 0 36px 0;
+  zoom: 1;
+  font-size: 15px;
+  color: #f48fb1;
+  font-weight: bold;
+  z-index: 3;
+}
+*/
+a {
+  text-decoration: none;
+}
+
+body {
+  background: #f5f6f7;
+}
+
+#top_logo {
+  -webkit-text-stroke: 1px #f48fb1;
+}
+
+#top_logo > img {
+  width: 8%;
+  float: left;
+  padding-right: 10px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  width: 1500px;
+  margin-left: 0.5%;
+  min-width: 50%;
+  max-width: 120%;
+  height: 480px;
+  border-radius: 5px;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  margin-top: 21.5%;
+}
+
+.wave {
+  opacity: 0.4;
+  position: absolute;
+  top: 3%;
+  left: 45%;
+  background: #3f51b5;
+  width: 650px;
+  height: 650px;
+  margin-left: -250px;
+  margin-top: -250px;
+  transform-origin: 50% 48%;
+  border-radius: 43%;
+  animation: drift 3000ms infinite linear;
+}
+
+.wave.-three {
+  animation: drift 5000ms infinite linear;
+}
+
+.wave.-two {
+  animation: drift 7000ms infinite linear;
+  opacity: 0.1;
+  background: yellow;
+}
+
+.box:after {
+  content: "";
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #2678cc, rgba(221, 238, 255, 0) 80%, rgba(255, 255, 255, 0.5));
+  z-index: 11;
+  transform: translate3d(0, 0, 0);
+}
+
+.title1 {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  line-height: 100px;
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+  transform: translate3d(0, 0, 0);
+  color: white;
+  text-transform: uppercase;
+  font-family: "Gowun Dodum", sans-serif;
+  letter-spacing: 0.4em;
+  font-size: 24px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  text-indent: 0.3em;
+}
+
+.title2 {
+  position: absolute;
+  left: 0;
+  top: 160px;
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+  transform: translate3d(0, 0, 0);
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.4em;
+  font-size: 30px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  text-indent: 0.3em;
+}
+
+.title3 {
+  position: absolute;
+  left: 0;
+  top: 220px;
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+  transform: translate3d(0, 0, 0);
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 20px;
+  font-weight: lighter;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  text-indent: 0.3em;
+}
+
+.title4 {
+  position: absolute;
+  left: 47%;
+  top: 260px;
+  width: 106px;
+  height: 60px;
+  z-index: 1;
+  text-align: center;
+  transform: translate3d(0, 0, 0);
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.4em;
+  font-size: 30px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  text-indent: 0.3em;
+  background: url("../img/sejong_icon.png") no-repeat 0 0;
+}
+
+.title4 >img {
+  width: 106px;
+}
+
+.title3 {
+  position: absolute;
+  left: 0;
+  top: 220px;
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+  transform: translate3d(0, 0, 0);
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 20px;
+  font-weight: lighter;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  text-indent: 0.3em;
+}
+
+.title4 {
+  position: absolute;
+  left: 47%;
+  top: 260px;
+  width: 106px;
+  height: 60px;
+  z-index: 1;
+  text-align: center;
+  transform: translate3d(0, 0, 0);
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.4em;
+  font-size: 30px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  text-indent: 0.3em;
+  background: url("../img/sejong_icon.png") no-repeat 0 0;
+}
+
+.title4 >img {
+  width: 106px;
+}
+
+@keyframes drift {
+  from {
+    transform: rotate(0deg);
+  }
+  from {
+    transform: rotate(360deg);
+  }
+}
+#top_logo > a {
+  color: #ffffff;
+  -webkit-text-stroke: 1px #f48fb1;
+}
+
+#menu > li > #top_nav > li {
+  text-align: center;
+  width: fit-content;
+  height: 12%;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 660px;
+  background: linear-gradient(45deg, #dadbde, #ffffff);
+  box-shadow: 9px -9px 12px #c9cacd, -9px 9px 12px #ffffff;
+  margin-left: 1vw;
+}
+
+#menu > li > #top_nav > li:hover {
+  box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
+  inset -2px -2px 12px rgba(255,255,255,0.5),
+  inset 2px 2px 4px rgba(255,255,255,0.1),
+  inset 2px 2px 8px rgba(0,0,0,0.15);
+}
+
+#menu > li > #top_nav > li > a {
+  color: #2678cc;
+  margin: 0;
+  font-size: 1vw;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.5vw 0 1vw 0;
+}
+
+ul li {
+  list-style: none;
+}
+
+#footer {
+  text-align: center;
+  color: #333333;
+  z-index: 3;
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+  margin-bottom: -280px;
+  width: 95%;
+}
+
+#footer * {
+  font-size: 12px;
+  font-style: normal;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  color: #333333;
+}
+
+#footer address {
+  font: 9px/14px Verdana;
+}
+
+#footer address em {
+  font: 9px Verdana;
+  padding-left: 4px;
+}
+
+:root #footer address .logo {
+  top: 2px;
+  margin-left: 1px;
+}
+
+#footer address .logo {
+  position: relative;
+  width: 63px;
+  height: 12px;
+}
+
+#footer address span {
+    font: 9px/14px Verdana;
+    padding-left: 2px;
+}
+
+#footer address .u_cri {
+    margin: 0;
+    padding-left: 1px;
+}
+
+#footer address a {
+    font: bold 9px Verdana;
+    text-decoration: none;
+    color: #333333;
+}
+
+.banner_top {
+  text-align: center;
+  z-index: 2;
+  width: 100%;
+  display: block;
+}
+
+.banner_top > .banner > ul > li > a > img {
+  width: 15%;
+  height: 15%;
+  margin-top: 15%;
+}
+
+.banner_title {
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 23px;
+  text-align: left;
+  margin-top: 5%;
+  margin-left: 8%;
+}
+
+.banner_top > .banner > ul {
+  width: 95%;
+  text-align: center;
+  display: inline-block;
+}
+
+.banner_top > .banner > ul > li {
+  padding: 1%;
+  width: 17%;
+  display: inline-block;
+}
+
+.banner_top > .banner > ul > li > a {
+  text-decoration: none;
+  color: #333333;
+}
+
+.banner_top > .banner > ul > li > a > h2 {
+  margin-bottom: 15%;
+}
+
+.banner {
+  text-align: center;
+}
+
+.pro_container {
+  position: fixed;
+  width: 270px;
+  height: fit-content;
+  max-height: 300px;
+  overflow-y: scroll;
+  text-align: center;
+  background: #f5f6f7;
+  border-radius: 20px;
+  z-index: 15;
+  top: 20%;
+  left: 80%;
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 16px;
+  border: 1px solid #64b5f6;
+}
+
+.pro_container::-webkit-scrollbar {
+  display: none;
+}
+
+.progress2 {
+  padding: 2px;
+  width: 220px;
+  margin-bottom: 10%;
+  border-radius: 30px;
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.progress-bar2 {
+  height: 7px;
+  margin-top: 0.5px;
+  border-radius: 30px;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  transition: 0.3s linear;
+  transition-property: width, background-color;
+}
+
+.progress-moved .progress-bar2 {
+  background-color: #0089cf;
+  animation: progressAnimation 1s;
+}
+
+.pro_title {
+  margin-top: 10%;
+  margin-left: 7%;
+  margin-bottom: 5%;
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 15px;
+  text-align: left;
+}
+
+#menu {
+  min-width: 40%;
+  width: 450px;
+  position: absolute;
+  top: 8.5%;
+  right: 10px;
+}
+
+#menu ul {
+  padding: 0;
+  list-style: none;
+  display: none;
+  white-space: nowrap;
+}
+
+#menu li {
+  display: inline-block;
+}
+
+#menu ul li {
+  margin-left: -1px;
+}
+
+#menu ul:before {
+  content: '';
+  padding: 10px;
+}
+
+#menu ul:after {
+  content: '';
+  padding: 10px;
+}
+
+#menu a {
+  display: inline-block;
+  color: #333333;
+  text-decoration: none;
+}
+
+#menu a >img {
+  width: 100%;
+  height: 100%;
+}
+
+#menu > li {
+  margin-left: 93%;
+}
+
+#menu > li:hover ul {
+  display: inline-block;
+  z-index: 999;
+}
+
+@media only screen and (min-width: 1920px) {
+  .box {
+    width: 1600px;
+    margin-left: 3%;
+    min-width: 50%;
+    max-width: 120%;
+    height: 480px;
+    border-radius: 5px;
+    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    margin-top: 21.5%;
+  }
+
+  #top_logo {
+    -webkit-text-stroke: 1px #f48fb1;
+    padding-left: 6%;
+    padding-top: 3%;
+  }
+
+  .pro_container {
+    position: fixed;
+    width: 270px;
+    height: fit-content;
+    max-height: 300px;
+    overflow-y: scroll;
+    text-align: center;
+    background: #f5f6f7;
+    border-radius: 20px;
+    z-index: 15;
+    top: 28%;
+    left: 72%;
+    font-family: "Gowun Dodum", sans-serif;
+    font-size: 16px;
+    border: 1px solid #64b5f6;
+  }
+
+  #menu {
+    padding-right: 8%;
+    top: 7%;
+  }
+
+  #menu > li > #top_nav {
+    position: absolute;
+    top: 10%;
+    right: 25%;
+    font-family: "IBM Plex Sans KR", sans-serif;
+    font-weight: bold;
+    margin-right: -2vw;
+  }
+
+}

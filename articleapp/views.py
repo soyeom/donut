@@ -17,13 +17,13 @@ from articleapp.models import Article, Campaign, PriceCategory, ArticleCategory
 
 from introapp.models import Society
 
+
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
 class ArticleCreateView1(CreateView):
     model = Article
     form_class = ArticleCreationForm
     template_name = 'articleapp/donate.html'
-
 
     def form_valid(self, form):
         article = form.save(commit=False)
@@ -116,10 +116,10 @@ class ArticleDetailView(DetailView, FormMixin):
 
         if Campaign.objects.filter(participants_id__exact=self.request.user.id, article_id=self.object.id):
             context['A'] = Campaign.objects.get(participants_id__exact=self.request.user.id,
-                                               article_id=self.object.id)
+                                                article_id=self.object.id)
 
         context['abc'] = Campaign.objects.filter(participants_id__exact=self.request.user.id,
-                                                state__in='abc')
+                                                 state__in='abc')
         context['all_A'] = Campaign.objects.filter(article_id__exact=self.object.id,
                                                    state='a')
         context['all'] = Campaign.objects.filter(article_id__exact=self.object.id)
@@ -129,7 +129,6 @@ class ArticleDetailView(DetailView, FormMixin):
         context['all_D'] = Campaign.objects.filter(article_id__exact=self.object.id,
                                                    state='d')
         return context
-
 
     def post(self, request, pk, *args, **kwargs):
         article = Article.objects.get(id__exact=request.POST['article_id'])
@@ -186,7 +185,7 @@ class PriceCreateView(CreateView):
         context['pk'] = self.kwargs.get('pk')
         return context
 
-    def post(self, request, pk,  *args, **kwargs):
+    def post(self, request, pk, *args, **kwargs):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
 
@@ -201,9 +200,9 @@ class PriceCreateView(CreateView):
 
             if price == pricecategory.food + pricecategory.shelter + pricecategory.clothing:
                 pricecategory.save()
-                return redirect('/articles/detail/'+str(pk))
+                return redirect('/articles/detail/' + str(pk))
             else:
-                return redirect('/articles/detail/'+str(pk))
+                return redirect('/articles/detail/' + str(pk))
 
     def get_success_url(self):
         return reverse('articleapp:price')
@@ -229,9 +228,7 @@ class ArticlereceiptView(UpdateView):
     form_class = ArticlereceiptForm
     template_name = 'articleapp/receipt.html'
 
-
     def get_success_url(self):
-
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
 
@@ -241,5 +238,4 @@ class ArticleDeleteView(DeleteView):
     model = Article
     success_url = reverse_lazy('articleapp:list')
     template_name = 'articleapp/delete.html'
-
 
