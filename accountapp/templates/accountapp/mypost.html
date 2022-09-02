@@ -29,71 +29,70 @@
                             <div id="Wrote">
 
 
-
-                                {% if Article %}
-
-
                                 <script>
-                                    let article = [
-                                        {% for post in Article %}
-                                          {
-                                             title: "{{ post.title }}",
-                                             id: {{ post.id }},
-                                             price : {{ post.total_amount }},
-                                          },
-                                        {% endfor %}
-                                    ]
+                                    {% if Article %}
 
-                                    let camp = [
-                                        {% for post in Campaign %}
-                                          {
-                                             state: "{{ post.state }}",
-                                             id: "{{ post.article_id }}",
-                                          },
-                                        {% endfor %}
-                                    ]
-                                var step1;
-                                var step2;
-                                let state;
-                                let title;
-                                let link;
-                                for (step1 = 0; step1 < article.length; step1++) {
 
-                                  if(article[step1].price != 0) {
 
-                                      for (step2 = 0; step2 < camp.length; step2++) {
+                                        let article = [
+                                            {% for post in Article %}
+                                              {
+                                                 title: "{{ post.title }}",
+                                                 id: {{ post.id }},
+                                                 price : {{ post.total_amount }},
+                                              },
+                                            {% endfor %}
+                                        ]
 
-                                          if (article[step1].id == camp[step2].id) {
-                                              state = camp[step2].state;
-                                              title = article[step1].title;
-                                              link="/articles/detail/"+article[step1].id
+                                        let camp = [
+                                            {% for post in Campaign %}
+                                              {
+                                                 state: "{{ post.state }}",
+                                                 id: "{{ post.article_id }}",
+                                              },
+                                            {% endfor %}
+                                        ]
+                                    var step1;
+                                    var step2;
+                                    let state;
+                                    let title;
+                                    let link;
+                                    for (step1 = 0; step1 < article.length; step1++) {
 
-                                              if(state=='a'){
-                                                  document.write('<p>참여모집중</p>'+'<a href="'+link+'">'+title+'</a>')
+                                      if(article[step1].price != 0) {
+
+                                          for (step2 = 0; step2 < camp.length; step2++) {
+
+                                              if (article[step1].id == camp[step2].id) {
+                                                  state = camp[step2].state;
+                                                  title = article[step1].title;
+                                                  link="/articles/detail/"+article[step1].id
+
+                                                  if(state=='a'){
+                                                      document.write('<p>참여모집중</p>'+'<a href="'+link+'">'+title+'</a>')
+                                                  }
+                                                  if(state=='b'){
+                                                      document.write('<p>참여모집중</p>'+'<a href="'+link+'">'+title+'</a>')
+                                                  }
+                                                  if(state=='c'){
+                                                      document.write('<p>배송중</p>'+'<a href="'+link+'">'+title+'</a>')
+                                                  }
+                                                  if(state=='d'){
+                                                      document.write('<p>완료된 기부</p>'+'<a href="'+link+'">'+title+'</a>')
+                                                  }
+
+                                                  break;
                                               }
-                                              if(state=='b'){
-                                                  document.write('<p>참여모집중</p>'+'<a href="'+link+'">'+title+'</a>')
-                                              }
-                                              if(state=='c'){
-                                                  document.write('<p>배송중</p>'+'<a href="'+link+'">'+title+'</a>')
-                                              }
-                                              if(state=='d'){
-                                                  document.write('<p>완료된 기부</p>'+'<a href="'+link+'">'+title+'</a>')
-                                              }
-
-                                              break;
                                           }
                                       }
-                                  }
-                                  else{
-                                        title = article[step1].title;
-                                        link="/articles/detail/"+article[step1].id
-                                        document.write('<p>참여모집중</p>'+'<a href="'+link+'">'+title+'</a>')
+                                      else{
+                                            title = article[step1].title;
+                                            link="/articles/detail/"+article[step1].id
+                                            document.write('<p>참여모집중</p>'+'<a href="'+link+'">'+title+'</a>')
 
-                                  }
-                                }
+                                      }
+                                    }
                                 </script>
-
 
 
 
