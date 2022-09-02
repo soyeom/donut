@@ -1,15 +1,16 @@
 from django import forms
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
-
+from django.views.generic import View
 # Create your views here.
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, DetailView, DeleteView, UpdateView, ListView
+from django.views.generic import CreateView, DetailView, DeleteView, UpdateView, ListView, FormView
 from django.views.generic.list import MultipleObjectMixin
 
 import articleapp
@@ -94,14 +95,19 @@ class AccountDetailView3(DetailView):
         return context
 
 
-def signup(request):
-    if request.method == 'POST':
+class signup(View):
+    model = User
+    template_name = 'authentication/login.html'
+
+    def get(self, request):
+        return render(request, 'accountapp/create.html')
+
+    def post(self, request):
         if request.POST['password1'] == request.POST['password2']:
             user = User.objects.create_user(
                 username=request.POST['username'], password=request.POST['password1'], email=request.POST['email'])
             user.save()
             return redirect('accountapp:login')
-    return render(request, 'accountapp/create.html')
 
 
 @method_decorator(has_ownership, 'get')
@@ -123,14 +129,20 @@ class AccountDeleteView(DeleteView):
     template_name = 'accountapp/delete.html'
 
 
-def loging(request):
-    if request.method == 'POST':
+class LoginPageView(View):
+    model = User
+    template_name = 'authentication/login.html'
+
+    def get(self, request):
+        return render(request, 'accountapp/login.html')
+
+    def post(self, request):
         username = request.POST['username']
         password = request.POST['password']
         errMsg = None
         user = auth.authenticate(request, username=username, password=password)
 
-        if (username and password):
+        if username and password:
             if user is not None:
                 auth.login(request, user)
                 return redirect('introapp:home')
@@ -140,12 +152,8 @@ def loging(request):
         else:
             if not (username and password):
                 errMsg = "* 아이디와 비밀번호를 입력하세요"
-                return render(request, 'accountapp/login.html', {'errMsg': errMsg})
-
-
-    else:
-        return render(request, 'accountapp/login.html')
-
-
-
-
+            if (not username) and password:
+                errMsg = "* 아이디를 입력하세요"
+            if username and (not password):
+                errMsg = "* 비밀번호를 입력하세요"
+            return render(request, 'accountapp/login.html', {'errMsg': errMsg})
