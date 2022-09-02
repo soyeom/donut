@@ -583,11 +583,12 @@ ul li {
 
   #menu {
     padding-right: 8%;
+    top: 7%;
   }
 
   #menu > li > #top_nav {
     position: absolute;
-    top: 8.5%;
+    top: 10%;
     right: 25%;
     font-family: "IBM Plex Sans KR", sans-serif;
     font-weight: bold;
