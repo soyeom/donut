@@ -341,3 +341,27 @@ ul, li {
 .dong:checked + .on {
   color: #2678cc;
 }
+
+.btn-group > input {
+  border-radius: 50px;
+  background: #5b80b2;
+  color: #ffffff;
+}
+
+.btn-group > input:hover {
+  background: #2678cc;
+}
+
+@media only screen and (min-width: 1920px) {
+  #map_wrap {
+    margin-left: 200px;
+  }
+
+  .region_dong > label {
+    font-size: 17px;
+  }
+
+  .region_eup > label {
+    font-size: 17px;
+  }
+}

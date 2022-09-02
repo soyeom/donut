@@ -22,6 +22,7 @@ class Migration(migrations.Migration):
                 ('content', models.TextField()),
                 ('created_at', models.DateTimeField(auto_now=True)),
                 ('article', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='comment', to='articleapp.article')),
+                ('parent', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='recomment', to='commentapp.comment')),
                 ('writer', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='comment', to=settings.AUTH_USER_MODEL)),
             ],
         ),
