@@ -33,7 +33,6 @@ class ArticleCreateView(CreateView):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
 
-
 def Camp(request):
     if request.method == 'POST':
         campaign = Campaign()
