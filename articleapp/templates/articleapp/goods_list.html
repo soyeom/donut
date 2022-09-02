@@ -113,6 +113,17 @@
                         </div>
                     </div>
 
+                    <!-- 카테고리 -->
+                    <div id="category">
+                        <h3 style="text-align: left; color: lightslategray">카테고리</h3>
+                        <br>
+                        <ul>
+                            <li><a href="" target="_blank"><img src="../../../static/img/donation.png"> 기부</a></li>
+                            <li><a href="" target="_blank"><img src="../../../static/img/volunteer.png"> 봉사</a></li>
+                            <li><a href="" target="_blank"><img src="../../../static/img/objects.png"> 굿즈</a></li>
+                        </ul>
+                    </div>
+
                     <!-- 검색 구역 -->
                     <div id="search">
                         <div id="searchimg">
@@ -165,12 +176,14 @@
                     </div>
 
                     <!-- 글쓰기 버튼 -->
-                    <div id="btn">
-                        <button class="custom btn-1">
-                            <a href="{% url 'articleapp:goods' %}">
-                            새로운 캠페인
-                            </a>
-                        </button>
+                    <div class="inner_bottom">
+                        <div id="btn">
+                            <button class="custom btn-1">
+                                <a href="{% url 'articleapp:goods' %}">
+                                새로운 캠페인
+                                </a>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- 페이징 구역 -->
