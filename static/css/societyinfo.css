@@ -60,7 +60,7 @@ body {
   margin: 0 auto;
   min-width: 1024px;
   max-width: 2000px;
-  min-height: 1800px;
+  min-height: 1000px;
   position: relative;
   padding-top: 130px;
   z-index: 1;
@@ -250,4 +250,94 @@ ul, li {
   margin-left: 20%;
 }
 
-/*# sourceMappingURL=societyinfo.css.map */
+.region_filter {
+  text-align: center;
+  margin-left: 300px;
+  width: 400px;
+  height: 300px;
+  float: left;
+}
+
+.checkbox_filter {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 90%;
+  height: 100%;
+}
+
+#checkbox_filter_id {
+
+  display: flex;
+  position: relative;
+  width: 90%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.region_eup {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  width: 33%;
+  height: 100%;
+}
+
+.region_dong {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  width: 33%;
+  height: 100%;
+}
+
+.region_dong > label {
+  width: 100%;
+  cursor: pointer;
+  margin-bottom: 8%;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.region_dong > input {
+  display: none;
+  width: 100%;
+}
+
+.btn-group {
+  border: 0;
+  margin-top: 40%;
+  height: 20%;
+  border-top: 0.1rem solid black;
+}
+
+.btn-group > input {
+  margin-top:0.5rem;
+  border: none;
+  width: 45%;
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#map {
+  margin-left: 750px;
+  padding: 0;
+  width: 30%;
+  height: 500px;
+}
+
+.region_dong > h4 {
+  width: 30%;
+  margin-left: 30%;
+}
+
+.region_eup > h4 {
+  text-align: center;
+  margin-left: 30%;
+}
+
+.dong:checked + .on {
+  color: #2678cc;
+}
