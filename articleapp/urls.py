@@ -12,9 +12,14 @@ app_name = "articleapp"
 
 urlpatterns = [
     path('list/', ArticleListView.as_view(), name='list'),
+
     path('donate/', ArticleCreateView1.as_view(), name='donate'),
+
     path('volunteer/', ArticleCreateView2.as_view(), name='volunteer'),
+
     path('goods/', ArticleCreateView3.as_view(), name='goods'),
+
+
     path('detail/<int:pk>', ArticleDetailView.as_view(), name='detail'),
     path('update/<int:pk>', ArticleUpdateView.as_view(), name='update'),
     path('delete/<int:pk>', ArticleDeleteView.as_view(), name='delete'),

@@ -15,6 +15,7 @@ from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm, PriceCreationForm, ArticlereceiptForm
 from articleapp.models import Article, Campaign, PriceCategory, ArticleCategory
 
+from introapp.models import Society
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
@@ -240,8 +241,5 @@ class ArticleDeleteView(DeleteView):
     model = Article
     success_url = reverse_lazy('articleapp:list')
     template_name = 'articleapp/delete.html'
-
-
-
 
 

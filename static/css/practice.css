@@ -606,7 +606,7 @@ button {
 }
 
 #top a {
-  float: right;
+  right: 20px;
   position: fixed;
   bottom: 2%;
   z-index: 5;
@@ -621,9 +621,48 @@ button {
 
 #btn {
   display: inline-block;
-  padding: 0 43%;
 }
 
-#btn > button {
-  margin: 0;
+.inner_bottom {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+#category {
+  background: #f5f6f7;
+  padding: 0;
+  width: 100px;
+  z-index: 99;
+  margin-left: -17%;
+  margin-top: -15%;
+}
+
+#category ul {
+  padding: 0;
+  list-style: none;
+}
+
+#category ul li {
+  border-bottom: 0.5px solid #8e8e8e;
+}
+
+#category ul li:last-child {
+  border-bottom: none;
+}
+
+#category ul li a {
+  font-size: 17px;
+  padding: 10px;
+  display: block;
+  color: #333333;
+  text-decoration: none;
+}
+
+#category ul li a:hover {
+  background: #8e8e8e;
+}
+
+#category > ul > li > a > img {
+  width: 25%;
+  height: 25%;
 }
