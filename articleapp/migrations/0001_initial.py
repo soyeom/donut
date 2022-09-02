@@ -1,5 +1,8 @@
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> a3d2fb65d0c63221795eaceab4fa90616ab7431a
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
