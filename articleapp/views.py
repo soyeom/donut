@@ -13,7 +13,7 @@ from commentapp.forms import CommentCreationForm
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm, PriceCreationForm, ArticlereceiptForm
-from articleapp.models import Article, Campaign, PriceCategory
+from articleapp.models import Article, Campaign, PriceCategory, ArticleCategory
 
 
 @method_decorator(login_required, 'get')
@@ -32,7 +32,20 @@ class ArticleCreateView(CreateView):
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
+class ArticleCreateView3(CreateView):
+    model = Article
+    form_class = ArticleCreationForm
+    template_name = 'articleapp/create_goods.html'
 
+    def form_valid(self, form):
+        article = form.save(commit=False)
+        article.writer = self.request.user
+        article.category = ArticleCategory.objects.get(name='공구')
+        article.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
 def Camp(request):
     if request.method == 'POST':
@@ -107,7 +120,7 @@ class ArticleDetailView(DetailView, FormMixin):
 
 class ArticleListView(ListView):
     model = Article
-    template_name = 'articleapp/list.html'
+    template_name = 'articleapp/goods_list.html'
     paginate_by = 9
     context_object_name = 'article_list'
 
