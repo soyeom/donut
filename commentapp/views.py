@@ -1,5 +1,3 @@
-from django.db.models.fields import json
-from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import CreateView, DeleteView
 from django.utils.decorators import method_decorator
@@ -13,22 +11,35 @@ class CommentCreateView(CreateView):
     form_class = CommentCreationForm
     template_name = 'commentapp/create.html'
 
-    def post(self, request):
-        data = json.loads(request.body)
-        user = request.user
-        article_id = data.get('article', None)
-        parent_id = data.get('parent', None)
-        content = data.get('content', None)
+    def form_valid(self, form):
+        temp_comment = form.save(commit=False)
+        temp_comment.article = Article.objects.get(pk=self.request.POST['article_pk'])
+        if self.request.POST['comment_pk'] != '':
+            temp_comment.parent = Comment.objects.get(pk=self.request.POST['comment_pk'])
+        else:
+            temp_comment.parent = None
+        temp_comment.writer = self.request.user
+        temp_comment.save()
+        return super().form_valid(form)
 
-        Comment.objects.create(
-            user=user,
-            article=Article.objects.get(id=article_id),
-            parent_id=parent_id,
-            content=content
-        )
+    def get_success_url(self):
+        return reverse('articleapp:detail', kwargs={'pk': self.object.article.pk})
 
 
-
+# class ReCommentCreateView(CreateView):
+#     model = ReComment
+#     form_class = ReCommentForm
+#     template_name = 'commentapp/createRecomment.html'
+#
+#     def form_valid(self, form):
+#         re_comment = form.save(commit=False)
+#         re_comment.writer = self.request.user
+#         re_comment.comment = Comment.objects.get(pk=self.request.POST['comment_pk'])
+#         re_comment.save()
+#         return super().form_valid(form)
+#
+#     def get_success_url(self):
+#         return reverse('articleapp:detail', kwargs={'pk': self.object.article.pk})
 
 
 @method_decorator(comment_ownership_required, 'get')
