@@ -13,19 +13,23 @@ from commentapp.forms import CommentCreationForm
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm, PriceCreationForm, ArticlereceiptForm
-from articleapp.models import Article, Campaign, PriceCategory
+from articleapp.models import Article, Campaign, PriceCategory, ArticleCategory
 
+from introapp.models import Society
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
-class ArticleCreateView(CreateView):
+class ArticleCreateView1(CreateView):
     model = Article
     form_class = ArticleCreationForm
-    template_name = 'articleapp/create.html'
+    template_name = 'articleapp/donate.html'
+
 
     def form_valid(self, form):
         article = form.save(commit=False)
         article.writer = self.request.user
+        article.category = ArticleCategory.objects.get(name="기부")
+        print(ArticleCategory.objects.get(name="기부"))
         article.save()
         return super().form_valid(form)
 
@@ -33,6 +37,39 @@ class ArticleCreateView(CreateView):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
 
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
+class ArticleCreateView2(CreateView):
+    model = Article
+    form_class = ArticleCreationForm
+    template_name = 'articleapp/create_volunteer.html'
+
+    def form_valid(self, form):
+        article = form.save(commit=False)
+        article.writer = self.request.user
+        article.category = ArticleCategory.objects.get(name="봉사")
+        article.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
+
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
+class ArticleCreateView3(CreateView):
+    model = Article
+    form_class = ArticleCreationForm
+    template_name = 'articleapp/create_goods.html'
+
+    def form_valid(self, form):
+        article = form.save(commit=False)
+        article.writer = self.request.user
+        article.category = ArticleCategory.objects.get(name='공구')
+        article.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
 def Camp(request):
     if request.method == 'POST':
@@ -107,7 +144,7 @@ class ArticleDetailView(DetailView, FormMixin):
 
 class ArticleListView(ListView):
     model = Article
-    template_name = 'articleapp/donate_list.html'
+    template_name = 'articleapp/goods_list.html'
     paginate_by = 9
     context_object_name = 'article_list'
 
@@ -202,8 +239,5 @@ class ArticleDeleteView(DeleteView):
     model = Article
     success_url = reverse_lazy('articleapp:list')
     template_name = 'articleapp/delete.html'
-
-
-
 
 

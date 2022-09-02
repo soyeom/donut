@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../static/css/writing.css">
+    <link rel="stylesheet" href="../../../static/SASS/writing.scss">
+</head>
+<body>
+{% load bootstrap4 %}
+{% load static %}
+<div id="wrapper">
+    <div id="header">
+        <h1 id="top_logo">
+            <img src="../../../static/img/donut.png" alt="">
+            <a href="{% url 'introapp:home' %}">Donut</a>
+        </h1>
+    </div>
+
+    <div id="container">
+        <div id="content">
+            <div id="create_content">
+                <div id="row">
+                    <div class="title">
+                        새로운 글쓰기
+                        <div class="line pink"></div>
+                        <div class="sub_title">
+                            시작하려는 캠페인을 소개해주세요 !
+                        </div>
+                    </div>
+                    <form action="{% url 'articleapp:donate' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <div id="btn">
+                            <button class="custom btn-1">제출하기</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <address>
+            <em class="copy">고려대학교 세종캠퍼스 </em>
+            <em class="u_cri">©</em>
+            <a href="{% url 'introapp:home' %}" class="u_cra">Donut</a>
+        </address>
+    </div>
+</div>
+</body>
+</html>
+

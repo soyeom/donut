@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from introapp.models import Society
 
 class ArticleCategory(models.Model):
     name = models.CharField(max_length=20)
