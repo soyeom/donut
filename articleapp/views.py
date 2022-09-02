@@ -54,7 +54,10 @@ class ArticleCreateView2(CreateView):
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 17d6b27cb030a3ea84edfd066c92d44a9edaa002
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
 class ArticleCreateView3(CreateView):
