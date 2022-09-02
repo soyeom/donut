@@ -18,7 +18,7 @@ from articleapp.models import Article, Campaign, PriceCategory
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
-class ArticleCreateView(CreateView):
+class ArticleCreateView1(CreateView):
     model = Article
     form_class = ArticleCreationForm
     template_name = 'articleapp/create.html'
@@ -26,6 +26,7 @@ class ArticleCreateView(CreateView):
     def form_valid(self, form):
         article = form.save(commit=False)
         article.writer = self.request.user
+        article.category =
         article.save()
         return super().form_valid(form)
 
