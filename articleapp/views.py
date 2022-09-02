@@ -13,7 +13,7 @@ from commentapp.forms import CommentCreationForm
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm, PriceCreationForm, ArticlereceiptForm
-from articleapp.models import Article, Campaign, PriceCategory
+from articleapp.models import Article, Campaign, PriceCategory, ArticleCategory
 
 
 @method_decorator(login_required, 'get')
@@ -21,12 +21,14 @@ from articleapp.models import Article, Campaign, PriceCategory
 class ArticleCreateView1(CreateView):
     model = Article
     form_class = ArticleCreationForm
-    template_name = 'articleapp/create.html'
+    template_name = 'articleapp/donate.html'
+
 
     def form_valid(self, form):
         article = form.save(commit=False)
         article.writer = self.request.user
-        article.category =
+        article.category = ArticleCategory.objects.get(name="기부")
+        print(ArticleCategory.objects.get(name="기부"))
         article.save()
         return super().form_valid(form)
 
