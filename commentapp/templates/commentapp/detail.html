@@ -1,3 +1,5 @@
+{% load bootstrap4 %}
+
 <div id="time" style="border: 1px solid; text-align: left; padding: 4%; margin: 1rem 0; border-radius: 1rem;
              border-color: #bbb;">
     <div>
@@ -22,8 +24,20 @@
     {% endif %}
 
     <br><br>
-    <button type="button">답글 </button>
-    <div>
+    <script type="text/javascript">
+        var bDisplay = true;
+        function onDisplay(){
+            var con = document.getElementById("recomment");
+            if(con.style.display=='none'){
+                con.style.display = 'block';
+            }
+            else{
+                con.style.display = 'none';
+            }
+        }
+    </script>
+    <button onclick="onDisplay()" class="btn btn-dark rounded-pill col-6 mt-3">답글</button>
+    <div id="recomment">
         {% include 'commentapp/createRecomment.html' with article=target_article comment=comment %}
     </div>
 
