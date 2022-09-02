@@ -35,6 +35,27 @@ class ArticleCreateView1(CreateView):
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
+
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
+class ArticleCreateView2(CreateView):
+    model = Article
+    form_class = ArticleCreationForm
+    template_name = 'articleapp/create_volunteer.html'
+
+    def form_valid(self, form):
+        article = form.save(commit=False)
+        article.writer = self.request.user
+        article.category = ArticleCategory.objects.get(name="봉사")
+        article.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
+
+
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
 class ArticleCreateView3(CreateView):
     model = Article
     form_class = ArticleCreationForm
@@ -49,6 +70,7 @@ class ArticleCreateView3(CreateView):
 
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
+
 
 def Camp(request):
     if request.method == 'POST':
