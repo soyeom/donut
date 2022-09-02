@@ -165,16 +165,15 @@
                                 </h6>
                             </div>
 
-                            <div style="margin-left: 40%; margin-top: -9rem;">
-                                <h3>
-                                    포인트 :
-                                </h3>
-                            </div>
-
-                            <div class="section1" style="margin-left: 50%; white-space:nowrap;">
-                                <a href="{% url 'payapp:charge' %}">
-                                    포인트충전 &nbsp;↗
-                                </a>
+                            <div class="point">
+                                <div style="margin-left: 40%; margin-top: -9rem;">
+                                    <h3>
+                                        포인트 :
+                                        <a href="{% url 'payapp:charge' %}">
+                                            포인트충전 &nbsp;↗
+                                        </a>
+                                    </h3>
+                                </div>
                             </div>
 
                             {% else %}
@@ -194,8 +193,6 @@
                         </div>
                     </div>
                 </div>
-
-
 
                 <div id="footer">
                     <address>

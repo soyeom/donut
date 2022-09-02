@@ -3,8 +3,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap");
 
+
 @keyframes progressAnimation {
-  0% {width: 0%; background-color: #f9bcca;}
+  0% {width: 0; background-color: #f9bcca;}
 }
 
 #wrapper {
@@ -61,7 +62,7 @@ h1 {
 #menu > li > #top_nav {
   position: absolute;
   top: 8.5%;
-  right: 40px;
+  right: 55px;
   font-family: "IBM Plex Sans KR", sans-serif;
   font-weight: bold;
   margin-right: -2vw;
@@ -249,6 +250,47 @@ body {
   width: 106px;
 }
 
+.title3 {
+  position: absolute;
+  left: 0;
+  top: 220px;
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+  transform: translate3d(0, 0, 0);
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 20px;
+  font-weight: lighter;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  text-indent: 0.3em;
+}
+
+.title4 {
+  position: absolute;
+  left: 47%;
+  top: 260px;
+  width: 106px;
+  height: 60px;
+  z-index: 1;
+  text-align: center;
+  transform: translate3d(0, 0, 0);
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.4em;
+  font-size: 30px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  text-indent: 0.3em;
+  background: url("../img/sejong_icon.png") no-repeat 0 0;
+}
+
+.title4 >img {
+  width: 106px;
+}
+
 @keyframes drift {
   from {
     transform: rotate(0deg);
@@ -265,6 +307,7 @@ body {
 #menu > li > #top_nav > li {
   text-align: center;
   width: fit-content;
+  height: 12%;
   text-transform: uppercase;
   letter-spacing: 2px;
   border-radius: 660px;
@@ -499,4 +542,56 @@ ul li {
 #menu > li:hover ul {
   display: inline-block;
   z-index: 999;
+}
+
+@media only screen and (min-width: 1920px) {
+  .box {
+    width: 1600px;
+    margin-left: 3%;
+    min-width: 50%;
+    max-width: 120%;
+    height: 480px;
+    border-radius: 5px;
+    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    margin-top: 21.5%;
+  }
+
+  #top_logo {
+    -webkit-text-stroke: 1px #f48fb1;
+    padding-left: 6%;
+    padding-top: 3%;
+  }
+
+  .pro_container {
+    position: fixed;
+    width: 270px;
+    height: fit-content;
+    max-height: 300px;
+    overflow-y: scroll;
+    text-align: center;
+    background: #f5f6f7;
+    border-radius: 20px;
+    z-index: 15;
+    top: 28%;
+    left: 72%;
+    font-family: "Gowun Dodum", sans-serif;
+    font-size: 16px;
+    border: 1px solid #64b5f6;
+  }
+
+  #menu {
+    padding-right: 8%;
+  }
+
+  #menu > li > #top_nav {
+    position: absolute;
+    top: 8.5%;
+    right: 25%;
+    font-family: "IBM Plex Sans KR", sans-serif;
+    font-weight: bold;
+    margin-right: -2vw;
+  }
+
 }
