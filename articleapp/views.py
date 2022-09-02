@@ -18,14 +18,17 @@ from articleapp.models import Article, Campaign, PriceCategory, ArticleCategory
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
-class ArticleCreateView(CreateView):
+class ArticleCreateView1(CreateView):
     model = Article
     form_class = ArticleCreationForm
-    template_name = 'articleapp/create.html'
+    template_name = 'articleapp/donate.html'
+
 
     def form_valid(self, form):
         article = form.save(commit=False)
         article.writer = self.request.user
+        article.category = ArticleCategory.objects.get(name="기부")
+        print(ArticleCategory.objects.get(name="기부"))
         article.save()
         return super().form_valid(form)
 

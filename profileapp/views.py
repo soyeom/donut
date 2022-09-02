@@ -15,7 +15,7 @@ class ProfileCreateView(CreateView):
     model = Profile
     context_object_name = 'target_profile'
     form_class = ProfileCreationForm
-    template_name = 'profileapp/create.html'
+    template_name = 'profileapp/donate.html'
 
     def form_valid(self, form):
         temp_profile = form.save(commit=False)
