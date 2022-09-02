@@ -122,11 +122,25 @@
                         {% endif %}
                     {% endif %}
                 </div>
-
+                <!--댓글 작성-->
                 {% include 'commentapp/create.html' with article=target_article %}
+
                 {% for comment in target_article.comment.all %}
-                    {% include 'commentapp/detail.html' with comment=comment%}
+                    <!--생성한 댓글들만 띄우기-->
+                    {% if comment.parent == None %}
+                        {% include 'commentapp/detail.html' with comment=comment %}
+                        {{comment.writer.profile.nickname}} 댓글의 대댓글
+                        <!--해당 댓글의 대댓글들만 띄우기-->
+                        {% for recomment in target_article.comment.all %}
+                            {% if recomment.parent_id == comment.id %}
+                                {% include 'commentapp/recomment.html' with recomment=recomment %}
+                            {% endif %}
+                        {% endfor %}
+                        <br><br><br>
+
+                    {% endif %}
                 {% endfor %}
+
             </div>
             <div id="footer">
                 <address>
