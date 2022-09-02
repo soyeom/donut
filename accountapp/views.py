@@ -109,6 +109,21 @@ class signup(View):
             user.save()
             return redirect('accountapp:login')
 
+        else:
+            if not(request.POST['password1']):
+                singup_password1_errMsg = "* 비밀번호란에 비밀번호를 입력해주세요"
+                return render(request, "accountapp/create.html", {"singup_password1_errMsg": singup_password1_errMsg})
+            else:
+                if not(request.POST['password2']):
+                    singup_password2_errMsg = "* 비밀번호 재확인란에 비밀번호를 입력해주세요"
+                elif not(request.POST['password1'] and request.POST['password2']):
+                    singup_password2_errMsg = "* 비밀번호와 비밀번호 재확인란에 비밀번호를 입력해주세요"
+                else:
+                    singup_password2_errMsg = "* 비밀번호와 비밀번호 재확인란의 비밀번호가 일치하지 않습니다"
+                return render(request, "accountapp/create.html", {"singup_password2_errMsg" : singup_password2_errMsg})
+
+
+
 
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
@@ -139,7 +154,7 @@ class LoginPageView(View):
     def post(self, request):
         username = request.POST['username']
         password = request.POST['password']
-        errMsg = None
+        login_errMsg = None
         user = auth.authenticate(request, username=username, password=password)
 
         if username and password:
@@ -147,13 +162,13 @@ class LoginPageView(View):
                 auth.login(request, user)
                 return redirect('introapp:home')
             else:
-                errMsg = "* 아이디 또는 비밀번호가 일치하지 않습니다"
-                return render(request, 'accountapp/login.html', {'errMsg': errMsg})
+                login_errMsg = "* 아이디 또는 비밀번호가 일치하지 않습니다"
+                return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
         else:
             if not (username and password):
-                errMsg = "* 아이디와 비밀번호를 입력하세요"
+                login_errMsg = "* 아이디와 비밀번호를 입력하세요"
             if (not username) and password:
-                errMsg = "* 아이디를 입력하세요"
+                login_errMsg = "* 아이디를 입력하세요"
             if username and (not password):
-                errMsg = "* 비밀번호를 입력하세요"
-            return render(request, 'accountapp/login.html', {'errMsg': errMsg})
+                login_errMsg = "* 비밀번호를 입력하세요"
+            return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
