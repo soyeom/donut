@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap");
+body {
+  position: relative;
+  background: #f5f6f7;
+  display: block;
+}
+
+div {
+  display: block;
+}
+
+#header {
+  overflow: hidden;
+  padding: 60px 0 54px;
+  box-sizing: border-box;
+}
+
+#container, #footer {
+  max-width: 768px;
+  margin: 0 auto;
+  min-width: 460px;
+}
+
+#container {
+  font-family: "Gowun Dodum", sans-serif;
+}
+
+#top_logo {
+  position: absolute;
+  top: 35px;
+  left: 40px;
+  z-index: 3;
+  cursor: pointer;
+  font-family: "Ubuntu", sans-serif;
+  color: #ffffff;
+  font-size: 35px;
+  font-weight: bold;
+  -webkit-text-stroke: 1px #f48fb1;
+}
+
+#top_logo > img {
+  width: 8%;
+  float: left;
+  padding-right: 10px;
+  margin-top: -5px;
+}
+
+#top_logo > a {
+  color: #ffffff;
+  -webkit-text-stroke: 1px #f48fb1;
+  text-decoration: none;
+}
+
+#footer {
+  clear: both;
+  margin: 0 auto;
+  padding: 30px 0 15px 0;
+  text-align: center;
+}
+
+#footer * {
+  font-size: 12px;
+  font-style: normal;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #333333;
+}
+
+#footer address {
+  font: 9px/14px Verdana;
+}
+
+#footer address em {
+  font: 9px Verdana;
+  padding-left: 4px;
+}
+
+:root #footer address .logo {
+  top: 2px;
+  margin-left: 1px;
+}
+
+#footer address .logo {
+  position: relative;
+  width: 63px;
+  height: 12px;
+}
+
+#footer address span {
+  font: 9px/14px Verdana;
+  padding-left: 2px;
+}
+
+#footer address .u_cri {
+  margin: 0;
+  padding-left: 1px;
+}
+
+#footer address a {
+  font: bold 9px Verdana;
+}
+
+#footer a {
+  text-decoration: none;
+}
+
+.detail > h1 {
+  text-align: center;
+}
+
+.detail > h5 {
+  font-size: 18px;
+  text-align: center;
+}
+
+.detail > h6 {
+  text-align: right;
+  font-size: 15px;
+  margin-top: -20px;
+}
+
+#btn1 {
+  display: inline-block;
+  width: 100px;
+  height: 26px;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0.8em 1em;
+  border: 1px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  float: right;
+  margin-right: 200px;
+  margin-left: -240px;
+  line-height: 10px;
+}
+
+.wave {
+  color: #333333;
+  opacity: 0.4;
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  background: #0af;
+  width: 300px;
+  height: 300px;
+  margin-left: -150px;
+  margin-bottom: -301px;
+  transform-origin: 50% 48%;
+  border-radius: 43%;
+  transition-duration: 2s;
+  transition-property: margin-bottom;
+  transition-timing-function: ease;
+}
+
+#btn1:hover .wave {
+  margin-bottom: -250px;
+  animation: rotate 2000ms infinite linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  from {
+    transform: rotate(360deg);
+  }
+}
+#form2 {
+  text-align: center;
+}
+
+#form2 > input {
+  height: 22px;
+  margin-bottom: 20px;
+  outline: none;
+  border: 1px solid #e0e0e0;
+}
+
+.a_tag {
+  width: 50px;
+  font-size: 13px;
+  text-align: center;
+  text-decoration: none;
+  color: #333333;
+  float: right;
+  border-right: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+}
+
+.mb-4 {
+  margin-top: 150px;
+}
+
+.mb-4 > h4 {
+  text-align: left;
+}
+
+.form-group > label {
+  color: #f5f6f7;
+}
+
+.form-group > textarea {
+  height: 50px;
+  width: 100%;
+  margin-top: -30px;
+  outline: none;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f5f6f7;
+}
+
+.btn {
+  background: #000000;
+  color: #ffffff;
+  width: 150px;
+  height: 40px;
+  font-size: 15px;
+  font-family: "Gowun Dodum", sans-serif;
+  margin-top: 50px;
+  cursor: pointer;
+}
+
+a.btn {
+  background: #5b80b2;
+  color: #ffffff;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 18px;
+  margin-top: 20%;
+  cursor: pointer;
+  padding: 3% 10%;
+  text-decoration: none;
+}
+
+a.btn:hover {
+  background: #6f94c6;
+  color: #ffffff;
+}
+
+#id_content {
+  margin-bottom: 20%;
+}
