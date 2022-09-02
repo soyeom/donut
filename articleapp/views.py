@@ -107,7 +107,7 @@ class ArticleDetailView(DetailView, FormMixin):
 
 class ArticleListView(ListView):
     model = Article
-    template_name = 'articleapp/list.html'
+    template_name = 'articleapp/donate_list.html'
     paginate_by = 9
     context_object_name = 'article_list'
 
