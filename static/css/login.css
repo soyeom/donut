@@ -226,4 +226,18 @@ h3 {
   text-decoration: none;
 }
 
+@media only screen and (min-width: 1920px) {
+  .box1 {
+    margin-left: 450px;
+    margin-top: 200px;
+  }
+
+  .box2 {
+    margin-right: 450px;
+    margin-top: 200px;
+    background-color: #f48fb1;
+    color: #ffffff;
+  }
+}
+
 /*# sourceMappingURL=login.css.map */

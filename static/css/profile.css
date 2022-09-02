@@ -399,7 +399,6 @@ a {
 }
 
 .point {
-  margin-top: -5rem;
-  margin-left: 10%;
-  width: 300px;
+  margin-top: 5rem;
+  width: 350px;
 }
