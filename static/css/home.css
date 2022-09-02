@@ -560,7 +560,7 @@ ul li {
 
   #top_logo {
     -webkit-text-stroke: 1px #f48fb1;
-    padding-left: 6%;
+    padding-left: 8%;
     padding-top: 3%;
   }
 
@@ -575,21 +575,21 @@ ul li {
     border-radius: 20px;
     z-index: 15;
     top: 28%;
-    left: 72%;
+    left: 78%;
     font-family: "Gowun Dodum", sans-serif;
     font-size: 16px;
     border: 1px solid #64b5f6;
   }
 
   #menu {
-    padding-right: 8%;
+    padding-right: 6%;
     top: 7%;
   }
 
   #menu > li > #top_nav {
     position: absolute;
     top: 10%;
-    right: 25%;
+    right: 20%;
     font-family: "IBM Plex Sans KR", sans-serif;
     font-weight: bold;
     margin-right: -2vw;
