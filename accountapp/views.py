@@ -123,21 +123,35 @@ class AccountDeleteView(DeleteView):
     template_name = 'accountapp/delete.html'
 
 
-def loging(request, errMsg=None):
+def loging(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        errMsg = None
         user = auth.authenticate(request, username=username, password=password)
 
-        if not (username and password):
-            errMsg = "아이디와 비번을 입력하세요"
-            return render(request, 'accountapp/login.html', errMsg)
-        else:
+        if (username and password):
             if user is not None:
                 auth.login(request, user)
                 return redirect('introapp:home')
             else:
-                errMsg = "아이디 또는 비밀번호가 일치하지 않습니다"
-                return render(request, 'accountapp/login.html', errMsg)
+                errMsg = "* 아이디 또는 비밀번호가 일치하지 않습니다"
+                return render(request, 'accountapp/login.html', {'errMsg': errMsg})
+        else:
+            if not (username and password):
+                errMsg = "* 아이디와 비밀번호를 입력하세요"
+
+            elif not (username):
+                errMsg = "* 아이디를 입력하세요"
+
+            elif not (password):
+                errMsg = "* 비밀번호를 입력하세요"
+            return render(request, 'accountapp/login.html', {'errMsg': errMsg})
+
+
     else:
-        return render(request, 'accountapp/login.html', {'errMsg': errMsg})
+        return render(request, 'accountapp/login.html')
+
+
+
+

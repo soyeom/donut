@@ -13,7 +13,7 @@ html {
 
 html::before {
   content: "";
-  background: linear-gradient(45deg, pink, violet, skyblue);
+  background: linear-gradient(45deg, #ec407a, #9575cd, #42a5f5);
   opacity: 0.5;
   position: absolute;
   top: 0;
