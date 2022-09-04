@@ -9,7 +9,7 @@ from commentapp.decorators import comment_ownership_required
 class CommentCreateView(CreateView):
     model = Comment
     form_class = CommentCreationForm
-    template_name = 'commentapp/donate.html'
+    template_name = 'commentapp/create_donate.html'
 
     def form_valid(self, form):
         temp_comment = form.save(commit=False)

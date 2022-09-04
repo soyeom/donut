@@ -22,7 +22,7 @@ from introapp.models import Society
 class ArticleCreateView1(CreateView):
     model = Article
     form_class = ArticleCreationForm
-    template_name = 'articleapp/donate.html'
+    template_name = 'articleapp/create_donate.html'
 
 
     def form_valid(self, form):
