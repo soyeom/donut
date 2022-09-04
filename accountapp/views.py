@@ -172,3 +172,4 @@ class LoginPageView(View):
             if username and (not password):
                 login_errMsg = "* 비밀번호를 입력하세요"
             return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
+

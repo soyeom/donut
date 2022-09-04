@@ -1,0 +1,15 @@
+    .button {
+        background-color:pink;
+        color:white;
+        position:relative;
+        padding:0.5rem 5rem;
+        border-radius:15px;
+        font-weight:600;
+        transition:0.25s;
+        border: 0.2rem solid pink;
+        margin: 2rem 1rem;
+    }
+
+    h4 {
+    color:pink;
+    }
