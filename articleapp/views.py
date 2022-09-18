@@ -143,9 +143,67 @@ class ArticleDetailView(DetailView, FormMixin):
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_refferer_not_found'))
 
 
-class ArticleListView(ListView):
+class ArticleListView1(ListView):
     model = Article
     template_name = 'articleapp/goods_list.html'
+    paginate_by = 9
+    context_object_name = 'article_list'
+
+    def get_queryset(self):
+        search_keyword = self.request.GET.get('q', '')
+        article_list = Article.objects.order_by('-id')
+
+        if search_keyword:
+            if len(search_keyword) > 1:
+                search_article_list = article_list.filter(title__icontains=search_keyword)
+
+                return search_article_list
+            else:
+                messages.error(self.request, '2글자 이상 입력해주세요')
+        return article_list
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        search_keyword = self.request.GET.get('q', '')
+
+        if len(search_keyword) > 1:
+            context['q'] = search_keyword
+
+        return context
+
+
+class ArticleListView2(ListView):
+    model = Article
+    template_name = 'articleapp/donate_list.html'
+    paginate_by = 9
+    context_object_name = 'article_list'
+
+    def get_queryset(self):
+        search_keyword = self.request.GET.get('q', '')
+        article_list = Article.objects.order_by('-id')
+
+        if search_keyword:
+            if len(search_keyword) > 1:
+                search_article_list = article_list.filter(title__icontains=search_keyword)
+
+                return search_article_list
+            else:
+                messages.error(self.request, '2글자 이상 입력해주세요')
+        return article_list
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        search_keyword = self.request.GET.get('q', '')
+
+        if len(search_keyword) > 1:
+            context['q'] = search_keyword
+
+        return context
+
+
+class ArticleListView3(ListView):
+    model = Article
+    template_name = 'articleapp/volunteer_list.html'
     paginate_by = 9
     context_object_name = 'article_list'
 
@@ -238,3 +296,7 @@ class ArticleDeleteView(DeleteView):
     model = Article
     success_url = reverse_lazy('articleapp:list')
     template_name = 'articleapp/delete.html'
+
+
+def donate_list(request):
+    return reverse('articleapp:donate_list')
