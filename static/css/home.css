@@ -26,6 +26,7 @@ div {
 
 body {
   font-size: 0.81em;
+  overflow-x: hidden;
 }
 
 #wrapper:after {
@@ -51,6 +52,115 @@ body {
   color: #ffffff;
   font-size: 35px;
   font-weight: bold;
+}
+
+input {
+  display: none;
+}
+
+.menu_button {
+  height: 2rem;
+  width: 2em;
+  right: 2%;
+  top: 5%;
+  z-index: 99;
+  position: absolute;
+  cursor: pointer;
+}
+
+.menu_button2 {
+  height: 2rem;
+  width: 2em;
+  right: 2%;
+  top: 17%;
+  margin-top: 6%;
+  margin-right: -2%;
+  position: absolute;
+  cursor: pointer;
+}
+
+.menu_button .b_bar, .menu_button2 .b_bar {
+  background: black;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  border-radius: 5px;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+
+.menu_button2 .b_bar:nth-child(1) {
+  top: .6rem;
+}
+.menu_button2 .b_bar:nth-child(2) {
+  top: calc(50% - 1.5px);
+}
+.menu_button2 .b_bar:nth-child(3) {
+  bottom: .6rem;
+}
+
+.menu_button .b_bar:nth-child(1) {
+  top: .6rem;
+}
+.menu_button .b_bar:nth-child(2) {
+  top: calc(50% - 1.5px);
+}
+.menu_button .b_bar:nth-child(3) {
+  bottom: .6rem;
+}
+
+#menu_inputbox:checked ~ .slider {
+  right: 2%;
+}
+
+.slider {
+  z-index: 999;
+  background: #f5f6f7;
+  position: absolute;
+  top: 0;
+  height: 15%;
+  right: -700px;
+  width: 550px;
+  box-sizing: border-box;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  clear: both;
+}
+
+.slider > ul > a > li {
+  float: left;
+  margin-right: 10%;
+  width: fit-content;
+}
+
+.slider_head {
+  height: 50px;
+  line-height: 90px;
+  background: rgba(255,255,255,0);
+  color: #000;
+  padding: 5px;
+  position: relative;
+}
+
+.pore > a {
+  font-size: 17px;
+  font-family: "Gowun Dodum", sans-serif;
+  color: #333333;
+  text-align: center;
+  width: fit-content;
+}
+
+.pore > a:hover {
+  color: #5b80b2;
+}
+
+.pore > a:hover > li {
+  background: #f5f6f7;
+}
+
+#menu {
+  padding: 0;
+  margin: 0;
 }
 
 h1 {
@@ -84,17 +194,7 @@ ul {
   letter-spacing: -0.3px;
   text-align: center;
 }
-/*
-#menu > li > #top_nav > li > a {
-  display: block;
-  padding: 17px 0 36px 0;
-  zoom: 1;
-  font-size: 15px;
-  color: #f48fb1;
-  font-weight: bold;
-  z-index: 3;
-}
-*/
+
 a {
   text-decoration: none;
 }
@@ -134,7 +234,7 @@ body {
   box-shadow: 0 2px 30px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   transform: translate3d(0, 0, 0);
-  margin-top: 21.5%;
+  margin-top: 21.8%;
 }
 
 .wave {
@@ -142,7 +242,7 @@ body {
   position: absolute;
   top: 3%;
   left: 45%;
-  background: #3f51b5;
+  background: #0af;
   width: 650px;
   height: 650px;
   margin-left: -250px;
@@ -169,7 +269,7 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, #2678cc, rgba(221, 238, 255, 0) 80%, rgba(255, 255, 255, 0.5));
+  background: linear-gradient(to bottom, #ee88aa, rgba(221, 238, 255, 0) 80%, rgba(255, 255, 255, 0.5));
   z-index: 11;
   transform: translate3d(0, 0, 0);
 }
@@ -178,7 +278,7 @@ body {
   position: absolute;
   left: 0;
   top: 50px;
-  line-height: 100px;
+  line-height: 200px;
   width: 100%;
   z-index: 1;
   text-align: center;
@@ -207,88 +307,7 @@ body {
   font-size: 30px;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   text-indent: 0.3em;
-}
-
-.title3 {
-  position: absolute;
-  left: 0;
-  top: 220px;
-  width: 100%;
-  z-index: 1;
-  text-align: center;
-  transform: translate3d(0, 0, 0);
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.4em;
-  font-family: "Ubuntu", sans-serif;
-  font-size: 20px;
-  font-weight: lighter;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  text-indent: 0.3em;
-}
-
-.title4 {
-  position: absolute;
-  left: 47%;
-  top: 260px;
-  width: 106px;
-  height: 60px;
-  z-index: 1;
-  text-align: center;
-  transform: translate3d(0, 0, 0);
-  color: #ffffff;
-  text-transform: uppercase;
-  font-family: "Playfair Display", serif;
-  letter-spacing: 0.4em;
-  font-size: 30px;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  text-indent: 0.3em;
-  background: url("../img/sejong_icon.png") no-repeat 0 0;
-}
-
-.title4 >img {
-  width: 106px;
-}
-
-.title3 {
-  position: absolute;
-  left: 0;
-  top: 220px;
-  width: 100%;
-  z-index: 1;
-  text-align: center;
-  transform: translate3d(0, 0, 0);
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.4em;
-  font-family: "Ubuntu", sans-serif;
-  font-size: 20px;
-  font-weight: lighter;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  text-indent: 0.3em;
-}
-
-.title4 {
-  position: absolute;
-  left: 47%;
-  top: 260px;
-  width: 106px;
-  height: 60px;
-  z-index: 1;
-  text-align: center;
-  transform: translate3d(0, 0, 0);
-  color: #ffffff;
-  text-transform: uppercase;
-  font-family: "Playfair Display", serif;
-  letter-spacing: 0.4em;
-  font-size: 30px;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  text-indent: 0.3em;
-  background: url("../img/sejong_icon.png") no-repeat 0 0;
-}
-
-.title4 >img {
-  width: 106px;
+  line-height: 250px;
 }
 
 @keyframes drift {
@@ -310,26 +329,7 @@ body {
   height: 12%;
   text-transform: uppercase;
   letter-spacing: 2px;
-  border-radius: 660px;
-  background: linear-gradient(45deg, #dadbde, #ffffff);
-  box-shadow: 9px -9px 12px #c9cacd, -9px 9px 12px #ffffff;
   margin-left: 1vw;
-}
-
-#menu > li > #top_nav > li:hover {
-  box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
-  inset -2px -2px 12px rgba(255,255,255,0.5),
-  inset 2px 2px 4px rgba(255,255,255,0.1),
-  inset 2px 2px 8px rgba(0,0,0,0.15);
-}
-
-#menu > li > #top_nav > li > a {
-  color: #2678cc;
-  margin: 0;
-  font-size: 1vw;
-  text-decoration: none;
-  display: inline-block;
-  padding: 0.5vw 0 1vw 0;
 }
 
 ul li {
@@ -445,14 +445,12 @@ ul li {
   max-height: 300px;
   overflow-y: scroll;
   text-align: center;
-  background: #f5f6f7;
-  border-radius: 20px;
+  background: rgba(255,255,255,0.5);
   z-index: 15;
   top: 20%;
   left: 80%;
   font-family: "Gowun Dodum", sans-serif;
   font-size: 16px;
-  border: 1px solid #64b5f6;
 }
 
 .pro_container::-webkit-scrollbar {
@@ -462,6 +460,7 @@ ul li {
 .progress2 {
   padding: 2px;
   width: 220px;
+  margin-left: 7%;
   margin-bottom: 10%;
   border-radius: 30px;
   background: rgba(0, 0, 0, 0.25);
@@ -478,7 +477,7 @@ ul li {
 }
 
 .progress-moved .progress-bar2 {
-  background-color: #0089cf;
+  background-color: #f8bbd0;
   animation: progressAnimation 1s;
 }
 
@@ -578,7 +577,7 @@ ul li {
     left: 78%;
     font-family: "Gowun Dodum", sans-serif;
     font-size: 16px;
-    border: 1px solid #64b5f6;
+    border: 1px solid #f48fb1;
   }
 
   #menu {
