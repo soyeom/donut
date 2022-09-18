@@ -146,8 +146,8 @@
 
             <!-- 지도 -->
                 <div id="map">
-                   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3484f791cc128fd4a942d09c56cd52e5"></script>
-                    <img id="marker" src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png">
+                   <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=3484f791cc128fd4a942d09c56cd52e5"></script>
+                    <img id="marker" src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png" style="cursor: pointer" onclick="window.open(this.src);">
                    <script>
                        var container = document.getElementById('map');
 
@@ -173,7 +173,7 @@
                            console.log('{{result.society}}')
                        {% endfor %}
 
-                       var imageSrc = document.getElementById('marker');
+                       var imageSrc = document.getElementById('marker').src;
 
                        for (var i = 0; i < positions.length; i ++) {
 
