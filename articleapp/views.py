@@ -151,7 +151,7 @@ class ArticleListView1(ListView):
 
     def get_queryset(self):
         search_keyword = self.request.GET.get('q', '')
-        article_list = Article.objects.order_by('-id')
+        article_list = Article.objects.filter(category_id=3).order_by('-id')
 
         if search_keyword:
             if len(search_keyword) > 1:
@@ -180,7 +180,7 @@ class ArticleListView2(ListView):
 
     def get_queryset(self):
         search_keyword = self.request.GET.get('q', '')
-        article_list = Article.objects.order_by('-id')
+        article_list = Article.objects.filter(category_id=1).order_by('-id')
 
         if search_keyword:
             if len(search_keyword) > 1:
@@ -209,7 +209,7 @@ class ArticleListView3(ListView):
 
     def get_queryset(self):
         search_keyword = self.request.GET.get('q', '')
-        article_list = Article.objects.order_by('-id')
+        article_list = Article.objects.filter(category_id=2).order_by('-id')
 
         if search_keyword:
             if len(search_keyword) > 1:
