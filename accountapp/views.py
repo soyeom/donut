@@ -117,7 +117,6 @@ class signup(View):
         else:
             if not(request.POST['password1']):
                 singup_password1_errMsg = "* 비밀번호란에 비밀번호를 입력해주세요"
-
                 return render(request, "accountapp/create.html", {"singup_password1_errMsg": singup_password1_errMsg})
 
             else:
