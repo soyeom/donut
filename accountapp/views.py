@@ -100,11 +100,15 @@ class signup(View):
     template_name = 'authentication/login.html'
 
     def get(self, request):
-        return render(request, 'accountapp/create.html')
+        return render(request, 'accountapp/create.html')d
 
     def post(self, request):
         if request.POST['password1'] == request.POST['password2']:
-            user = User.objects.create_user(
+            if User.objects.filter(username=request.POST['username']).exists():
+                singup_username_errMsg = "* 이미 존재하는 아이디입니다."
+                return render(request, 'accountapp/create.html', {"singup_username_errMsg": singup_username_errMsg})
+            else:
+                user = User.objects.create_user(
                 username=request.POST['username'], password=request.POST['password1'], email=request.POST['email'])
             user.save()
             return redirect('accountapp:login')
@@ -113,6 +117,7 @@ class signup(View):
             if not(request.POST['password1']):
                 singup_password1_errMsg = "* 비밀번호란에 비밀번호를 입력해주세요"
                 return render(request, "accountapp/create.html", {"singup_password1_errMsg": singup_password1_errMsg})
+
             else:
                 if not(request.POST['password2']):
                     singup_password2_errMsg = "* 비밀번호 재확인란에 비밀번호를 입력해주세요"
@@ -121,6 +126,7 @@ class signup(View):
                 else:
                     singup_password2_errMsg = "* 비밀번호와 비밀번호 재확인란의 비밀번호가 일치하지 않습니다"
                 return render(request, "accountapp/create.html", {"singup_password2_errMsg" : singup_password2_errMsg})
+
 
 
 
