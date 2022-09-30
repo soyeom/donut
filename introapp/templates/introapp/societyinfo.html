@@ -168,8 +168,9 @@
                        var positions = new Array();
 
                        {% for result in matchingresult %}
+                           content = '<div>{{ result.society }}</div>'
                            latlng = new kakao.maps.LatLng({{result.latitude}}, {{result.longitude}});
-                           positions.push({title: '{{result.society}}', latlng: latlng})
+                           positions.push({title: '{{result.society}}', latlng: latlng, content: '<div>{{ result.society }}</div>'})
                            console.log('{{result.society}}')
                        {% endfor %}
 
@@ -187,12 +188,76 @@
                                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀 표시
                                image : markerImage // 마커 이미지
                            });
-                       }
 
+                           // 마커 클릭 시 정보 띄우기
+                           var infowindow = new kakao.maps.InfoWindow({
+                               content : positions[i].content
+                           });
+                           (function (marker, infowindow) {
+                               kakao.maps.event.addListener(marker, 'click', function(){
+                                   infowindow.open(map, marker);
+                               });
+                               kakao.maps.event.addListener(map,'click', function(){
+                                   infowindow.close();
+                               });
+                           })(marker, infowindow);
+                       }
                    </script>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- 각 단체 로고 이미지 -->
+    <div id="logo">
+        <ul>
+            <li>
+                <a href="http://www.sjvc1365.or.kr/index.php">
+                    <img class="img1" src="http://www.sjvc1365.or.kr/project/design/com/logo.png">
+                </a>
+                <div class="img_text" id="text1">
+                    따뜻한 마음, 함께하는 세종, 세종특별자치시 자원봉사센터입니다.
+                </div>
+            </li>
+            <li>
+                <a href="http://m.sjcsw.or.kr/?act=main">
+                    <img class="img2" src="http://m.sjcsw.or.kr/data/file/logo_1.png">
+                </a>
+                <div class="img_text">
+                   사회복지협의회는 사회복지사업법에 의거하여 설립된 사회복지법인으로서,<br>
+                    민간 사회복지 증진을 위한 협의조정, 정책개발, 조사연구, 교육훈련, 자원봉사활동의 진흥,<br>
+                    사회적 취약계층을 위한 사업수행을 통해 우리나라의 사회복지증진과 발전에 기여하고 있습니다.
+                </div>
+            </li>
+            <li>
+                <a href="http://www.iywca.com/">
+                    <img class="img3" src="http://www.iywca.com/USER_DATA/sjywca/main/banner/logo.jpg">
+                </a>
+                <div class="img_text">
+                    젊은 여성들이 하나님을 창조와 역사의 주로 믿으며 인류는 하나님 안에서 한 형제자매임을 인정하고<br>
+                    예수 그리스도의 가르침을 자기 삶에 실천함으로써 정의 · 평화 · 창조질서의 보전이<br>
+                    이루어지는 세상을 건설함을 목적으로 하고 있습니다.
+                </div>
+            </li>
+            <li>
+                <a href="http://sejongchungang.or.kr/index.php">
+                    <img class="img4" src="http://sejongchungang.or.kr/images/logo1.jpg">
+                </a>
+                <div class="img_text">
+                    지역공동체 안에서 도움이 필요한 이웃들에게 "마중물"과 같은 역할을 통해<br>
+                    지속 가능한 평등, 연대, 변화를 실천하여 지역 공동체를 새롭게 창조하는 살림의 삶을 지향하고 있습니다.
+                </div>
+            </li>
+            <li>
+                <a href="https://sejong.korea.ac.kr/mbshome/mbs/share/index.do">
+                    <img class="img5" src="https://sejong.korea.ac.kr/mbshome/mbs/share/images/logo.png">
+                </a>
+                <div class="img_text">
+                    세종사회봉사단은 교육구국(敎育救國) 건학이념에 따라 고려대학교의 교육이념인 자유·정의·진리를 효과적으로 달성하고<br>
+                    사회에 봉사하는 대학의 문화를 정립하기 위해 설립되었습니다.
+                </div>
+            </li>
+        </ul>
     </div>
 
     <div id="footer">

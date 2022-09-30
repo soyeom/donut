@@ -13,7 +13,7 @@
     <div id="header">
         <h1 id="top_logo">
             <img src="../../../static/img/donut.png" alt="">
-            <a href="{% url 'introapp:home' %}">Donut</a>
+            <a href="/intro/home">Donut</a>
         </h1>
     </div>
 
@@ -25,7 +25,7 @@
                         새로운 글쓰기
                         <div class="line pink"></div>
                         <div class="sub_title">
-                            시작하려는 캠페인을 소개해주세요 !
+                            시작하려는 기부 캠페인을 소개해주세요 !
                         </div>
                     </div>
                     <form action="{% url 'articleapp:donate' %}" method="post" enctype="multipart/form-data">
