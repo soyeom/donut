@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-from introapp.models import Society
+
 
 class ArticleCategory(models.Model):
     name = models.CharField(max_length=20)
@@ -37,9 +37,9 @@ class Campaign(models.Model):
     amount = models.IntegerField(default=0, null=False)
     state = models.CharField(max_length=1, default='a')
 
+
 class PriceCategory(models.Model):
     article = models.OneToOneField(Article, on_delete=models.CASCADE, related_name='pricecategory', primary_key=True)
     food = models.IntegerField(default=0, null=True, blank=True)
     clothing = models.IntegerField(default=0, null=True, blank=True)
     shelter = models.IntegerField(default=0, null=True, blank=True)
-

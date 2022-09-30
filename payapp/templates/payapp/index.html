@@ -6,17 +6,46 @@
     <link rel="stylesheet" href="../../../static/css/pay_index.css">
 </head>
 <body>
-<div class="row mt-5">
-    <h1 class="col-12 text-center my-5">KAKAO PAY</h1>
-    <form method="post" class="col-12 text-center">
-        {% csrf_token %}
-        <button class="btn btn-warning" id="kakao_btn">
-            <img src="../../../static/img/kakao-logo.png">
-            <div class="btn_text">
-                카카오페이로 결제하기
+<div id="wrapper">
+    <div class="box1">
+        <form id="my_page" method="post">
+            <div id="container">
+                <div id="content">
+                    <div id="header">
+                        <h1 id="top_logo">
+                            <br>
+                            <img src="../../../static/img/donut.png" alt="">
+                            <a href="{% url 'introapp:home' %}">Donut</a>
+                        </h1>
+                    </div>
+                    <div class="row mt-5">
+                        <form method="post" class="col-12 text-center">
+                            {% csrf_token %}
+                            <h1>KAKAO PAY</h1>
+                            <button class="btn btn-warning" id="kakao_btn">
+                                <img src="../../../static/img/kakao-logo.png">
+                                <div class="btn_text">
+                                    카카오페이로 결제하기
+                                </div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </button>
-    </form>
+        </form>
+    </div>
+</div>
+<div id="footer">
+    <address>
+        <em>
+            <a href="../../../introapp/templates/introapp/home.html" class="logo">
+                <span class="blind"></span>
+            </a>
+        </em>
+        <em class="copy">고려대학교 세종캠퍼스</em>
+        <em class="u_cri">©</em>
+        <a href="#" class="u_cra">Donut</a>
+    </address>
 </div>
 </body>
 </html>

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from accountapp.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
@@ -100,7 +100,7 @@ class signup(View):
     template_name = 'authentication/login.html'
 
     def get(self, request):
-        return render(request, 'accountapp/create_donate.html')
+        return render(request, 'accountapp/create.html')
 
     def post(self, request):
         if request.POST['password1'] == request.POST['password2']:
@@ -112,7 +112,7 @@ class signup(View):
         else:
             if not(request.POST['password1']):
                 singup_password1_errMsg = "* 비밀번호란에 비밀번호를 입력해주세요"
-                return render(request, "accountapp/create_donate.html", {"singup_password1_errMsg": singup_password1_errMsg})
+                return render(request, "accountapp/create.html", {"singup_password1_errMsg": singup_password1_errMsg})
             else:
                 if not(request.POST['password2']):
                     singup_password2_errMsg = "* 비밀번호 재확인란에 비밀번호를 입력해주세요"
@@ -120,7 +120,7 @@ class signup(View):
                     singup_password2_errMsg = "* 비밀번호와 비밀번호 재확인란에 비밀번호를 입력해주세요"
                 else:
                     singup_password2_errMsg = "* 비밀번호와 비밀번호 재확인란의 비밀번호가 일치하지 않습니다"
-                return render(request, "accountapp/create_donate.html", {"singup_password2_errMsg" : singup_password2_errMsg})
+                return render(request, "accountapp/create.html", {"singup_password2_errMsg" : singup_password2_errMsg})
 
 
 
