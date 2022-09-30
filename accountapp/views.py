@@ -100,7 +100,7 @@ class signup(View):
     template_name = 'authentication/login.html'
 
     def get(self, request):
-        return render(request, 'accountapp/create.html')d
+        return render(request, 'accountapp/create.html')
 
     def post(self, request):
         if request.POST['password1'] == request.POST['password2']:
