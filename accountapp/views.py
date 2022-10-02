@@ -105,7 +105,7 @@ class signup(View):
     def post(self, request):
         if request.POST['password1'] == request.POST['password2']:
             user = User.objects.create_user(
-                username=request.POST['username'], password=request.POST['password1'], email=request.POST['email'])
+                username=request.POST('username'), birth_day=request.POST('birth_day'), userid=request.POST['userid'], password=request.POST['password1'], email=request.POST['email'])
             user.save()
             return redirect('accountapp:login')
 
