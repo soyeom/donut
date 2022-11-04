@@ -1,6 +1,6 @@
-from django.contrib.auth.models import User
+from accountapp.models import User
 from django.db import models
-from introapp.models import Society
+
 
 
 class ArticleCategory(models.Model):

@@ -29,7 +29,6 @@ class ArticleCreateView1(CreateView):
         article = form.save(commit=False)
         article.writer = self.request.user
         article.category = ArticleCategory.objects.get(name="기부")
-        print(ArticleCategory.objects.get(name="기부"))
         article.save()
         return super().form_valid(form)
 
@@ -298,5 +297,7 @@ class ArticleDeleteView(DeleteView):
     template_name = 'articleapp/delete.html'
 
 
+
 def donate_list(request):
     return reverse('articleapp:donate_list')
+
