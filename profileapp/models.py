@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> d69891255452616e1b2dbc84f62dd1d6bad158c4
@@ -6,6 +7,10 @@ from django.db import models
 from accountapp.models import User
 
 from accountapp.models import User
+=======
+from django.db import models
+from accountapp.models import User
+>>>>>>> d69891255452616e1b2dbc84f62dd1d6bad158c4
 
 
 class Profile(models.Model):
