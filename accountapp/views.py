@@ -106,14 +106,14 @@ class signup(View):
     def post(self, request):
         if request.POST['password1'] == request.POST['password2']:
             if User.objects.filter(id=request.POST['id']).exists():
-                singup_username_errMsg = "* 이미 존재하는 아이디입니다."
-                return render(request, 'accountapp/create.html', {"singup_username_errMsg": singup_username_errMsg})
+                singup_id_errMsg = "* 이미 존재하는 아이디입니다."
+                return render(request, 'accountapp/create.html', {"singup_id_errMsg": singup_id_errMsg})
             else:
                 user = User()
                 user.id = request.POST.get('id', False)
                 user.password = request.POST.get('password1', False)
-                user.username = request.POST.get('username', False)
-                user.email = request.POST.get('email', False)
+                user.username = request.POST.get('username')
+                user.email = request.POST.get('email')
                 user.save()
             return redirect('accountapp:login')
 
