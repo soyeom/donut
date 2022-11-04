@@ -8,4 +8,4 @@ from .models import Society
 
 @admin.register(Society)
 class Societyadmin(admin.ModelAdmin):
-    list_display = ['society', 'region', 'latitude', 'longitude', 'content']
+    list_display = ['society', 'region', 'latitude', 'longitude','logo', 'site', 'content']

@@ -13,9 +13,20 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, DeleteView, UpdateView, ListView, FormView
 from django.views.generic.list import MultipleObjectMixin
 
+from django.http import HttpResponse, JsonResponse
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+from django.shortcuts import redirect
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.core.mail import EmailMessage
+from django.utils.encoding import force_bytes, force_str
+
 import articleapp
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm, CampCreationForm
+from accountapp.text import message
+from accountapp.token import account_activation_token
 
 from articleapp.models import Article, Campaign, PriceCategory
 from accountapp.models import User, Grade
@@ -115,6 +126,17 @@ class signup(View):
                 user.username = request.POST.get('username')
                 user.email = request.POST.get('email')
                 user.save()
+
+            current_site = get_current_site(request)
+            domain = current_site.domain
+            uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+            token = account_activation_token.make_token(user)
+            message_data = message(domain, uidb64, token)
+
+            mail_title = "이메일 인증을 완료해주세요"
+            mail_to = user.email
+            email = EmailMessage(mail_title, message_data, to=[mail_to])
+            email.send()
             return redirect('accountapp:login')
 
         else:
@@ -129,7 +151,29 @@ class signup(View):
                     singup_password2_errMsg = "* 비밀번호와 비밀번호 재확인란에 비밀번호를 입력해주세요"
                 else:
                     singup_password2_errMsg = "* 비밀번호와 비밀번호 재확인란의 비밀번호가 일치하지 않습니다"
-                return render(request, "accountapp/create.html", {"singup_password2_errMsg": singup_password2_errMsg})
+
+                return render(request, "accountapp/create.html", {"singup_password2_errMsg" : singup_password2_errMsg})
+
+
+class Activate(View):
+    model = User
+    def get(self, request, uidb64, token):
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=uid)
+
+            if account_activation_token.check_token(user, token):
+                user.is_active = True
+                user.save()
+
+                return redirect('accountapp:login')
+
+            return JsonResponse({"message": "AUTH FAIL"}, status=400)
+
+        except ValidationError:
+            return JsonResponse({"message": "TYPE_ERROR"}, status=400)
+        except KeyError:
+            return JsonResponse({"message": "INVALID_KEY"}, status=400)
 
 
 @method_decorator(has_ownership, 'get')
