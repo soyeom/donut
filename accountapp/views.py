@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 from django.views.generic import View
@@ -13,9 +12,20 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, DeleteView, UpdateView, ListView, FormView
 from django.views.generic.list import MultipleObjectMixin
 
+from django.http import HttpResponse, JsonResponse
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+from django.shortcuts import redirect
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.core.mail import EmailMessage
+from django.utils.encoding import force_bytes, force_str
+
 import articleapp
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm, CampCreationForm
+from accountapp.text import message
+from accountapp.token import account_activation_token
 
 from articleapp.models import Article, Campaign, PriceCategory
 from django.core.paginator import Paginator
@@ -110,8 +120,19 @@ class signup(View):
                 return render(request, 'accountapp/create.html', {"singup_username_errMsg": singup_username_errMsg})
             else:
                 user = User.objects.create_user(
-                username=request.POST['username'], password=request.POST['password1'], email=request.POST['email'])
-            user.save()
+                username=request.POST['username'], password=request.POST['password1'], email=request.POST['email'], is_active = False)
+
+            current_site = get_current_site(request)
+            domain = current_site.domain
+            uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+            token = account_activation_token.make_token(user)
+            message_data = message(domain, uidb64, token)
+
+            mail_title = "이메일 인증을 완료해주세요"
+            mail_to = user['email']
+            email = EmailMessage(mail_title, message_data, to=[mail_to])
+            email.send()
+
             return redirect('accountapp:login')
 
         else:
@@ -130,6 +151,25 @@ class signup(View):
                 return render(request, "accountapp/create.html", {"singup_password2_errMsg" : singup_password2_errMsg})
 
 
+class Activate(View):
+    model = User
+    def get(self, request, uidb64, token):
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=uid)
+
+            if account_activation_token.check_token(user, token):
+                user.is_active = True
+                user.save()
+
+                return redirect('accountapp:login')
+
+            return JsonResponse({"message": "AUTH FAIL"}, status=400)
+
+        except ValidationError:
+            return JsonResponse({"message": "TYPE_ERROR"}, status=400)
+        except KeyError:
+            return JsonResponse({"message": "INVALID_KEY"}, status=400)
 
 
 
