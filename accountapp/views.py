@@ -18,6 +18,7 @@ from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm, CampCreationForm
 
 from articleapp.models import Article, Campaign, PriceCategory
+from accountapp.models import User, Grade
 from django.core.paginator import Paginator
 from django.contrib.auth.hashers import check_password
 
@@ -104,31 +105,31 @@ class signup(View):
 
     def post(self, request):
         if request.POST['password1'] == request.POST['password2']:
-            if User.objects.filter(username=request.POST['username']).exists():
-                singup_username_errMsg = "* 이미 존재하는 아이디입니다."
-                return render(request, 'accountapp/create.html', {"singup_username_errMsg": singup_username_errMsg})
+            if User.objects.filter(id=request.POST['id']).exists():
+                singup_id_errMsg = "* 이미 존재하는 아이디입니다."
+                return render(request, 'accountapp/create.html', {"singup_id_errMsg": singup_id_errMsg})
             else:
-                user = User.objects.create_user(
-                username=request.POST['username'], password=request.POST['password1'], email=request.POST['email'])
-            user.save()
+                user = User()
+                user.id = request.POST.get('id', False)
+                user.password = request.POST.get('password1', False)
+                user.username = request.POST.get('username')
+                user.email = request.POST.get('email')
+                user.save()
             return redirect('accountapp:login')
 
         else:
-            if not(request.POST['password1']):
+            if not (request.POST['password1']):
                 singup_password1_errMsg = "* 비밀번호란에 비밀번호를 입력해주세요"
                 return render(request, "accountapp/create.html", {"singup_password1_errMsg": singup_password1_errMsg})
 
             else:
-                if not(request.POST['password2']):
+                if not (request.POST['password2']):
                     singup_password2_errMsg = "* 비밀번호 재확인란에 비밀번호를 입력해주세요"
-                elif not(request.POST['password1'] and request.POST['password2']):
+                elif not (request.POST['password1'] and request.POST['password2']):
                     singup_password2_errMsg = "* 비밀번호와 비밀번호 재확인란에 비밀번호를 입력해주세요"
                 else:
                     singup_password2_errMsg = "* 비밀번호와 비밀번호 재확인란의 비밀번호가 일치하지 않습니다"
-                return render(request, "accountapp/create.html", {"singup_password2_errMsg" : singup_password2_errMsg})
-
-
-
+                return render(request, "accountapp/create.html", {"singup_password2_errMsg": singup_password2_errMsg})
 
 
 @method_decorator(has_ownership, 'get')
@@ -158,12 +159,12 @@ class LoginPageView(View):
         return render(request, 'accountapp/login.html')
 
     def post(self, request):
-        username = request.POST['username']
-        password = request.POST['password']
+        id = request.POST['login_id']
+        password = request.POST['login_pw']
         login_errMsg = None
-        user = auth.authenticate(request, username=username, password=password)
+        user = auth.authenticate(request, id=id, password=password)
 
-        if username and password:
+        if id and password:
             if user is not None:
                 auth.login(request, user)
                 return redirect('introapp:home')
@@ -171,10 +172,10 @@ class LoginPageView(View):
                 login_errMsg = "* 아이디 또는 비밀번호가 일치하지 않습니다"
                 return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
         else:
-            if not (username and password):
+            if not (id and password):
                 login_errMsg = "* 아이디와 비밀번호를 입력하세요"
-            if (not username) and password:
+            if (not id) and password:
                 login_errMsg = "* 아이디를 입력하세요"
-            if username and (not password):
+            if id and (not password):
                 login_errMsg = "* 비밀번호를 입력하세요"
             return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
