@@ -31,7 +31,7 @@
 
         let state = "{{ state }}";
 
-        /* 움직이는 진행바 js*/
+        /* 기부 상태 표시 js*/
         if (state == "a")
         {
             $(function () {
@@ -186,7 +186,48 @@
         </div>
         {% endif %}
     </div>
+
+<!-- 명예의 전당 자리 -->
+    <div id="lank">
+        <div class="lank_text">
+            명예의 전당
+        </div>
+        <div class="lank first">
+            <div class="lank_inner">
+                <div class=" front gold">1</div>
+                <div class="back">
+                    <img src="../../../static/img/profile.png">
+                    <br>
+                    <div class="back_text">dongbb00</div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="lank second">
+            <div class="lank_inner">
+                <div class="front silver">2</div>
+                <div class="back">
+                    <img src="../../../static/img/profile.png">
+                    <br>
+                    <div class="back_text">dongbb00</div>
+                </div>
+            </div>
+        </div>
+        <div class="lank third">
+            <div class="lank_inner">
+                <div class="front bronze">3</div>
+                <div class="back">
+                    <img src="../../../static/img/profile.png">
+                    <br>
+                    <div class="back_text">dongbb00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+
 <div id="footer">
     <address>
         <em class="copy">고려대학교 세종캠퍼스 </em>
@@ -194,5 +235,6 @@
         <a href="{% url 'introapp:home' %}" class="u_cra">Donut</a>
     </address>
 </div>
+
 </body>
 </html>
