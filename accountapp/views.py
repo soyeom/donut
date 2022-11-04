@@ -2,7 +2,8 @@ from django import forms
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from accountapp.models import User
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 from django.views.generic import View
@@ -112,7 +113,6 @@ class signup(View):
     def get(self, request):
         return render(request, 'accountapp/create.html')
 
-
     def post(self, request):
         if request.POST['password1'] == request.POST['password2']:
             if User.objects.filter(username=request.POST['username']).exists():
@@ -129,7 +129,7 @@ class signup(View):
             message_data = message(domain, uidb64, token)
 
             mail_title = "이메일 인증을 완료해주세요"
-            mail_to = user['email']
+            mail_to = user.email
             email = EmailMessage(mail_title, message_data, to=[mail_to])
             email.send()
 
@@ -147,7 +147,6 @@ class signup(View):
                     singup_password2_errMsg = "* 비밀번호와 비밀번호 재확인란에 비밀번호를 입력해주세요"
                 else:
                     singup_password2_errMsg = "* 비밀번호와 비밀번호 재확인란의 비밀번호가 일치하지 않습니다"
-
                 return render(request, "accountapp/create.html", {"singup_password2_errMsg" : singup_password2_errMsg})
 
 
