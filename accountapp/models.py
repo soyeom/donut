@@ -1,5 +1,6 @@
 from django.db import models
 
+<<<<<<< HEAD
 
 class User(models.Model):
     id = models.CharField(max_length=11, unique=True, primary_key=True)
@@ -8,6 +9,11 @@ class User(models.Model):
     email = models.EmailField(max_length=100, unique=True)
     grade = models.ForeignKey('Grade', on_delete=models.CASCADE,null=True)
 
+=======
+class User(AbstractUser):
+    id = models.CharField(max_length=11, unique=True, primary_key=True)
+    grade = models.ForeignKey('Grade', on_delete=models.CASCADE)
+>>>>>>> d69891255452616e1b2dbc84f62dd1d6bad158c4
 
 class Grade(models.Model):
     grade = models.IntegerField(default='1')
