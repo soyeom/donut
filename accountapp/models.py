@@ -3,7 +3,7 @@ from django.db import models
 
 class User(AbstractUser):
     id = models.CharField(max_length=11, unique=True, primary_key=True)
-    grade = models.ForeignKey('Grade', on_delete=models.CASCADE)
+    grade = models.ForeignKey('Grade', models.SET_NULL, blank=True, null=True)
 
 class Grade(models.Model):
     grade = models.IntegerField(default='1')
