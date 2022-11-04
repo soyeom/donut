@@ -1,16 +1,6 @@
-<<<<<<< HEAD
 
 from django.db import models
 from accountapp.models import User
-
-from accountapp.models import User
-
-from django.db import models
-from accountapp.models import User
-=======
-from django.db import models
-from accountapp.models import User
->>>>>>> 3d2a0507c84d94e2118bbab770c6ff9ef5391feb
 
 
 class Profile(models.Model):

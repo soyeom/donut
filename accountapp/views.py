@@ -159,23 +159,23 @@ class LoginPageView(View):
         return render(request, 'accountapp/login.html')
 
     def post(self, request):
-        id = request.POST.get('login_id', False)
+        username = request.POST.get('login_id', False)
         password = request.POST.get('login_pw', False)
         login_errMsg = None
-        user = authenticate(request, id=id, password=password)
+        user = auth.authenticate(request, id=username, password=password)
 
-        if id and password:
+        if username and password:
             if user is not None:
-                login(request, id=id, password=password)
+                auth.login(request, user)
                 return redirect('introapp:home')
             else:
                 login_errMsg = "* 아이디 또는 비밀번호가 일치하지 않습니다"
                 return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
         else:
-            if not (id and password):
+            if not (username and password):
                 login_errMsg = "* 아이디와 비밀번호를 입력하세요"
-            if (not id) and password:
+            if (not username) and password:
                 login_errMsg = "* 아이디를 입력하세요"
-            if id and (not password):
+            if username and (not password):
                 login_errMsg = "* 비밀번호를 입력하세요"
             return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
