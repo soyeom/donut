@@ -168,8 +168,9 @@
                        var positions = new Array();
 
                        {% for result in matchingresult %}
+                           content = '<div>{{ result.society }}</div>'
                            latlng = new kakao.maps.LatLng({{result.latitude}}, {{result.longitude}});
-                           positions.push({title: '{{result.society}}', latlng: latlng})
+                           positions.push({title: '{{result.society}}', latlng: latlng, content: '<div>{{ result.society }}</div>'})
                            console.log('{{result.society}}')
                        {% endfor %}
 
@@ -187,8 +188,20 @@
                                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀 표시
                                image : markerImage // 마커 이미지
                            });
-                       }
 
+                           // 마커 클릭 시 정보 띄우기
+                           var infowindow = new kakao.maps.InfoWindow({
+                               content : positions[i].content
+                           });
+                           (function (marker, infowindow) {
+                               kakao.maps.event.addListener(marker, 'click', function(){
+                                   infowindow.open(map, marker);
+                               });
+                               kakao.maps.event.addListener(map,'click', function(){
+                                   infowindow.close();
+                               });
+                           })(marker, infowindow);
+                       }
                    </script>
                 </div>
             </div>
