@@ -11,7 +11,7 @@
         <div class="box1">
             <img src="../../../static/img/donut.png" alt="">
             <div class="box1_text">
-                <a href=" ">Donut</a>
+                <a href="{% url 'introapp:home' %}">Donut</a>
             </div>
             <form action="{% url 'accountapp:login' %}" id="login_form" method="post">
                 <input type="hidden">
