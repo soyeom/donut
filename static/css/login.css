@@ -59,10 +59,18 @@ label {
   width: 130%;
 }
 
+#box {
+  display: block;
+  width: 1530px;
+  height: fit-content;
+}
+
 .box1 {
   background-color: #f5f6f7;
   float: left;
   clear: both;
+  margin-left: 16.5%;
+  margin-top: 8%;
 }
 
 .box1 > img {
@@ -85,6 +93,23 @@ label {
   padding-top: 20px;
 }
 
+.box1, .box2 {
+  width: 500px;
+  height: 480px;
+  border-radius: 5px;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.2);
+  transform: translate3d(0, 0, 0);
+}
+
+
+.box2 {
+  float: right;
+  margin-right: 16.5%;
+  margin-top: 8%;
+  background-color: #f48fb1;
+  color: #ffffff;
+}
+
 .join_row > h2 {
   display: block;
   font-size: 15px;
@@ -96,22 +121,8 @@ label {
   font-family: "Gowun Dodum", sans-serif;
 }
 
-.box2 {
-  float: right;
-}
-
 #wrapper {
   clear: both;
-}
-
-.box1, .box2 {
-  width: 500px;
-  height: 480px;
-  border-radius: 5px;
-  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.2);
-  position: relative;
-  overflow: hidden;
-  transform: translate3d(0, 0, 0);
 }
 
 h3 {
@@ -172,18 +183,6 @@ h3 {
   color: #000000;
 }
 
-.box1 {
-  margin-left: 259px;
-  margin-top: 100px;
-}
-
-.box2 {
-  margin-right: 260px;
-  margin-top: 100px;
-  background-color: #f48fb1;
-  color: #ffffff;
-}
-
 .box2_btn {
   padding-left: 170px;
 }
@@ -225,19 +224,22 @@ h3 {
 #container>.loginbtn>a {
   text-decoration: none;
 }
-
 @media only screen and (min-width: 1920px) {
   .box1 {
-    margin-left: 450px;
-    margin-top: 200px;
+    margin-left: 30%;
+    margin-top: 13%;
   }
 
   .box2 {
-    margin-right: 450px;
-    margin-top: 200px;
+    margin-right: 4%;
+    margin-top: 13%;
     background-color: #f48fb1;
     color: #ffffff;
   }
-}
 
-/*# sourceMappingURL=login.css.map */
+  #box {
+  display: block;
+  width: 1530px;
+  height: fit-content;
+}
+}
