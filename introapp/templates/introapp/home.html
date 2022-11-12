@@ -91,52 +91,35 @@
             <a href="{% url 'introapp:home' %}">Donut</a>
         </h1>
 
-        <input type="checkbox" id="menu_inputbox">
-        <label for="menu_inputbox" class="menu_button">
-            <div class="b_bar"></div>
-            <div class="b_bar"></div>
-            <div class="b_bar"></div>
-        </label>
-
-        <div class="slider">
-            <div class="slider_head">
-                <label for="menu_inputbox" class="menu_button2">
-                    <div class="b_bar"></div>
-                    <div class="b_bar"></div>
-                    <div class="b_bar"></div>
-                </label>
-            </div>
-
-            <ul class="pore">
-                {% if not user.is_authenticated %}
-                    <a href="{% url 'accountapp:login' %}">
-                        <li class="nav_li">로그인</li>
-                    </a>
-                    <a href="{% url 'accountapp:create' %}">
-                        <li>회원가입</li>
-                    </a>
-                    <a href="{% url 'articleapp:list' %}">
-                        <li class="nav_li">공구모집</li>
-                    </a>
-                    <a href="{% url 'introapp:societyinfo' %}">
-                        <li class="nav_li">단체소개</li>
-                    </a>
-                {% else %}
-                    <a href="{% url 'accountapp:detail' pk=user.pk %}">
-                        <li class="nav_li">마이페이지</li>
-                    </a>
-                    <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
-                        <li class="nav_li">로그아웃</li>
-                    </a>
-                    <a href="{% url 'articleapp:list' %}">
-                        <li class="nav_li">공구모집</li>
-                    </a>
-                    <a href="{% url 'introapp:societyinfo' %}">
-                        <li class="nav_li">단체소개</li>
-                    </a>
-                {% endif %}
-            </ul>
-        </div>
+        <ul id="top_nav">
+            {% if not user.is_authenticated %}
+            <li class="list1">
+                <a href="{% url 'accountapp:login' %}">로그인</a>
+            </li>
+            <li class="list2">
+                <a href="{% url 'accountapp:create' %}">회원가입</a>
+            </li>
+            <li class="list3">
+                <a href="{% url 'articleapp:list' %}">공구모집</a>
+            </li>
+            <li class="list4">
+                <a href="{% url 'introapp:societyinfo' %}">단체소개</a>
+            </li>
+            {% else %}
+            <li class="list1">
+                <a href="{% url 'accountapp:detail' pk=user.pk %}">마이페이지</a>
+            </li>
+            <li class="list2">
+                <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">로그아웃</a>
+            </li>
+            <li class="list3">
+                <a href="{% url 'articleapp:list' %}">공구모집</a>
+            </li>
+            <li class="list4">
+                <a href="{% url 'introapp:societyinfo' %}">단체소개</a>
+            </li>
+            {% endif %}
+        </ul>
     </div>
 
     <div class="box">
