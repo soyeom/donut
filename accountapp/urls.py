@@ -10,11 +10,11 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('create/', signup.as_view(), name='create'),
     path('activate/<str:uidb64>/<str:token>', Activate.as_view()),
-    path('detail/#(?P<pk>[0-9]+)', AccountDetailView.as_view(), name='detail'),
-    path('mypost/#(?P<pk>[0-9]+)', AccountDetailView2.as_view(), name='mypost'),
-    path('mycampaign/#(?P<pk>[0-9]+)', AccountDetailView3.as_view(), name='mycampaign'),
-    path('update/#(?P<pk>[0-9]+)', AccountUpdateView.as_view(), name='update'),
-    path('delete/#(?P<pk>[0-9]+)', AccountDeleteView.as_view(), name='delete'),
+    path('detail/(?P<pk>[0-9]+)\\Z', AccountDetailView.as_view(), name='detail'),
+    path('mypost/(?P<pk>[0-9]+)\\Z', AccountDetailView2.as_view(), name='mypost'),
+    path('mycampaign/(?P<pk>[0-9]+)\\Z', AccountDetailView3.as_view(), name='mycampaign'),
+    path('update/(?P<pk>[0-9]+)\\Z', AccountUpdateView.as_view(), name='update'),
+    path('delete/(?P<pk>[0-9]+)\\Z', AccountDeleteView.as_view(), name='delete'),
 ]
 
 # (?P<pk>[0-9]+)<int:pk>
