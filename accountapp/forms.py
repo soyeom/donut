@@ -17,3 +17,8 @@ class CampCreationForm(ModelForm):
     class Meta:
         model = Campaign
         fields = ['amount']
+
+
+class LogInForm(forms.Form):
+    username = forms.EmailField()
+    password = forms.CharField()

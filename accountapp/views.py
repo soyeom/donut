@@ -116,7 +116,7 @@ class signup(View):
 
     def post(self, request):
         if request.POST['password1'] == request.POST['password2']:
-            if User.objects.filter(id=request.POST['id']).exists():
+            if User.objects.filter(username=request.POST['username']).exists():
                 singup_id_errMsg = "* 이미 존재하는 아이디입니다."
                 return render(request, 'accountapp/create.html', {"singup_id_errMsg": singup_id_errMsg})
             else:
@@ -152,11 +152,12 @@ class signup(View):
                 else:
                     singup_password2_errMsg = "* 비밀번호와 비밀번호 재확인란의 비밀번호가 일치하지 않습니다"
 
-                return render(request, "accountapp/create.html", {"singup_password2_errMsg" : singup_password2_errMsg})
+                return render(request, "accountapp/create.html", {"singup_password2_errMsg": singup_password2_errMsg})
 
 
 class Activate(View):
     model = User
+
     def get(self, request, uidb64, token):
         try:
             uid = force_str(urlsafe_base64_decode(uidb64))
@@ -206,14 +207,29 @@ class LoginPageView(View):
         id = request.POST['login_id']
         password = request.POST['login_pw']
         login_errMsg = None
-        user = auth.authenticate(request, id=id, password=password)
+        # user = authenticate(request, username=username, password=password)
+        try:
+            user = User.objects.get(id=id, password=password)
+        except:
+            login_errMsg = "* 아이디와 비밀번호 둘 다 일치하지 않습니다."
 
         if id and password:
-            if user is not None:
-                auth.login(request, user)
-                return redirect('introapp:home')
+            # if user is not None:
+            #     login(request, user)
+            #     return redirect('introapp:home')
+            # else:
+            #     login_errMsg = "* 아이디 또는 비밀번호가 일치하지 않습니다"
+            #     return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
+            if id == user.id:
+                if password == user.password:
+                    login(request, user)
+                    return redirect('introapp:home')
+                else:
+                    login_errMsg = "* 비밀번호가 일치하지 않습니다"
+                    return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
             else:
-                login_errMsg = "* 아이디 또는 비밀번호가 일치하지 않습니다"
+                if password == user.password:
+                    login_errMsg = "* 아이디가 일치하지 않습니다"
                 return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
         else:
             if not (id and password):
