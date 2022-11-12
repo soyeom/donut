@@ -145,6 +145,7 @@
 
 
             <!-- 지도 -->
+            <!--
                 <div id="map">
                    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=3484f791cc128fd4a942d09c56cd52e5"></script>
                     <img id="marker" src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png" style="cursor: pointer" onclick="window.open(this.src);">
@@ -204,6 +205,150 @@
                        }
                    </script>
                 </div>
+                -->
+                <div id="map">
+                   <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=3484f791cc128fd4a942d09c56cd52e5"></script>
+                    <img id="marker" src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png" style="cursor: pointer" onclick="window.open(this.src);">
+
+                    <script>
+                        var mapContainer = document.getElementById('map'), // 지도의 중심좌표
+                            mapOption = {
+                                center: new kakao.maps.LatLng(36.4833, 127.2618), // 지도의 중심좌표
+                                level: 3 // 지도의 확대 레벨
+                            };
+
+                        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+                        var positions = [
+                            {
+                                content: '<div class="wrap">' +
+                                    '    <div class="info">' +
+                                    '        <div class="title">' +
+                                    '            고려대학교 세종사회봉사단' +
+                                    '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+                                    '        </div>' +
+                                    '        <div class="body">' +
+                                    '            <div class="img">' +
+                                    '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+                                    '           </div>' +
+                                    '            <div class="desc">' +
+                                    '                <div class="ellipsis">조치원읍 서창리 208</div>' +
+                                    '                <div class="jibun ellipsis">(우) 30019 (지번) 세종로 2511</div>' +
+                                    '                <div><a href="https://sejong.korea.ac.kr/user/boardList.do?handle=108936&siteId=share&id=share_030100000000" target="_blank" class="link">홈페이지</a></div>' +
+                                    '            </div>' +
+                                    '        </div>' +
+                                    '    </div>' +
+                                    '</div>',
+                                latlng : new kakao.maps.LatLng(36.61109945, 127.2871618)
+                            },
+                            {
+                                content : '<div class="wrap">' +
+                                '    <div class="info">' +
+                                '        <div class="title">' +
+                                '            사회복지법인 세종중앙' +
+                                '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+                                '        </div>' +
+                                '        <div class="body">' +
+                                '            <div class="img">' +
+                                '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+                                '           </div>' +
+                                '            <div class="desc">' +
+                                '                <div class="ellipsis">조치원읍 남리 358</div>' +
+                                '                <div class="jibun ellipsis">(우) 30035 (지번) 장안길 97-7</div>' +
+                                '                <div><a href="http://sejongchungang.or.kr/" target="_blank" class="link">홈페이지</a></div>' +
+                                '            </div>' +
+                                '        </div>' +
+                                '    </div>' +
+                                '</div>',
+                                latlng : new kakao.maps.LatLng(36.5963902176803, 127.301015424638)
+                            },
+                            {
+                                content : '<div class="wrap">' +
+                                '    <div class="info">' +
+                                '        <div class="title">' +
+                                '            세종 YWCA' +
+                                '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+                                '        </div>' +
+                                '        <div class="body">' +
+                                '            <div class="img">' +
+                                '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+                                '           </div>' +
+                                '            <div class="desc">' +
+                                '                <div class="ellipsis">조치원읍 교리 22-6</div>' +
+                                '                <div class="jibun ellipsis">(우) 30024 (지번) 새내12길 35</div>' +
+                                '                <div><a href="http://www.iywca.com/" target="_blank" class="link">홈페이지</a></div>' +
+                                '            </div>' +
+                                '        </div>' +
+                                '    </div>' +
+                                '</div>',
+                                latlng : new kakao.maps.LatLng(36.6027956854572, 127.299876549653)
+                            },
+                            {
+                               content : '<div class="wrap">' +
+                                '    <div class="info">' +
+                                '        <div class="title">' +
+                                '            세종특별자치시 사회복지협의회' +
+                                '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+                                '        </div>' +
+                                '        <div class="body">' +
+                                '            <div class="img">' +
+                                '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+                                '           </div>' +
+                                '            <div class="desc">' +
+                                '                <div class="ellipsis">조치원읍 신안리 35-20</div>' +
+                                '                <div class="jibun ellipsis">(우) 30016 (지번) 세종로 2567</div>' +
+                                '                <div><a href="http://m.sjcsw.or.kr/" target="_blank" class="link">홈페이지</a></div>' +
+                                '            </div>' +
+                                '        </div>' +
+                                '    </div>' +
+                                '</div>',
+                                latlng : new kakao.maps.LatLng(36.6154437181143, 127.292399665348)
+                            },
+                            {
+                                content : '<div class="wrap">' +
+                                '    <div class="info">' +
+                                '        <div class="title">' +
+                                '            세종특별자치시 자원봉사 센터' +
+                                '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+                                '        </div>' +
+                                '        <div class="body">' +
+                                '            <div class="img">' +
+                                '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+                                '           </div>' +
+                                '            <div class="desc">' +
+                                '                <div class="ellipsis">종촌동 674</div>' +
+                                '                <div class="jibun ellipsis">(우) 30064 (지번) 도움1로 116</div>' +
+                                '                <div><a href="http://www.sjvc1365.or.kr/" target="_blank" class="link">홈페이지</a></div>' +
+                                '            </div>' +
+                                '        </div>' +
+                                '    </div>' +
+                                '</div>',
+                                latlng : new kakao.maps.LatLng(36.5952730081064, 127.301825498491)
+                            }
+                        ];
+
+                        for (var i=0; i<positions.length; i++){
+                            var marker = new kakao.maps.Marker({
+                                map: map,
+                                position: positions[i].latlng
+                            });
+
+                            var overlay = new kakao.maps.CustomOverlay({
+                                content: positions[i].content,
+                                map: map,
+                                position: marker.getPosition()
+                            });
+
+                            kakao.maps.event.addListener(marker, 'click', function () {
+                                overlay.setMap(map);
+                            });
+                            function closeOverlay(){
+                                overlay.setMap(null);
+                            }
+                        }
+
+                    </script>
+                </div>
             </div>
         </div>
     </div>
@@ -219,6 +364,7 @@
                     따뜻한 마음, 함께하는 세종, 세종특별자치시 자원봉사센터입니다.
                 </div>
             </li>
+            <br>
             <li>
                 <a href="http://m.sjcsw.or.kr/?act=main">
                     <img class="img2" src="http://m.sjcsw.or.kr/data/file/logo_1.png">
@@ -229,6 +375,7 @@
                     사회적 취약계층을 위한 사업수행을 통해 우리나라의 사회복지증진과 발전에 기여하고 있습니다.
                 </div>
             </li>
+            <br>
             <li>
                 <a href="http://www.iywca.com/">
                     <img class="img3" src="http://www.iywca.com/USER_DATA/sjywca/main/banner/logo.jpg">
@@ -239,6 +386,7 @@
                     이루어지는 세상을 건설함을 목적으로 하고 있습니다.
                 </div>
             </li>
+            <br>
             <li>
                 <a href="http://sejongchungang.or.kr/index.php">
                     <img class="img4" src="http://sejongchungang.or.kr/images/logo1.jpg">
@@ -248,6 +396,7 @@
                     지속 가능한 평등, 연대, 변화를 실천하여 지역 공동체를 새롭게 창조하는 살림의 삶을 지향하고 있습니다.
                 </div>
             </li>
+            <br>
             <li>
                 <a href="https://sejong.korea.ac.kr/mbshome/mbs/share/index.do">
                     <img class="img5" src="https://sejong.korea.ac.kr/mbshome/mbs/share/images/logo.png">

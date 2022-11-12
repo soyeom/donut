@@ -659,7 +659,7 @@ button {
 }
 
 #category ul li a:hover {
-  background: #8e8e8e;
+  background: rgba(43, 53, 54, 0.4);
 }
 
 #category > ul > li > a > img {
