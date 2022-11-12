@@ -9,10 +9,10 @@ urlpatterns = [
     path('login/', LoginPageView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('create/', signup.as_view(), name='create'),
-    path('detail/<int:pk>', AccountDetailView.as_view(), name='detail'),
-    path('mypost/<int:pk>', AccountDetailView2.as_view(), name='mypost'),
-    path('mycampaign/<int:pk>', AccountDetailView3.as_view(), name='mycampaign'),
-    path('update/<int:pk>', AccountUpdateView.as_view(), name='update'),
-    path('delete/<int:pk>', AccountDeleteView.as_view(), name='delete'),
+    path('detail/(?P<pk>[0-9]+)\\Z', AccountDetailView.as_view(), name='detail'),
+    path('mypost/(?P<pk>[0-9]+)\\Z', AccountDetailView2.as_view(), name='mypost'),
+    path('mycampaign/(?P<pk>[0-9]+)\\Z', AccountDetailView3.as_view(), name='mycampaign'),
+    path('update/(?P<pk>[0-9]+)\\Z', AccountUpdateView.as_view(), name='update'),
+    path('delete/(?P<pk>[0-9]+)\\Z', AccountDeleteView.as_view(), name='delete'),
 ]
 
