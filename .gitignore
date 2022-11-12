@@ -87,3 +87,9 @@ db.sqlite3
 __pycache__/
 
 *.pyc
+
+Dockerfile
+
+docker-compose.yml
+
+nginx.conf
