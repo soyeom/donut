@@ -208,11 +208,11 @@ class LoginPageView(View):
         password = request.POST['login_pw']
         login_errMsg = None
 
-        user = authenticate(id=id, password=password)
+        user = User.objects.get(id=id, password=password)
 
         if id and password:
             if id == request.POST['login_id']:
-                login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+                login(request, user)
 
                 return redirect('introapp:home')
             else:
