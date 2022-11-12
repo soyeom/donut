@@ -203,14 +203,15 @@ class LoginPageView(View):
         return render(request, 'accountapp/login.html')
 
     def post(self, request):
-        id = request.POST['login_id']
+        username = request.POST['login_id']
         password = request.POST['login_pw']
         login_errMsg = None
-        user = authenticate(id=id, password=password)
 
-        if id and password:
-            if id == request.POST['login_id']:
-                login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+        #user = authenticate(request, username=username, password=password)
+
+        if username and password:
+            if user is not None:
+                login(request, user)
                 return redirect('introapp:home')
             else:
                 login_errMsg = "* 아이디 또는 비밀번호가 일치하지 않습니다"

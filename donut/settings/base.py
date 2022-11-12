@@ -41,10 +41,7 @@ INSTALLED_APPS = [
 SASS_PROCESSOR_ENABLED = True
 SASS_OUTPUT_STYLE = 'compact'
 SASS_PRECISION = 8
-
-SASS_PROCESSOR_ENABLED =True
 SASS_PROCESSOR_ROOT =os.path.join(BASE_DIR, 'static')
-SASS_OUTPUT_STYLE = 'compact'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
