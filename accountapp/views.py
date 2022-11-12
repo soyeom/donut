@@ -125,6 +125,7 @@ class signup(View):
                 user.password = request.POST.get('password1', False)
                 user.username = request.POST.get('username')
                 user.email = request.POST.get('email')
+                user.is_active = False
                 user.save()
 
             current_site = get_current_site(request)
@@ -206,11 +207,20 @@ class LoginPageView(View):
         id = request.POST['login_id']
         password = request.POST['login_pw']
         login_errMsg = None
+<<<<<<< HEAD
+        user = authenticate(request, id=id, password=password)
+
+        if id and password:
+            if user is not None:
+                user.backend = 'django.contrib.auth.backends.ModelBackend'
+                login(request, user)
+=======
         user = authenticate(id=id, password=password)
 
         if id and password:
             if id == request.POST['login_id']:
                 login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+>>>>>>> 5d1e3a66d3ba445480fdf3357bd8c6a26f7b5adb
                 return redirect('introapp:home')
             else:
                 login_errMsg = "* 아이디 또는 비밀번호가 일치하지 않습니다"
