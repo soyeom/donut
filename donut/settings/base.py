@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os, environ
-
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -36,6 +35,7 @@ INSTALLED_APPS = [
     'commentapp',
     'profileapp',
     'payapp',
+    'six',
 ]
 
 SASS_PROCESSOR_ENABLED = True
@@ -131,3 +131,14 @@ LOGIN_REDIRECT_URL = reverse_lazy('introapp:list')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 
 AUTH_USER_MODEL = 'accountapp.User'
+AUTHENTICATION_BACKENDS = ('accountapp.models.User',)
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'ye7648@gmail.com'
+EMAIL_HOST_PASSWORD = 'zzmnednqhvroqxqf'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+

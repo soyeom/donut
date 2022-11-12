@@ -24,7 +24,10 @@ from django.utils.encoding import force_bytes, force_str
 
 import articleapp
 from accountapp.decorators import account_ownership_required
-from accountapp.forms import AccountUpdateForm, CampCreationForm\
+
+from accountapp.forms import AccountUpdateForm, CampCreationForm
+from accountapp.text import message
+from accountapp.token import account_activation_token
 
 from articleapp.models import Article, Campaign, PriceCategory
 from accountapp.models import User, Grade
@@ -206,6 +209,7 @@ class LoginPageView(View):
         id = request.POST['login_id']
         password = request.POST['login_pw']
         login_errMsg = None
+
         # user = authenticate(request, username=username, password=password)
         try:
             user = User.objects.get(id=id, password=password)
@@ -226,6 +230,7 @@ class LoginPageView(View):
                 else:
                     login_errMsg = "* 비밀번호가 일치하지 않습니다"
                     return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
+
             else:
                 if password == user.password:
                     login_errMsg = "* 아이디가 일치하지 않습니다"
