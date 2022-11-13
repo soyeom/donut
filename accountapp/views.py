@@ -216,25 +216,30 @@ class LoginPageView(View):
         except:
             login_errMsg = "* 아이디와 비밀번호 둘 다 일치하지 않습니다."
 
-        if id and password:
+            if id and password:
+                user = request.user
+                return redirect('introapp:home')
+            else:
+                login_errMsg = "* 아이디 또는 비밀번호가 일치하지 않습니다"
+                return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
             # if user is not None:
             #     login(request, user)
             #     return redirect('introapp:home')
             # else:
             #     login_errMsg = "* 아이디 또는 비밀번호가 일치하지 않습니다"
             #     return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
-            if id == user.id:
-                if password == user.password:
-                    login(request, user)
-                    return redirect('introapp:home')
-                else:
-                    login_errMsg = "* 비밀번호가 일치하지 않습니다"
-                    return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
+            # if id == user.id:
+            #    if password == user.password:
+            #        login(request, user)
+            #        return redirect('introapp:home')
+            #    else:
+            #        login_errMsg = "* 비밀번호가 일치하지 않습니다"
+            #        return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
 
-            else:
-                if password == user.password:
-                    login_errMsg = "* 아이디가 일치하지 않습니다"
-                return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
+            # else:
+            #    if password == user.password:
+            #        login_errMsg = "* 아이디가 일치하지 않습니다"
+            #    return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
         else:
             if not (id and password):
                 login_errMsg = "* 아이디와 비밀번호를 입력하세요"

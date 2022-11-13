@@ -64,10 +64,10 @@
 
                 {% if object.image %}
                     <img src="{{ object.image.url }}" alt="">
-                    <p> {{ object.content }} </p>
+                    <p> {{ object.content | safe }} </p>
                 {% else %}
                 <p>
-                    {{ object.content }}
+                    {{ object.content | safe }}
                 </p>
                 {% endif %}
 
@@ -86,7 +86,7 @@
 
                 {% endif %}
 
-                <a class="a_tag" href="{% url 'articleapp:list' %}" class="button">
+                <a class="a_tag" href="{% url 'articleapp:donate_list' %}" class="button">
                     목록
                 </a>
 
