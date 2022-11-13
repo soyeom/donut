@@ -3,7 +3,7 @@ from django.db import models
 
 
 class User(AbstractUser):
-    id = models.CharField(max_length=11, primary_key=True)
+    user_id = models.CharField(max_length=11)
     grade = models.ForeignKey('Grade', models.SET_NULL, blank=True, null=True)
 
 
