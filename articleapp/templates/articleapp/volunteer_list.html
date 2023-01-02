@@ -9,29 +9,6 @@
     <link rel="stylesheet" href="../../../static/css/practice.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- 롤링 배너 JavaScript -->
-    <script language="JavaScript">
-        $(document).ready(function() {
-            var $banner = $(".banner").find("ul");
-
-            var $bannerWidth = $banner.children().outerWidth();
-            var $bannerHeight = $banner.children().outerHeight();
-            var $bannerLength = $banner.children().length;
-            var rollingId;
-
-            rollingId = setInterval(function() { rollingStart(); });
-
-            function rollingStart() {
-                $banner.css("width", $bannerWidth * $bannerLength + "px");
-                $banner.css("height", $bannerHeight + "px");
-                $banner.animate({left: - $bannerWidth + "px"}, 1500, function() {
-                    $(this).append("<li>" + $(this).find("li:first").html() + "</li>");
-                    $(this).find("li:first").remove();
-                    $(this).css("left", 1);
-                });
-            }
-        });
-    </script>
 </head>
 <body>
 <!-- 팝업창 띄우기 js -->
@@ -57,34 +34,6 @@
             <img src="../../../static/img/donut.png" alt="">
             <a href="{% url 'introapp:home' %}">Donut</a>
         </h1>
-
-        <!-- 후원 단체 이미지 -->
-    <!--
-        <div class="banner_top white">
-            <div class="banner">
-                <ul>
-                    <li>
-                        <img src="https://www.unicef.or.kr/static/logo_active@2x-8a9e02df64d664f02ffc1ceaaa5ad4fd.png">
-                    </li>
-                    <li>
-                        <img src="https://chest.or.kr/common/img/common/logo.png">
-                    </li>
-                    <li>
-                        <img src="https://www.redcross.or.kr/images/main_v14/dh-logo.gif">
-                    </li>
-                    <li>
-                        <img src="https://www.kidsfuture.or.kr/data/file/202107031920_2cc731ced8d1b0000.png">
-                    </li>
-                    <li>
-                        <img src="https://www.sc.or.kr/webPub/sc_2018/images/main/logo_on.png">
-                    </li>
-                    <li>
-                        <img src="https://www.worldvision.or.kr/main2017/images/wv_logo_02.png?crc=3773745825">
-                    </li>
-                </ul>
-            </div>
-        </div>
-        -->
 
         <div class="inner_cont customer_cont">
             <div class="section section-top">

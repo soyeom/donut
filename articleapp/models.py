@@ -2,7 +2,6 @@ from django_quill.fields import QuillField
 
 from accountapp.models import User
 from django.db import models
-from accountapp.models import User
 
 
 class ArticleCategory(models.Model):

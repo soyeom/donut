@@ -9,29 +9,6 @@
     <link rel="stylesheet" href="../../../static/css/practice.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- 롤링 배너 JavaScript -->
-    <script language="JavaScript">
-        $(document).ready(function() {
-            var $banner = $(".banner").find("ul");
-
-            var $bannerWidth = $banner.children().outerWidth();
-            var $bannerHeight = $banner.children().outerHeight();
-            var $bannerLength = $banner.children().length;
-            var rollingId;
-
-            rollingId = setInterval(function() { rollingStart(); });
-
-            function rollingStart() {
-                $banner.css("width", $bannerWidth * $bannerLength + "px");
-                $banner.css("height", $bannerHeight + "px");
-                $banner.animate({left: - $bannerWidth + "px"}, 1500, function() {
-                    $(this).append("<li>" + $(this).find("li:first").html() + "</li>");
-                    $(this).find("li:first").remove();
-                    $(this).css("left", 1);
-                });
-            }
-        });
-    </script>
 </head>
 <body>
 <!-- 팝업창 띄우기 js -->
@@ -57,6 +34,7 @@
             <img src="../../../static/img/donut.png" alt="">
             <a href="{% url 'introapp:home' %}">Donut</a>
         </h1>
+<<<<<<< HEAD
 <!--
         <!-- 후원 단체 이미지 -->
         <div class="banner_top white">
@@ -84,6 +62,8 @@
             </div>
         </div>
 
+=======
+>>>>>>> e8a2af207480c8bd4ec568852617329ddc212220
 
         <div class="inner_cont customer_cont">
             <div class="section section-top">

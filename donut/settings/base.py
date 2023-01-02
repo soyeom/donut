@@ -132,7 +132,8 @@ LOGIN_REDIRECT_URL = reverse_lazy('introapp:list')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 
 AUTH_USER_MODEL = 'accountapp.User'
-#AUTHENTICATION_BACKENDS = ('accountapp.models.User')
+# AUTHENTICATION_BACKENDS = ('accountapp.models.User',)
+
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
