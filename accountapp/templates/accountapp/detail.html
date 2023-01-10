@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="../../../static/css/profile.css">
-    <script src="../../../static/js/detail.js"/>
 </head>
 <body>
 <script>
@@ -166,31 +165,26 @@
                                 </h6>
                             </div>
 
-                            <div class="point">
-                                <div style="margin-left: 40%; margin-top: -9rem;">
-                                    <h3>
-                                        포인트 :
-                                        <a href="{% url 'payapp:charge' %}">
-                                            포인트충전 &nbsp;↗
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-
                             {% else %}
 
-                            <div id="make_img">
+                            <div id="profile_img">
                                 <img src="../../../static/img/profile2.png">
-                            </div>
-                            <br>
-                            <div class="make_text">
+                                <br>
                                 <a href="{% url 'profileapp:create' %}">
-                                    <h4>
-                                        프로필 만들기
-                                    </h4>
+                                    프로필 만들기 &nbsp;↗
                                 </a>
                             </div>
+
                             {% endif %}
+
+                            <div class="point">
+                                <h3>
+                                    포인트 : {{ target_user.grade.point }}
+                                </h3>
+                                <a href="{% url 'payapp:charge' %}">
+                                        포인트충전 &nbsp;↗
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

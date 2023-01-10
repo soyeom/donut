@@ -36,15 +36,13 @@ INSTALLED_APPS = [
     'profileapp',
     'payapp',
     'six',
+    'django_quill',
 ]
 
 SASS_PROCESSOR_ENABLED = True
 SASS_OUTPUT_STYLE = 'compact'
 SASS_PRECISION = 8
-
-SASS_PROCESSOR_ENABLED =True
-SASS_PROCESSOR_ROOT =os.path.join(BASE_DIR, 'static')
-SASS_OUTPUT_STYLE = 'compact'
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -131,7 +129,6 @@ LOGIN_REDIRECT_URL = reverse_lazy('introapp:list')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 
 AUTH_USER_MODEL = 'accountapp.User'
-# AUTHENTICATION_BACKENDS = ('accountapp.models.User',)
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
