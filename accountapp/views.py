@@ -217,6 +217,7 @@ class LoginPageView(View):
             user = authenticate(request, username=user_id, password=password)
             if user is not None:
                 login(request, user)
+
                 return redirect('introapp:home')
             else:
                 login_errMsg = "* 아이디 또는 비밀번호가 일치하지 않습니다"
