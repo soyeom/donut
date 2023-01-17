@@ -198,6 +198,7 @@ class AccountDeleteView(DeleteView):
     template_name = 'accountapp/delete.html'
 
 
+
 class LoginPageView(View):
     model = User
     template_name = 'authentication/login.html'
