@@ -81,12 +81,12 @@ form {
 
 #content {
   width: 460px;
-  margin: 0 auto;
+  margin: 0px;
 }
 
 #row {
   overflow: hidden;
-  width: 100%;
+  width: 1000px;
 }
 
 .title {
@@ -120,7 +120,7 @@ form > .form-group > textarea {
 
 button {
   outline: none;
-  margin: 20px;
+  margin: 0px;
   font-family: "Gowun Dodum", sans-serif;
   font-size: 17px;
 }
