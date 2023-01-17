@@ -197,6 +197,11 @@ class AccountDeleteView(DeleteView):
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/delete.html'
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 09f345dcfcec0c18dd6b4d810077330d7f3c8854
 class LoginPageView(View):
     model = User
     template_name = 'authentication/login.html'
