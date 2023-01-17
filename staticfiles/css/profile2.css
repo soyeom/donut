@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap");
+
+.inner1, .inner2 {
+  font-family: "Gowun Dodum", sans-serif;
+}
+
+html {
+  background: linear-gradient(45deg, #ec8ead, #c1aae8, #9bc3f1);
+}
+
+#wrapper > .box1 form > #container > #content {
+  background: #f5f6f7;
+  border-radius: 20px;
+  box-shadow: 0 2px 20px rgba(51, 51, 51, 0.5);
+}
+
+ul, li {
+  list-style: none;
+}
+
+#top_logo {
+  cursor: pointer;
+  font-family: "Ubuntu", sans-serif;
+  color: #ffffff;
+  font-size: 2.7rem;
+  font-weight: bold;
+  -webkit-text-stroke: 1px #f48fb1;
+}
+
+#top_logo > img {
+  width: 3.2rem;
+  float: left;
+  padding-right: 0.4rem;
+}
+
+#top_logo > a {
+  color: #ffffff;
+  -webkit-text-stroke: 1px #f48fb1;
+}
+
+#content > .inner1 {
+  float: right;
+}
+
+#content > .inner2 {
+  text-align: center;
+}
+
+#progress > ul {
+  width: 20rem !important;
+  height: 4rem;
+  padding: 0;
+  border-style: inset;
+}
+
+#progress > ul > li {
+  float: left;
+  line-height: 2rem;
+  text-align: center;
+  width:5rem;
+  height:2rem;
+}
+
+.set_sub > li > a > p {
+  line-height: 1.2rem;
+  font-size: 1rem;
+}
+
+.section3 > label >img{
+  width:1.5rem;
+  height:auto;
+}
+
+#footer {
+  clear: both;
+  text-align: center;
+}
+
+#footer * {
+  font-size: 0.8rem;
+  font-style: normal;
+  color: #333333;
+}
+
+a {
+  text-decoration: none;
+  color:black;
+}
+
+#set {
+  display: none;
+}
