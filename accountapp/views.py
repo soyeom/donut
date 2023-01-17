@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from accountapp.models import User
@@ -117,16 +117,16 @@ class signup(View):
 
     def post(self, request):
         if request.POST['password1'] == request.POST['password2']:
-            if User.objects.filter(user_id=request.POST['user_id']).exists():
+            if User.objects.filter(username=request.POST['user_id']).exists():
                 singup_id_errMsg = "* 이미 존재하는 아이디입니다."
                 return render(request, 'accountapp/create.html', {"singup_id_errMsg": singup_id_errMsg})
             else:
-                user = User()
-                user.user_id = request.POST.get('user_id', False)
-                user.password = request.POST.get('password1', False)
-                user.username = request.POST.get('name')
-                user.email = request.POST.get('email')
-                user.is_active = True
+                user_id = request.POST['user_id']
+                last_name = request.POST['name']
+                password = request.POST['password1']
+                email = request.POST['email']
+                is_active = True
+                user = User.objects.create_user(username=user_id, last_name=last_name, password=password, email=email, is_active=is_active)
                 user.save()
 
             current_site = get_current_site(request)
@@ -197,8 +197,11 @@ class AccountDeleteView(DeleteView):
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/delete.html'
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 09f345dcfcec0c18dd6b4d810077330d7f3c8854
 class LoginPageView(View):
     model = User
     template_name = 'authentication/login.html'
@@ -210,13 +213,13 @@ class LoginPageView(View):
         user_id = request.POST['login_id']
         password = request.POST['login_pw']
         login_errMsg = None
-        user = authenticate(request, user_id=user_id, password=password)
         # try:
         #     user = User.objects.get(user_id=user_id, password=password)
         # except:
         #     login_errMsg = "* 아이디와 비밀번호 둘 다 일치하지 않습니다."
 
         if user_id and password:
+            user = authenticate(request, username=user_id, password=password)
             if user is not None:
                 login(request, user)
 
