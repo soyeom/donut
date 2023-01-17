@@ -25,12 +25,12 @@ class ArticleCreateView1(CreateView):
     form_class = ArticleCreationForm
     template_name = 'articleapp/create_donate.html'
 
-    def form_valid(self, request, form):
+    def form_valid(self, form):
         article = form.save(commit=False)
         article.writer = self.request.user
         article.category = ArticleCategory.objects.get(name="기부")
         article.save()
-        return render(request, 'create_donate.html', {'form': ArticleCreationForm()})
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})

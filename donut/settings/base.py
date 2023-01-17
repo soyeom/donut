@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'payapp',
     'six',
     'django_quill',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 SASS_PROCESSOR_ENABLED = True
@@ -121,6 +123,10 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#게시글 꾸미기
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -137,6 +143,4 @@ EMAIL_HOST_USER = 'ye7648@gmail.com'
 EMAIL_HOST_PASSWORD = 'zzmnednqhvroqxqf'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
 
