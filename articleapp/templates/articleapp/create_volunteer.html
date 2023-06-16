@@ -30,7 +30,8 @@
                     </div>
                     <form action="{% url 'articleapp:volunteer' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {% bootstrap_form form %}
+                        {{ form.media }}
+                        {{ form.as_p|safe }}
                         <div id="btn">
                             <button class="custom btn-1">제출하기</button>
                         </div>

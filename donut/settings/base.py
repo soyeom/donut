@@ -36,15 +36,15 @@ INSTALLED_APPS = [
     'profileapp',
     'payapp',
     'six',
+    'django_quill',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 SASS_PROCESSOR_ENABLED = True
 SASS_OUTPUT_STYLE = 'compact'
 SASS_PRECISION = 8
-
-SASS_PROCESSOR_ENABLED =True
-SASS_PROCESSOR_ROOT =os.path.join(BASE_DIR, 'static')
-SASS_OUTPUT_STYLE = 'compact'
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -123,6 +123,10 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#게시글 꾸미기
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -132,12 +136,11 @@ LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 
 AUTH_USER_MODEL = 'accountapp.User'
 
+
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'ye7648@gmail.com'
 EMAIL_HOST_PASSWORD = 'zzmnednqhvroqxqf'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
 

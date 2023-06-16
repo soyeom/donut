@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from accountapp.models import User
@@ -117,16 +117,16 @@ class signup(View):
 
     def post(self, request):
         if request.POST['password1'] == request.POST['password2']:
-            if User.objects.filter(username=request.POST['username']).exists():
+            if User.objects.filter(username=request.POST['user_id']).exists():
                 singup_id_errMsg = "* 이미 존재하는 아이디입니다."
                 return render(request, 'accountapp/create.html', {"singup_id_errMsg": singup_id_errMsg})
             else:
-                user = User()
-                user.id = request.POST.get('id', False)
-                user.password = request.POST.get('password1', False)
-                user.username = request.POST.get('username')
-                user.email = request.POST.get('email')
-                user.is_active = False
+                user_id = request.POST['user_id']
+                last_name = request.POST['name']
+                password = request.POST['password1']
+                email = request.POST['email']
+                is_active = True
+                user = User.objects.create_user(username=user_id, last_name=last_name, password=password, email=email, is_active=is_active)
                 user.save()
 
             current_site = get_current_site(request)
@@ -197,7 +197,6 @@ class AccountDeleteView(DeleteView):
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/delete.html'
 
-
 class LoginPageView(View):
     model = User
     template_name = 'authentication/login.html'
@@ -206,40 +205,43 @@ class LoginPageView(View):
         return render(request, 'accountapp/login.html')
 
     def post(self, request):
-        id = request.POST['login_id']
+        user_id = request.POST['login_id']
         password = request.POST['login_pw']
         login_errMsg = None
+        # try:
+        #     user = User.objects.get(user_id=user_id, password=password)
+        # except:
+        #     login_errMsg = "* 아이디와 비밀번호 둘 다 일치하지 않습니다."
 
-        # user = authenticate(request, username=username, password=password)
-        try:
-            user = User.objects.get(id=id, password=password)
-        except:
-            login_errMsg = "* 아이디와 비밀번호 둘 다 일치하지 않습니다."
+        if user_id and password:
+            user = authenticate(request, username=user_id, password=password)
+            if user is not None:
+                login(request, user)
 
-        if id and password:
-            # if user is not None:
-            #     login(request, user)
-            #     return redirect('introapp:home')
-            # else:
-            #     login_errMsg = "* 아이디 또는 비밀번호가 일치하지 않습니다"
-            #     return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
-            if id == user.id:
-                if password == user.password:
-                    login(request, user)
-                    return redirect('introapp:home')
-                else:
-                    login_errMsg = "* 비밀번호가 일치하지 않습니다"
-                    return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
-
+                return redirect('introapp:home')
             else:
-                if password == user.password:
-                    login_errMsg = "* 아이디가 일치하지 않습니다"
+                login_errMsg = "* 아이디 또는 비밀번호가 일치하지 않습니다"
                 return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
+
+            # if user_id == user.user_id:
+            #     if password == user.password:
+            #         login(request, user)
+            #         print(login(request, user))
+            #         return redirect('introapp:home')
+            #     else:
+            #         login_errMsg = "* 비밀번호가 일치하지 않습니다"
+            #         return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
+            #
+            # else:
+            #     if password == user.password:
+            #         login_errMsg = "* 아이디가 일치하지 않습니다"
+            #     return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
+
         else:
-            if not (id and password):
+            if not (user_id and password):
                 login_errMsg = "* 아이디와 비밀번호를 입력하세요"
-            if (not id) and password:
+            if (not user_id) and password:
                 login_errMsg = "* 아이디를 입력하세요"
-            if id and (not password):
+            if user_id and (not password):
                 login_errMsg = "* 비밀번호를 입력하세요"
             return render(request, 'accountapp/login.html', {'login_errMsg': login_errMsg})
